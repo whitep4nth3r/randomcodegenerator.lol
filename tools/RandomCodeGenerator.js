@@ -1,9 +1,11 @@
 import Css from "@tools/utils/css";
 import JavaScript from "@tools/utils/javascript";
+import CSharp from "./utils/csharp";
 
 export const Languages = {
   js: "JavaScript",
   css: "CSS",
+  csharp: "C#"
 };
 
 export function getRandomInt(min, max) {
@@ -37,6 +39,19 @@ export function generateRandomCode(language, lines) {
 
       for (let i = 1; i <= fillerLineQty; i++) {
         fillerLines.push(`    ${JavaScript.getRandomFillerLine()}`);
+      }
+
+      lastLine = "\n\r}";
+
+      return firstLine + fillerLines.join("\n\r") + lastLine;
+    case "csharp":
+      firstLine = `${CSharp.getRandomMethodName()}() \n\r{\n\r`;
+
+      fillerLineQty = parseInt(lines, 10) - 2;
+      fillerLines = [];
+
+      for(let i = 1; i <= fillerLineQty; i++) {
+        fillerLines.push(` ${CSharp.getRandomFillerLine()}`);
       }
 
       lastLine = "\n\r}";
