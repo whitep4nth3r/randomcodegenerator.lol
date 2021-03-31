@@ -1,65 +1,73 @@
-import Head from 'next/head'
-import styles from '../styles/Home.module.css'
+import Head from "next/head";
+import { useState } from "react";
+import { generateRandomCode } from "@tools/RandomCodeGenerator";
+import { Languages } from "@tools/Constants";
 
 export default function Home() {
+  const [selectedLang, setSelectedLang] = useState(Object.keys(Languages)[0]);
+  const [numberOfLines, setNumberOfLines] = useState(3);
+  const [result, setResult] = useState("");
+
+  function generateCode() {
+    const newCode = generateRandomCode(selectedLang, numberOfLines);
+    setResult(newCode);
+  }
+
+  function handleSelectOnChange(value) {
+    setSelectedLang(value);
+  }
+
+  function handeInputOnChange(value) {
+    setNumberOfLines(value);
+  }
+
   return (
-    <div className={styles.container}>
+    <div>
       <Head>
-        <title>Create Next App</title>
+        <title>randomcodegenerator.lol</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <main className={styles.main}>
-        <h1 className={styles.title}>
-          Welcome to <a href="https://nextjs.org">Next.js!</a>
-        </h1>
-
-        <p className={styles.description}>
-          Get started by editing{' '}
-          <code className={styles.code}>pages/index.js</code>
+      <main className="container">
+        <h1>randomcodegenerator.lol</h1>
+        <p>
+          Ever needed a random bit of code for your project? randomcodegenerator.lol has got you
+          covered. Choose your language and how many lines of code you want and BÄM! RANDOM CODE 4
+          U!
         </p>
+        <div className="selector">
+          <div className="selector__item">
+            <label className="selector__item__label">Language</label>
+            <select value={selectedLang} onChange={(e) => handleSelectOnChange(e.target.value)}>
+              {Object.entries(Languages).map(([key, value]) => (
+                <option value={key} key={key}>
+                  {value}
+                </option>
+              ))}
+            </select>
+          </div>
+          <div className="selector__item">
+            <label className="selector__item__label">Number of lines</label>
+            <input
+              value={numberOfLines}
+              onChange={(e) => handeInputOnChange(e.target.value)}
+              type="number"
+            />
+          </div>
+        </div>
 
-        <div className={styles.grid}>
-          <a href="https://nextjs.org/docs" className={styles.card}>
-            <h3>Documentation &rarr;</h3>
-            <p>Find in-depth information about Next.js features and API.</p>
-          </a>
+        <div className="generate">
+          <button className="generate__button" type="button" onClick={generateCode}>
+            Generate
+          </button>
+        </div>
 
-          <a href="https://nextjs.org/learn" className={styles.card}>
-            <h3>Learn &rarr;</h3>
-            <p>Learn about Next.js in an interactive course with quizzes!</p>
-          </a>
-
-          <a
-            href="https://github.com/vercel/next.js/tree/master/examples"
-            className={styles.card}
-          >
-            <h3>Examples &rarr;</h3>
-            <p>Discover and deploy boilerplate example Next.js projects.</p>
-          </a>
-
-          <a
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-            className={styles.card}
-          >
-            <h3>Deploy &rarr;</h3>
-            <p>
-              Instantly deploy your Next.js site to a public URL with Vercel.
-            </p>
-          </a>
+        <div className="result">
+          <pre>
+            <code>{result}</code>
+          </pre>
         </div>
       </main>
-
-      <footer className={styles.footer}>
-        <a
-          href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Powered by{' '}
-          <img src="/vercel.svg" alt="Vercel Logo" className={styles.logo} />
-        </a>
-      </footer>
     </div>
-  )
+  );
 }
