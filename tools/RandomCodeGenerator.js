@@ -1,6 +1,10 @@
-import { Languages } from "@tools/Constants";
 import Css from "@tools/utils/css";
 import JavaScript from "@tools/utils/javascript";
+
+export const Languages = {
+  js: "JavaScript",
+  css: "CSS",
+};
 
 export function getRandomInt(min, max) {
   return Math.round(Math.random() * (max - min) + min);

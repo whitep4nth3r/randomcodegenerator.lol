@@ -1,20 +1,16 @@
 import Head from "next/head";
 import { useState } from "react";
-import { generateRandomCode } from "@tools/RandomCodeGenerator";
-import { Languages } from "@tools/Constants";
+import { generateRandomCode, Languages } from "@tools/RandomCodeGenerator";
 
 export default function Home() {
   const [selectedLang, setSelectedLang] = useState(Object.keys(Languages)[0]);
   const [numberOfLines, setNumberOfLines] = useState(3);
   const [result, setResult] = useState("");
 
-  function generateCode() {
-    const newCode = generateRandomCode(selectedLang, numberOfLines);
-    setResult(newCode);
-  }
-
-  function handleSelectOnChange(value) {
+  function handleButtonClick(value) {
     setSelectedLang(value);
+    const newCode = generateRandomCode(value, numberOfLines);
+    setResult(newCode);
   }
 
   function handeInputOnChange(value) {
@@ -22,52 +18,52 @@ export default function Home() {
   }
 
   return (
-    <div>
+    <>
       <Head>
         <title>randomcodegenerator.lol</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
       <main className="container">
-        <h1>randomcodegenerator.lol</h1>
-        <p>
-          Ever needed a random bit of code for your project? randomcodegenerator.lol has got you
-          covered. Choose your language and how many lines of code you want and BÄM! RANDOM CODE 4
-          U!
+        <h1 className="title">[object Object]</h1>
+        <p className="blurb">
+          Ever needed a random bit of code for your project? We've got you covered.
         </p>
+        <p className="blurb">Choose your language. Choose how many lines.</p>
+        <p className="blurb">BÄM! You got code.</p>
         <div className="selector">
-          <div className="selector__item">
-            <label className="selector__item__label">Language</label>
-            <select value={selectedLang} onChange={(e) => handleSelectOnChange(e.target.value)}>
-              {Object.entries(Languages).map(([key, value]) => (
-                <option value={key} key={key}>
-                  {value}
-                </option>
-              ))}
-            </select>
-          </div>
-          <div className="selector__item">
-            <label className="selector__item__label">Number of lines</label>
-            <input
-              value={numberOfLines}
-              onChange={(e) => handeInputOnChange(e.target.value)}
-              type="number"
-            />
+          <label className="selector__item__label">I want</label>
+          <input
+            value={numberOfLines}
+            onChange={(e) => handeInputOnChange(e.target.value)}
+            type="number"
+            className="input"
+          />
+
+          <label className="selector__item__label">lines of</label>
+
+          <div className="selector__buttonGroup">
+            {Object.entries(Languages).map(([key, value]) => (
+              <button
+                className="selector__button"
+                type="button"
+                key={key}
+                onClick={() => handleButtonClick(key)}
+              >
+                {value}
+              </button>
+            ))}
           </div>
         </div>
 
-        <div className="generate">
-          <button className="generate__button" type="button" onClick={generateCode}>
-            Generate
-          </button>
-        </div>
-
-        <div className="result">
-          <pre>
-            <code>{result}</code>
-          </pre>
-        </div>
+        {result.length > 0 && (
+          <div className="result">
+            <pre className="result__pre">
+              <code>{result}</code>
+            </pre>
+          </div>
+        )}
       </main>
-    </div>
+    </>
   );
 }
