@@ -1,9 +1,11 @@
 import Css from "@tools/utils/css";
 import JavaScript from "@tools/utils/javascript";
+import Python from "@tools/utils/python";
 
 export const Languages = {
   js: "JavaScript",
   css: "CSS",
+  python: "Python",
 };
 
 export function getRandomInt(min, max) {
@@ -41,6 +43,19 @@ export function generateRandomCode(language, lines) {
 
       lastLine = "\n\r}";
 
+      return firstLine + fillerLines.join("\n\r") + lastLine;
+    case "python":
+      firstLine = `def ${Python.getRandomFunctionName()}():\n\r`;
+      
+      fillerLineQty = parseInt(lines, 10) - 2;
+      fillerLines = [];
+      
+      for (let i = 1; i <= fillerLineQty; i++) {
+          fillerLines.push(`\t${Python.getRandomFillerLine()}`);
+      }
+      
+      lastLine = "\n\r}";
+      
       return firstLine + fillerLines.join("\n\r") + lastLine;
     default:
       return "lol";
