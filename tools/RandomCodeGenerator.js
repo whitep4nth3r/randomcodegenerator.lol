@@ -1,9 +1,11 @@
 import Css from "@tools/utils/css";
+import Java from "@tools/utils/java";
 import JavaScript from "@tools/utils/javascript";
 
 export const Languages = {
   js: "JavaScript",
   css: "CSS",
+  java: "Java",
 };
 
 export function getRandomInt(min, max) {
@@ -37,6 +39,19 @@ export function generateRandomCode(language, lines) {
 
       for (let i = 1; i <= fillerLineQty; i++) {
         fillerLines.push(`    ${JavaScript.getRandomFillerLine()}`);
+      }
+
+      lastLine = "\n\r}";
+
+      return firstLine + fillerLines.join("\n\r") + lastLine;
+    case "java":
+      firstLine = `${Java.getRandomMethodSignature()}() {\n\r`;
+
+      fillerLineQty = parseInt(lines, 10) - 2;
+      fillerLines = [];
+
+      for (let i = 1; i <= fillerLineQty; i++) {
+        fillerLines.push(`    ${Java.getRandomFillerLine()}`);
       }
 
       lastLine = "\n\r}";
