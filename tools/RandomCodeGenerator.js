@@ -1,9 +1,11 @@
 import Css from "@tools/utils/css";
 import JavaScript from "@tools/utils/javascript";
+import PHP from "@tools/utils/php";
 
 export const Languages = {
   js: "JavaScript",
   css: "CSS",
+  php: "PHP",
 };
 
 export function getRandomInt(min, max) {
@@ -42,6 +44,25 @@ export function generateRandomCode(language, lines) {
       lastLine = "\n\r}";
 
       return firstLine + fillerLines.join("\n\r") + lastLine;
+    case "php":
+
+      firstLine = `<?php \r\n\r\n`;
+      let namespaceLine = `${PHP.getRandomNamespace()}\n\r\n\r`;
+
+      let classLine = `class ${PHP.getRandomClassName()} { \r\n`;
+      let functionLine = `    ${PHP.getRandomFunctionKeyword()} ${JavaScript.getRandomFunctionName()}(${PHP.getRandomParamtersRead()}) {\n\r`;
+
+      fillerLineQty = parseInt(lines, 10) - 2;
+      fillerLines = [];
+
+      for (let i = 1; i <= fillerLineQty; i++) {
+        fillerLines.push(`        ${PHP.getRandomFillerLine()}`);
+      }
+
+      let endFunctionLine = `\n\r    }\n\r`;
+      lastLine = `}`;
+
+      return firstLine + namespaceLine + classLine + functionLine + fillerLines.join("\n\r") + endFunctionLine + lastLine;
     default:
       return "lol";
   }
