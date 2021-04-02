@@ -30,9 +30,15 @@ export function generateRandomCode(language, lines) {
       fillerLineQty = parseInt(lines, 10) - 2;
 
       for (let i = 1; i <= fillerLineQty; i++) {
-        fillerLines.push(
-          `    ${Css.getRandomProp()}: ${getRandomInt(0, 500)}${Css.getRandomUnit()};`
-        );
+        const lineOptions = [
+          `    ${Css.getRandomUnitRule()};`,
+          `    ${Css.getRandomColorRule()};`,
+          `    ${Css.getRandomDisplayRule()};`,
+          `    ${Css.getRandomZIndexRule()};`,
+          `    ${Css.getRandomPositionRule()};`,
+        ];
+
+        fillerLines.push(lineOptions[Math.floor(Math.random() * lineOptions.length)]);
       }
 
       lastLine = "\n\r}";

@@ -4,9 +4,7 @@ import { nouns, verbs } from "./words";
 export default class Python {
   static getRandomFunctionName() {
     const randomNoun = nouns[Math.floor(Math.random() * nouns.length)];
-    return `${verbs[Math.floor(Math.random() * verbs.length)]}_${
-      randomNoun.charAt(0) + randomNoun.slice(1)
-    }`;
+    return `${verbs[Math.floor(Math.random() * verbs.length)]}_${randomNoun}`;
   }
 
   static getRandomVariableDeclaration() {
