@@ -1,4 +1,5 @@
 import Css from "./utils/css";
+import Docker from "./utils/docker";
 import Java from "./utils/java";
 import JavaScript from "./utils/javascript";
 import Python from "./utils/python";
@@ -6,6 +7,7 @@ import PHP from "./utils/php";
 
 export const Languages = {
   css: "CSS",
+  docker: "Docker",
   php: "PHP",
   java: "Java",
   js: "JavaScript",
@@ -14,6 +16,10 @@ export const Languages = {
 
 export function getRandomInt(min, max) {
   return Math.round(Math.random() * (max - min) + min);
+}
+
+export function getRandomEntry(array) {
+  return array[getRandomInt(0, array.length - 1)];
 }
 
 export function generateRandomCode(language, lines) {
@@ -34,6 +40,17 @@ export function generateRandomCode(language, lines) {
       }
 
       lastLine = "\n\r}";
+      return firstLine + fillerLines.join("\n\r") + lastLine;
+    case "docker":
+      firstLine = Docker.randomPreamble();
+      fillerLineQty = parseInt(lines, 10) - 2;
+      fillerLines = [];
+
+      for (let i = 1; i <= fillerLineQty; i++) {
+        fillerLines.push(`${Docker.getRandomFillerLine()}`);
+      }
+      lastLine = Docker.randomPostamble();
+
       return firstLine + fillerLines.join("\n\r") + lastLine;
     case "js":
       const firstLines = [
