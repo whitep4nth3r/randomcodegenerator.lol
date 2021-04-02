@@ -7,9 +7,11 @@ import Python from "./utils/python";
 import Comments from "./utils/comments";
 import PHP from "./utils/php";
 import Powershell from "./utils/powershell";
+import COBOL from "./utils/cobol";
 
 export const Languages = {
   css: "CSS",
+  cobol: "COBOL",
   csharp: "C#",
   docker: "Docker",
   php: "PHP",
@@ -18,6 +20,11 @@ export const Languages = {
   python: "Python",
   powershell: "Powershell",
 };
+
+export function getRandomLang() {
+  const languages = Object.keys(Languages);
+  return languages[Math.floor(Math.random() * languages.length)];
+}
 
 export function getRandomInt(min, max) {
   return Math.round(Math.random() * (max - min) + min);
@@ -33,6 +40,7 @@ export function generateRandomCode(language, lines) {
   let fillerLines = [];
   let lastLine = "";
   const addComment = Math.random() + .5 >> 0;
+  let imports = "";
 
   switch (language) {
     case "css":
@@ -180,8 +188,7 @@ export function generateRandomCode(language, lines) {
 
       return firstLine + fillerLines.join("\n\r") + lastLine;
     case "python":
-      let imports = "";
-      imports = `${Python.getRandomImport()}\n\n\n`;
+      imports = `${Python.getRandomImport()}\n\n`;
       firstLine = `def ${Python.getRandomFunctionName()}():\n\r`;
 
       fillerLineQty = parseInt(lines, 10) - 2;
@@ -194,12 +201,18 @@ export function generateRandomCode(language, lines) {
         fillerLines.push(`\t${Python.getRandomFillerLine()}`);
       }
 
-      return (
-        imports +
-        firstLine +
-        fillerLines.join("\n\r") +
-        lastLine
-      );
+      return imports + firstLine + fillerLines.join("\n\r") + lastLine;
+    case "cobol":
+      firstLine = `PROCEDURE DIVISION.\n\r`;
+      fillerLineQty = parseInt(lines, 10) - 2;
+  
+      for (let i = 1; i <= fillerLineQty; i++) {
+          fillerLines.push(`\t${COBOL.getRandomFillerLine()}`);
+      }
+
+      lastLine = "\n\rSTOP RUN.";
+
+      return firstLine + fillerLines.join("\n\r") + lastLine;
     default:
       return "lol";
   }
