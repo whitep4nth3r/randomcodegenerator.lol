@@ -6,10 +6,9 @@ export default class Python {
   static getRandomImport() {
     const lowerRandomNoun = nouns[Math.floor(Math.random() * nouns.length)],
       lowerRandomNounTwo = nouns[Math.floor(Math.random() * nouns.length)],
-      randomNoun = lowerRandomNoun,
-      randomNounTwo = lowerRandomNounTwo
+      randomNoun = lowerRandomNoun
 
-    return `import ${randomNoun}.${randomNounTwo}`;
+    return `import ${randomNoun}`;
   }
 
   static getRandomFunctionName() {
