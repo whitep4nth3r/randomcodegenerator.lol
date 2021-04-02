@@ -1,11 +1,12 @@
-
 import Css from "./utils/css";
 import Java from "./utils/java";
 import JavaScript from "./utils/javascript";
 import Python from "./utils/python";
+import PHP from "./utils/php";
 
 export const Languages = {
   css: "CSS",
+  php: "PHP",
   java: "Java",
   js: "JavaScript",
   python: "Python",
@@ -52,6 +53,24 @@ export function generateRandomCode(language, lines) {
       lastLine = "\n\r}";
 
       return firstLine + fillerLines.join("\n\r") + lastLine;
+    case "php":
+      firstLine = `<?php \r\n\r\n`;
+      let namespaceLine = `${PHP.getRandomNamespace()}\n\r\n\r`;
+
+      let classLine = `class ${PHP.getRandomClassName()} { \r\n`;
+      let functionLine = `    ${PHP.getRandomFunctionKeyword()} ${JavaScript.getRandomFunctionName()}(${PHP.getRandomParamtersRead()}) {\n\r`;
+
+      fillerLineQty = parseInt(lines, 10) - 2;
+      fillerLines = [];
+
+      for (let i = 1; i <= fillerLineQty; i++) {
+        fillerLines.push(`        ${PHP.getRandomFillerLine()}`);
+      }
+
+      let endFunctionLine = `\n\r    }\n\r`;
+      lastLine = `}`;
+
+      return firstLine + namespaceLine + classLine + functionLine + fillerLines.join("\n\r") + endFunctionLine + lastLine;
     case "java":
       firstLine = `${Java.getRandomMethodSignature()}() {\n\r`;
       fillerLineQty = parseInt(lines, 10) - 2;
