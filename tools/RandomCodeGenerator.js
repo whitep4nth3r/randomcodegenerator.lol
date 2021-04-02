@@ -1,11 +1,17 @@
 import CSharp from "./utils/csharp";
 import Css from "./utils/css";
+import Java from "./utils/java";
 import JavaScript from "./utils/javascript";
+import Python from "./utils/python";
+import PHP from "./utils/php";
 
 export const Languages = {
-  js: "JavaScript",
   css: "CSS",
   csharp: "C#"
+  php: "PHP",
+  java: "Java",
+  js: "JavaScript",
+  python: "Python",
 };
 
 export function getRandomInt(min, max) {
@@ -34,9 +40,8 @@ export function generateRandomCode(language, lines) {
     case "csharp":
       firstLine = (`${CSharp.getRandomAccessModifier()} ${CSharp.getRandomMethodKeyword()} void ${CSharp.getRandomMethodName()}()\n\r`).replace('  ', ' ');
       if (firstLine[0] === ' ') firstLine = firstLine.slice(1);
-
+      
       fillerLineQty = parseInt(lines, 10) - 3;
-      fillerLines = [];
 
       fillerLines.push('{');
       for (let i = 1; i <= fillerLineQty; i++) {
@@ -47,10 +52,12 @@ export function generateRandomCode(language, lines) {
 
       return firstLine + fillerLines.join("\n\r") + lastLine;
     case "js":
-        firstLine = `function ${JavaScript.getRandomMethodName()}() {\n\r`;
+         const firstLines = [
+          (randomFunctionName) => { return `function ${randomFunctionName}() {\n\r` },
+          (randomFunctionName) => { return `const ${randomFunctionName} = () => {\n\r` }
+        ]
   
         fillerLineQty = parseInt(lines, 10) - 2;
-        fillerLines = [];
   
         for (let i = 1; i <= fillerLineQty; i++) {
           fillerLines.push(`    ${JavaScript.getRandomFillerLine()}`);
@@ -59,7 +66,46 @@ export function generateRandomCode(language, lines) {
         lastLine = "\n\r}";
   
         return firstLine + fillerLines.join("\n\r") + lastLine;
-      default:
+    case "php":
+      firstLine = `<?php \r\n\r\n`;
+      let namespaceLine = `${PHP.getRandomNamespace()}\n\r\n\r`;
+
+      let classLine = `class ${PHP.getRandomClassName()} { \r\n`;
+      let functionLine = `    ${PHP.getRandomFunctionKeyword()} ${JavaScript.getRandomFunctionName()}(${PHP.getRandomParamtersRead()}) {\n\r`;
+
+      fillerLineQty = parseInt(lines, 10) - 2;
+      fillerLines = [];
+
+      for (let i = 1; i <= fillerLineQty; i++) {
+        fillerLines.push(`        ${PHP.getRandomFillerLine()}`);
+      }
+
+      let endFunctionLine = `\n\r    }\n\r`;
+      lastLine = `}`;
+
+      return firstLine + namespaceLine + classLine + functionLine + fillerLines.join("\n\r") + endFunctionLine + lastLine;
+    case "java":
+      firstLine = `${Java.getRandomMethodSignature()}() {\n\r`;
+      fillerLineQty = parseInt(lines, 10) - 2;
+      
+      for (let i = 1; i <= fillerLineQty; i++) {
+        fillerLines.push(`    ${Java.getRandomFillerLine()}`);
+      }
+      
+      lastLine = "\n\r}";
+      
+      return firstLine + fillerLines.join("\n\r") + lastLine;
+    case "python":
+      firstLine = `def ${Python.getRandomFunctionName()}():\n\r`;
+
+      fillerLineQty = parseInt(lines, 10) - 2;
+
+      for (let i = 1; i <= fillerLineQty; i++) {
+        fillerLines.push(`\t${Python.getRandomFillerLine()}`);
+      }
+
+      return firstLine + fillerLines.join("\n\r") + lastLine;
+    default:
       return "lol";
   }
 }
