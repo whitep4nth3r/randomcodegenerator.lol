@@ -1,62 +1,9 @@
-import { getRandomInt } from "../RandomCodeGenerator";
-
-const verbs = [
-  "generate",
-  "handle",
-  "remove",
-  "add",
-  "get",
-  "initialize",
-  "append",
-  "set",
-  "replace",
-  "check",
-  "invoke",
-  "sort",
-  "on",
-  "start",
-  "stop",
-  "delete",
-  "change",
-  "yeet",
-  "scan",
-  "concatenate",
-  "read",
-  "write",
-  "fetch",
-  "update",
-  "dispose",
-  "eggcelerate",
-  "random",
-];
-const nouns = [
-  "click",
-  "object",
-  "target",
-  "list",
-  "element",
-  "thing",
-  "code",
-  "array",
-  "number",
-  "property",
-  "person",
-  "user",
-  "table",
-  "row",
-  "port",
-  "string",
-  "unsafe",
-  "algorithm",
-  "method",
-  "tree",
-  `thing${getRandomInt(0, 100)}`,
-];
+import { getRandomInt, getRandomItem, getRandomNoun, getRandomVerb } from "./random";
 
 export default class JavaScript {
   static getRandomFunctionName() {
-    const randomNoun = nouns[Math.floor(Math.random() * nouns.length)];
-    return `${verbs[Math.floor(Math.random() * verbs.length)]}${
+    const randomNoun = getRandomNoun();
+    return `${getRandomVerb()}${
       randomNoun.charAt(0).toUpperCase() + randomNoun.slice(1)
     }`;
   }
@@ -65,9 +12,9 @@ export default class JavaScript {
     const keyWords = ["let", "const", "var"];
     const options = ["[]", "this"];
 
-    return `${keyWords[Math.floor(Math.random() * keyWords.length)]} ${
-      nouns[Math.floor(Math.random() * nouns.length)]
-    } = ${options[Math.floor(Math.random() * options.length)]};`;
+    return `${getRandomItem(keyWords)} ${
+      getRandomNoun()
+    } = ${getRandomItem(options)};`;
   }
 
   static getRandomConsoleLog() {
@@ -89,7 +36,7 @@ export default class JavaScript {
       '"TODO: refactor this"',
     ];
 
-    return options[Math.floor(Math.random() * options.length)];
+    return getRandomItem(options);
   }
 
   static getRandomFillerLine() {
@@ -98,6 +45,6 @@ export default class JavaScript {
       JavaScript.getRandomVariableDeclaration(),
       `${JavaScript.getRandomFunctionName()}();`
     ];
-    return options[Math.floor(Math.random() * options.length)];
+    return getRandomItem(options);
   }
 }

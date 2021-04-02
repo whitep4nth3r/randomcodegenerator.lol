@@ -4,19 +4,16 @@ import Java from "./utils/java";
 import JavaScript from "./utils/javascript";
 import Python from "./utils/python";
 import PHP from "./utils/php";
+import { getRandomInt } from "./utils/random";
 
 export const Languages = {
   css: "CSS",
-  csharp: "C#"
+  csharp: "C#",
   php: "PHP",
   java: "Java",
   js: "JavaScript",
   python: "Python",
 };
-
-export function getRandomInt(min, max) {
-  return Math.round(Math.random() * (max - min) + min);
-}
 
 export function generateRandomCode(language, lines) {
   let firstLine = "";
@@ -71,7 +68,7 @@ export function generateRandomCode(language, lines) {
       let namespaceLine = `${PHP.getRandomNamespace()}\n\r\n\r`;
 
       let classLine = `class ${PHP.getRandomClassName()} { \r\n`;
-      let functionLine = `    ${PHP.getRandomFunctionKeyword()} ${JavaScript.getRandomFunctionName()}(${PHP.getRandomParamtersRead()}) {\n\r`;
+      let functionLine = `    ${PHP.getRandomFunctionKeyword()} ${JavaScript.getRandomFunctionName()}(${PHP.getRandomParametersRead()}) {\n\r`;
 
       fillerLineQty = parseInt(lines, 10) - 2;
       fillerLines = [];

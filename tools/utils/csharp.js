@@ -1,64 +1,10 @@
-import { getRandomInt } from "../RandomCodeGenerator";
-
-const verbs = [
-  "generate",
-  "handle",
-  "remove",
-  "add",
-  "get",
-  "initialize",
-  "append",
-  "set",
-  "replace",
-  "check",
-  "invoke",
-  "sort",
-  "on",
-  "start",
-  "stop",
-  "delete",
-  "change",
-  "yeet",
-  "scan",
-  "concatenate",
-  "read",
-  "write",
-  "fetch",
-  "update",
-  "dispose",
-  "eggcelerate",
-  "random",
-];
-
-const nouns = [
-  "click",
-  "object",
-  "target",
-  "list",
-  "element",
-  "thing",
-  "code",
-  "array",
-  "number",
-  "property",
-  "person",
-  "user",
-  "table",
-  "row",
-  "port",
-  "string",
-  "unsafe",
-  "algorithm",
-  "method",
-  "tree",
-  `thing${getRandomInt(0, 100)}`,
-];
+import { getRandomInt, getRandomItem, getRandomNoun, getRandomVerb } from "./random";
 
 export default class CSharp {
 
   static getRandomMethodName() {
-	const randomVerb = verbs[Math.floor(Math.random() * verbs.length)];
-    const randomNoun = nouns[Math.floor(Math.random() * nouns.length)];
+	const randomVerb = getRandomVerb();
+    const randomNoun = getRandomNoun();
 
     return `${
 	  randomVerb.charAt(0).toUpperCase() + randomVerb.slice(1)
@@ -70,18 +16,18 @@ export default class CSharp {
   static getRandomVariableDeclaration() {
     const keyWords = ["int", "string", "double", "float", "decimal", "bool"];
 
-	var keyWord = keyWords[Math.floor(Math.random() * keyWords.length)];
+	var keyWord = getRandomItem(keyWords);
     return `${keyWord} ${
-      nouns[Math.floor(Math.random() * nouns.length)]
+      getRandomNoun()
     };`;
   }
 
   static getRandomNewVariableDeclaration() {
     const keyWords = ["ArrayList", "List<string>", "HashTable", "Dictionary<int, string>", "Queue", "StringBuilder"];
 
-	var keyWord = keyWords[Math.floor(Math.random() * keyWords.length)];
+	var keyWord = getRandomItem(keyWords);
     return `${keyWord} ${
-      nouns[Math.floor(Math.random() * nouns.length)]
+      getRandomNoun()
     } = new ${keyWord}();`;
   }
 
@@ -94,7 +40,7 @@ export default class CSharp {
 		'static',
 	  ];
   
-	  return options[Math.floor(Math.random() * options.length)];
+	  return getRandomItem(options);
 	}
 
   static getRandomAccessModifier() {
@@ -106,7 +52,7 @@ export default class CSharp {
 		`internal`,
 		];
 	
-		return options[Math.floor(Math.random() * options.length)];
+		return getRandomItem(options);
 	}
 	
   static getRandomDebugWriteLine() {
@@ -128,7 +74,7 @@ export default class CSharp {
       '"TODO: refactor this"',
     ];
 
-    return options[Math.floor(Math.random() * options.length)];
+    return getRandomItem(options);
   }
 
   static getRandomMethodCall() {
@@ -142,6 +88,6 @@ export default class CSharp {
       CSharp.getRandomNewVariableDeclaration(),
 	  CSharp.getRandomMethodCall(),
     ];
-    return options[Math.floor(Math.random() * options.length)];
+    return getRandomItem(options);
   }
 }
