@@ -1,11 +1,14 @@
-import Css from "@tools/utils/css";
-import Java from "@tools/utils/java";
-import JavaScript from "@tools/utils/javascript";
+
+import Css from "./utils/css";
+import Java from "./utils/java";
+import JavaScript from "./utils/javascript";
+import Python from "./utils/python";
 
 export const Languages = {
-  js: "JavaScript",
   css: "CSS",
   java: "Java",
+  js: "JavaScript",
+  python: "Python",
 };
 
 export function getRandomInt(min, max) {
@@ -46,15 +49,23 @@ export function generateRandomCode(language, lines) {
       return firstLine + fillerLines.join("\n\r") + lastLine;
     case "java":
       firstLine = `${Java.getRandomMethodSignature()}() {\n\r`;
-
       fillerLineQty = parseInt(lines, 10) - 2;
-      fillerLines = [];
-
+      
       for (let i = 1; i <= fillerLineQty; i++) {
         fillerLines.push(`    ${Java.getRandomFillerLine()}`);
       }
-
+      
       lastLine = "\n\r}";
+      
+      return firstLine + fillerLines.join("\n\r") + lastLine;
+    case "python":
+      firstLine = `def ${Python.getRandomFunctionName()}():\n\r`;
+
+      fillerLineQty = parseInt(lines, 10) - 2;
+
+      for (let i = 1; i <= fillerLineQty; i++) {
+        fillerLines.push(`\t${Python.getRandomFillerLine()}`);
+      }
 
       return firstLine + fillerLines.join("\n\r") + lastLine;
     default:

@@ -53,7 +53,7 @@ const nouns = [
   `thing${getRandomInt(0, 100)}`,
 ];
 
-export default class JavaScript {
+export default class Python {
   static getRandomFunctionName() {
     const randomNoun = nouns[Math.floor(Math.random() * nouns.length)];
     return `${verbs[Math.floor(Math.random() * verbs.length)]}${
@@ -62,15 +62,14 @@ export default class JavaScript {
   }
 
   static getRandomVariableDeclaration() {
-    const keyWords = ["let", "const", "var"];
-    const options = ["[]", "this"];
+    const options = ["[]", "this", "self", "x + 1"];
 
-    return `${keyWords[Math.floor(Math.random() * keyWords.length)]} ${
-      nouns[Math.floor(Math.random() * nouns.length)]
-    } = ${options[Math.floor(Math.random() * options.length)]};`;
+    return `${nouns[Math.floor(Math.random() * nouns.length)]} = ${
+      options[Math.floor(Math.random() * options.length)]
+    }`;
   }
 
-  static getRandomConsoleLog() {
+  static getRandomPrint() {
     const options = [
       '"Goodbye, world!"',
       '"test"',
@@ -93,11 +92,7 @@ export default class JavaScript {
   }
 
   static getRandomFillerLine() {
-    const options = [
-      `console.log(${JavaScript.getRandomConsoleLog()});`,
-      JavaScript.getRandomVariableDeclaration(),
-      `${JavaScript.getRandomFunctionName()}();`
-    ];
+    const options = [`print(${Python.getRandomPrint()})`, Python.getRandomVariableDeclaration()];
     return options[Math.floor(Math.random() * options.length)];
   }
 }

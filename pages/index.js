@@ -1,6 +1,6 @@
-import Head from "next/head";
+import PageMeta from "../components/PageMeta";
 import { useState } from "react";
-import { generateRandomCode, Languages } from "@tools/RandomCodeGenerator";
+import { generateRandomCode, Languages } from "../tools/RandomCodeGenerator";
 
 export default function Home() {
   const [selectedLang, setSelectedLang] = useState(Object.keys(Languages)[0]);
@@ -19,16 +19,11 @@ export default function Home() {
 
   return (
     <>
-      <Head>
-        <title>randomcodegenerator.lol</title>
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
+      <PageMeta />
 
       <main className="container">
         <h1 className="title">[object Object]</h1>
-        <p className="blurb">
-          Ever needed a random bit of code for your project? We've got you covered.
-        </p>
+        <p className="blurb">Need some code for your project? We've got you covered.</p>
         <p className="blurb">Choose your language. Choose how many lines.</p>
         <p className="blurb">BÄM! You got code.</p>
         <div className="selector">
@@ -64,6 +59,7 @@ export default function Home() {
           </div>
         )}
       </main>
+      <footer style={{ textAlign: "center" }}>ADD FOOTER</footer>
     </>
   );
 }
