@@ -6,7 +6,6 @@ import Python from "./utils/python";
 import PHP from "./utils/php";
 import Powershell from "./utils/powershell";
 
-
 export const Languages = {
   css: "CSS",
   csharp: "C#",
@@ -14,7 +13,7 @@ export const Languages = {
   java: "Java",
   js: "JavaScript",
   python: "Python",
-  powershell: "Powershell"
+  powershell: "Powershell",
 };
 
 export function getRandomInt(min, max) {
@@ -96,7 +95,6 @@ export function generateRandomCode(language, lines) {
       fillerLineQty = parseInt(lines, 10) - 2;
       fillerLines = [];
 
-
       for (let i = 1; i <= fillerLineQty; i++) {
         fillerLines.push(`        ${PHP.getRandomFillerLine()}`);
       }
@@ -113,40 +111,40 @@ export function generateRandomCode(language, lines) {
         endFunctionLine +
         lastLine
       );
-      case "powershell":
-        firstLine = `function ${Powershell.getRandomFunctionName()} { \n\r`;
+    case "powershell":
+      firstLine = `function ${Powershell.getRandomFunctionName()} { \n\r`;
 
-        fillerLineQty = parseInt(lines, 10) - 2;
+      fillerLineQty = parseInt(lines, 10) - 2;
 
-        for(let i = 1; i <= fillerLineQty; i++) {
-          fillerLines.push(`${Powershell.getRandomFillerLine()}`);
-        }
-
-        lastLine = "\n\r}";
-
-        return firstLine + fillerLines.join("\n\r") + lastLine;
-      case "java":
-        firstLine = `${Java.getRandomMethodSignature()}() {\n\r`;
-        fillerLineQty = parseInt(lines, 10) - 2;
-
-        for (let i = 1; i <= fillerLineQty; i++) {
-          fillerLines.push(`    ${Java.getRandomFillerLine()}`);
+      for (let i = 1; i <= fillerLineQty; i++) {
+        fillerLines.push(`    ${Powershell.getRandomFillerLine()}`);
       }
 
-        lastLine = "\n\r}";
+      lastLine = "\n\r}";
 
-        return firstLine + fillerLines.join("\n\r") + lastLine;
-      case "python":
-        firstLine = `def ${Python.getRandomFunctionName()}():\n\r`;
+      return firstLine + fillerLines.join("\n\r") + lastLine;
+    case "java":
+      firstLine = `${Java.getRandomMethodSignature()}() {\n\r`;
+      fillerLineQty = parseInt(lines, 10) - 2;
 
-        fillerLineQty = parseInt(lines, 10) - 2;
-
-        for (let i = 1; i <= fillerLineQty; i++) {
-          fillerLines.push(`\t${Python.getRandomFillerLine()}`);
+      for (let i = 1; i <= fillerLineQty; i++) {
+        fillerLines.push(`    ${Java.getRandomFillerLine()}`);
       }
 
-        return firstLine + fillerLines.join("\n\r") + lastLine;
-      default:
-        return "lol";
+      lastLine = "\n\r}";
+
+      return firstLine + fillerLines.join("\n\r") + lastLine;
+    case "python":
+      firstLine = `def ${Python.getRandomFunctionName()}():\n\r`;
+
+      fillerLineQty = parseInt(lines, 10) - 2;
+
+      for (let i = 1; i <= fillerLineQty; i++) {
+        fillerLines.push(`\t${Python.getRandomFillerLine()}`);
+      }
+
+      return firstLine + fillerLines.join("\n\r") + lastLine;
+    default:
+      return "lol";
   }
 }
