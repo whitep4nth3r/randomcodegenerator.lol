@@ -1,63 +1,11 @@
 import { getRandomInt } from "../RandomCodeGenerator";
-
-const verbs = [
-  "generate",
-  "handle",
-  "remove",
-  "add",
-  "get",
-  "initialize",
-  "append",
-  "set",
-  "replace",
-  "check",
-  "invoke",
-  "sort",
-  "on",
-  "start",
-  "stop",
-  "delete",
-  "change",
-  "yeet",
-  "scan",
-  "concatenate",
-  "read",
-  "write",
-  "fetch",
-  "update",
-  "dispose",
-  "eggcelerate",
-  "random",
-];
-const nouns = [
-  "click",
-  "object",
-  "target",
-  "list",
-  "element",
-  "thing",
-  "code",
-  "array",
-  "number",
-  "property",
-  "person",
-  "user",
-  "table",
-  "row",
-  "port",
-  "string",
-  "unsafe",
-  "algorithm",
-  "method",
-  "tree",
-  `thing${getRandomInt(0, 100)}`,
-];
+import { nouns, verbs } from "./words";
 
 export default class Python {
   static getRandomFunctionName() {
     const randomNoun = nouns[Math.floor(Math.random() * nouns.length)];
-    return `${verbs[Math.floor(Math.random() * verbs.length)]}${
-      randomNoun.charAt(0).toUpperCase() + randomNoun.slice(1)
+    return `${verbs[Math.floor(Math.random() * verbs.length)]}_${
+      randomNoun.charAt(0) + randomNoun.slice(1)
     }`;
   }
 
