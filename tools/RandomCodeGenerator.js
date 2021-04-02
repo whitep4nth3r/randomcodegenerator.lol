@@ -18,6 +18,11 @@ export const Languages = {
   powershell: "Powershell",
 };
 
+export function getRandomLang() {
+  const languages = Object.keys(Languages);
+  return languages[Math.floor(Math.random() * languages.length)];
+}
+
 export function getRandomInt(min, max) {
   return Math.round(Math.random() * (max - min) + min);
 }
@@ -31,6 +36,7 @@ export function generateRandomCode(language, lines) {
   let fillerLineQty = "";
   let fillerLines = [];
   let lastLine = "";
+  let imports = "";
 
   switch (language) {
     case "css":
@@ -152,8 +158,7 @@ export function generateRandomCode(language, lines) {
 
       return firstLine + fillerLines.join("\n\r") + lastLine;
     case "python":
-      let imports = "";
-      imports = `${Python.getRandomImport()}\n\n\n`;
+      imports = `${Python.getRandomImport()}\n\n`;
       firstLine = `def ${Python.getRandomFunctionName()}():\n\r`;
 
       fillerLineQty = parseInt(lines, 10) - 2;
@@ -162,12 +167,7 @@ export function generateRandomCode(language, lines) {
         fillerLines.push(`\t${Python.getRandomFillerLine()}`);
       }
 
-      return (
-        imports +
-        firstLine +
-        fillerLines.join("\n\r") +
-        lastLine
-      );
+      return imports + firstLine + fillerLines.join("\n\r") + lastLine;
     default:
       return "lol";
   }

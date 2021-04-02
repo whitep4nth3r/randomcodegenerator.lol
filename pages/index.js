@@ -1,6 +1,11 @@
 import PageMeta from "../components/PageMeta";
 import { useState } from "react";
-import { generateRandomCode, Languages } from "../tools/RandomCodeGenerator";
+import {
+  generateRandomCode,
+  Languages,
+  getRandomLang,
+  getRandomInt,
+} from "../tools/RandomCodeGenerator";
 
 export default function Home() {
   const [selectedLang, setSelectedLang] = useState(Object.keys(Languages)[0]);
@@ -17,6 +22,16 @@ export default function Home() {
     setNumberOfLines(value);
   }
 
+  function luckyDip() {
+    const lang = getRandomLang();
+    const randomInt = getRandomInt(3, 20);
+    setNumberOfLines(randomInt);
+    setSelectedLang(lang);
+
+    const newCode = generateRandomCode(lang, randomInt);
+    setResult(newCode);
+  }
+
   return (
     <>
       <PageMeta />
@@ -26,6 +41,11 @@ export default function Home() {
         <p className="blurb">Need some code for your project? We've got you covered.</p>
         <p className="blurb">Choose your language. Choose how many lines.</p>
         <p className="blurb">BÄM! You got code.</p>
+
+        <button type="button" class="selector__button selector__button--luckyDip" onClick={luckyDip}>
+          I'm feeling lucky
+        </button>
+
         <div className="selector">
           <label className="selector__item__label">I want</label>
           <input
@@ -33,21 +53,25 @@ export default function Home() {
             onChange={(e) => handeInputOnChange(e.target.value)}
             type="number"
             className="input"
+            min="3"
           />
 
           <label className="selector__item__label">lines of</label>
 
           <div className="selector__buttonGroup">
-            {Object.entries(Languages).map(([key, value]) => (
-              <button
-                className="selector__button"
-                type="button"
-                key={key}
-                onClick={() => handleButtonClick(key)}
-              >
-                {value}
-              </button>
-            ))}
+            {Object.entries(Languages).map(([key, value]) => {
+              const selectedClass = selectedLang === key ? " selector__button--selected" : "";
+              return (
+                <button
+                  className={`selector__button${selectedClass}`}
+                  type="button"
+                  key={key}
+                  onClick={() => handleButtonClick(key)}
+                >
+                  {value}
+                </button>
+              );
+            })}
           </div>
         </div>
 
