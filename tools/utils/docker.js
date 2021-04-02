@@ -111,21 +111,6 @@ export default class Docker {
     return getRandomEntry(options);
   }
 
-  static getRandomVariableName() {
-    const fragmentCount = getRandomInt(1, 3);
-    const fragments = [];
-    for (var i = 0; i < fragmentCount; i++) {
-      const noun = this.randomNoun();
-      fragments.push(noun[0].toUpperCase() + noun.slice(1));
-    }
-    const fullName = fragments.join("");
-    return fullName[0].toLowerCase() + fullName.slice(1);
-  }
-
-  static randomNoun() {
-    return nouns[Math.floor(Math.random() * nouns.length)];
-  }
-
   static getRandomComment() {
     return "# " + getRandomEntry(verbs) + " " + getRandomEntry(nouns);
   }
