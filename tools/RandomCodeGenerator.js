@@ -30,7 +30,12 @@ export function generateRandomCode(language, lines) {
       lastLine = "\n\r}";
       return firstLine + fillerLines.join("\n\r") + lastLine;
     case "js":
-      firstLine = `function ${JavaScript.getRandomFunctionName()}() {\n\r`;
+      const firstLines = [
+        (randomFunctionName) => { return `function ${randomFunctionName}() {\n\r` },
+        (randomFunctionName) => { return `const ${randomFunctionName} = () => {\n\r` }
+      ]
+      
+      firstLine = firstLines[getRandomInt(0, firstLines.length - 1)](JavaScript.getRandomFunctionName())
 
       fillerLineQty = parseInt(lines, 10) - 2;
       fillerLines = [];
