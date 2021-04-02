@@ -5,16 +5,21 @@ import { generateRandomCode, Languages } from "../tools/RandomCodeGenerator";
 export default function Home() {
   const [selectedLang, setSelectedLang] = useState(Object.keys(Languages)[0]);
   const [numberOfLines, setNumberOfLines] = useState(3);
+  const [addComment, setAddComment] = useState(false);
   const [result, setResult] = useState("");
 
   function handleButtonClick(value) {
     setSelectedLang(value);
-    const newCode = generateRandomCode(value, numberOfLines);
+    const newCode = generateRandomCode(value, numberOfLines, addComment);
     setResult(newCode);
   }
 
   function handeInputOnChange(value) {
     setNumberOfLines(value);
+  }
+
+  function handleAddComment() {
+    setAddComment(!addComment);
   }
 
   return (
@@ -48,6 +53,18 @@ export default function Home() {
                 {value}
               </button>
             ))}
+          </div>
+
+          <div className="selector__checkbox">
+            <input
+              type="checkbox"
+              name="addComments"
+              id="addComments"
+              className="input"
+              checked={addComment}
+              onChange={() => handleAddComment()}
+            />
+            <label className="selector__item__label" for="addComments">Include comments</label>
           </div>
         </div>
 
