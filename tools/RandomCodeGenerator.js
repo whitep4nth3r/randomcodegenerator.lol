@@ -19,11 +19,12 @@ export function getRandomInt(min, max) {
   return Math.round(Math.random() * (max - min) + min);
 }
 
-export function generateRandomCode(language, lines, addComment) {
+export function generateRandomCode(language, lines) {
   let firstLine = "";
   let fillerLineQty = "";
   let fillerLines = [];
   let lastLine = "";
+  const addComment = Math.random() + .5 >> 0;
 
   switch (language) {
     case "css":

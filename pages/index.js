@@ -54,18 +54,6 @@ export default function Home() {
               </button>
             ))}
           </div>
-
-          <div className="selector__checkbox">
-            <input
-              type="checkbox"
-              name="addComments"
-              id="addComments"
-              className="input"
-              checked={addComment}
-              onChange={() => handleAddComment()}
-            />
-            <label className="selector__item__label" htmlFor="addComments">Include comments</label>
-          </div>
         </div>
 
         {result.length > 0 && (

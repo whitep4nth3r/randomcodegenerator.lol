@@ -83,24 +83,6 @@ a {
   margin-right: 1rem;
 }
 
-.selector__checkbox {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  justify-content: center;
-  align-items: center;
-  align-content: center;
-}
-
-.selector__checkbox > .input {
-  width: 10%;
-  margin: 3px;
-}
-
-.selector__checkbox > label:hover {
-  cursor: pointer;
-}
-
 /* TO DO */
 /*
 .selector__button:hover {
