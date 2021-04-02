@@ -23,6 +23,13 @@ export default function Home() {
     setNumberOfLines(value);
   }
 
+  function handleInputOnKeyDown(event) {
+    if (event.keyCode === 13) {
+      const newCode = generateRandomCode(selectedLang, numberOfLines);
+      setResult(newCode);
+    }
+  }
+
   function luckyDip() {
     const lang = getRandomLang();
     const randomInt = getRandomInt(3, 20);
@@ -59,6 +66,7 @@ export default function Home() {
           <label className="selector__item__label">I want</label>
           <input
             value={numberOfLines}
+            onKeyDown={(e) => handleInputOnKeyDown(e)}
             onChange={(e) => handeInputOnChange(e.target.value)}
             type="number"
             className="input"
