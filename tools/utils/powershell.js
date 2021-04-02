@@ -111,7 +111,7 @@ export default class PowerShell {
     ];
 
     const randomNoun = nouns[Math.floor(Math.random() * nouns.length)];
-    const randomVerb = verbs[Math.floor(Math.random() * nouns.length)];
+    const randomVerb = verbs[Math.floor(Math.random() * verbs.length)];
 
     return `${randomVerb.charAt(0).toUpperCase() + randomVerb.slice(1)}-${randomNoun.charAt(0).toUpperCase() + randomNoun.slice(1)}`;
   }
