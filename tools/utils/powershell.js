@@ -1,29 +1,27 @@
 import { getRandomInt } from "../RandomCodeGenerator";
 import { nouns, verbs } from "./words";
 
-export default class Python {
-
-  static getRandomImport() {
-    const lowerRandomNoun = nouns[Math.floor(Math.random() * nouns.length)],
-      randomNoun = lowerRandomNoun
-
-    return `import ${randomNoun}`;
-  }
-
+export default class Powershell {
   static getRandomFunctionName() {
     const randomNoun = nouns[Math.floor(Math.random() * nouns.length)];
-    return `${verbs[Math.floor(Math.random() * verbs.length)]}_${randomNoun}`;
-  }
+    const randomVerb = verbs[Math.floor(Math.random() * verbs.length)];
 
-  static getRandomVariableDeclaration() {
-    const options = ["[]", "this", "self", "x + 1"];
-
-    return `${nouns[Math.floor(Math.random() * nouns.length)]} = ${
-      options[Math.floor(Math.random() * options.length)]
+    return `${randomVerb.charAt(0).toUpperCase() + randomVerb.slice(1)}-${
+      randomNoun.charAt(0).toUpperCase() + randomNoun.slice(1)
     }`;
   }
 
-  static getRandomPrint() {
+  static getRandomVariableDeclaration() {
+    const options = ["[]", "this"];
+
+    const randomNoun = nouns[Math.floor(Math.random() * nouns.length)];
+
+    return `$${randomNoun.charAt(0).toUpperCase() + randomNoun.slice(1)} = ${
+      options[Math.floor(Math.random() * options.length)]
+    };`;
+  }
+
+  static getRandomWriteHost() {
     const options = [
       '"Goodbye, world!"',
       '"test"',
@@ -46,7 +44,10 @@ export default class Python {
   }
 
   static getRandomFillerLine() {
-    const options = [`print(${Python.getRandomPrint()})`, Python.getRandomVariableDeclaration()];
+    const options = [
+      `Write-Host ${Powershell.getRandomWriteHost()};`,
+      Powershell.getRandomVariableDeclaration(),
+    ];
     return options[Math.floor(Math.random() * options.length)];
   }
 }
