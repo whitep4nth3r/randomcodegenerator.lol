@@ -1,4 +1,4 @@
-import { getRandomInt } from "@tools/RandomCodeGenerator";
+import { getRandomInt } from "../RandomCodeGenerator";
 
 const verbs = [
   "generate",
@@ -96,6 +96,7 @@ export default class JavaScript {
     const options = [
       `console.log(${JavaScript.getRandomConsoleLog()});`,
       JavaScript.getRandomVariableDeclaration(),
+      `${JavaScript.getRandomFunctionName()}();`
     ];
     return options[Math.floor(Math.random() * options.length)];
   }
