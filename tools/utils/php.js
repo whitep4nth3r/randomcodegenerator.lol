@@ -1,4 +1,4 @@
-import { getRandomInt } from "@tools/RandomCodeGenerator";
+import { getRandomInt } from "../RandomCodeGenerator";
 
 const verbs = [
   "generate",
@@ -54,20 +54,21 @@ const nouns = [
 ];
 
 export default class PHP {
-
   static getRandomNamespace() {
     const lowerRandomNoun = nouns[Math.floor(Math.random() * nouns.length)],
-          lowerRandomNounTwo = nouns[Math.floor(Math.random() * nouns.length)],
-          randomNoun = lowerRandomNoun.charAt(0).toUpperCase() + lowerRandomNoun.substr(1).toLowerCase(),
-          randomNounTwo = lowerRandomNounTwo.charAt(0).toUpperCase() + lowerRandomNounTwo.substr(1).toLowerCase();
+      lowerRandomNounTwo = nouns[Math.floor(Math.random() * nouns.length)],
+      randomNoun =
+        lowerRandomNoun.charAt(0).toUpperCase() + lowerRandomNoun.substr(1).toLowerCase(),
+      randomNounTwo =
+        lowerRandomNounTwo.charAt(0).toUpperCase() + lowerRandomNounTwo.substr(1).toLowerCase();
 
     return `namespace ${randomNoun}\\${randomNounTwo};`;
   }
 
-
   static getRandomClassName() {
     const lowerRandomNoun = nouns[Math.floor(Math.random() * nouns.length)],
-          randomNoun = lowerRandomNoun.charAt(0).toUpperCase() + lowerRandomNoun.substr(1).toLowerCase();
+      randomNoun =
+        lowerRandomNoun.charAt(0).toUpperCase() + lowerRandomNoun.substr(1).toLowerCase();
 
     return `${randomNoun}`;
   }
@@ -75,7 +76,7 @@ export default class PHP {
   static getRandomFunctionKeyword() {
     const lowerRandomNoun = nouns[Math.floor(Math.random() * nouns.length)];
 
-    const randomStarter = ['public', 'public static', 'private', 'protected'];
+    const randomStarter = ["public", "public static", "private", "protected"];
 
     return `${randomStarter[Math.floor(Math.random() * randomStarter.length)]} function`;
   }
@@ -87,36 +88,38 @@ export default class PHP {
     }`;
   }
 
-  static getRandomParamtersSet(){
+  static getRandomParamtersSet() {
     const paramaters = [
-      '',
+      "",
       `'${nouns[Math.floor(Math.random() * nouns.length)]}'`,
-      `'${nouns[Math.floor(Math.random() * nouns.length)]}', '${nouns[Math.floor(Math.random() * nouns.length)]}'`,
+      `'${nouns[Math.floor(Math.random() * nouns.length)]}', '${
+        nouns[Math.floor(Math.random() * nouns.length)]
+      }'`,
     ];
     return `${paramaters[Math.floor(Math.random() * paramaters.length)]}`;
   }
 
-  static getRandomParamtersRead(){
+  static getRandomParamtersRead() {
     const paramaters = [
-      '',
+      "",
       `$${nouns[Math.floor(Math.random() * nouns.length)]}`,
-      `$${nouns[Math.floor(Math.random() * nouns.length)]}, $${nouns[Math.floor(Math.random() * nouns.length)]}`,
+      `$${nouns[Math.floor(Math.random() * nouns.length)]}, $${
+        nouns[Math.floor(Math.random() * nouns.length)]
+      }`,
     ];
     return paramaters[Math.floor(Math.random() * paramaters.length)];
   }
 
   static getRandomVariableDeclaration() {
-
     const keyWords = ["$"];
     const options = [
-        `[${PHP.getRandomParamtersSet()}]`,
-        "array()",
-        `array(${PHP.getRandomParamtersSet()})`,
-        `$this->${verbs[Math.floor(Math.random() * verbs.length)]}`,
-        `$this->${verbs[Math.floor(Math.random() * verbs.length)]}(${PHP.getRandomParamtersSet()})`,
-        `"${verbs[Math.floor(Math.random() * verbs.length)]}"`
-      ];
-
+      `[${PHP.getRandomParamtersSet()}]`,
+      "array()",
+      `array(${PHP.getRandomParamtersSet()})`,
+      `$this->${verbs[Math.floor(Math.random() * verbs.length)]}`,
+      `$this->${verbs[Math.floor(Math.random() * verbs.length)]}(${PHP.getRandomParamtersSet()})`,
+      `"${verbs[Math.floor(Math.random() * verbs.length)]}"`,
+    ];
 
     return `${keyWords[Math.floor(Math.random() * keyWords.length)]}${
       nouns[Math.floor(Math.random() * nouns.length)]
@@ -130,7 +133,8 @@ export default class PHP {
       '"hello"',
       `"here ${getRandomInt(0, 100)}"`,
       '"should be here"',
-      '"some error"',,
+      '"some error"',
+      ,
       '"undefined"',
       '"=== DEBUG ==="',
       '"to do"',
