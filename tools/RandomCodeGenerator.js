@@ -7,6 +7,8 @@ import Python from "./utils/python";
 import PHP from "./utils/php";
 import Powershell from "./utils/powershell";
 import COBOL from "./utils/cobol";
+import sequentialQueryLanguage from "./utils/sql";
+
 
 export const Languages = {
   css: "CSS",
@@ -18,6 +20,7 @@ export const Languages = {
   js: "JavaScript",
   python: "Python",
   powershell: "Powershell",
+  sql: "SQL"
 };
 
 export function getRandomLang() {
@@ -181,6 +184,48 @@ export function generateRandomCode(language, lines) {
       lastLine = "\n\rSTOP RUN.";
 
       return firstLine + fillerLines.join("\n\r") + lastLine;
+    case "sql":
+      firstLine = 'SELECT' + ` ${sequentialQueryLanguage.getRandomFieldName()}\n\r` ;
+      fillerLineQty = parseInt(lines, 10);
+
+      //first loop is just for field names sorry
+      for (let i = 1; i <= fillerLineQty; i++) {
+        const lineOptions = [
+          ` ,${sequentialQueryLanguage.getRandomFieldName()}`
+        ];
+
+        fillerLines.push(lineOptions[Math.floor(Math.random() * lineOptions.length)]);
+      }
+      let lineBreak;
+      if (fillerLineQty > 1) { 
+          lineBreak = '\n\r';
+        }
+      else lineBreak = "";
+      let fromStatement = lineBreak + 'FROM' + ` ${sequentialQueryLanguage.getRandomSchemaName()}` + `.${sequentialQueryLanguage.getRandomTableName()}`;
+      
+      let whereCond = "";
+      //this part is for the other functions like WHERE, GROUP BY etc.
+      if(getRandomInt(1,10) <= 3){
+        whereCond = `\n\rWHERE ${sequentialQueryLanguage.getRandomWhereCondition()}`
+      }
+      else if (getRandomInt(1,10) <= 5) {
+        whereCond = `\n\rWHERE ${sequentialQueryLanguage.getRandomWhereCondition()}${sequentialQueryLanguage.getRandomOperator()}${sequentialQueryLanguage.getRandomWhereCondition()}`;
+      }
+
+      let groupByCond = "";
+      if (getRandomInt(1,10) <= 5) {
+        groupByCond = `\n\rGROUP BY ${sequentialQueryLanguage.getRandomGroupByCondition(fillerLineQty)}` 
+      }
+      else;
+
+      let orderByCond = "";
+      if (getRandomInt(1,10) <= 5) {
+        groupByCond = `\n\rORDER BY ${sequentialQueryLanguage.getRandomOrderByCondition(fillerLineQty)} ASC` 
+      }
+      else;
+
+      lastLine = ";";
+      return firstLine + fillerLines.join("\n\r") + fromStatement + whereCond + groupByCond + orderByCond + lastLine;
     default:
       return "lol";
   }
