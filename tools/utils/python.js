@@ -1,5 +1,4 @@
-
-import { getRandomInt } from "@tools/RandomCodeGenerator";
+import { getRandomInt } from "../RandomCodeGenerator";
 
 const verbs = [
   "generate",
@@ -65,7 +64,9 @@ export default class Python {
   static getRandomVariableDeclaration() {
     const options = ["[]", "this", "self", "x + 1"];
 
-    return `${nouns[Math.floor(Math.random() * nouns.length)]} = ${options[Math.floor(Math.random() * options.length)]};`;
+    return `${nouns[Math.floor(Math.random() * nouns.length)]} = ${
+      options[Math.floor(Math.random() * options.length)]
+    }`;
   }
 
   static getRandomPrint() {
@@ -91,10 +92,7 @@ export default class Python {
   }
 
   static getRandomFillerLine() {
-    const options = [
-      `print(${Python.getRandomPrint()});`,
-      Python.getRandomVariableDeclaration(),
-    ];
+    const options = [`print(${Python.getRandomPrint()})`, Python.getRandomVariableDeclaration()];
     return options[Math.floor(Math.random() * options.length)];
   }
 }
