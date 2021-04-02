@@ -2,6 +2,14 @@ import { getRandomInt } from "../RandomCodeGenerator";
 import { nouns, verbs } from "./words";
 
 export default class Python {
+
+  static getRandomImport() {
+    const lowerRandomNoun = nouns[Math.floor(Math.random() * nouns.length)],
+      randomNoun = lowerRandomNoun
+
+    return `import ${randomNoun}`;
+  }
+
   static getRandomFunctionName() {
     const randomNoun = nouns[Math.floor(Math.random() * nouns.length)];
     return `${verbs[Math.floor(Math.random() * verbs.length)]}_${randomNoun}`;

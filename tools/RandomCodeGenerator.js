@@ -135,6 +135,8 @@ export function generateRandomCode(language, lines) {
 
       return firstLine + fillerLines.join("\n\r") + lastLine;
     case "python":
+      let imports = "";
+      imports = `${Python.getRandomImport()}\n\n\n`;
       firstLine = `def ${Python.getRandomFunctionName()}():\n\r`;
 
       fillerLineQty = parseInt(lines, 10) - 2;
@@ -143,7 +145,12 @@ export function generateRandomCode(language, lines) {
         fillerLines.push(`\t${Python.getRandomFillerLine()}`);
       }
 
-      return firstLine + fillerLines.join("\n\r") + lastLine;
+      return (
+        imports +
+        firstLine +
+        fillerLines.join("\n\r") +
+        lastLine
+      );
     default:
       return "lol";
   }
