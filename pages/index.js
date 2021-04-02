@@ -32,6 +32,10 @@ export default function Home() {
     setResult(newCode);
   }
 
+  function copyCode() {
+    navigator.clipboard.writeText(result);
+  }
+
   return (
     <>
       <PageMeta />
@@ -42,7 +46,11 @@ export default function Home() {
         <p className="blurb">Choose your language. Choose how many lines.</p>
         <p className="blurb">BÄM! You got code.</p>
 
-        <button type="button" class="selector__button selector__button--luckyDip" onClick={luckyDip}>
+        <button
+          type="button"
+          className="selector__button selector__button--luckyDip"
+          onClick={luckyDip}
+        >
           I'm feeling lucky
         </button>
 
@@ -78,6 +86,9 @@ export default function Home() {
         {result.length > 0 && (
           <div className="result">
             <pre className="result__pre">
+              <button type="button" className="copyButton" onClick={copyCode}>
+                Copy
+              </button>
               <code>{result}</code>
             </pre>
           </div>

@@ -146,7 +146,8 @@ a {
 }
 
 .result__pre {
-  border-radius: 0.5rem;
+  position: relative;
+  border-radius: 0;
   background: var(--black);
   padding: 1rem;
   overflow: auto;
@@ -161,4 +162,33 @@ a {
   word-wrap: normal;
   line-height: 1.5;
   tab-size: 4;
+  overflow: hidden;
+  border: 0.25rem solid var(--white);
+  box-shadow: 0.5rem 0.5rem 0 0 var(--yellow);
+}
+
+.copyButton {
+  border-width: 0;
+  position: absolute;
+  right: 0;
+  margin-top: -1rem;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  background-color: var(--yellow);
+  color: var(--black);
+  border-radius: 0 0 0 0.5rem;
+  font-size: 1.2rem;
+  line-height: 1;
+  text-transform: uppercase;
+  transition: all 0.2s ease-in-out;
+}
+
+.copyButton:hover {
+  box-shadow: var(--green) 0 0 0 0.25rem;
+}
+
+.copyButton:focus {
+  outline-width: 0;
+  box-shadow: var(--green) 0 0 0 0.25rem;
+  transition: box-shadow 0.2s ease 0s;
 }
