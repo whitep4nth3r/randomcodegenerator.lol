@@ -52,6 +52,11 @@ export function generateRandomCode(language, lines, addComment) {
       fillerLineQty = parseInt(lines, 10) - 3;
 
       fillerLines.push("{");
+
+      if (addComment) {
+        fillerLines.push(Comments.getRandomComment());
+      }
+
       for (let i = 1; i <= fillerLineQty; i++) {
         fillerLines.push(`    ${CSharp.getRandomFillerLine()}`);
       }
@@ -91,6 +96,11 @@ export function generateRandomCode(language, lines, addComment) {
       let namespaceLine = `${PHP.getRandomNamespace()}\n\r\n\r`;
 
       let classLine = `class ${PHP.getRandomClassName()} { \r\n`;
+
+      if (addComment) {
+        classLine += `${Comments.getRandomComment()}\n\r`;
+      }
+
       let functionLine = `    ${PHP.getRandomFunctionKeyword()} ${JavaScript.getRandomFunctionName()}(${PHP.getRandomParamtersRead()}) {\n\r`;
 
       fillerLineQty = parseInt(lines, 10) - 2;

@@ -64,7 +64,7 @@ export default function Home() {
               checked={addComment}
               onChange={() => handleAddComment()}
             />
-            <label className="selector__item__label" for="addComments">Include comments</label>
+            <label className="selector__item__label" htmlFor="addComments">Include comments</label>
           </div>
         </div>
 
