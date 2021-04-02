@@ -11,6 +11,7 @@ export default function Home() {
   const [selectedLang, setSelectedLang] = useState(Object.keys(Languages)[0]);
   const [numberOfLines, setNumberOfLines] = useState(3);
   const [result, setResult] = useState("");
+  const year = new Date().getFullYear();
 
   function handleButtonClick(value) {
     setSelectedLang(value);
@@ -94,7 +95,28 @@ export default function Home() {
           </div>
         )}
       </main>
-      <footer style={{ textAlign: "center" }}>ADD FOOTER</footer>
+      <footer className="footer">
+        <p className="footer__disclaimer">
+          Made hilariously by{" "}
+          <a
+            className="footer__link"
+            href="https://whitep4nth3r.com/?utm_source=random-lol"
+            target="_blank"
+          >
+            whitep4nth3r
+          </a>{" "}
+          and friends{" "}
+          <a
+            className="footer__link"
+            href="https://twitch.tv/whitep4nth3r"
+            rel="noopenner no referrer"
+            target="_blank"
+          >
+            live on Twitch
+          </a>
+        </p>
+        <p className="footer__copyright">&copy; {year} whitep4nth3r</p>
+      </footer>
     </>
   );
 }

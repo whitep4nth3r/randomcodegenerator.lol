@@ -156,10 +156,11 @@ a {
   font-family: var(--font-family-heading);
   font-size: 1.4rem;
   text-align: left;
-  white-space: pre;
   word-spacing: normal;
-  word-break: normal;
+  white-space: pre-wrap;
   word-wrap: normal;
+  overflow-x: auto;
+  word-break: break-all;
   line-height: 1.5;
   tab-size: 4;
   overflow: hidden;
@@ -190,5 +191,61 @@ a {
 .copyButton:focus {
   outline-width: 0;
   box-shadow: var(--green) 0 0 0 0.25rem;
+  transition: box-shadow 0.2s ease 0s;
+}
+
+.footer {
+  background-color: var(--black);
+  color: var(--white);
+  padding: 2rem 2rem 4rem;
+  margin-top: 2rem;
+  border-top: 0.5rem solid var(--yellow);
+  display: flex;
+  flex-direction: column;
+}
+
+.footer__copyright {
+  font-size: 1.2rem;
+  line-height: 1.6;
+  font-weight: bold;
+  font-family: var(--font-family-heading);
+  color: var(--yellow);
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  margin-bottom: 2rem;
+  text-align: center;
+}
+
+.footer__disclaimer {
+  font-size: 1.2rem;
+  line-height: 1.6;
+  font-weight: bold;
+  font-family: var(--font-family-heading);
+  color: var(--yellow);
+  justify-content: center;
+  align-content: center;
+  margin-bottom: 2rem;
+  text-align: center;
+}
+
+.footer__link {
+  transition: color 0.2s ease-in-out;
+  text-decoration: underline;
+  text-underline-offset: 0.25rem;
+  text-decoration-thickness: 0.125rem;
+}
+
+.footer__link:visited {
+  color: var(--white);
+}
+
+.footer__link:hover {
+  color: var(--white);
+}
+
+.footer__link:focus {
+  outline-width: 0;
+  box-shadow: var(--yellow) 0 0 0 0.25rem;
   transition: box-shadow 0.2s ease 0s;
 }
