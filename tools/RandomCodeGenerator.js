@@ -1,11 +1,11 @@
-import Css from "@tools/utils/css";
-import JavaScript from "@tools/utils/javascript";
-import CSharp from "./utils/csharp";
+import Css from "./utils/css";
+import JavaScript from "./utils/javascript";
+import Powershell from "./utils/powershell";
 
 export const Languages = {
   js: "JavaScript",
   css: "CSS",
-  csharp: "C#"
+  powershell: "Powershell"
 };
 
 export function getRandomInt(min, max) {
@@ -44,14 +44,14 @@ export function generateRandomCode(language, lines) {
       lastLine = "\n\r}";
 
       return firstLine + fillerLines.join("\n\r") + lastLine;
-    case "csharp":
-      firstLine = `${CSharp.getRandomMethodName()}() \n\r{\n\r`;
+    case "powershell":
+      firstLine = `function ${Powershell.getRandomFunctionName()} { \n\r`;
 
       fillerLineQty = parseInt(lines, 10) - 2;
       fillerLines = [];
 
       for(let i = 1; i <= fillerLineQty; i++) {
-        fillerLines.push(` ${CSharp.getRandomFillerLine()}`);
+        fillerLines.push(`${Powershell.getRandomFillerLine()}`);
       }
 
       lastLine = "\n\r}";
