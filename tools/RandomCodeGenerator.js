@@ -3,6 +3,7 @@ import Css from "./utils/css";
 import Java from "./utils/java";
 import JavaScript from "./utils/javascript";
 import Python from "./utils/python";
+import Comments from "./utils/comments";
 
 export const Languages = {
   css: "CSS",
@@ -15,7 +16,7 @@ export function getRandomInt(min, max) {
   return Math.round(Math.random() * (max - min) + min);
 }
 
-export function generateRandomCode(language, lines) {
+export function generateRandomCode(language, lines, addComment) {
   let firstLine = "";
   let fillerLineQty = "";
   let fillerLines = [];
@@ -25,6 +26,10 @@ export function generateRandomCode(language, lines) {
     case "css":
       firstLine = `.${Css.getRandomClassName()} {\n\r`;
       fillerLineQty = parseInt(lines, 10) - 2;
+
+      if (addComment) {
+        fillerLines.push(Comments.getRandomComment());
+      }
 
       for (let i = 1; i <= fillerLineQty; i++) {
         fillerLines.push(
@@ -40,6 +45,10 @@ export function generateRandomCode(language, lines) {
       fillerLineQty = parseInt(lines, 10) - 2;
       fillerLines = [];
 
+      if (addComment) {
+        fillerLines.push(Comments.getRandomComment());
+      }
+
       for (let i = 1; i <= fillerLineQty; i++) {
         fillerLines.push(`    ${JavaScript.getRandomFillerLine()}`);
       }
@@ -50,18 +59,26 @@ export function generateRandomCode(language, lines) {
     case "java":
       firstLine = `${Java.getRandomMethodSignature()}() {\n\r`;
       fillerLineQty = parseInt(lines, 10) - 2;
-      
+
+      if (addComment) {
+        fillerLines.push(Comments.getRandomComment());
+      }
+
       for (let i = 1; i <= fillerLineQty; i++) {
         fillerLines.push(`    ${Java.getRandomFillerLine()}`);
       }
-      
+
       lastLine = "\n\r}";
-      
+
       return firstLine + fillerLines.join("\n\r") + lastLine;
     case "python":
       firstLine = `def ${Python.getRandomFunctionName()}():\n\r`;
 
       fillerLineQty = parseInt(lines, 10) - 2;
+
+      if (addComment) {
+        fillerLines.push(Comments.getRandomComment());
+      }
 
       for (let i = 1; i <= fillerLineQty; i++) {
         fillerLines.push(`\t${Python.getRandomFillerLine()}`);
