@@ -1,22 +1,30 @@
 import CSharp from "./utils/csharp";
 import Css from "./utils/css";
+import Docker from "./utils/docker";
 import Java from "./utils/java";
 import JavaScript from "./utils/javascript";
 import Python from "./utils/python";
 import Comments from "./utils/comments";
 import PHP from "./utils/php";
+import Powershell from "./utils/powershell";
 
 export const Languages = {
   css: "CSS",
   csharp: "C#",
+  docker: "Docker",
   php: "PHP",
   java: "Java",
   js: "JavaScript",
   python: "Python",
+  powershell: "Powershell",
 };
 
 export function getRandomInt(min, max) {
   return Math.round(Math.random() * (max - min) + min);
+}
+
+export function getRandomEntry(array) {
+  return array[getRandomInt(0, array.length - 1)];
 }
 
 export function generateRandomCode(language, lines) {
@@ -36,9 +44,15 @@ export function generateRandomCode(language, lines) {
       }
 
       for (let i = 1; i <= fillerLineQty; i++) {
-        fillerLines.push(
-          `    ${Css.getRandomProp()}: ${getRandomInt(0, 500)}${Css.getRandomUnit()};`
-        );
+        const lineOptions = [
+          `    ${Css.getRandomUnitRule()};`,
+          `    ${Css.getRandomColorRule()};`,
+          `    ${Css.getRandomDisplayRule()};`,
+          `    ${Css.getRandomZIndexRule()};`,
+          `    ${Css.getRandomPositionRule()};`,
+        ];
+
+        fillerLines.push(lineOptions[Math.floor(Math.random() * lineOptions.length)]);
       }
 
       lastLine = "\n\r}";
@@ -63,6 +77,17 @@ export function generateRandomCode(language, lines) {
       }
 
       lastLine = "\n\r}";
+
+      return firstLine + fillerLines.join("\n\r") + lastLine;
+    case "docker":
+      firstLine = Docker.randomPreamble();
+      fillerLineQty = parseInt(lines, 10) - 2;
+      fillerLines = [];
+
+      for (let i = 1; i <= fillerLineQty; i++) {
+        fillerLines.push(`${Docker.getRandomFillerLine()}`);
+      }
+      lastLine = Docker.randomPostamble();
 
       return firstLine + fillerLines.join("\n\r") + lastLine;
     case "js":
@@ -102,7 +127,7 @@ export function generateRandomCode(language, lines) {
         classLine += `${Comments.getRandomComment()}\n\r`;
       }
 
-      let functionLine = `    ${PHP.getRandomFunctionKeyword()} ${JavaScript.getRandomFunctionName()}(${PHP.getRandomParamtersRead()}) {\n\r`;
+      let functionLine = `    ${PHP.getRandomFunctionKeyword()} ${PHP.getRandomFunctionName()}(${PHP.getRandomParamtersRead()}) {\n\r`;
 
       fillerLineQty = parseInt(lines, 10) - 2;
       fillerLines = [];
@@ -123,6 +148,22 @@ export function generateRandomCode(language, lines) {
         endFunctionLine +
         lastLine
       );
+    case "powershell":
+      firstLine = `function ${Powershell.getRandomFunctionName()} { \n\r`;
+
+      fillerLineQty = parseInt(lines, 10) - 2;
+      
+      if (addComment) {
+        fillerLines.push(Comments.getRandomComment('powershell'));
+      }
+      
+      for (let i = 1; i <= fillerLineQty; i++) {
+        fillerLines.push(`    ${Powershell.getRandomFillerLine()}`);
+      }
+
+      lastLine = "\n\r}";
+
+      return firstLine + fillerLines.join("\n\r") + lastLine;
     case "java":
       firstLine = `${Java.getRandomMethodSignature()}() {\n\r`;
       fillerLineQty = parseInt(lines, 10) - 2;
@@ -139,6 +180,8 @@ export function generateRandomCode(language, lines) {
 
       return firstLine + fillerLines.join("\n\r") + lastLine;
     case "python":
+      let imports = "";
+      imports = `${Python.getRandomImport()}\n\n\n`;
       firstLine = `def ${Python.getRandomFunctionName()}():\n\r`;
 
       fillerLineQty = parseInt(lines, 10) - 2;
@@ -151,7 +194,12 @@ export function generateRandomCode(language, lines) {
         fillerLines.push(`\t${Python.getRandomFillerLine()}`);
       }
 
-      return firstLine + fillerLines.join("\n\r") + lastLine;
+      return (
+        imports +
+        firstLine +
+        fillerLines.join("\n\r") +
+        lastLine
+      );
     default:
       return "lol";
   }
