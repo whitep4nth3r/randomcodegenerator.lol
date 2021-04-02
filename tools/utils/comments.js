@@ -43,9 +43,20 @@ export default class Comments {
     }
   ]
 
-  static getRandomComment() {
+  static getRandomComment(languageOverride = 'default') {
     const index =  Math.floor(Math.random() * this.options.length);
+    let comment = '';
 
-    return `    /* ${this.options[index].name}: ${this.options[index].messages[Math.floor(Math.random() * this.options[index].messages.length)]} */`;
+    switch (languageOverride) {
+      case 'powershell':
+        comment = `    <# ${this.options[index].name}: ${this.options[index].messages[Math.floor(Math.random() * this.options[index].messages.length)]} #>`;
+        break;
+
+      default:
+        comment = `    /* ${this.options[index].name}: ${this.options[index].messages[Math.floor(Math.random() * this.options[index].messages.length)]} */`;
+        break;
+    }
+
+    return comment;
   }
 }
