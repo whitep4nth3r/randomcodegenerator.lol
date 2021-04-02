@@ -6,9 +6,11 @@ import JavaScript from "./utils/javascript";
 import Python from "./utils/python";
 import PHP from "./utils/php";
 import Powershell from "./utils/powershell";
+import COBOL from "./utils/cobol";
 
 export const Languages = {
   css: "CSS",
+  cobol: "COBOL",
   csharp: "C#",
   docker: "Docker",
   php: "PHP",
@@ -168,6 +170,17 @@ export function generateRandomCode(language, lines) {
       }
 
       return imports + firstLine + fillerLines.join("\n\r") + lastLine;
+    case "cobol":
+      firstLine = `PROCEDURE DIVISION.\n\r`;
+      fillerLineQty = parseInt(lines, 10) - 2;
+  
+      for (let i = 1; i <= fillerLineQty; i++) {
+          fillerLines.push(`\t${COBOL.getRandomFillerLine()}`);
+      }
+
+      lastLine = "\n\rSTOP RUN.";
+
+      return firstLine + fillerLines.join("\n\r") + lastLine;
     default:
       return "lol";
   }
