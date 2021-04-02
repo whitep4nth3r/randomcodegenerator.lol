@@ -1,4 +1,4 @@
-import { getRandomInt } from "@tools/RandomCodeGenerator";
+import { getRandomInt } from "../RandomCodeGenerator";
 
 const verbs = [
   "generate",

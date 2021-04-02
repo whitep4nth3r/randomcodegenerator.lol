@@ -1,5 +1,5 @@
-import Css from "@tools/utils/css";
-import JavaScript from "@tools/utils/javascript";
+import Css from "./utils/css";
+import JavaScript from "./utils/javascript";
 
 export const Languages = {
   js: "JavaScript",
