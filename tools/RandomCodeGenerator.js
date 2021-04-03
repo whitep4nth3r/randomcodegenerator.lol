@@ -7,6 +7,7 @@ import Python from "./utils/python";
 import PHP from "./utils/php";
 import Powershell from "./utils/powershell";
 import COBOL from "./utils/cobol";
+import VBScript from "./utils/vbscript";
 
 export const Languages = {
   css: "CSS",
@@ -18,6 +19,7 @@ export const Languages = {
   js: "JavaScript",
   python: "Python",
   powershell: "Powershell",
+  vbscript: "VBScript",
 };
 
 export function getRandomLang() {
@@ -173,14 +175,32 @@ export function generateRandomCode(language, lines) {
     case "cobol":
       firstLine = `PROCEDURE DIVISION.\n\r`;
       fillerLineQty = parseInt(lines, 10) - 2;
-  
+
       for (let i = 1; i <= fillerLineQty; i++) {
-          fillerLines.push(`\t${COBOL.getRandomFillerLine()}`);
+        fillerLines.push(`\t${COBOL.getRandomFillerLine()}`);
       }
 
       lastLine = "\n\rSTOP RUN.";
 
       return firstLine + fillerLines.join("\n\r") + lastLine;
+    case "vbscript":
+
+      let functionKeyword = VBScript.getRandomFunctionKeyword();
+      firstLine = `${functionKeyword} ${VBScript.getRandomFunctionName()}()\n\r`;
+
+      fillerLineQty = parseInt(lines, 10) - 2;
+
+      for (let i = 1; i <= fillerLineQty; i++) {
+        fillerLines.push(`\t${VBScript.getRandomFillerLine()}`);
+      }
+
+      lastLine = `\n\rEnd ${functionKeyword}`;
+
+      return (
+        firstLine +
+        fillerLines.join("\n\r") +
+        lastLine
+      );
     default:
       return "lol";
   }
