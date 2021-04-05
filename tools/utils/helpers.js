@@ -10,6 +10,7 @@ export const Contributors = {
   php: ["dr_dinomight"],
   java: ["jwalter"],
   js: ["whitep4nth3r", "lukeocodes", "negue", "isabellabrookes"],
+  ts: ["lukeocodes"],
   kotlin: ["jwalter"],
   python: ["mistatwist", "callticketron"],
   powershell: ["lucecarter"],
