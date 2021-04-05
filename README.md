@@ -55,6 +55,7 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
   </tr>
   <tr>
     <td align="center"><a href="https://github.com/MistaTwist"><img src="https://avatars.githubusercontent.com/u/9354464?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Paul Perry</b></sub></a><br /><a href="https://github.com/whitep4nth3r/randomcodegenerator.lol/commits?author=MistaTwist" title="Code">💻</a></td>
+    <td align="center"><a href="https://deloughry.co.uk"><img src="https://avatars.githubusercontent.com/u/1541665?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Matthew Peck-Deloughry</b></sub></a><br /><a href="https://github.com/whitep4nth3r/randomcodegenerator.lol/commits?author=DR-DinoMight" title="Code">💻</a></td>
     <td align="center"><a href="http://negue.github.io"><img src="https://avatars.githubusercontent.com/u/842273?v=4?s=100" width="100px;" alt=""/><br /><sub><b>negue</b></sub></a><br /><a href="https://github.com/whitep4nth3r/randomcodegenerator.lol/commits?author=negue" title="Code">💻</a></td>
   </tr>
 </table>
