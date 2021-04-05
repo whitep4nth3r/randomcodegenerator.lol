@@ -4,6 +4,7 @@ import Css from "./utils/css";
 import Docker from "./utils/docker";
 import Java from "./utils/java";
 import JavaScript from "./utils/javascript";
+import TypeScript from "./utils/typescript";
 import Python from "./utils/python";
 import PHP from "./utils/php";
 import Powershell from "./utils/powershell";
@@ -17,6 +18,7 @@ export const Languages = {
   php: "PHP",
   java: "Java",
   js: "JavaScript",
+  ts: "TypeScript",
   python: "Python",
   powershell: "Powershell",
 };
@@ -93,6 +95,29 @@ export function generateRandomCode(language, lines) {
 
       for (let i = 1; i <= fillerLineQty; i++) {
         fillerLines.push(`    ${JavaScript.getRandomFillerLine()}`);
+      }
+
+      lastLine = "\n\r}";
+
+      return firstLine + fillerLines.join("\n\r") + lastLine;
+    case "ts":
+      const firstTSLines = [
+        (randomFunctionName) => {
+          return `function ${randomFunctionName}(x: any, y: any): void {\n\r`;
+        },
+        (randomFunctionName) => {
+          return `const ${randomFunctionName} = function (x: any, y: any): void {\n\r`;
+        },
+      ];
+
+      firstLine = getRandomEntry(firstTSLines)(
+        TypeScript.getRandomFunctionName()
+      );
+
+      fillerLineQty = parseInt(lines, 10) - 2;
+
+      for (let i = 1; i <= fillerLineQty; i++) {
+        fillerLines.push(`    ${TypeScript.getRandomFillerLine()}`);
       }
 
       lastLine = "\n\r}";
