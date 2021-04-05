@@ -1,3 +1,4 @@
+import { getRandomEntry } from "./utils/helpers";
 import CSharp from "./utils/csharp";
 import Css from "./utils/css";
 import Docker from "./utils/docker";
@@ -22,19 +23,6 @@ export const Languages = {
   powershell: "Powershell",
 };
 
-export function getRandomLang() {
-  const languages = Object.keys(Languages);
-  return languages[Math.floor(Math.random() * languages.length)];
-}
-
-export function getRandomInt(min, max) {
-  return Math.round(Math.random() * (max - min) + min);
-}
-
-export function getRandomEntry(array) {
-  return array[getRandomInt(0, array.length - 1)];
-}
-
 export function generateRandomCode(language, lines) {
   let firstLine = "";
   let fillerLineQty = "";
@@ -56,7 +44,7 @@ export function generateRandomCode(language, lines) {
           `    ${Css.getRandomPositionRule()};`,
         ];
 
-        fillerLines.push(lineOptions[Math.floor(Math.random() * lineOptions.length)]);
+        fillerLines.push(getRandomEntry(lineOptions));
       }
 
       lastLine = "\n\r}";
@@ -99,7 +87,7 @@ export function generateRandomCode(language, lines) {
         },
       ];
 
-      firstLine = firstLines[getRandomInt(0, firstLines.length - 1)](
+      firstLine = getRandomEntry(firstLines)(
         JavaScript.getRandomFunctionName()
       );
 
@@ -186,9 +174,9 @@ export function generateRandomCode(language, lines) {
     case "cobol":
       firstLine = `PROCEDURE DIVISION.\n\r`;
       fillerLineQty = parseInt(lines, 10) - 2;
-  
+
       for (let i = 1; i <= fillerLineQty; i++) {
-          fillerLines.push(`\t${COBOL.getRandomFillerLine()}`);
+        fillerLines.push(`\t${COBOL.getRandomFillerLine()}`);
       }
 
       lastLine = "\n\rSTOP RUN.";

@@ -1,11 +1,8 @@
 import PageMeta from "../components/PageMeta";
 import { useState } from "react";
-import {
-  generateRandomCode,
-  Languages,
-  getRandomLang,
-  getRandomInt,
-} from "../tools/RandomCodeGenerator";
+
+import { generateRandomCode, Languages } from "../tools/RandomCodeGenerator";
+import { getRandomLang, getRandomInt } from "../tools/utils/helpers";
 
 export default function Home() {
   const [selectedLang, setSelectedLang] = useState(Object.keys(Languages)[0]);

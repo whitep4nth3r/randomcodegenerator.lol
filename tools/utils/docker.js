@@ -1,5 +1,9 @@
-import { getRandomInt, getRandomEntry } from "../RandomCodeGenerator";
-import { nouns, verbs } from "./words";
+import {
+  getRandomInt,
+  getRandomEntry,
+  getRandomNoun,
+  getRandomVerb,
+} from "./helpers";
 
 const imageNames = [
   "ubuntu",
@@ -16,52 +20,49 @@ const imageNames = [
 
 const commandGenerators = [
   {
-    "command" : "COPY",
-    "parameters": () => getRandomEntry(nouns) + getRandomEntry(fileSuffixes) + " " + getRandomEntry(nouns) + "/"
+    command: "COPY",
+    parameters: () =>
+      getRandomNoun() +
+      getRandomEntry(fileSuffixes) +
+      " " +
+      getRandomNoun() +
+      "/",
   },
   {
-    "command" : "ADD",
-    "parameters": () => getRandomEntry(nouns) + getRandomEntry(fileSuffixes) + " " + getRandomEntry(nouns) + "/"
+    command: "ADD",
+    parameters: () =>
+      getRandomNoun() +
+      getRandomEntry(fileSuffixes) +
+      " " +
+      getRandomNoun() +
+      "/",
   },
   {
-    "command" : "EXPOSE",
-    "parameters": () => getRandomInt(80, 8080)
+    command: "EXPOSE",
+    parameters: () => getRandomInt(80, 8080),
   },
   {
-    "command" : "RUN",
-    "parameters": () => Docker.getRandomPath() + getRandomEntry(verbs)
+    command: "RUN",
+    parameters: () => Docker.getRandomPath() + getRandomVerb(),
   },
 ];
 
-const fileSuffixes = [
-  ".sh",
-  ".txt",
-  ".xml",
-  ".png"
-];
+const fileSuffixes = [".sh", ".txt", ".xml", ".png"];
 
 export default class Docker {
-  
-
   static getRandomCommand() {
-    
     const randomCommand = getRandomEntry(commandGenerators);
     const commandName = randomCommand.command;
     return `${commandName} ${randomCommand.parameters()}`;
   }
 
   static getRandomPath() {
-    const options = [
-      "/bin/",
-      "/sbin/",
-      "/lib/",
-      "/opt/",
-    ];
+    const options = ["/bin/", "/sbin/", "/lib/", "/opt/"];
     return getRandomEntry(options);
   }
 
   static getRandomComment() {
-    return "# " + getRandomEntry(verbs) + " " + getRandomEntry(nouns);
+    return "# " + getRandomVerb() + " " + getRandomNoun();
   }
 
   static randomPreamble() {
@@ -77,10 +78,7 @@ export default class Docker {
   }
 
   static getRandomFillerLine() {
-    const options = [
-      Docker.getRandomComment(),
-      Docker.getRandomCommand(),
-    ];
+    const options = [Docker.getRandomComment(), Docker.getRandomCommand()];
     return getRandomEntry(options);
   }
 }

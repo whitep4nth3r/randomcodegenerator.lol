@@ -1,4 +1,4 @@
-import { getRandomInt } from "../RandomCodeGenerator";
+import { getRandomInt } from "./helpers";
 
 export const verbs = [
   "generate",
@@ -29,6 +29,7 @@ export const verbs = [
   "eggcelerate",
   "random",
 ];
+
 export const nouns = [
   "click",
   "object",
