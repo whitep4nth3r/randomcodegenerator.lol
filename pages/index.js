@@ -1,16 +1,17 @@
-import PageMeta from "../components/PageMeta";
-import { useState, useEffect } from "react";
-import { generateRandomCode, Languages } from "../tools/RandomCodeGenerator";
 import hljs from 'highlight.js';
 import 'highlight.js/styles/a11y-dark.css';
+import { useState, useEffect } from "react";
+import { generateRandomCode, Languages } from "../tools/RandomCodeGenerator";
 import { getRandomLang, getRandomInt, getContributors } from "../tools/utils/helpers";
+
+import PageMeta from "../components/PageMeta";
+import Footer from "../components/Footer";
 
 export default function Home() {
   const [selectedLang, setSelectedLang] = useState("js");
   const [numberOfLines, setNumberOfLines] = useState("3");
   const [result, setResult] = useState("");
   const [contributors, setContributors] = useState([]);
-  const year = new Date().getFullYear();
 
   useEffect(() => {
     const randomLang = getRandomLang();
@@ -143,29 +144,16 @@ export default function Home() {
             )}
           </>
         )}
+        <a
+          className="submitPr__button"
+          href="https://github.com/whitep4nth3r/randomcodegenerator.lol"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Submit a PR
+        </a>
       </main>
-      <footer className="footer">
-        <p className="footer__disclaimer">
-          Made hilariously by{" "}
-          <a
-            className="footer__link"
-            href="https://whitep4nth3r.com/?utm_source=random-lol"
-            target="_blank"
-          >
-            whitep4nth3r
-          </a>{" "}
-          and friends{" "}
-          <a
-            className="footer__link"
-            href="https://twitch.tv/whitep4nth3r"
-            rel="noopenner no referrer"
-            target="_blank"
-          >
-            live on Twitch
-          </a>
-        </p>
-        <p className="footer__copyright">&copy; {year} whitep4nth3r</p>
-      </footer>
+      <Footer />
     </>
   );
 }

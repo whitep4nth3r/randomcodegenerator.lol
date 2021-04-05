@@ -70,7 +70,8 @@ a {
   flex-wrap: wrap;
 }
 
-.selector__button {
+.selector__button,
+.submitPr__button {
   background-color: var(--black);
   color: var(--white);
   font-family: var(--font-family-heading);
@@ -96,7 +97,8 @@ a {
   box-shadow: none;
 }
 
-.selector__button:focus {
+.selector__button:focus,
+.submitPr__button:focus {
   outline-width: 0;
   box-shadow: var(--green) 0 0 0 0.25rem;
   transition: box-shadow 0.2s ease 0s;
@@ -301,4 +303,18 @@ a {
   outline-width: 0;
   box-shadow: var(--yellow) 0 0 0 0.25rem;
   transition: box-shadow 0.2s ease 0s;
+}
+
+.submitPr__button {
+  background-color: var(--yellow);
+  color: var(--black);
+  margin-top: 2rem;
+  text-align: center;
+  display: block;
+}
+
+.submitPr__button:hover {
+  color: var(--yellow);
+  background-color: var(--black);
+  box-shadow: none;
 }
