@@ -42,6 +42,8 @@ export function generateRandomCode(language, lines) {
           `    ${Css.getRandomDisplayRule()};`,
           `    ${Css.getRandomZIndexRule()};`,
           `    ${Css.getRandomPositionRule()};`,
+          `    ${Css.getRandomBorderStyle()};`,
+          `    ${Css.getRandomTextAlign()};`,
         ];
 
         fillerLines.push(getRandomEntry(lineOptions));

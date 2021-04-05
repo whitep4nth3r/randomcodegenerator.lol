@@ -9,9 +9,17 @@ export default class Css {
 
   // list-style
 
-  // text-align
+  static getRandomBorderStyle(){
+    const borderStyleValues = ["none", "hidden", "dotted", "dashed", "solid", "double", "groove", "ridge", "inset", "outset", "initial", "inherit"]
 
-  //border style
+    return `border-style: ${getRandomEntry(borderStyleValues)}`;
+  }
+  
+  static getRandomTextAlign(){
+    const alignValues = ["left", "right", "center", "justify", "initial", "inherit"]
+
+    return `text-align: ${getRandomEntry(alignValues)}`;
+  }
 
   static getRandomPositionRule() {
     const positionValues = ["relative", "absolute", "fixed", "sticky"];
