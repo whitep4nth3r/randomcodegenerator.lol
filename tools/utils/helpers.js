@@ -14,6 +14,7 @@ export const Contributors = {
   python: ["mistatwist", "callticketron"],
   powershell: ["lucecarter"],
   rust: ["sociablesteve"],
+  scala: ["firephil"],
 };
 
 export function getContributors(lang) {
