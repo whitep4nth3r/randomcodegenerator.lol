@@ -1,9 +1,8 @@
 import PageMeta from "../components/PageMeta";
 import { useState, useEffect } from "react";
 import { generateRandomCode, Languages } from "../tools/RandomCodeGenerator";
-import { getRandomLang, getRandomInt } from "../tools/utils/helpers";
 import hljs from 'highlight.js';
-import 'highlight.js/styles/rainbow.css';
+import 'highlight.js/styles/a11y-dark.css';
 import { getRandomLang, getRandomInt, getContributors } from "../tools/utils/helpers";
 
 export default function Home() {
@@ -38,7 +37,7 @@ export default function Home() {
     updateContributors(newLang);
   }
 
-  function handeInputOnChange(value) {
+  function handleInputOnChange(value) {
     setNumberOfLines(value);
   }
 
@@ -87,7 +86,7 @@ export default function Home() {
           <input
             value={numberOfLines}
             onKeyDown={(e) => handleInputOnKeyDown(e)}
-            onChange={(e) => handeInputOnChange(e.target.value)}
+            onChange={(e) => handleInputOnChange(e.target.value)}
             type="number"
             className="input"
             min="3"
