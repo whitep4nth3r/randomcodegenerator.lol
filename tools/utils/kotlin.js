@@ -1,12 +1,18 @@
-import { getRandomEntry, getRandomInt } from "../RandomCodeGenerator";
-import { nouns, verbs } from "./words";
+import {
+  getRandomEntry,
+  capitalizeFirstChar,
+  getRandomInt,
+  getRandomNounCapitalized,
+  getRandomNoun,
+  getRandomVerb,
+} from "./helpers";
 
 export default class Kotlin {
   static getRandomMethodSignature() {
-    const randomNoun = getRandomEntry(nouns);
+    const randomNoun = getRandomNounCapitalized();
     
-    return `fun ${getRandomEntry(verbs)}${
-      randomNoun.charAt(0).toUpperCase() + randomNoun.slice(1)
+    return `fun ${getRandomVerb()}${
+      randomNoun
     }(${this.getRandomTypes().map(p => `${this.getRandomLengthNounChain(3)}: ${p.name()}`).join(", ")})`;
   }
 
@@ -45,7 +51,7 @@ export default class Kotlin {
       {
         name: () => {
           const randomName = Kotlin.getRandomLengthNounChain(2);
-          return randomName[0].toUpperCase() + randomName.slice(1);
+          return capitalizeFirstChar(randomName);
         },
         generator: (name) => `${name}()`,
       },
@@ -59,16 +65,11 @@ export default class Kotlin {
 
   static getRandomLengthNounChain(maxNouns) {
     const fragmentCount = Math.floor(Math.random() * maxNouns);
-    const fragments = [this.randomNoun()];
+    const fragments = [getRandomNoun()];
     for (var i = 0; i < fragmentCount; i++) {
-      const noun = this.randomNoun();
-      fragments.push(noun[0].toUpperCase() + noun.slice(1));
+      fragments.push(getRandomNounCapitalized());
     }
     return fragments.join("");
-  }
-
-  static randomNoun() {
-    return nouns[Math.floor(Math.random() * nouns.length)];
   }
 
   static getRandomLogMessage() {
@@ -99,6 +100,6 @@ export default class Kotlin {
       Kotlin.getRandomVariableDeclaration(),
       Kotlin.getRandomFunctionCall()
     ];
-    return options[Math.floor(Math.random() * options.length)];
+    return getRandomEntry(options);
   }
 }
