@@ -1,6 +1,6 @@
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-5-orange.svg?style=flat-square)](#contributors-)
+[![All Contributors](https://img.shields.io/badge/all_contributors-6-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
 ## Getting Started
@@ -50,6 +50,7 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
     <td align="center"><a href="https://github.com/jwalter"><img src="https://avatars.githubusercontent.com/u/349523?v=4?s=100" width="100px;" alt=""/><br /><sub><b>jwalter</b></sub></a><br /><a href="https://github.com/whitep4nth3r/randomcodegenerator.lol/commits?author=jwalter" title="Code">💻</a></td>
     <td align="center"><a href="https://github.com/callticketron"><img src="https://avatars.githubusercontent.com/u/61888726?v=4?s=100" width="100px;" alt=""/><br /><sub><b>ticketron</b></sub></a><br /><a href="https://github.com/whitep4nth3r/randomcodegenerator.lol/commits?author=callticketron" title="Code">💻</a></td>
     <td align="center"><a href="https://www.lucecarter.co.uk"><img src="https://avatars.githubusercontent.com/u/6980734?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Luce Carter</b></sub></a><br /><a href="https://github.com/whitep4nth3r/randomcodegenerator.lol/commits?author=LuceCarter" title="Code">💻</a></td>
+    <td align="center"><a href="https://twitter.com/lukeocodes"><img src="https://avatars.githubusercontent.com/u/956290?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Luke Oliff</b></sub></a><br /><a href="https://github.com/whitep4nth3r/randomcodegenerator.lol/commits?author=lukeocodes" title="Code">💻</a></td>
   </tr>
 </table>
 

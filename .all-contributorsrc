@@ -49,6 +49,15 @@
       "contributions": [
         "code"
       ]
+    },
+    {
+      "login": "lukeocodes",
+      "name": "Luke Oliff",
+      "avatar_url": "https://avatars.githubusercontent.com/u/956290?v=4",
+      "profile": "https://twitter.com/lukeocodes",
+      "contributions": [
+        "code"
+      ]
     }
   ],
   "contributorsPerLine": 7,
