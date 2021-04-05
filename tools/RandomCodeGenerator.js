@@ -2,25 +2,34 @@ import { getRandomEntry } from "./utils/helpers";
 import CSharp from "./utils/csharp";
 import Css from "./utils/css";
 import Docker from "./utils/docker";
+import FSharp from "./utils/fsharp";
 import Java from "./utils/java";
 import JavaScript from "./utils/javascript";
 import TypeScript from "./utils/typescript";
+import Kotlin from "./utils/kotlin";
 import Python from "./utils/python";
 import PHP from "./utils/php";
 import Powershell from "./utils/powershell";
 import COBOL from "./utils/cobol";
+import Rust from "./utils/rust";
 
 export const Languages = {
   css: "CSS",
   cobol: "COBOL",
   csharp: "C#",
+  fsharp: "F#",
   docker: "Docker",
   php: "PHP",
   java: "Java",
   js: "JavaScript",
+<<<<<<< HEAD
   ts: "TypeScript",
+=======
+  kotlin: "Kotlin",
+>>>>>>> main
   python: "Python",
   powershell: "Powershell",
+  rust: "Rust",
 };
 
 export function generateRandomCode(language, lines) {
@@ -29,6 +38,9 @@ export function generateRandomCode(language, lines) {
   let fillerLines = [];
   let lastLine = "";
   let imports = "";
+  let returnLine = "";
+  // 3 lines will be dedicated to a for loop if lines > 7
+  let includeForLoop = parseInt(lines, 10) > 7;
 
   switch (language) {
     case "css":
@@ -42,6 +54,8 @@ export function generateRandomCode(language, lines) {
           `    ${Css.getRandomDisplayRule()};`,
           `    ${Css.getRandomZIndexRule()};`,
           `    ${Css.getRandomPositionRule()};`,
+          `    ${Css.getRandomBorderStyle()};`,
+          `    ${Css.getRandomTextAlign()};`,
         ];
 
         fillerLines.push(getRandomEntry(lineOptions));
@@ -77,6 +91,18 @@ export function generateRandomCode(language, lines) {
       lastLine = Docker.randomPostamble();
 
       return firstLine + fillerLines.join("\n\r") + lastLine;
+    case "fsharp":
+      firstLine = FSharp.randomPreamble();
+
+      fillerLineQty = parseInt(lines, 10) - 2;
+
+      for (let i = 1; i <= fillerLineQty; i++) {
+        fillerLines.push(`    ${FSharp.getRandomFillerLine()}`);
+      }
+
+      lastLine = "\r\n    ()";
+
+      return firstLine + fillerLines.join("\n\r") + lastLine;
     case "js":
       const firstLines = [
         (randomFunctionName) => {
@@ -87,15 +113,33 @@ export function generateRandomCode(language, lines) {
         },
       ];
 
-      firstLine = getRandomEntry(firstLines)(
-        JavaScript.getRandomFunctionName()
-      );
+      firstLine = getRandomEntry(firstLines)(JavaScript.getRandomFunctionName());
 
-      fillerLineQty = parseInt(lines, 10) - 2;
+      // - 3 because we're now adding a firstLine, returnLine and lastLine
+      fillerLineQty = parseInt(lines, 10) - 3;
 
-      for (let i = 1; i <= fillerLineQty; i++) {
+      // if line length > 7
+      if (includeForLoop) {
+        // add 2 lines
         fillerLines.push(`    ${JavaScript.getRandomFillerLine()}`);
+        fillerLines.push(`    ${JavaScript.getRandomFillerLine()}`);
+
+        // add 3 lines
+        const forLoopLines = JavaScript.getRandomForLoopAsArray(); // return array
+
+        fillerLines = [...fillerLines, ...forLoopLines];
+
+        // add the rest
+        for (let i = 6; i <= fillerLineQty; i++) {
+          fillerLines.push(`    ${JavaScript.getRandomFillerLine()}`);
+        }
+      } else {
+        for (let i = 1; i <= fillerLineQty; i++) {
+          fillerLines.push(`    ${JavaScript.getRandomFillerLine()}`);
+        }
       }
+
+      fillerLines.push(JavaScript.getRandomReturn());
 
       lastLine = "\n\r}";
 
@@ -172,6 +216,17 @@ export function generateRandomCode(language, lines) {
       lastLine = "\n\r}";
 
       return firstLine + fillerLines.join("\n\r") + lastLine;
+    case "kotlin":
+      firstLine = `${Kotlin.getRandomMethodSignature()} {\n\r`;
+      fillerLineQty = parseInt(lines, 10) - 2;
+
+      for (let i = 1; i <= fillerLineQty; i++) {
+        fillerLines.push(`    ${Kotlin.getRandomFillerLine()}`);
+      }
+
+      lastLine = "\n\r}";
+
+      return firstLine + fillerLines.join("\n\r") + lastLine;
     case "python":
       imports = `${Python.getRandomImport()}\n\n`;
       firstLine = `def ${Python.getRandomFunctionName()}():\n\r`;
@@ -192,6 +247,18 @@ export function generateRandomCode(language, lines) {
       }
 
       lastLine = "\n\rSTOP RUN.";
+
+      return firstLine + fillerLines.join("\n\r") + lastLine;
+    case "rust":
+      firstLine = `fn ${Rust.getRandomFunctionName()}() -> ${Rust.getRandomType()} {\n\r`;
+
+      fillerLineQty = parseInt(lines, 10) - 2;
+
+      for (let i = 1; i <= fillerLineQty; i++) {
+        fillerLines.push(`    ${Rust.getRandomFillerLine()}`);
+      }
+
+      lastLine = "\n\r}";
 
       return firstLine + fillerLines.join("\n\r") + lastLine;
     default:

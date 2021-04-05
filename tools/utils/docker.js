@@ -3,6 +3,7 @@ import {
   getRandomEntry,
   getRandomNoun,
   getRandomVerb,
+  getRandomSuffix,
 } from "./helpers";
 
 const imageNames = [
@@ -23,7 +24,7 @@ const commandGenerators = [
     command: "COPY",
     parameters: () =>
       getRandomNoun() +
-      getRandomEntry(fileSuffixes) +
+      getRandomSuffix() +
       " " +
       getRandomNoun() +
       "/",
@@ -32,7 +33,7 @@ const commandGenerators = [
     command: "ADD",
     parameters: () =>
       getRandomNoun() +
-      getRandomEntry(fileSuffixes) +
+      getRandomSuffix() +
       " " +
       getRandomNoun() +
       "/",
