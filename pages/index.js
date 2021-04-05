@@ -90,6 +90,7 @@ export default function Home() {
             type="number"
             className="input"
             min="3"
+            pattern="[0-9]*"
           />
 
           <label className="selector__item__label">lines of</label>
