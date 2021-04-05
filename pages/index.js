@@ -125,7 +125,7 @@ export default function Home() {
                 <h2 className="contributors__title">Randomly lolled by</h2>
                 <ul className="contributors__list">
                   {contributors.map((contributor) => (
-                    <li className="contributors__listItem">
+                    <li className="contributors__listItem" key={contributor}>
                       <a
                         className="contributors__link"
                         href={`https://github.com/${contributor}`}

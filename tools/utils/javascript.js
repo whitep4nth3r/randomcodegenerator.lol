@@ -5,6 +5,7 @@ import {
   getRandomNounCapitalized,
   getRandomVerb,
   getLogLines,
+  getRandomSingleCharacter,
 } from "./helpers";
 
 export default class JavaScript {
@@ -31,5 +32,16 @@ export default class JavaScript {
       `${JavaScript.getRandomFunctionName()}();`,
     ];
     return getRandomEntry(options);
+  }
+
+  static getRandomForLoopAsArray() {
+    const randomChar = getRandomSingleCharacter();
+    const randomNoun = getRandomNoun();
+
+    return [
+      `    for (let ${randomChar} = 0; ${randomChar} <= ${randomNoun}.length; ${randomChar}++) {`,
+      `        ${JavaScript.getRandomFunctionName()}(${randomChar})`,
+      "    };",
+    ];
   }
 }

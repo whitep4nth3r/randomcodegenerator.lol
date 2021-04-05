@@ -1,5 +1,5 @@
 import { Languages } from "../RandomCodeGenerator";
-import { nouns, verbs } from "./words";
+import { nouns, verbs, singleCharacters } from "./words";
 
 export const Contributors = {
   css: ["whitep4nth3r"],
@@ -67,6 +67,7 @@ export function getLogLines() {
     `"here ${getRandomInt(0, 100)}"`,
     '"should be here"',
     '"some error"',
+    "**********",
     "[object Object]",
     '"undefined"',
     '"=== DEBUG ==="',
@@ -78,4 +79,8 @@ export function getLogLines() {
     '"TODO: refactor this"',
     '"Marlon Webb says WATERMELON!"',
   ];
+}
+
+export function getRandomSingleCharacter() {
+  return getRandomEntry(singleCharacters);
 }
