@@ -58,6 +58,15 @@
       "contributions": [
         "code"
       ]
+    },
+    {
+      "login": "rickvdbosch",
+      "name": "Rick van den Bosch",
+      "avatar_url": "https://avatars.githubusercontent.com/u/22077141?v=4",
+      "profile": "https://www.rickvandenbosch.net",
+      "contributions": [
+        "code"
+      ]
     }
   ],
   "contributorsPerLine": 7,
