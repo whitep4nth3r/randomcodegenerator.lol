@@ -2,6 +2,7 @@ import { getRandomEntry } from "./utils/helpers";
 import CSharp from "./utils/csharp";
 import Css from "./utils/css";
 import Docker from "./utils/docker";
+import FSharp from "./utils/fsharp";
 import Java from "./utils/java";
 import JavaScript from "./utils/javascript";
 import Kotlin from "./utils/kotlin";
@@ -14,6 +15,7 @@ export const Languages = {
   css: "CSS",
   cobol: "COBOL",
   csharp: "C#",
+  fsharp: "F#",
   docker: "Docker",
   php: "PHP",
   java: "Java",
@@ -75,6 +77,18 @@ export function generateRandomCode(language, lines) {
         fillerLines.push(`${Docker.getRandomFillerLine()}`);
       }
       lastLine = Docker.randomPostamble();
+
+      return firstLine + fillerLines.join("\n\r") + lastLine;
+    case "fsharp":
+      firstLine = FSharp.randomPreamble();
+
+      fillerLineQty = parseInt(lines, 10) - 2;
+
+      for (let i = 1; i <= fillerLineQty; i++) {
+        fillerLines.push(`    ${FSharp.getRandomFillerLine()}`);
+      }
+
+      lastLine = "\r\n    ()";
 
       return firstLine + fillerLines.join("\n\r") + lastLine;
     case "js":
