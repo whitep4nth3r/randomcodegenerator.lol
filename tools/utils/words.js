@@ -54,4 +54,12 @@ export const nouns = [
   `thing${getRandomInt(0, 100)}`,
 ];
 
+export const suffixes = [
+  ".sh",
+  ".txt",
+  ".xml",
+  ".png"
+];
+
 export const singleCharacters = ["i", "j", "k", "x", "e", "_"];
+

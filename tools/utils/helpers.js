@@ -1,5 +1,5 @@
 import { Languages } from "../RandomCodeGenerator";
-import { nouns, verbs, singleCharacters } from "./words";
+import { nouns, verbs, singleCharacters, suffixes } from "./words";
 
 export const Contributors = {
   css: ["whitep4nth3r"],
@@ -41,6 +41,10 @@ export function getRandomNoun() {
 
 export function getRandomVerb() {
   return getRandomEntry(verbs);
+}
+
+export function getRandomSuffix() {
+  return getRandomEntry(suffixes);
 }
 
 export function getRandomNounCapitalized() {
