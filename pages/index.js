@@ -1,10 +1,11 @@
-import PageMeta from "../components/PageMeta";
+import hljs from 'highlight.js';
+import 'highlight.js/styles/a11y-dark.css';
 import { useState, useEffect } from "react";
-
-import Footer from "../components/Footer";
-
 import { generateRandomCode, Languages } from "../tools/RandomCodeGenerator";
 import { getRandomLang, getRandomInt, getContributors } from "../tools/utils/helpers";
+
+import PageMeta from "../components/PageMeta";
+import Footer from "../components/Footer";
 
 export default function Home() {
   const [selectedLang, setSelectedLang] = useState("js");
@@ -37,7 +38,7 @@ export default function Home() {
     updateContributors(newLang);
   }
 
-  function handeInputOnChange(value) {
+  function handleInputOnChange(value) {
     setNumberOfLines(value);
   }
 
@@ -86,7 +87,7 @@ export default function Home() {
           <input
             value={numberOfLines}
             onKeyDown={(e) => handleInputOnKeyDown(e)}
-            onChange={(e) => handeInputOnChange(e.target.value)}
+            onChange={(e) => handleInputOnChange(e.target.value)}
             type="number"
             className="input"
             min="3"
@@ -119,7 +120,7 @@ export default function Home() {
                 <button type="button" className="copyButton" onClick={copyCode}>
                   Copy
                 </button>
-                <code>{result}</code>
+                <code dangerouslySetInnerHTML={{ __html: hljs.highlightAuto(result).value}}></code>
               </pre>
             </div>
             {contributors.length > 0 && (

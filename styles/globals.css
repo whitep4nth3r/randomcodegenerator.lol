@@ -164,7 +164,7 @@ a {
   word-wrap: normal;
   overflow-x: auto;
   word-break: break-all;
-  line-height: 1.5;
+  line-height: 1.1rem;
   tab-size: 4;
   overflow: hidden;
 }
