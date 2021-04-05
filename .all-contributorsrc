@@ -1,0 +1,24 @@
+{
+  "files": [
+    "README.md"
+  ],
+  "imageSize": 100,
+  "commit": false,
+  "contributors": [
+    {
+      "login": "isabellabrookes",
+      "name": "Isabella Brookes",
+      "avatar_url": "https://avatars.githubusercontent.com/u/12928252?v=4",
+      "profile": "https://isabellabrookes.com",
+      "contributions": [
+        "code"
+      ]
+    }
+  ],
+  "contributorsPerLine": 7,
+  "projectName": "randomcodegenerator.lol",
+  "projectOwner": "whitep4nth3r",
+  "repoType": "github",
+  "repoHost": "https://github.com",
+  "skipCi": true
+}
