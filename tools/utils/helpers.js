@@ -1,5 +1,5 @@
 import { Languages } from "../RandomCodeGenerator";
-import { nouns, verbs } from "./words";
+import { nouns, verbs, suffixes } from "./words";
 
 export function getRandomInt(min, max) {
   return Math.round(Math.random() * (max - min) + min);
@@ -24,6 +24,10 @@ export function getRandomNoun() {
 
 export function getRandomVerb() {
   return getRandomEntry(verbs);
+}
+
+export function getRandomSuffix() {
+  return getRandomEntry(suffixes);
 }
 
 export function getRandomNounCapitalized() {
