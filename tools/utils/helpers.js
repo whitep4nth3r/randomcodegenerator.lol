@@ -1,3 +1,4 @@
+import { Languages } from "../RandomCodeGenerator";
 import { nouns, verbs } from "./words";
 
 export function getRandomInt(min, max) {
