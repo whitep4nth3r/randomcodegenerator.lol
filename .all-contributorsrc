@@ -31,6 +31,15 @@
       "contributions": [
         "code"
       ]
+    },
+    {
+      "login": "callticketron",
+      "name": "ticketron",
+      "avatar_url": "https://avatars.githubusercontent.com/u/61888726?v=4",
+      "profile": "https://github.com/callticketron",
+      "contributions": [
+        "code"
+      ]
     }
   ],
   "contributorsPerLine": 7,
