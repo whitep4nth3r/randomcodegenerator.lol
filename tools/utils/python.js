@@ -1,20 +1,23 @@
-import { getRandomInt } from "../RandomCodeGenerator";
-import { nouns, verbs } from "./words";
+import {
+  getRandomEntry,
+  getRandomInt,
+  getRandomNoun,
+  getRandomVerb,
+} from "./helpers";
 
 export default class Python {
+  static getRandomImport() {
+    return `import ${getRandomNoun()}`;
+  }
+
   static getRandomFunctionName() {
-    const randomNoun = nouns[Math.floor(Math.random() * nouns.length)];
-    return `${verbs[Math.floor(Math.random() * verbs.length)]}${
-      randomNoun.charAt(0).toUpperCase() + randomNoun.slice(1)
-    }`;
+    return `${getRandomVerb()}_${getRandomNoun()}`;
   }
 
   static getRandomVariableDeclaration() {
     const options = ["[]", "this", "self", "x + 1"];
 
-    return `${nouns[Math.floor(Math.random() * nouns.length)]} = ${
-      options[Math.floor(Math.random() * options.length)]
-    }`;
+    return `${getRandomNoun()} = ${getRandomEntry(options)}`;
   }
 
   static getRandomPrint() {
@@ -36,11 +39,14 @@ export default class Python {
       '"TODO: refactor this"',
     ];
 
-    return options[Math.floor(Math.random() * options.length)];
+    return getRandomEntry(options);
   }
 
   static getRandomFillerLine() {
-    const options = [`print(${Python.getRandomPrint()})`, Python.getRandomVariableDeclaration()];
-    return options[Math.floor(Math.random() * options.length)];
+    const options = [
+      `print(${Python.getRandomPrint()})`,
+      Python.getRandomVariableDeclaration(),
+    ];
+    return getRandomEntry(options);
   }
 }

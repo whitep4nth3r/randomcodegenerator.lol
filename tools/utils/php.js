@@ -1,61 +1,47 @@
-import { getRandomInt } from "../RandomCodeGenerator";
-import { nouns, verbs } from "./words";
+import {
+  getRandomEntry,
+  getRandomInt,
+  getRandomNoun,
+  getRandomNounCapitalized,
+  getRandomVerb,
+  getRandomVerbCapitalized,
+} from "./helpers";
 
 export default class PHP {
   static getRandomNamespace() {
-    const lowerRandomNoun = nouns[Math.floor(Math.random() * nouns.length)],
-      lowerRandomNounTwo = nouns[Math.floor(Math.random() * nouns.length)],
-      randomNoun =
-        lowerRandomNoun.charAt(0).toUpperCase() + lowerRandomNoun.substr(1).toLowerCase(),
-      randomNounTwo =
-        lowerRandomNounTwo.charAt(0).toUpperCase() + lowerRandomNounTwo.substr(1).toLowerCase();
-
-    return `namespace ${randomNoun}\\${randomNounTwo};`;
+    return `namespace ${getRandomNounCapitalized()}\\${getRandomNounCapitalized()};`;
   }
 
   static getRandomClassName() {
-    const lowerRandomNoun = nouns[Math.floor(Math.random() * nouns.length)],
-      randomNoun =
-        lowerRandomNoun.charAt(0).toUpperCase() + lowerRandomNoun.substr(1).toLowerCase();
-
-    return `${randomNoun}`;
+    return `${getRandomNounCapitalized()}`;
   }
 
   static getRandomFunctionKeyword() {
-    const lowerRandomNoun = nouns[Math.floor(Math.random() * nouns.length)];
+    const starters = ["public", "public static", "private", "protected"];
 
-    const randomStarter = ["public", "public static", "private", "protected"];
-
-    return `${randomStarter[Math.floor(Math.random() * randomStarter.length)]} function`;
+    return `${getRandomEntry(starters)} function`;
   }
 
   static getRandomFunctionName() {
-    const randomNoun = nouns[Math.floor(Math.random() * nouns.length)];
-    return `${verbs[Math.floor(Math.random() * verbs.length)]}${
-      randomNoun.charAt(0).toUpperCase() + randomNoun.slice(1)
-    }`;
+    return `${getRandomVerb()}${getRandomVerbCapitalized()}`;
   }
 
   static getRandomParamtersSet() {
     const paramaters = [
       "",
-      `'${nouns[Math.floor(Math.random() * nouns.length)]}'`,
-      `'${nouns[Math.floor(Math.random() * nouns.length)]}', '${
-        nouns[Math.floor(Math.random() * nouns.length)]
-      }'`,
+      `'${getRandomNoun()}'`,
+      `'${getRandomNoun()}', '${getRandomNoun()}'`,
     ];
-    return `${paramaters[Math.floor(Math.random() * paramaters.length)]}`;
+    return `${getRandomEntry(paramaters)}`;
   }
 
   static getRandomParamtersRead() {
     const paramaters = [
       "",
-      `$${nouns[Math.floor(Math.random() * nouns.length)]}`,
-      `$${nouns[Math.floor(Math.random() * nouns.length)]}, $${
-        nouns[Math.floor(Math.random() * nouns.length)]
-      }`,
+      `$${getRandomNoun()}`,
+      `$${getRandomNoun()}, $${getRandomNoun()}`,
     ];
-    return paramaters[Math.floor(Math.random() * paramaters.length)];
+    return getRandomEntry(paramaters);
   }
 
   static getRandomVariableDeclaration() {
@@ -64,14 +50,14 @@ export default class PHP {
       `[${PHP.getRandomParamtersSet()}]`,
       "array()",
       `array(${PHP.getRandomParamtersSet()})`,
-      `$this->${verbs[Math.floor(Math.random() * verbs.length)]}`,
-      `$this->${verbs[Math.floor(Math.random() * verbs.length)]}(${PHP.getRandomParamtersSet()})`,
-      `"${verbs[Math.floor(Math.random() * verbs.length)]}"`,
+      `$this->${getRandomVerb()}`,
+      `$this->${getRandomVerb()}(${PHP.getRandomParamtersSet()})`,
+      `"${getRandomVerb()}"`,
     ];
 
-    return `${keyWords[Math.floor(Math.random() * keyWords.length)]}${
-      nouns[Math.floor(Math.random() * nouns.length)]
-    } = ${options[Math.floor(Math.random() * options.length)]};`;
+    return `${getRandomEntry(keyWords)}${getRandomNoun()} = ${getRandomEntry(
+      options
+    )};`;
   }
 
   static getRandomConsoleLog() {
@@ -92,7 +78,7 @@ export default class PHP {
       '"TODO: refactor this"',
     ];
 
-    return options[Math.floor(Math.random() * options.length)];
+    return getRandomEntry(options);
   }
 
   static getRandomFillerLine() {
@@ -100,6 +86,6 @@ export default class PHP {
       `var_dump(${PHP.getRandomConsoleLog()}); die();`,
       PHP.getRandomVariableDeclaration(),
     ];
-    return options[Math.floor(Math.random() * options.length)];
+    return getRandomEntry(options);
   }
 }

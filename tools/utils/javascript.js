@@ -1,21 +1,23 @@
-import { getRandomInt } from "../RandomCodeGenerator";
-import { nouns, verbs } from "./words";
+import {
+  getRandomEntry,
+  getRandomInt,
+  getRandomNoun,
+  getRandomNounCapitalized,
+  getRandomVerb,
+} from "./helpers";
 
 export default class JavaScript {
   static getRandomFunctionName() {
-    const randomNoun = nouns[Math.floor(Math.random() * nouns.length)];
-    return `${verbs[Math.floor(Math.random() * verbs.length)]}${
-      randomNoun.charAt(0).toUpperCase() + randomNoun.slice(1)
-    }`;
+    return `${getRandomVerb()}${getRandomNounCapitalized()}`;
   }
 
   static getRandomVariableDeclaration() {
     const keyWords = ["let", "const", "var"];
     const options = ["[]", "this"];
 
-    return `${keyWords[Math.floor(Math.random() * keyWords.length)]} ${
-      nouns[Math.floor(Math.random() * nouns.length)]
-    } = ${options[Math.floor(Math.random() * options.length)]};`;
+    return `${getRandomEntry(keyWords)} ${getRandomNoun()} = ${getRandomEntry(
+      options
+    )};`;
   }
 
   static getRandomConsoleLog() {
@@ -37,7 +39,7 @@ export default class JavaScript {
       '"TODO: refactor this"',
     ];
 
-    return options[Math.floor(Math.random() * options.length)];
+    return getRandomEntry(options);
   }
 
   static getRandomFillerLine() {
@@ -46,6 +48,6 @@ export default class JavaScript {
       JavaScript.getRandomVariableDeclaration(),
       `${JavaScript.getRandomFunctionName()}();`,
     ];
-    return options[Math.floor(Math.random() * options.length)];
+    return getRandomEntry(options);
   }
 }
