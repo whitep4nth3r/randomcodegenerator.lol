@@ -31,6 +31,7 @@ export function generateRandomCode(language, lines) {
   let fillerLines = [];
   let lastLine = "";
   let imports = "";
+  let returnLine = "";
   // 3 lines will be dedicated to a for loop if lines > 7
   let includeForLoop = parseInt(lines, 10) > 7;
 
@@ -95,7 +96,8 @@ export function generateRandomCode(language, lines) {
 
       firstLine = getRandomEntry(firstLines)(JavaScript.getRandomFunctionName());
 
-      fillerLineQty = parseInt(lines, 10) - 2;
+      // - 3 because we're now adding a firstLine, returnLine and lastLine
+      fillerLineQty = parseInt(lines, 10) - 3;
 
       // if line length > 7
       if (includeForLoop) {
@@ -117,6 +119,8 @@ export function generateRandomCode(language, lines) {
           fillerLines.push(`    ${JavaScript.getRandomFillerLine()}`);
         }
       }
+
+      fillerLines.push(JavaScript.getRandomReturn());
 
       lastLine = "\n\r}";
 

@@ -9,15 +9,20 @@ import {
 } from "./helpers";
 
 export default class JavaScript {
+  static getRandomInitializationVars() {
+    return ["[]", "this", "self", "0", "1", "true", "false", "{}", "null", "undefined"];
+  }
+
   static getRandomFunctionName() {
     return `${getRandomVerb()}${getRandomNounCapitalized()}`;
   }
 
   static getRandomVariableDeclaration() {
     const keyWords = ["let", "const", "var"];
-    const options = ["[]", "this"];
 
-    return `${getRandomEntry(keyWords)} ${getRandomNoun()} = ${getRandomEntry(options)};`;
+    return `${getRandomEntry(keyWords)} ${getRandomNoun()} = ${getRandomEntry(
+      JavaScript.getRandomInitializationVars()
+    )};`;
   }
 
   static getRandomConsoleLog() {
@@ -32,6 +37,10 @@ export default class JavaScript {
       `${JavaScript.getRandomFunctionName()}();`,
     ];
     return getRandomEntry(options);
+  }
+
+  static getRandomReturn() {
+    return `    return ${getRandomEntry(JavaScript.getRandomInitializationVars())};`;
   }
 
   static getRandomForLoopAsArray() {
