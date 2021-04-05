@@ -119,11 +119,3 @@ export default class Go {
     return pkgLine + importLine + firstLine + fillerLines.join("\n\r") + lastLine;
   }
 }
-
-
-/*
-git add upstream upstream forkname
-git add -p
-git commit -m "commit message"
-git push
-*/
