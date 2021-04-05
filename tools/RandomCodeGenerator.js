@@ -4,6 +4,7 @@ import Css from "./utils/css";
 import Docker from "./utils/docker";
 import Java from "./utils/java";
 import JavaScript from "./utils/javascript";
+import Kotlin from "./utils/kotlin";
 import Python from "./utils/python";
 import PHP from "./utils/php";
 import Powershell from "./utils/powershell";
@@ -17,6 +18,7 @@ export const Languages = {
   php: "PHP",
   java: "Java",
   js: "JavaScript",
+  kotlin: "Kotlin",
   python: "Python",
   powershell: "Powershell",
 };
@@ -27,6 +29,8 @@ export function generateRandomCode(language, lines) {
   let fillerLines = [];
   let lastLine = "";
   let imports = "";
+  // 3 lines will be dedicated to a for loop if lines > 7
+  let includeForLoop = parseInt(lines, 10) > 7;
 
   switch (language) {
     case "css":
@@ -40,6 +44,8 @@ export function generateRandomCode(language, lines) {
           `    ${Css.getRandomDisplayRule()};`,
           `    ${Css.getRandomZIndexRule()};`,
           `    ${Css.getRandomPositionRule()};`,
+          `    ${Css.getRandomBorderStyle()};`,
+          `    ${Css.getRandomTextAlign()};`,
         ];
 
         fillerLines.push(getRandomEntry(lineOptions));
@@ -85,14 +91,29 @@ export function generateRandomCode(language, lines) {
         },
       ];
 
-      firstLine = getRandomEntry(firstLines)(
-        JavaScript.getRandomFunctionName()
-      );
+      firstLine = getRandomEntry(firstLines)(JavaScript.getRandomFunctionName());
 
       fillerLineQty = parseInt(lines, 10) - 2;
 
-      for (let i = 1; i <= fillerLineQty; i++) {
+      // if line length > 7
+      if (includeForLoop) {
+        // add 2 lines
         fillerLines.push(`    ${JavaScript.getRandomFillerLine()}`);
+        fillerLines.push(`    ${JavaScript.getRandomFillerLine()}`);
+
+        // add 3 lines
+        const forLoopLines = JavaScript.getRandomForLoopAsArray(); // return array
+
+        fillerLines = [...fillerLines, ...forLoopLines];
+
+        // add the rest
+        for (let i = 6; i <= fillerLineQty; i++) {
+          fillerLines.push(`    ${JavaScript.getRandomFillerLine()}`);
+        }
+      } else {
+        for (let i = 1; i <= fillerLineQty; i++) {
+          fillerLines.push(`    ${JavaScript.getRandomFillerLine()}`);
+        }
       }
 
       lastLine = "\n\r}";
@@ -142,6 +163,17 @@ export function generateRandomCode(language, lines) {
 
       for (let i = 1; i <= fillerLineQty; i++) {
         fillerLines.push(`    ${Java.getRandomFillerLine()}`);
+      }
+
+      lastLine = "\n\r}";
+
+      return firstLine + fillerLines.join("\n\r") + lastLine;
+    case "kotlin":
+      firstLine = `${Kotlin.getRandomMethodSignature()} {\n\r`;
+      fillerLineQty = parseInt(lines, 10) - 2;
+
+      for (let i = 1; i <= fillerLineQty; i++) {
+        fillerLines.push(`    ${Kotlin.getRandomFillerLine()}`);
       }
 
       lastLine = "\n\r}";

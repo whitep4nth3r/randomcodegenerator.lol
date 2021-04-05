@@ -60,3 +60,6 @@ export const suffixes = [
   ".xml",
   ".png"
 ];
+
+export const singleCharacters = ["i", "j", "k", "x", "e", "_"];
+
