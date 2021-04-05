@@ -11,6 +11,7 @@ import PHP from "./utils/php";
 import Powershell from "./utils/powershell";
 import COBOL from "./utils/cobol";
 import Rust from "./utils/rust";
+import Scala from "./utils/scala";
 
 export const Languages = {
   css: "CSS",
@@ -25,6 +26,7 @@ export const Languages = {
   python: "Python",
   powershell: "Powershell",
   rust: "Rust",
+  scala: "Scala",
 };
 
 export function generateRandomCode(language, lines) {
@@ -233,6 +235,18 @@ export function generateRandomCode(language, lines) {
       lastLine = "\n\r}";
 
       return firstLine + fillerLines.join("\n\r") + lastLine;
+      
+    case "scala":
+      imports = `${Scala.getRandomImport()}\n\n`;
+      firstLine = `def ${Scala.getRandomFunctionName()}():\n\r`;
+
+      fillerLineQty = parseInt(lines, 10) - 2;
+
+      for (let i = 1; i <= fillerLineQty; i++) {
+        fillerLines.push(`\t${Scala.getRandomFillerLine()}`);
+      }
+      return imports + firstLine + fillerLines.join("\n\r") + lastLine;
+
     default:
       return "lol";
   }
