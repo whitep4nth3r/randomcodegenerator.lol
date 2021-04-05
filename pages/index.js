@@ -1,22 +1,44 @@
-import PageMeta from "../components/PageMeta";
-import { useState } from "react";
-
+import hljs from 'highlight.js';
+import 'highlight.js/styles/a11y-dark.css';
+import { useState, useEffect } from "react";
 import { generateRandomCode, Languages } from "../tools/RandomCodeGenerator";
-import { getRandomLang, getRandomInt } from "../tools/utils/helpers";
+import { getRandomLang, getRandomInt, getContributors } from "../tools/utils/helpers";
+
+import PageMeta from "../components/PageMeta";
+import Footer from "../components/Footer";
 
 export default function Home() {
-  const [selectedLang, setSelectedLang] = useState(Object.keys(Languages)[0]);
-  const [numberOfLines, setNumberOfLines] = useState(3);
+  const [selectedLang, setSelectedLang] = useState("js");
+  const [numberOfLines, setNumberOfLines] = useState("3");
   const [result, setResult] = useState("");
-  const year = new Date().getFullYear();
+  const [contributors, setContributors] = useState([]);
 
-  function handleButtonClick(value) {
-    setSelectedLang(value);
-    const newCode = generateRandomCode(value, numberOfLines);
+  useEffect(() => {
+    const randomLang = getRandomLang();
+    const randomInt = getRandomInt(3, 8);
+
+    setSelectedLang(randomLang);
+    setNumberOfLines(randomInt);
+
+    const newCode = generateRandomCode(randomLang, randomInt);
     setResult(newCode);
+
+    updateContributors(randomLang);
+  }, []);
+
+  function updateContributors(newLang) {
+    const contributors = getContributors(newLang);
+    setContributors(contributors);
   }
 
-  function handeInputOnChange(value) {
+  function handleButtonClick(newLang) {
+    setSelectedLang(newLang);
+    const newCode = generateRandomCode(newLang, numberOfLines);
+    setResult(newCode);
+    updateContributors(newLang);
+  }
+
+  function handleInputOnChange(value) {
     setNumberOfLines(value);
   }
 
@@ -28,13 +50,14 @@ export default function Home() {
   }
 
   function luckyDip() {
-    const lang = getRandomLang();
+    const newLang = getRandomLang();
     const randomInt = getRandomInt(3, 20);
     setNumberOfLines(randomInt);
-    setSelectedLang(lang);
+    setSelectedLang(newLang);
 
-    const newCode = generateRandomCode(lang, randomInt);
+    const newCode = generateRandomCode(newLang, randomInt);
     setResult(newCode);
+    updateContributors(newLang);
   }
 
   function copyCode() {
@@ -64,10 +87,11 @@ export default function Home() {
           <input
             value={numberOfLines}
             onKeyDown={(e) => handleInputOnKeyDown(e)}
-            onChange={(e) => handeInputOnChange(e.target.value)}
+            onChange={(e) => handleInputOnChange(e.target.value)}
             type="number"
             className="input"
             min="3"
+            pattern="[0-9]*"
           />
 
           <label className="selector__item__label">lines of</label>
@@ -90,38 +114,46 @@ export default function Home() {
         </div>
 
         {result.length > 0 && (
-          <div className="result">
-            <pre className="result__pre">
-              <button type="button" className="copyButton" onClick={copyCode}>
-                Copy
-              </button>
-              <code>{result}</code>
-            </pre>
-          </div>
+          <>
+            <div className="result">
+              <pre className="result__pre">
+                <button type="button" className="copyButton" onClick={copyCode}>
+                  Copy
+                </button>
+                <code dangerouslySetInnerHTML={{ __html: hljs.highlightAuto(result).value}}></code>
+              </pre>
+            </div>
+            {contributors.length > 0 && (
+              <div className="contributors">
+                <h2 className="contributors__title">Randomly lolled by</h2>
+                <ul className="contributors__list">
+                  {contributors.map((contributor) => (
+                    <li className="contributors__listItem" key={contributor}>
+                      <a
+                        className="contributors__link"
+                        href={`https://github.com/${contributor}`}
+                        rel="noopener noreferrer"
+                        target="_blank"
+                      >
+                        {contributor}
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            )}
+          </>
         )}
+        <a
+          className="submitPr__button"
+          href="https://github.com/whitep4nth3r/randomcodegenerator.lol"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Submit a PR
+        </a>
       </main>
-      <footer className="footer">
-        <p className="footer__disclaimer">
-          Made hilariously by{" "}
-          <a
-            className="footer__link"
-            href="https://whitep4nth3r.com/?utm_source=random-lol"
-            target="_blank"
-          >
-            whitep4nth3r
-          </a>{" "}
-          and friends{" "}
-          <a
-            className="footer__link"
-            href="https://twitch.tv/whitep4nth3r"
-            rel="noopenner no referrer"
-            target="_blank"
-          >
-            live on Twitch
-          </a>
-        </p>
-        <p className="footer__copyright">&copy; {year} whitep4nth3r</p>
-      </footer>
+      <Footer />
     </>
   );
 }
