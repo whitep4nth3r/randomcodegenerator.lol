@@ -3,6 +3,8 @@ import { useState } from "react";
 
 import { generateRandomCode, Languages } from "../tools/RandomCodeGenerator";
 import { getRandomLang, getRandomInt } from "../tools/utils/helpers";
+import hljs from 'highlight.js';
+import 'highlight.js/styles/rainbow.css';
 
 export default function Home() {
   const [selectedLang, setSelectedLang] = useState(Object.keys(Languages)[0]);
@@ -95,7 +97,7 @@ export default function Home() {
               <button type="button" className="copyButton" onClick={copyCode}>
                 Copy
               </button>
-              <code>{result}</code>
+              <code dangerouslySetInnerHTML={{ __html: hljs.highlightAuto(result).value}}></code>
             </pre>
           </div>
         )}
