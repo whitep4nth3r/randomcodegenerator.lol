@@ -1,4 +1,4 @@
-import { getRandomInt } from "../RandomCodeGenerator";
+import { getRandomEntry, getRandomInt } from "./helpers";
 
 export default class Css {
   // box-shadow props
@@ -16,7 +16,7 @@ export default class Css {
   static getRandomPositionRule() {
     const positionValues = ["relative", "absolute", "fixed", "sticky"];
 
-    return `position: ${positionValues[Math.floor(Math.random() * positionValues.length)]}`;
+    return `position: ${getRandomEntry(positionValues)}`;
   }
 
   static getRandomDisplayRule() {
@@ -31,7 +31,7 @@ export default class Css {
       "flow-root",
     ];
 
-    return `display: ${displayValues[Math.floor(Math.random() * displayValues.length)]}`;
+    return `display: ${getRandomEntry(displayValues)}`;
   }
 
   static getRandomZIndexRule() {
@@ -48,11 +48,11 @@ export default class Css {
       "border-left-color",
       "border-right-color",
     ];
-    return colorProps[Math.floor(Math.random() * colorProps.length)];
+    return getRandomEntry(colorProps);
   }
 
   static getRandomHexCode() {
-    return `#${Math.floor(Math.random() * 16777215).toString(16)}`;
+    return `#${getRandomInt(0, 16777215).toString(16)}`;
   }
 
   static getRandomUnitProp() {
@@ -79,16 +79,19 @@ export default class Css {
       "border-left-width",
       "border-right-width",
     ];
-    return unitProps[Math.floor(Math.random() * unitProps.length)];
+    return getRandomEntry(unitProps);
   }
 
   static getRandomUnit() {
     const cssUnits = ["px", "rem", "em", "ch", "vw", "vh"];
-    return cssUnits[Math.floor(Math.random() * cssUnits.length)];
+    return getRandomEntry(cssUnits);
   }
 
   static getRandomUnitRule() {
-    return `${Css.getRandomUnitProp()}: ${getRandomInt(0, 500)}${Css.getRandomUnit()}`;
+    return `${Css.getRandomUnitProp()}: ${getRandomInt(
+      0,
+      500
+    )}${Css.getRandomUnit()}`;
   }
 
   static getRandomColorRule() {
@@ -112,8 +115,6 @@ export default class Css {
       "random",
     ];
 
-    return `${options[Math.floor(Math.random() * options.length)]}__${
-      options[Math.floor(Math.random() * options.length)]
-    }`;
+    return `${getRandomEntry(options)}__${getRandomEntry(options)}`;
   }
 }

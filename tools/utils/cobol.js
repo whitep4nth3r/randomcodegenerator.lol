@@ -1,56 +1,52 @@
-import { getRandomInt } from '../RandomCodeGenerator';
-import { nouns, verbs } from './words';
+import {
+  getRandomEntry,
+  getRandomInt,
+  getRandomNounUpperCase,
+  getRandomVerbUpperCase,
+} from "./helpers";
 
 export default class COBOL {
-    static randomValue() {
-        const values = [
-            `${getRandomInt(-999999999, 99999999999)}`,
-            COBOL.getRandomPrint(),
-            `WS-${COBOL.randomVerb()}`,
-            `WS-${COBOL.randomNoun()}`,
-        ];
-        return `${values[Math.floor(Math.random() * values.length)]}`;
-    }
+  static getRandomPrint() {
+    const options = [
+      '"Goodbye, world!"',
+      '"test"',
+      '"hello"',
+      `"here ${getRandomInt(0, 100)}"`,
+      '"should be here"',
+      '"some error"',
+      '"undefined"',
+      '"=== DEBUG ==="',
+      '"to do"',
+      '"asdf"',
+      '"FIRE"',
+      '"schnitzel"',
+      '"TODO: refactor this"',
+    ];
 
-    static randomVerb() {
-        return verbs[Math.floor(Math.random() * nouns.length)].toUpperCase();
-    }
+    return getRandomEntry(options);
+  }
 
-    static randomNoun() {
-        return nouns[Math.floor(Math.random() * nouns.length)].toUpperCase();
-    }
+  static randomValue() {
+    const options = [
+      `${getRandomInt(-999999999, 99999999999)}`,
+      COBOL.getRandomPrint(),
+      `WS-${getRandomVerbUpperCase()}`,
+      `WS-${getRandomNounUpperCase()}`,
+    ];
+    return `${getRandomEntry(options)}`;
+  }
 
-    static getRandomPrint() {
-        const options = [
-            '"Goodbye, world!"',
-            '"test"',
-            '"hello"',
-            `"here ${getRandomInt(0, 100)}"`,
-            '"should be here"',
-            '"some error"',
-            '"undefined"',
-            '"=== DEBUG ==="',
-            '"to do"',
-            '"asdf"',
-            '"FIRE"',
-            '"schnitzel"',
-            '"TODO: refactor this"',
-        ];
-
-        return options[Math.floor(Math.random() * options.length)];
-    }
-
-    static getRandomFillerLine() {
-        const options = [
-            `ADD WS-${COBOL.randomNoun()} WS-${COBOL.randomVerb()} TO WS-${COBOL.randomVerb()}.`,
-            `ADD ${COBOL.randomValue()} TO WS-${COBOL.randomVerb()}.`,
-            `MOVE ${COBOL.randomValue()} TO WS-${COBOL.randomNoun()}.`,
-            `DISPLAY ${COBOL.randomValue()} ${COBOL.randomValue()}.`,
-            `SUBTRACT WS-${COBOL.randomNoun()} WS-${COBOL.randomVerb()} FROM WS-${COBOL.randomVerb()}.`,
-            `MULTIPLY WS-${COBOL.randomNoun()} BY WS-${COBOL.randomVerb()}.`,
-            `DIVIDE ${COBOL.randomValue()} BY ${COBOL.randomValue()} GIVING WS-${COBOL.randomVerb()} REMAINDER WS-${COBOL.randomVerb()}.`,
-            `COMPUTE WS-${COBOL.randomVerb()} = (WS-${COBOL.randomNoun()} * WS-${COBOL.randomNoun()}) - (WS-${COBOL.randomNoun()} / WS-${COBOL.randomNoun()}) + WS-${COBOL.randomNoun()}.`,
-        ];
-        return options[Math.floor(Math.random() * options.length)];
-    }
+  static getRandomFillerLine() {
+    const options = [
+      `ADD WS-${getRandomNounUpperCase()} WS-${getRandomVerbUpperCase()} TO WS-${getRandomVerbUpperCase()}.`,
+      `ADD ${COBOL.randomValue()} TO WS-${getRandomVerbUpperCase()}.`,
+      `MOVE ${COBOL.randomValue()} TO WS-${getRandomNounUpperCase()}.`,
+      `DISPLAY ${COBOL.randomValue()} ${COBOL.randomValue()}.`,
+      `SUBTRACT WS-${getRandomNounUpperCase()} WS-${getRandomVerbUpperCase()} FROM WS-${getRandomVerbUpperCase()}.`,
+      `MULTIPLY WS-${getRandomNounUpperCase()} BY WS-${getRandomVerbUpperCase()}.`,
+      `DIVIDE ${COBOL.randomValue()} BY ${COBOL.randomValue()} GIVING WS-${getRandomVerbUpperCase()} REMAINDER WS-${getRandomVerbUpperCase()}.`,
+      `COMPUTE WS-${getRandomVerbUpperCase()} = (WS-${getRandomNounUpperCase()} * WS-${getRandomNounUpperCase()}) - (WS-${getRandomNounUpperCase()} / WS-${getRandomNounUpperCase()}) + WS-${getRandomNounUpperCase()}.`,
+    ];
+    return getRandomEntry(options);
+  }
 }

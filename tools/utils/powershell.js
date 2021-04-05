@@ -1,24 +1,19 @@
-import { getRandomInt } from "../RandomCodeGenerator";
-import { nouns, verbs } from "./words";
+import {
+  getRandomEntry,
+  getRandomInt,
+  getRandomNounCapitalized,
+  getRandomVerbCapitalized,
+} from "./helpers";
 
 export default class Powershell {
   static getRandomFunctionName() {
-    const randomNoun = nouns[Math.floor(Math.random() * nouns.length)];
-    const randomVerb = verbs[Math.floor(Math.random() * verbs.length)];
-
-    return `${randomVerb.charAt(0).toUpperCase() + randomVerb.slice(1)}-${
-      randomNoun.charAt(0).toUpperCase() + randomNoun.slice(1)
-    }`;
+    return `${getRandomVerbCapitalized()}-${getRandomNounCapitalized()}`;
   }
 
   static getRandomVariableDeclaration() {
     const options = ["[]", "this"];
 
-    const randomNoun = nouns[Math.floor(Math.random() * nouns.length)];
-
-    return `$${randomNoun.charAt(0).toUpperCase() + randomNoun.slice(1)} = ${
-      options[Math.floor(Math.random() * options.length)]
-    };`;
+    return `$${getRandomNounCapitalized()} = ${getRandomEntry(options)};`;
   }
 
   static getRandomWriteHost() {
@@ -40,7 +35,7 @@ export default class Powershell {
       '"TODO: refactor this"',
     ];
 
-    return options[Math.floor(Math.random() * options.length)];
+    return getRandomEntry(options);
   }
 
   static getRandomFillerLine() {
@@ -48,6 +43,6 @@ export default class Powershell {
       `Write-Host ${Powershell.getRandomWriteHost()};`,
       Powershell.getRandomVariableDeclaration(),
     ];
-    return options[Math.floor(Math.random() * options.length)];
+    return getRandomEntry(options);
   }
 }
