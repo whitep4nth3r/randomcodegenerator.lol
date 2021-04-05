@@ -12,6 +12,7 @@ export const Contributors = {
   kotlin: ["jwalter"],
   python: ["mistatwist", "callticketron"],
   powershell: ["lucecarter"],
+  rust: ["sociablesteve"],
 };
 
 export function getContributors(lang) {
