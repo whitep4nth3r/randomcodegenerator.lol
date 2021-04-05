@@ -11,6 +11,7 @@ import PHP from "./utils/php";
 import Powershell from "./utils/powershell";
 import COBOL from "./utils/cobol";
 import Rust from "./utils/rust";
+import CPlusPlus from "./utils/cplusplus";
 
 export const Languages = {
   css: "CSS",
@@ -25,6 +26,7 @@ export const Languages = {
   python: "Python",
   powershell: "Powershell",
   rust: "Rust",
+  cplusplus: "C++"
 };
 
 export function generateRandomCode(language, lines) {
@@ -228,6 +230,18 @@ export function generateRandomCode(language, lines) {
 
       for (let i = 1; i <= fillerLineQty; i++) {
         fillerLines.push(`    ${Rust.getRandomFillerLine()}`);
+      }
+
+        lastLine = "\n\r}";
+
+        return firstLine + fillerLines.join("\n\r") + lastLine;
+
+    case "cplusplus":
+      firstLine = `${CPlusPlus.getRandomFunctionName()}() {\n\r`;
+      fillerLineQty = parseInt(lines, 10) - 2;
+
+      for (let i = 1; i <= fillerLineQty; i++) {
+        fillerLines.push(`    ${CPlusPlus.getRandomFillerLine()}`);
       }
 
       lastLine = "\n\r}";
