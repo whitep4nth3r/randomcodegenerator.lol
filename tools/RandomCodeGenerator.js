@@ -4,6 +4,7 @@ import Css from "./utils/css";
 import Docker from "./utils/docker";
 import Java from "./utils/java";
 import JavaScript from "./utils/javascript";
+import Kotlin from "./utils/kotlin";
 import Python from "./utils/python";
 import PHP from "./utils/php";
 import Powershell from "./utils/powershell";
@@ -17,6 +18,7 @@ export const Languages = {
   php: "PHP",
   java: "Java",
   js: "JavaScript",
+  kotlin: "Kotlin",
   python: "Python",
   powershell: "Powershell",
 };
@@ -142,6 +144,17 @@ export function generateRandomCode(language, lines) {
 
       for (let i = 1; i <= fillerLineQty; i++) {
         fillerLines.push(`    ${Java.getRandomFillerLine()}`);
+      }
+
+      lastLine = "\n\r}";
+
+      return firstLine + fillerLines.join("\n\r") + lastLine;
+    case "kotlin":
+      firstLine = `${Kotlin.getRandomMethodSignature()} {\n\r`;
+      fillerLineQty = parseInt(lines, 10) - 2;
+
+      for (let i = 1; i <= fillerLineQty; i++) {
+        fillerLines.push(`    ${Kotlin.getRandomFillerLine()}`);
       }
 
       lastLine = "\n\r}";
