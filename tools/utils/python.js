@@ -1,9 +1,4 @@
-import {
-  getRandomEntry,
-  getRandomInt,
-  getRandomNoun,
-  getRandomVerb,
-} from "./helpers";
+import { getRandomEntry, getRandomNoun, getRandomVerb, getLogLines } from "./helpers";
 
 export default class Python {
   static getRandomImport() {
@@ -21,32 +16,13 @@ export default class Python {
   }
 
   static getRandomPrint() {
-    const options = [
-      '"Goodbye, world!"',
-      '"test"',
-      '"hello"',
-      `"here ${getRandomInt(0, 100)}"`,
-      '"should be here"',
-      '"some error"',
-      "[object Object]",
-      '"undefined"',
-      '"=== DEBUG ==="',
-      '"to do"',
-      '"asdf"',
-      "NaN",
-      '"FIRE"',
-      '"schnitzel"',
-      '"TODO: refactor this"',
-    ];
+    const options = getLogLines();
 
     return getRandomEntry(options);
   }
 
   static getRandomFillerLine() {
-    const options = [
-      `print(${Python.getRandomPrint()})`,
-      Python.getRandomVariableDeclaration(),
-    ];
+    const options = [`print(${Python.getRandomPrint()})`, Python.getRandomVariableDeclaration()];
     return getRandomEntry(options);
   }
 }

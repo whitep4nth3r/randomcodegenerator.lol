@@ -4,6 +4,7 @@ import {
   getRandomInt,
   getRandomNounCapitalized,
   getRandomVerb,
+  getLogLines,
 } from "./helpers";
 
 export default class Java {
@@ -31,9 +32,7 @@ export default class Java {
     ];
     const randomType = getRandomEntry(types);
     const typeName = randomType.name();
-    return `${typeName} ${this.getRandomVariableName()} = ${randomType.generator(
-      typeName
-    )};`;
+    return `${typeName} ${this.getRandomVariableName()} = ${randomType.generator(typeName)};`;
   }
 
   static getRandomVariableName() {
@@ -47,23 +46,7 @@ export default class Java {
   }
 
   static getRandomLogMessage() {
-    const options = [
-      '"Goodbye, world!"',
-      '"test"',
-      '"hello"',
-      `"here ${getRandomInt(0, 100)}"`,
-      '"should be here"',
-      '"some error"',
-      "[object Object]",
-      '"undefined"',
-      '"=== DEBUG ==="',
-      '"to do"',
-      '"asdf"',
-      "null",
-      '"FIRE"',
-      '"schnitzel"',
-      '"TODO: refactor this"',
-    ];
+    const options = getLogLines();
 
     return getRandomEntry(options);
   }

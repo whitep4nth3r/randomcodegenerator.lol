@@ -76,6 +76,42 @@
       "contributions": [
         "code"
       ]
+    },
+    {
+      "login": "DR-DinoMight",
+      "name": "Matthew Peck-Deloughry",
+      "avatar_url": "https://avatars.githubusercontent.com/u/1541665?v=4",
+      "profile": "https://deloughry.co.uk",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "negue",
+      "name": "negue",
+      "avatar_url": "https://avatars.githubusercontent.com/u/842273?v=4",
+      "profile": "http://negue.github.io",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "rhyspowell",
+      "name": "Rhys Powell",
+      "avatar_url": "https://avatars.githubusercontent.com/u/473860?v=4",
+      "profile": "http://www.rhyspowell.com",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "SociableSteve",
+      "name": "Sociable Steve",
+      "avatar_url": "https://avatars.githubusercontent.com/u/52213009?v=4",
+      "profile": "https://madhousesteve.codes",
+      "contributions": [
+        "code"
+      ]
     }
   ],
   "contributorsPerLine": 7,

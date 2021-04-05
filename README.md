@@ -1,6 +1,6 @@
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-8-orange.svg?style=flat-square)](#contributors-)
+[![All Contributors](https://img.shields.io/badge/all_contributors-12-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
 ## Getting Started
@@ -55,6 +55,10 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
   </tr>
   <tr>
     <td align="center"><a href="https://github.com/MistaTwist"><img src="https://avatars.githubusercontent.com/u/9354464?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Paul Perry</b></sub></a><br /><a href="https://github.com/whitep4nth3r/randomcodegenerator.lol/commits?author=MistaTwist" title="Code">💻</a></td>
+    <td align="center"><a href="https://deloughry.co.uk"><img src="https://avatars.githubusercontent.com/u/1541665?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Matthew Peck-Deloughry</b></sub></a><br /><a href="https://github.com/whitep4nth3r/randomcodegenerator.lol/commits?author=DR-DinoMight" title="Code">💻</a></td>
+    <td align="center"><a href="http://negue.github.io"><img src="https://avatars.githubusercontent.com/u/842273?v=4?s=100" width="100px;" alt=""/><br /><sub><b>negue</b></sub></a><br /><a href="https://github.com/whitep4nth3r/randomcodegenerator.lol/commits?author=negue" title="Code">💻</a></td>
+    <td align="center"><a href="http://www.rhyspowell.com"><img src="https://avatars.githubusercontent.com/u/473860?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Rhys Powell</b></sub></a><br /><a href="https://github.com/whitep4nth3r/randomcodegenerator.lol/commits?author=rhyspowell" title="Code">💻</a></td>
+    <td align="center"><a href="https://madhousesteve.codes"><img src="https://avatars.githubusercontent.com/u/52213009?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Sociable Steve</b></sub></a><br /><a href="https://github.com/whitep4nth3r/randomcodegenerator.lol/commits?author=SociableSteve" title="Code">💻</a></td>
   </tr>
 </table>
 
