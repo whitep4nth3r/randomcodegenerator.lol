@@ -1,5 +1,5 @@
 import { getRandomInt, getLogLines } from "./helpers";
-import { nouns, verbs, singleCharacters } from "./words";
+import { nouns, verbs } from "./words";
 
 
 export default class Go {
@@ -11,8 +11,10 @@ export default class Go {
 
   static getRandomVariableDeclaration() {
     const keyWords = ["const", "var"];
-    const types = [];
+    const types = ["int", ];
     const options = ["[]", "this", `${Math.floor(Math.random() * 100)}`];
+
+
 
     return `${keyWords[Math.floor(Math.random() * keyWords.length)]} ${
       nouns[Math.floor(Math.random() * nouns.length)]
@@ -85,45 +87,7 @@ export default class Go {
   }
 
   static getRandomPackageName() {
-    const packages = ["main"];
-    return packages[Math.floor(Math.random() * packages.length)];
+    return nouns[Math.floor(Math.random() * nouns.length)];
   }
 
-  // ༼ つ ◕_◕ ༽つ gib code plz!
-  static gimmeCode(lines) {
-    const fillerLineQty = parseInt(lines, 10) - 2;
-    let randomImports = [];
-    let fillerLines = [];
-
-    //package name is mandatory, so let's always have this, and exclude it from the line count
-    const pkgLine = `package ${Go.getRandomPackageName()}\n\n\r`;
-    
-    const importsToGet = getRandomInt(1,3);
-
-    for (let i = 0; i <= importsToGet; i++) {
-      randomImports.push(`\t\t"${Go.getRandomImportName()}"\n\r`);
-    }
-
-    const importLine = `import (\n\r\t\t"fmt"\n${randomImports.join("")})\n\n\r`;
-    
-    // create a function
-    const firstLine = `func ${Go.getRandomFunctionName()} { \n\r`;
-
-    //add coe to function - if there'sre enough lines, 
-    for (let i = 1; i <= fillerLineQty; i++) {
-        fillerLines.push(`\t${Go.getRandomFillerLine()}`);
-    }
-
-    let lastLine = `\n\r}`;
-
-    return pkgLine + importLine + firstLine + fillerLines.join("\n\r") + lastLine;
-  }
 }
-
-
-/*
-git add upstream upstream forkname
-git add -p
-git commit -m "commit message"
-git push
-*/

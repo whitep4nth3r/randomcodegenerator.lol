@@ -82,7 +82,29 @@ export function generateRandomCode(language, lines) {
 
       return firstLine + fillerLines.join("\n\r") + lastLine;
     case "go":
-      return Go.gimmeCode(lines);
+      const importstoGet = Math.floor(lines/4);
+      fillerLineQty = parseInt(lines, 10) - 2 - importstoGet;
+      let randomImports = [];
+  
+      //package name is mandatory, so let's always have this, and exclude it from the line count
+      const pkgLine = `package ${Go.getRandomPackageName()}\n\n\r`;
+      
+      //set up random imports
+      for (let i = 1; i <= importstoGet; i++) {
+        randomImports.push(`\t"${Go.getRandomImportName()}"\n\r`);
+      }
+  
+      const importLine = `import (\n\r\t\"fmt"\n${randomImports.join("")})\n\n\r`;
+      firstLine = `func ${Go.getRandomFunctionName()} { \n\r`;
+  
+      //add code to function
+      for (let i = 1; i <= fillerLineQty; i++) {
+          fillerLines.push(`\t${Go.getRandomFillerLine()}`);
+      }
+  
+      let lastLine = `\n\r}`;
+  
+      return pkgLine + importLine + firstLine + fillerLines.join("\n\r") + lastLine;
     case "js":
       const firstLines = [
         (randomFunctionName) => {
