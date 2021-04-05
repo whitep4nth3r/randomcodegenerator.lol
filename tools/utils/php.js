@@ -1,10 +1,10 @@
 import {
   getRandomEntry,
-  getRandomInt,
   getRandomNoun,
   getRandomNounCapitalized,
   getRandomVerb,
   getRandomVerbCapitalized,
+  getLogLines,
 } from "./helpers";
 
 export default class PHP {
@@ -27,20 +27,12 @@ export default class PHP {
   }
 
   static getRandomParamtersSet() {
-    const paramaters = [
-      "",
-      `'${getRandomNoun()}'`,
-      `'${getRandomNoun()}', '${getRandomNoun()}'`,
-    ];
+    const paramaters = ["", `'${getRandomNoun()}'`, `'${getRandomNoun()}', '${getRandomNoun()}'`];
     return `${getRandomEntry(paramaters)}`;
   }
 
   static getRandomParamtersRead() {
-    const paramaters = [
-      "",
-      `$${getRandomNoun()}`,
-      `$${getRandomNoun()}, $${getRandomNoun()}`,
-    ];
+    const paramaters = ["", `$${getRandomNoun()}`, `$${getRandomNoun()}, $${getRandomNoun()}`];
     return getRandomEntry(paramaters);
   }
 
@@ -55,28 +47,11 @@ export default class PHP {
       `"${getRandomVerb()}"`,
     ];
 
-    return `${getRandomEntry(keyWords)}${getRandomNoun()} = ${getRandomEntry(
-      options
-    )};`;
+    return `${getRandomEntry(keyWords)}${getRandomNoun()} = ${getRandomEntry(options)};`;
   }
 
   static getRandomConsoleLog() {
-    const options = [
-      '"Goodbye, world!"',
-      '"test"',
-      '"hello"',
-      `"here ${getRandomInt(0, 100)}"`,
-      '"should be here"',
-      '"some error"',
-      ,
-      '"undefined"',
-      '"=== DEBUG ==="',
-      '"to do"',
-      '"asdf"',
-      '"FIRE"',
-      '"schnitzel"',
-      '"TODO: refactor this"',
-    ];
+    const options = getLogLines();
 
     return getRandomEntry(options);
   }
