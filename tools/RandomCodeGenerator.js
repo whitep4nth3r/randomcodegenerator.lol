@@ -9,6 +9,7 @@ import Python from "./utils/python";
 import PHP from "./utils/php";
 import Powershell from "./utils/powershell";
 import COBOL from "./utils/cobol";
+import Rust from "./utils/rust";
 
 export const Languages = {
   css: "CSS",
@@ -21,6 +22,7 @@ export const Languages = {
   kotlin: "Kotlin",
   python: "Python",
   powershell: "Powershell",
+  rust: "Rust",
 };
 
 export function generateRandomCode(language, lines) {
@@ -180,6 +182,18 @@ export function generateRandomCode(language, lines) {
       }
 
       lastLine = "\n\rSTOP RUN.";
+
+      return firstLine + fillerLines.join("\n\r") + lastLine;
+    case "rust":
+      firstLine = `fn ${Rust.getRandomFunctionName()}() -> ${Rust.getRandomType()} {\n\r`;
+
+      fillerLineQty = parseInt(lines, 10) - 2;
+
+      for (let i = 1; i <= fillerLineQty; i++) {
+        fillerLines.push(`    ${Rust.getRandomFillerLine()}`);
+      }
+
+      lastLine = "\n\r}";
 
       return firstLine + fillerLines.join("\n\r") + lastLine;
     default:
