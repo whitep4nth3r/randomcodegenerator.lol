@@ -1,6 +1,23 @@
 import { Languages } from "../RandomCodeGenerator";
 import { nouns, verbs } from "./words";
 
+export const Contributors = {
+  css: ["whitep4nth3r"],
+  cobol: ["canhorn"],
+  csharp: ["lucecarter", "rickvdbosch"],
+  docker: ["jwalter"],
+  php: ["dr_dinomight"],
+  java: ["jwalter"],
+  js: ["whitep4nth3r", "lukeocodes", "negue", "isabellabrookes"],
+  kotlin: ["jwalter"],
+  python: ["mistatwist", "callticketron"],
+  powershell: ["lucecarter"],
+};
+
+export function getContributors(lang) {
+  return Contributors[lang];
+}
+
 export function getRandomInt(min, max) {
   return Math.round(Math.random() * (max - min) + min);
 }
@@ -40,4 +57,25 @@ export function getRandomNounUpperCase() {
 
 export function getRandomVerbUpperCase() {
   return getRandomVerb().toUpperCase();
+}
+
+export function getLogLines() {
+  return [
+    '"Goodbye, world!"',
+    '"test"',
+    '"hello"',
+    `"here ${getRandomInt(0, 100)}"`,
+    '"should be here"',
+    '"some error"',
+    "[object Object]",
+    '"undefined"',
+    '"=== DEBUG ==="',
+    '"to do"',
+    '"asdf"',
+    "NaN",
+    '"FIRE"',
+    '"schnitzel"',
+    '"TODO: refactor this"',
+    '"Marlon Webb says WATERMELON!"',
+  ];
 }

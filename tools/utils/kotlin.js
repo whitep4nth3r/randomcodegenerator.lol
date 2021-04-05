@@ -5,15 +5,16 @@ import {
   getRandomNounCapitalized,
   getRandomNoun,
   getRandomVerb,
+  getLogLines,
 } from "./helpers";
 
 export default class Kotlin {
   static getRandomMethodSignature() {
     const randomNoun = getRandomNounCapitalized();
-    
-    return `fun ${getRandomVerb()}${
-      randomNoun
-    }(${this.getRandomTypes().map(p => `${this.getRandomLengthNounChain(3)}: ${p.name()}`).join(", ")})`;
+
+    return `fun ${getRandomVerb()}${randomNoun}(${this.getRandomTypes()
+      .map((p) => `${this.getRandomLengthNounChain(3)}: ${p.name()}`)
+      .join(", ")})`;
   }
 
   static getRandomTypes() {
@@ -31,9 +32,9 @@ export default class Kotlin {
     const typeName = randomType.name();
     let typeValue;
     if (getRandomInt(0, 10) > 6) {
-      typeValue = this.getRandomFunctionCall()
+      typeValue = this.getRandomFunctionCall();
     } else {
-      typeValue = randomType.generator(typeName)
+      typeValue = randomType.generator(typeName);
     }
     return `val ${this.getRandomLengthNounChain(3)}: ${typeName} = ${typeValue}`;
   }
@@ -60,7 +61,9 @@ export default class Kotlin {
   }
 
   static getRandomFunctionCall() {
-    return `${this.getRandomLengthNounChain(3)}(${this.getRandomTypes().map(p => p.generator(p.name())).join(", ")})`
+    return `${this.getRandomLengthNounChain(3)}(${this.getRandomTypes()
+      .map((p) => p.generator(p.name()))
+      .join(", ")})`;
   }
 
   static getRandomLengthNounChain(maxNouns) {
@@ -73,23 +76,7 @@ export default class Kotlin {
   }
 
   static getRandomLogMessage() {
-    const options = [
-      '"Goodbye, world!"',
-      '"test"',
-      '"hello"',
-      `"here ${getRandomInt(0, 100)}"`,
-      '"should be here"',
-      '"some error"',
-      'null',
-      '"undefined"',
-      '"=== DEBUG ==="',
-      '"to do"',
-      '"asdf"',
-      "null",
-      '"FIRE"',
-      '"schnitzel"',
-      '"TODO: refactor this"',
-    ];
+    const options = getLogLines();
 
     return getRandomEntry(options);
   }
@@ -98,7 +85,7 @@ export default class Kotlin {
     const options = [
       `println(${Kotlin.getRandomLogMessage()})`,
       Kotlin.getRandomVariableDeclaration(),
-      Kotlin.getRandomFunctionCall()
+      Kotlin.getRandomFunctionCall(),
     ];
     return getRandomEntry(options);
   }

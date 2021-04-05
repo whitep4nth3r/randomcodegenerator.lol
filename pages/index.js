@@ -1,19 +1,39 @@
 import PageMeta from "../components/PageMeta";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 import { generateRandomCode, Languages } from "../tools/RandomCodeGenerator";
-import { getRandomLang, getRandomInt } from "../tools/utils/helpers";
+import { getRandomLang, getRandomInt, getContributors } from "../tools/utils/helpers";
 
 export default function Home() {
-  const [selectedLang, setSelectedLang] = useState(Object.keys(Languages)[0]);
-  const [numberOfLines, setNumberOfLines] = useState(3);
+  const [selectedLang, setSelectedLang] = useState("js");
+  const [numberOfLines, setNumberOfLines] = useState("3");
   const [result, setResult] = useState("");
+  const [contributors, setContributors] = useState([]);
   const year = new Date().getFullYear();
 
-  function handleButtonClick(value) {
-    setSelectedLang(value);
-    const newCode = generateRandomCode(value, numberOfLines);
+  useEffect(() => {
+    const randomLang = getRandomLang();
+    const randomInt = getRandomInt(3, 8);
+
+    setSelectedLang(randomLang);
+    setNumberOfLines(randomInt);
+
+    const newCode = generateRandomCode(randomLang, randomInt);
     setResult(newCode);
+
+    updateContributors(randomLang);
+  }, []);
+
+  function updateContributors(newLang) {
+    const contributors = getContributors(newLang);
+    setContributors(contributors);
+  }
+
+  function handleButtonClick(newLang) {
+    setSelectedLang(newLang);
+    const newCode = generateRandomCode(newLang, numberOfLines);
+    setResult(newCode);
+    updateContributors(newLang);
   }
 
   function handeInputOnChange(value) {
@@ -28,13 +48,14 @@ export default function Home() {
   }
 
   function luckyDip() {
-    const lang = getRandomLang();
+    const newLang = getRandomLang();
     const randomInt = getRandomInt(3, 20);
     setNumberOfLines(randomInt);
-    setSelectedLang(lang);
+    setSelectedLang(newLang);
 
-    const newCode = generateRandomCode(lang, randomInt);
+    const newCode = generateRandomCode(newLang, randomInt);
     setResult(newCode);
+    updateContributors(newLang);
   }
 
   function copyCode() {
@@ -90,14 +111,35 @@ export default function Home() {
         </div>
 
         {result.length > 0 && (
-          <div className="result">
-            <pre className="result__pre">
-              <button type="button" className="copyButton" onClick={copyCode}>
-                Copy
-              </button>
-              <code>{result}</code>
-            </pre>
-          </div>
+          <>
+            <div className="result">
+              <pre className="result__pre">
+                <button type="button" className="copyButton" onClick={copyCode}>
+                  Copy
+                </button>
+                <code>{result}</code>
+              </pre>
+            </div>
+            {contributors.length > 0 && (
+              <div className="contributors">
+                <h2 className="contributors__title">Randomly lolled by</h2>
+                <ul className="contributors__list">
+                  {contributors.map((contributor) => (
+                    <li className="contributors__listItem">
+                      <a
+                        className="contributors__link"
+                        href={`https://github.com/${contributor}`}
+                        rel="noopener noreferrer"
+                        target="_blank"
+                      >
+                        {contributor}
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            )}
+          </>
         )}
       </main>
       <footer className="footer">

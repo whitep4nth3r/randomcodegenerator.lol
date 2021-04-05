@@ -4,6 +4,7 @@ import {
   getRandomNoun,
   getRandomNounCapitalized,
   getRandomVerb,
+  getLogLines,
 } from "./helpers";
 
 export default class JavaScript {
@@ -15,30 +16,11 @@ export default class JavaScript {
     const keyWords = ["let", "const", "var"];
     const options = ["[]", "this"];
 
-    return `${getRandomEntry(keyWords)} ${getRandomNoun()} = ${getRandomEntry(
-      options
-    )};`;
+    return `${getRandomEntry(keyWords)} ${getRandomNoun()} = ${getRandomEntry(options)};`;
   }
 
   static getRandomConsoleLog() {
-    const options = [
-      '"Goodbye, world!"',
-      '"test"',
-      '"hello"',
-      `"here ${getRandomInt(0, 100)}"`,
-      '"should be here"',
-      '"some error"',
-      "[object Object]",
-      '"undefined"',
-      '"=== DEBUG ==="',
-      '"to do"',
-      '"asdf"',
-      "NaN",
-      '"FIRE"',
-      '"schnitzel"',
-      '"TODO: refactor this"',
-    ];
-
+    const options = getLogLines();
     return getRandomEntry(options);
   }
 

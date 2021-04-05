@@ -1,9 +1,9 @@
 import {
   getRandomEntry,
-  getRandomInt,
   getRandomNoun,
   getRandomNounCapitalized,
   getRandomVerbCapitalized,
+  getLogLines,
 } from "./helpers";
 
 export default class CSharp {
@@ -45,23 +45,7 @@ export default class CSharp {
   }
 
   static getRandomDebugWriteLine() {
-    const options = [
-      '"Goodbye, world!"',
-      '"test"',
-      '"hello"',
-      `"here ${getRandomInt(0, 100)}"`,
-      '"should be here"',
-      '"here be dragons"',
-      '"some error"',
-      '"Would expect null"',
-      '"=== DEBUG ==="',
-      '"to do"',
-      '"asdf"',
-      '"FIRE"',
-      '"schnitzel"',
-      '"Marlon Webb says WATERMELON!"',
-      '"TODO: refactor this"',
-    ];
+    const options = getLogLines();
 
     return getRandomEntry(options);
   }
