@@ -86,6 +86,15 @@
         "code"
       ]
     }
+    {
+      "login": "negue",
+      "name": "negue",
+      "avatar_url": "https://avatars.githubusercontent.com/u/842273?v=4",
+      "profile": "http://negue.github.io",
+      "contributions": [
+        "code"
+      ]
+    }
   ],
   "contributorsPerLine": 7,
   "projectName": "randomcodegenerator.lol",

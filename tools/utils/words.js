@@ -53,3 +53,5 @@ export const nouns = [
   "tree",
   `thing${getRandomInt(0, 100)}`,
 ];
+
+export const singleCharacters = ["i", "j", "k", "x", "e", "_"];

@@ -88,10 +88,7 @@ export default class Css {
   }
 
   static getRandomUnitRule() {
-    return `${Css.getRandomUnitProp()}: ${getRandomInt(
-      0,
-      500
-    )}${Css.getRandomUnit()}`;
+    return `${Css.getRandomUnitProp()}: ${getRandomInt(0, 500)}${Css.getRandomUnit()}`;
   }
 
   static getRandomColorRule() {
