@@ -1,6 +1,6 @@
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-13-orange.svg?style=flat-square)](#contributors-)
+[![All Contributors](https://img.shields.io/badge/all_contributors-14-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
 ## Getting Started
@@ -60,6 +60,7 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
     <td align="center"><a href="http://www.rhyspowell.com"><img src="https://avatars.githubusercontent.com/u/473860?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Rhys Powell</b></sub></a><br /><a href="https://github.com/whitep4nth3r/randomcodegenerator.lol/commits?author=rhyspowell" title="Code">💻</a></td>
     <td align="center"><a href="https://madhousesteve.codes"><img src="https://avatars.githubusercontent.com/u/52213009?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Sociable Steve</b></sub></a><br /><a href="https://github.com/whitep4nth3r/randomcodegenerator.lol/commits?author=SociableSteve" title="Code">💻</a></td>
     <td align="center"><a href="https://sketchni.codes"><img src="https://avatars.githubusercontent.com/u/11874768?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Denver F</b></sub></a><br /><a href="https://github.com/whitep4nth3r/randomcodegenerator.lol/commits?author=SketchNI" title="Code">💻</a></td>
+    <td align="center"><a href="https://github.com/mrange"><img src="https://avatars.githubusercontent.com/u/2491891?v=4?s=100" width="100px;" alt=""/><br /><sub><b>mrange</b></sub></a><br /><a href="https://github.com/whitep4nth3r/randomcodegenerator.lol/commits?author=mrange" title="Code">💻</a></td>
   </tr>
 </table>
 
