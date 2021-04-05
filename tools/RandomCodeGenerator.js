@@ -2,6 +2,7 @@ import { getRandomEntry } from "./utils/helpers";
 import CSharp from "./utils/csharp";
 import Css from "./utils/css";
 import Docker from "./utils/docker";
+import Go from "./utils/go";
 import Java from "./utils/java";
 import JavaScript from "./utils/javascript";
 import Kotlin from "./utils/kotlin";
@@ -15,6 +16,7 @@ export const Languages = {
   cobol: "COBOL",
   csharp: "C#",
   docker: "Docker",
+  go: "Go",
   php: "PHP",
   java: "Java",
   js: "JavaScript",
@@ -79,6 +81,8 @@ export function generateRandomCode(language, lines) {
       lastLine = Docker.randomPostamble();
 
       return firstLine + fillerLines.join("\n\r") + lastLine;
+    case "go":
+      return Go.gimmeCode(lines);
     case "js":
       const firstLines = [
         (randomFunctionName) => {
