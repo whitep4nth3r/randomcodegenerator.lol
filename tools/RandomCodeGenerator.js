@@ -22,11 +22,8 @@ export const Languages = {
   php: "PHP",
   java: "Java",
   js: "JavaScript",
-<<<<<<< HEAD
   ts: "TypeScript",
-=======
   kotlin: "Kotlin",
->>>>>>> main
   python: "Python",
   powershell: "Powershell",
   rust: "Rust",
