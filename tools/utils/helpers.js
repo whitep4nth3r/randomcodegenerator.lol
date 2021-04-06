@@ -1,6 +1,6 @@
-import { Languages } from "../RandomCodeGenerator";
 import {
   Contributors,
+  Languages,
   logs,
   nouns,
   singleCharacters,
