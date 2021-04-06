@@ -5,7 +5,7 @@ import {
   getRandomNounCapitalized,
   getRandomNoun,
   getRandomVerb,
-  getLogLines,
+  getRandomLogLine,
 } from "./helpers";
 
 export default class Kotlin {
@@ -36,14 +36,16 @@ export default class Kotlin {
     } else {
       typeValue = randomType.generator(typeName);
     }
-    return `val ${this.getRandomLengthNounChain(3)}: ${typeName} = ${typeValue}`;
+    return `val ${this.getRandomLengthNounChain(
+      3
+    )}: ${typeName} = ${typeValue}`;
   }
 
   static getRandomType() {
     const types = [
       {
         name: () => "String",
-        generator: (_) => `${Kotlin.getRandomLogMessage()}`,
+        generator: (_) => `${getRandomLogLine()}`,
       },
       {
         name: () => "int",
@@ -75,15 +77,9 @@ export default class Kotlin {
     return fragments.join("");
   }
 
-  static getRandomLogMessage() {
-    const options = getLogLines();
-
-    return getRandomEntry(options);
-  }
-
   static getRandomFillerLine() {
     const options = [
-      `println(${Kotlin.getRandomLogMessage()})`,
+      `println(${getRandomLogLine()})`,
       Kotlin.getRandomVariableDeclaration(),
       Kotlin.getRandomFunctionCall(),
     ];

@@ -1,16 +1,26 @@
 import {
   getRandomEntry,
-  getRandomInt,
   getRandomNoun,
   getRandomNounCapitalized,
   getRandomVerb,
-  getLogLines,
+  getRandomLogLine,
   getRandomSingleCharacter,
 } from "./helpers";
 
 export default class JavaScript {
   static getRandomInitializationVars() {
-    return ["[]", "this", "self", "0", "1", "true", "false", "{}", "null", "undefined"];
+    return [
+      "[]",
+      "this",
+      "self",
+      "0",
+      "1",
+      "true",
+      "false",
+      "{}",
+      "null",
+      "undefined",
+    ];
   }
 
   static getRandomFunctionName() {
@@ -25,14 +35,9 @@ export default class JavaScript {
     )};`;
   }
 
-  static getRandomConsoleLog() {
-    const options = getLogLines();
-    return getRandomEntry(options);
-  }
-
   static getRandomFillerLine() {
     const options = [
-      `console.log(${JavaScript.getRandomConsoleLog()});`,
+      `console.log(${getRandomLogLine()});`,
       JavaScript.getRandomVariableDeclaration(),
       `${JavaScript.getRandomFunctionName()}();`,
     ];
@@ -40,7 +45,9 @@ export default class JavaScript {
   }
 
   static getRandomReturn() {
-    return `    return ${getRandomEntry(JavaScript.getRandomInitializationVars())};`;
+    return `    return ${getRandomEntry(
+      JavaScript.getRandomInitializationVars()
+    )};`;
   }
 
   static getRandomForLoopAsArray() {
