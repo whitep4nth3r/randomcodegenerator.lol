@@ -11,30 +11,34 @@ export default class Go {
 
   static getRandomVariableDeclaration() {
     const keyWords = ["const", "var"];
-    const types = ["int", ];
+    const types = ["int", "bool", "string"];
     const options = ["[]", "this", `${Math.floor(Math.random() * 100)}`];
 
-
-
-    return `${keyWords[Math.floor(Math.random() * keyWords.length)]} ${
-      nouns[Math.floor(Math.random() * nouns.length)]
-    } = ${options[Math.floor(Math.random() * options.length)]};`;
+    const keyword = keyWords[Math.floor(Math.random() * keyWords.length)];
+    const type = types[Math.floor(Math.random() * types.length)];
+    let varName = nouns[Math.floor(Math.random() * nouns.length)];
+    const value = options[Math.floor(Math.random() * options.length)];
+    
+    if(keyword === "const") 
+    {
+      varName = varName.toUpperCase();
+    }
+    return `${keyword} ${varName} ${type} = ${value}`;
   }
 
   static getRandomfmtPrintln() {
     const options = getLogLines();
-
     let msg = `${options[Math.floor(Math.random() * options.length)]}`;
-    return `fmt.Println(${msg});`
+    return `fmt.Println(${msg})`
   }
 
   static getRandomFillerLine() {
     const options = [
       Go.getRandomfmtPrintln(),
       Go.getRandomVariableDeclaration(),
-      `${Go.getRandomFunctionName()}();`,
+      `${Go.getRandomFunctionName()}()`,
     ];
-    return options[Math.floor(Math.random() * options.length)];
+    return `\t${options[Math.floor(Math.random() * options.length)]}`;
   }
 
   static getRandomImportName() {
@@ -90,4 +94,7 @@ export default class Go {
     return nouns[Math.floor(Math.random() * nouns.length)];
   }
 
+  static getExistingVariable() {
+    return `null`;
+  }
 }

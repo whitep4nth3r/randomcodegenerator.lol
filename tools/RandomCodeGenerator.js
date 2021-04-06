@@ -82,27 +82,43 @@ export function generateRandomCode(language, lines) {
 
       return firstLine + fillerLines.join("\n\r") + lastLine;
     case "go":
-      const importstoGet = Math.floor(lines/4);
-      fillerLineQty = parseInt(lines, 10) - 2 - importstoGet;
+      // get a random amount of package imports.
+      const importstoGet = Math.floor(lines/5);
+      // coin flip for adding a return statement or not
+      const addReturnLine = Math.floor(Math.random() * 2);
+
+      fillerLineQty = parseInt(lines, 10) - 2 - 2 - importstoGet - addReturnLine;
       let randomImports = [];
   
       //package name is mandatory, so let's always have this, and exclude it from the line count
       const pkgLine = `package ${Go.getRandomPackageName()}\n\n\r`;
       
-      //set up random imports
-      for (let i = 1; i <= importstoGet; i++) {
-        randomImports.push(`\t"${Go.getRandomImportName()}"\n\r`);
+      //set up random package import[s]
+      let importLine = "";
+      if (importstoGet !== 1){
+        for (let i = 1; i <= importstoGet; i++) {
+          randomImports.push(`\t"${Go.getRandomImportName()}"\n\r`);
+        }
+        importLine = `import (\n\r\t\"fmt"\n${randomImports.join("")})\n\n\r`;
       }
-  
-      const importLine = `import (\n\r\t\"fmt"\n${randomImports.join("")})\n\n\r`;
+      else {
+        importLine = `import "fmt"\n\n\r`;
+      }
+
+      //set up a function
       firstLine = `func ${Go.getRandomFunctionName()} { \n\r`;
   
       //add code to function
       for (let i = 1; i <= fillerLineQty; i++) {
-          fillerLines.push(`\t${Go.getRandomFillerLine()}`);
+          fillerLines.push(`${Go.getRandomFillerLine()}`);
       }
-  
-      let lastLine = `\n\r}`;
+      
+      let lastLine = ""
+      if(addReturnLine === 1) {
+        lastLine = `\n\treturn ${Go.getExistingVariable()}`;
+      }
+
+      lastLine += `\n\r}`;
   
       return pkgLine + importLine + firstLine + fillerLines.join("\n\r") + lastLine;
     case "js":
