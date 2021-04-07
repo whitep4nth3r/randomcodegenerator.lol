@@ -13,7 +13,7 @@ export default class Go {
   static getRandomVariableDeclaration() {
     const keyWords = ["const", "var"];
     const types = ["int", "bool", "string"];
-    const values = ["[]", "this", `${Math.floor(Math.random() * 100)}`];
+    const values = ["[]", "this", `${getRandomInt(0, 100)}`];
 
     const keyword = getRandomEntry(keyWords);
     const type = getRandomEntry(types);
