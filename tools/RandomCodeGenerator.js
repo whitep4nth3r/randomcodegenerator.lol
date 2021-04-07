@@ -2,6 +2,7 @@ import {
   getRandomEntry,
   getRandomInt
 } from "./utils/helpers";
+
 import CSharp from "./utils/csharp";
 import Css from "./utils/css";
 import Docker from "./utils/docker";
@@ -16,7 +17,25 @@ import Powershell from "./utils/powershell";
 import COBOL from "./utils/cobol";
 import Rust from "./utils/rust";
 import SQL from "./utils/sql";
+import CPlusPlus from "./utils/cplusplus";
 import Swift from './utils/swift';
+
+export const Languages = {
+  css: "CSS",
+  cobol: "COBOL",
+  csharp: "C#",
+  fsharp: "F#",
+  docker: "Docker",
+  php: "PHP",
+  java: "Java",
+  js: "JavaScript",
+  kotlin: "Kotlin",
+  python: "Python",
+  powershell: "Powershell",
+  rust: "Rust",
+  cplusplus: "C++",
+  swift: "Swift",
+};
 
 export function generateRandomCode(language, lines) {
   let firstLine = "";
@@ -257,6 +276,18 @@ export function generateRandomCode(language, lines) {
 
       for (let i = 1; i <= fillerLineQty; i++) {
         fillerLines.push(`    ${Rust.getRandomFillerLine()}`);
+      }
+
+        lastLine = "\n\r}";
+
+        return firstLine + fillerLines.join("\n\r") + lastLine;
+
+    case "cplusplus":
+      firstLine = `${CPlusPlus.getRandomFunctionName()}() {\n\r`;
+      fillerLineQty = parseInt(lines, 10) - 2;
+
+      for (let i = 1; i <= fillerLineQty; i++) {
+        fillerLines.push(`    ${CPlusPlus.getRandomFillerLine()}`);
       }
 
       lastLine = "\n\r}";
