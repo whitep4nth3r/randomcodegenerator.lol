@@ -27,20 +27,12 @@ export default class PHP {
   }
 
   static getRandomParamtersSet() {
-    const paramaters = [
-      "",
-      `'${getRandomNoun()}'`,
-      `'${getRandomNoun()}', '${getRandomNoun()}'`,
-    ];
+    const paramaters = ["", `'${getRandomNoun()}'`, `'${getRandomNoun()}', '${getRandomNoun()}'`];
     return `${getRandomEntry(paramaters)}`;
   }
 
   static getRandomParamtersRead() {
-    const paramaters = [
-      "",
-      `$${getRandomNoun()}`,
-      `$${getRandomNoun()}, $${getRandomNoun()}`,
-    ];
+    const paramaters = ["", `$${getRandomNoun()}`, `$${getRandomNoun()}, $${getRandomNoun()}`];
     return getRandomEntry(paramaters);
   }
 
@@ -55,16 +47,11 @@ export default class PHP {
       `"${getRandomVerb()}"`,
     ];
 
-    return `${getRandomEntry(keyWords)}${getRandomNoun()} = ${getRandomEntry(
-      options
-    )};`;
+    return `${getRandomEntry(keyWords)}${getRandomNoun()} = ${getRandomEntry(options)};`;
   }
 
   static getRandomFillerLine() {
-    const options = [
-      `var_dump(${getRandomLogLine()}); die();`,
-      PHP.getRandomVariableDeclaration(),
-    ];
+    const options = [`var_dump(${getRandomLogLine()}); die();`, PHP.getRandomVariableDeclaration()];
     return getRandomEntry(options);
   }
 }

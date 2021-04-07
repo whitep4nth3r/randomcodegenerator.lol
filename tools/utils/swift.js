@@ -2,31 +2,33 @@ import { getRandomEntry, getRandomNoun, getRandomNounCapitalized, getRandomVerb 
 import { logs } from "../constants";
 
 export default class Swift {
-    static getRandomInitializationVars() {
-        return ["self", "0", "1", "true", "false", "nil", "\"💩\"", "\"💻\"", "\"🍎\"", "\"🙀\"", "\"🐶\""];
-    }
+  static getRandomInitializationVars() {
+    return ["self", "0", "1", "true", "false", "nil", '"💩"', '"💻"', '"🍎"', '"🙀"', '"🐶"'];
+  }
 
-    static getRandomFunctionName() {
-        return `${getRandomVerb()}${getRandomNounCapitalized()}()`;
-    }
+  static getRandomFunctionName() {
+    return `${getRandomVerb()}${getRandomNounCapitalized()}()`;
+  }
 
-    static getRandomVariableDeclaration() {
-        const keyWords = ["let", "var"];
+  static getRandomVariableDeclaration() {
+    const keyWords = ["let", "var"];
 
-        return `${getRandomEntry(keyWords)} ${getRandomNoun()} = ${getRandomEntry(Swift.getRandomInitializationVars())}`
-    }
+    return `${getRandomEntry(keyWords)} ${getRandomNoun()} = ${getRandomEntry(
+      Swift.getRandomInitializationVars()
+    )}`;
+  }
 
-    static getRandomPrintCall() {
-        return `print(${getRandomEntry(logs)})`;
-    }
+  static getRandomPrintCall() {
+    return `print(${getRandomEntry(logs)})`;
+  }
 
-    static getRandomFillerLine() {
-        const options = [
-            Swift.getRandomVariableDeclaration(),
-            Swift.getRandomPrintCall(),
-            Swift.getRandomFunctionName()
-        ];
+  static getRandomFillerLine() {
+    const options = [
+      Swift.getRandomVariableDeclaration(),
+      Swift.getRandomPrintCall(),
+      Swift.getRandomFunctionName(),
+    ];
 
-        return getRandomEntry(options);
-    }
+    return getRandomEntry(options);
+  }
 }

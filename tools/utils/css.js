@@ -9,14 +9,27 @@ export default class Css {
 
   // list-style
 
-  static getRandomBorderStyle(){
-    const borderStyleValues = ["none", "hidden", "dotted", "dashed", "solid", "double", "groove", "ridge", "inset", "outset", "initial", "inherit"]
+  static getRandomBorderStyle() {
+    const borderStyleValues = [
+      "none",
+      "hidden",
+      "dotted",
+      "dashed",
+      "solid",
+      "double",
+      "groove",
+      "ridge",
+      "inset",
+      "outset",
+      "initial",
+      "inherit",
+    ];
 
     return `border-style: ${getRandomEntry(borderStyleValues)}`;
   }
-  
-  static getRandomTextAlign(){
-    const alignValues = ["left", "right", "center", "justify", "initial", "inherit"]
+
+  static getRandomTextAlign() {
+    const alignValues = ["left", "right", "center", "justify", "initial", "inherit"];
 
     return `text-align: ${getRandomEntry(alignValues)}`;
   }

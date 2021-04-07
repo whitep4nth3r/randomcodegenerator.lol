@@ -36,7 +36,9 @@ export default class Kotlin {
     } else {
       typeValue = randomType.generator(typeName);
     }
-    return `${Kotlin.indent(indentLevel)}val ${this.getRandomVariableName(3)}: ${typeName} = ${typeValue}`;
+    return `${Kotlin.indent(indentLevel)}val ${this.getRandomVariableName(
+      3
+    )}: ${typeName} = ${typeValue}`;
   }
 
   static getRandomVariableName(maxLength) {
@@ -65,7 +67,9 @@ export default class Kotlin {
   }
 
   static getRandomFunctionCall(indentLevel, maxParamCount) {
-    return `${Kotlin.indent(indentLevel)}${this.getRandomVariableName(3)}(${this.getRandomTypes(maxParamCount)
+    return `${Kotlin.indent(indentLevel)}${this.getRandomVariableName(3)}(${this.getRandomTypes(
+      maxParamCount
+    )
       .map((p) => p.generator(p.name()))
       .join(", ")})`;
   }
@@ -81,7 +85,9 @@ export default class Kotlin {
 
   static getRandomLoop(indentLevel) {
     let indent = Kotlin.indent(indentLevel);
-    const loopLines = [`${indent}for (${this.getRandomVariableName(1)} in ${this.getRandomFunctionCall(0, 0)}) {`];
+    const loopLines = [
+      `${indent}for (${this.getRandomVariableName(1)} in ${this.getRandomFunctionCall(0, 0)}) {`,
+    ];
     if (indentLevel === 0) {
       indentLevel += 4;
       indent = Kotlin.indent(indentLevel);
@@ -94,7 +100,7 @@ export default class Kotlin {
   }
 
   static indent(level) {
-    return "".padStart(level || 0, " ")
+    return "".padStart(level || 0, " ");
   }
 
   static getRandomFillerLine(indentLevel) {

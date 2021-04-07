@@ -9,10 +9,10 @@ import { Languages } from "../tools/constants";
 import PageMeta from "../components/PageMeta";
 import Footer from "../components/Footer";
 
-export default function Home({ randomNumberOfLines, randomLang }) {
+export default function Home({ randomNumberOfLines, randomLang, randomCode }) {
   const [selectedLang, setSelectedLang] = useState(randomLang);
   const [numberOfLines, setNumberOfLines] = useState(randomNumberOfLines);
-  const [result, setResult] = useState("");
+  const [result, setResult] = useState(randomCode);
   const [contributors, setContributors] = useState([]);
 
   useEffect(() => {
@@ -163,10 +163,12 @@ export default function Home({ randomNumberOfLines, randomLang }) {
 export async function getStaticProps() {
   const randomNumberOfLines = getRandomInt(3, 9);
   const randomLang = getRandomLang();
+  const randomCode = generateRandomCode(randomLang, randomNumberOfLines);
   return {
     props: {
       randomLang,
       randomNumberOfLines,
+      randomCode,
     },
   };
 }

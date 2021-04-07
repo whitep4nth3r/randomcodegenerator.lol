@@ -1,7 +1,16 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Welcome to the randomcodegenerator.lol
+
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
+
 [![All Contributors](https://img.shields.io/badge/all_contributors-18-orange.svg?style=flat-square)](#contributors-)
+
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
+
+Need some code for your project? We've got you covered.
+
+Choose your language. Choose how many lines.
+
+BÄM! You got code.
 
 ## Getting Started
 
@@ -18,69 +27,81 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 
 The following instructions will guide you through how to add a new language to the generator.
 
-1. Add a new file in tools/utils called the language with a .js extension
-2. There are some helper functions available in tools/utils/helpers.js so the first step in your new empty js file is to import those functions:
-  ```js
-  import {
-    getRandomEntry,
-    getRandomInt,
-    getRandomNounUpperCase,
-    getRandomVerbUpperCase,
-    getRandomLogLine,
-  } from "./helpers";
-  ```
-  It is worth looking at helpers.js in case any of the other functions are applicable to your language, or in case some are in fact not needed at all and don't need to be imported in your file
-  
-3. Create a class with the name of your language
-  ```js
-  export default class <insert language name here> {
+1. Add a new file in tools/utils named {language}.js
+2. There are some helper functions available in tools/utils/helpers.js so the first step in your new file is to import those functions:
 
-  }
-  ```
-4. If your language uses functions with access modifers or return types, create a static function for this that returns a string in `` to define this. See static getRandomMethodName() in csharp.js for an example
-5. Create a static function called getRandomFunctionName or getRandomMethodName depending on your language as required which builds up the name using functions from helper.js
-6. Create a static function called getRandomVariableDeclation, define the common keywords from your language, that returns a random variable declaration using functions from helper.js such as getRandomEntry(keywords). See javascript.js for an example
-7. Create a function that will return some random log lines from the helper file. Name this after how your language words output. For example csharp.js has getRandomDebugWriteLine and javascript.js has getRandomConsoleLog
+```js
+import {
+  getRandomEntry,
+  getRandomInt,
+  getRandomNounUpperCase,
+  getRandomVerbUpperCase,
+  getRandomLogLine,
+} from "./helpers";
+```
+
+It is worth looking at helpers.js in case any of the other functions are applicable to your language, or in case some are in fact not needed at all and don't need to be imported in your file.
+
+3. In your new, create a new JavaScript class with the name of your language
+
+```js
+export default class <insert language name here> {
+
+}
+```
+
+4. If your language uses functions with access modifers or return types, create a static function for this that returns a string wrapped in ``to define this. See`static getRandomMethodName()` in csharp.js for an example
+5. Create a static function called `getRandomFunctionName` or `getRandomMethodName` depending on your language as required which builds up the name using functions from helper.js
+6. Create a static function called `getRandomVariableDeclation`, define the common keywords from your language, that returns a random variable declaration using functions from helper.js such as `getRandomEntry(keywords)`. See javascript.js for an example
+7. Create a function that will return some random log lines from the helper file. Name this after how your language words output. For example csharp.js has `getRandomDebugWriteLine` and javascript.js has `getRandomConsoleLog`
 8. Inside this function, paste the following
-  ```js
-    const options = getLogLines();
-    return getRandomEntry(options);
-  ```
+
+```js
+const options = getLogLines();
+return getRandomEntry(options);
+```
+
 9. We now want to create some silly filler lines so create the following function in your file and update it reflect your language syntax and file name
-  ```js
-  static getRandomFillerLine() {
-    const options = [
-      `console.log(${JavaScript.getRandomConsoleLog()});`,
-      JavaScript.getRandomVariableDeclaration(),
-      `${JavaScript.getRandomFunctionName()}();`,
-    ];
-    return getRandomEntry(options);
-  }
-  ```
-  10. Save your file as it is now time to use it
-  11. Open tools/RandomCodeGenerator.js
-  12. Import the reference to your language file, following the pattern of the existing code
-  13. Add your langauge the list of languages. The name cannot have special characters but the value as a string is how the language will appear on the buttons so straight text will work such as the existing C++
-  14. After the last case statement but before default, add the word case followed by your language name in quotes and followed by a colon (: symbol)
-  15. Assign a string in `` to firstLine that reflects how a method or function is declared in your language
-  16. Paste the following after your firstLine assign, updating to reflect your language syntax and file name
-    ```js
-        for (let i = 1; i <= fillerLineQty; i++) {
-        fillerLines.push(`    ${CPlusPlus.getRandomFillerLine()}`);
-      }
 
-      lastLine = "\n\r}";
+```js
+static getRandomFillerLine() {
+  const options = [
+    `console.log(${JavaScript.getRandomConsoleLog()});`,
+    JavaScript.getRandomVariableDeclaration(),
+    `${JavaScript.getRandomFunctionName()}();`,
+  ];
+  return getRandomEntry(options);
+}
+```
 
-      return firstLine + fillerLines.join("\n\r") + lastLine;
-     ```
-  17. Open languages.js and add your language and your language to the const object
-  18. Open contributors.js and add your GitHub username to the Contributors const at the top of the file
-  18. Make sure everything is saved, then either refresh the page at [http://localhost:3000](http://localhost:3000) if it is already running, to ensure it picks up the latest changes or if it is not running
-    ```bash
-      npm run dev
-    ```
-  19. Check the page is displaying correctly and enjoy your hard work :)
-  20. If it all runs and displays your language correctly, submit a PR to the original repo and celebrate :tada:
+10. Save your file as it is now time to use it
+11. Open tools/RandomCodeGenerator.js
+12. Import the reference to your language file, following the pattern of the existing code
+13. Add your language to the list of languages. The name cannot have special characters but the value as a string is how the language will appear on the buttons so straight text will work such as the existing C++
+14. After the last case statement but before default, add the word case followed by your language name in quotes and followed by a colon (: symbol)
+15. Assign a string surrounded by ``to`firstLine` that reflects how a method or function is declared in your language
+16. Paste the following after your `firstLine` assignment, updating to reflect your language syntax and file name, for example:
+
+```js
+for (let i = 1; i <= fillerLineQty; i++) {
+  fillerLines.push(`    ${CPlusPlus.getRandomFillerLine()}`);
+}
+
+lastLine = "\n\r}";
+
+return firstLine + fillerLines.join("\n\r") + lastLine;
+```
+
+17. Open languages.js and add your language to the Languages object
+18. Open contributors.js and add your GitHub username to the Contributors object at the top of the file
+19. Make sure everything is saved, then take a look at your changes on [http://localhost:3000](http://localhost:3000)
+
+```bash
+  npm run dev
+```
+
+20. Check the page is displaying correctly and enjoy your hard work :)
+21. If it all runs and displays your language correctly, submit a PR to the original repo and celebrate 🎉
 
 ## Contributors ✨
 
@@ -123,6 +144,7 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
 
 This project follows the [all-contributors](https://github.com/all-contributors/all-contributors) specification. Contributions of any kind welcome!
 
+This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 ## Learn More
 

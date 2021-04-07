@@ -1,9 +1,4 @@
-import {
-  getRandomEntry,
-  getRandomNoun,
-  getRandomVerb,
-  getRandomLogLine,
-} from "./helpers";
+import { getRandomEntry, getRandomNoun, getRandomVerb, getRandomLogLine } from "./helpers";
 
 export default class Rust {
   static getRandomFunctionName() {
@@ -17,9 +12,7 @@ export default class Rust {
       `${Rust.getRandomFunctionName()}()`,
     ];
 
-    return `${getRandomEntry(keyWords)} ${getRandomNoun()} = ${getRandomEntry(
-      options
-    )};`;
+    return `${getRandomEntry(keyWords)} ${getRandomNoun()} = ${getRandomEntry(options)};`;
   }
 
   static getRandomFillerLine() {
