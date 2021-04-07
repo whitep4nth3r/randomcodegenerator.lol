@@ -61,7 +61,7 @@ export default function Home({ randomNumberOfLines, randomLang, randomCode }) {
       <main className="container">
         <h1 className="title">[object Object]</h1>
         <p className="blurb">Need some code for your project? We've got you covered.</p>
-        <p className="blurb">Choose your language. Choose how many lines.</p>
+        <p className="blurb">Choose how much code. Choose your language.</p>
         <p className="blurb">BÄM! You got code.</p>
 
         <button
