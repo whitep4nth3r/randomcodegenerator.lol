@@ -1,39 +1,52 @@
+import { useState, useEffect } from "react";
+import hljs from "highlight.js";
+import "highlight.js/styles/a11y-dark.css";
+
+import { generateRandomCode } from "../tools/RandomCodeGenerator";
+import { getRandomLang, getRandomInt, getContributors } from "../tools/utils/helpers";
+import { Languages } from "../tools/constants";
+
 import PageMeta from "../components/PageMeta";
-import { useState } from "react";
+import Footer from "../components/Footer";
 
-import { generateRandomCode, Languages } from "../tools/RandomCodeGenerator";
-import { getRandomLang, getRandomInt } from "../tools/utils/helpers";
-
-export default function Home() {
-  const [selectedLang, setSelectedLang] = useState(Object.keys(Languages)[0]);
-  const [numberOfLines, setNumberOfLines] = useState(3);
+export default function Home({ randomNumberOfLines, randomLang }) {
+  const [selectedLang, setSelectedLang] = useState(randomLang);
+  const [numberOfLines, setNumberOfLines] = useState(randomNumberOfLines);
   const [result, setResult] = useState("");
-  const year = new Date().getFullYear();
+  const [contributors, setContributors] = useState([]);
 
-  function handleButtonClick(value) {
-    setSelectedLang(value);
-    const newCode = generateRandomCode(value, numberOfLines);
-    setResult(newCode);
+  useEffect(() => {
+    generateNewCode(selectedLang, numberOfLines);
+    updateContributors(selectedLang);
+  }, []);
+
+  function updateContributors(newLang) {
+    const contributors = getContributors(newLang);
+    setContributors(contributors);
   }
 
-  function handeInputOnChange(value) {
-    setNumberOfLines(value);
+  function handleButtonClick(newLang) {
+    setSelectedLang(newLang);
+    generateNewCode(newLang, numberOfLines);
+    updateContributors(newLang);
   }
 
-  function handleInputOnKeyDown(event) {
-    if (event.keyCode === 13) {
-      const newCode = generateRandomCode(selectedLang, numberOfLines);
-      setResult(newCode);
-    }
+  function chooseAmount(randomInt) {
+    setNumberOfLines(randomInt);
+    generateNewCode(selectedLang, randomInt);
   }
 
   function luckyDip() {
-    const lang = getRandomLang();
+    const newLang = getRandomLang();
     const randomInt = getRandomInt(3, 20);
     setNumberOfLines(randomInt);
-    setSelectedLang(lang);
+    setSelectedLang(newLang);
+    generateNewCode(newLang, randomInt);
+    updateContributors(newLang);
+  }
 
-    const newCode = generateRandomCode(lang, randomInt);
+  function generateNewCode(newLang, newLines) {
+    const newCode = generateRandomCode(newLang, newLines);
     setResult(newCode);
   }
 
@@ -60,18 +73,31 @@ export default function Home() {
         </button>
 
         <div className="selector">
-          <label className="selector__item__label">I want</label>
-          <input
-            value={numberOfLines}
-            onKeyDown={(e) => handleInputOnKeyDown(e)}
-            onChange={(e) => handeInputOnChange(e.target.value)}
-            type="number"
-            className="input"
-            min="3"
-          />
+          <p className="selector__item__label">I want</p>
 
-          <label className="selector__item__label">lines of</label>
-
+          <div className="selector__buttonGroup selector__buttonGroup--lines">
+            <button
+              type="button"
+              className={`selector__button selector__button--lines`}
+              onClick={() => chooseAmount(getRandomInt(3, 8))}
+            >
+              A little
+            </button>
+            <button
+              type="button"
+              className={`selector__button selector__button--lines`}
+              onClick={() => chooseAmount(getRandomInt(9, 13))}
+            >
+              Some
+            </button>
+            <button
+              type="button"
+              className={`selector__button selector__button--lines`}
+              onClick={() => chooseAmount(getRandomInt(14, 20))}
+            >
+              A lot
+            </button>
+          </div>
           <div className="selector__buttonGroup">
             {Object.entries(Languages).map(([key, value]) => {
               const selectedClass = selectedLang === key ? " selector__button--selected" : "";
@@ -90,38 +116,57 @@ export default function Home() {
         </div>
 
         {result.length > 0 && (
-          <div className="result">
-            <pre className="result__pre">
-              <button type="button" className="copyButton" onClick={copyCode}>
-                Copy
-              </button>
-              <code>{result}</code>
-            </pre>
-          </div>
+          <>
+            <div className="result">
+              <pre className="result__pre">
+                <button type="button" className="copyButton" onClick={copyCode}>
+                  Copy
+                </button>
+                <code dangerouslySetInnerHTML={{ __html: hljs.highlightAuto(result).value }}></code>
+              </pre>
+            </div>
+            {contributors.length > 0 && (
+              <div className="contributors">
+                <h2 className="contributors__title">Randomly lolled by</h2>
+                <ul className="contributors__list">
+                  {contributors.map((contributor) => (
+                    <li className="contributors__listItem" key={contributor}>
+                      <a
+                        className="contributors__link"
+                        href={`https://github.com/${contributor}`}
+                        rel="noopener noreferrer"
+                        target="_blank"
+                      >
+                        {contributor}
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            )}
+          </>
         )}
+        <a
+          className="submitPr__button"
+          href="https://github.com/whitep4nth3r/randomcodegenerator.lol"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Submit a PR
+        </a>
       </main>
-      <footer className="footer">
-        <p className="footer__disclaimer">
-          Made hilariously by{" "}
-          <a
-            className="footer__link"
-            href="https://whitep4nth3r.com/?utm_source=random-lol"
-            target="_blank"
-          >
-            whitep4nth3r
-          </a>{" "}
-          and friends{" "}
-          <a
-            className="footer__link"
-            href="https://twitch.tv/whitep4nth3r"
-            rel="noopenner no referrer"
-            target="_blank"
-          >
-            live on Twitch
-          </a>
-        </p>
-        <p className="footer__copyright">&copy; {year} whitep4nth3r</p>
-      </footer>
+      <Footer />
     </>
   );
+}
+
+export async function getStaticProps() {
+  const randomNumberOfLines = getRandomInt(3, 9);
+  const randomLang = getRandomLang();
+  return {
+    props: {
+      randomLang,
+      randomNumberOfLines,
+    },
+  };
 }

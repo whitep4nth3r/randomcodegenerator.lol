@@ -1,5 +1,16 @@
-import { Languages } from "../RandomCodeGenerator";
-import { nouns, verbs } from "./words";
+import {
+  Contributors,
+  Languages,
+  logs,
+  nouns,
+  singleCharacters,
+  suffixes,
+  verbs,
+} from "../constants";
+
+export function getContributors(lang) {
+  return Contributors[lang];
+}
 
 export function getRandomInt(min, max) {
   return Math.round(Math.random() * (max - min) + min);
@@ -26,6 +37,10 @@ export function getRandomVerb() {
   return getRandomEntry(verbs);
 }
 
+export function getRandomSuffix() {
+  return getRandomEntry(suffixes);
+}
+
 export function getRandomNounCapitalized() {
   return capitalizeFirstChar(getRandomNoun());
 }
@@ -40,4 +55,12 @@ export function getRandomNounUpperCase() {
 
 export function getRandomVerbUpperCase() {
   return getRandomVerb().toUpperCase();
+}
+
+export function getRandomLogLine() {
+  return getRandomEntry(logs);
+}
+
+export function getRandomSingleCharacter() {
+  return getRandomEntry(singleCharacters);
 }

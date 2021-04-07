@@ -70,14 +70,19 @@ a {
   flex-wrap: wrap;
 }
 
-.selector__button {
+.selector__buttonGroup--lines {
+  margin-bottom: 2rem;
+}
+
+.selector__button,
+.submitPr__button {
   background-color: var(--black);
   color: var(--white);
   font-family: var(--font-family-heading);
   border-width: 0;
   border-radius: 1rem;
-  font-size: 1.5rem;
-  padding: 0.5rem 1rem;
+  font-size: 1.2rem;
+  padding: 0.5rem;
   cursor: pointer;
   transition: all 0.2s ease-in-out;
   margin-bottom: 1rem;
@@ -96,10 +101,16 @@ a {
   box-shadow: none;
 }
 
-.selector__button:focus {
+.selector__button:focus,
+.submitPr__button:focus {
   outline-width: 0;
   box-shadow: var(--green) 0 0 0 0.25rem;
   transition: box-shadow 0.2s ease 0s;
+}
+
+.selector__button--lines {
+  background-color: var(--white);
+  color: var(--black);
 }
 
 .selector__button--luckyDip {
@@ -143,6 +154,7 @@ a {
 }
 
 .result {
+  margin-bottom: 2rem;
 }
 
 .result__pre {
@@ -161,11 +173,9 @@ a {
   word-wrap: normal;
   overflow-x: auto;
   word-break: break-all;
-  line-height: 1.5;
+  line-height: 1.1rem;
   tab-size: 4;
   overflow: hidden;
-  border: 0.25rem solid var(--white);
-  box-shadow: 0.5rem 0.5rem 0 0 var(--yellow);
 }
 
 .copyButton {
@@ -248,4 +258,72 @@ a {
   outline-width: 0;
   box-shadow: var(--yellow) 0 0 0 0.25rem;
   transition: box-shadow 0.2s ease 0s;
+}
+
+.contributors {
+  display: grid;
+  grid-template-columns: auto;
+}
+
+.contributors__title {
+  font-size: 1.2rem;
+  line-height: 1.4;
+  font-family: var(--font-family-body);
+  margin: 0 auto 1rem auto;
+  max-width: 600px;
+  text-align: center;
+}
+
+.contributors__list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  padding: 0;
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+.contributors__listItem {
+  margin-right: 1rem;
+  margin-bottom: 1rem;
+}
+
+.contributors__link {
+  transition: color 0.2s ease-in-out;
+  text-decoration: underline;
+  text-underline-offset: 0.25rem;
+  text-decoration-thickness: 0.125rem;
+  color: var(--black);
+  font-family: var(--font-family-heading);
+  font-size: 1.2rem;
+  line-height: 1.4;
+}
+
+.contributors__link:visited {
+  color: var(--black);
+}
+
+.contributors__link:hover {
+  color: var(--red);
+}
+
+.contributors__link:focus {
+  outline-width: 0;
+  box-shadow: var(--yellow) 0 0 0 0.25rem;
+  transition: box-shadow 0.2s ease 0s;
+}
+
+.submitPr__button {
+  background-color: var(--yellow);
+  color: var(--black);
+  margin-top: 2rem;
+  text-align: center;
+  display: block;
+}
+
+.submitPr__button:hover {
+  color: var(--yellow);
+  background-color: var(--black);
+  box-shadow: none;
 }

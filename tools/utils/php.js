@@ -1,10 +1,10 @@
 import {
   getRandomEntry,
-  getRandomInt,
   getRandomNoun,
   getRandomNounCapitalized,
   getRandomVerb,
   getRandomVerbCapitalized,
+  getRandomLogLine,
 } from "./helpers";
 
 export default class PHP {
@@ -60,30 +60,9 @@ export default class PHP {
     )};`;
   }
 
-  static getRandomConsoleLog() {
-    const options = [
-      '"Goodbye, world!"',
-      '"test"',
-      '"hello"',
-      `"here ${getRandomInt(0, 100)}"`,
-      '"should be here"',
-      '"some error"',
-      ,
-      '"undefined"',
-      '"=== DEBUG ==="',
-      '"to do"',
-      '"asdf"',
-      '"FIRE"',
-      '"schnitzel"',
-      '"TODO: refactor this"',
-    ];
-
-    return getRandomEntry(options);
-  }
-
   static getRandomFillerLine() {
     const options = [
-      `var_dump(${PHP.getRandomConsoleLog()}); die();`,
+      `var_dump(${getRandomLogLine()}); die();`,
       PHP.getRandomVariableDeclaration(),
     ];
     return getRandomEntry(options);

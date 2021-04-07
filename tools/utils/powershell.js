@@ -1,8 +1,8 @@
 import {
   getRandomEntry,
-  getRandomInt,
   getRandomNounCapitalized,
   getRandomVerbCapitalized,
+  getRandomLogLine,
 } from "./helpers";
 
 export default class Powershell {
@@ -16,31 +16,9 @@ export default class Powershell {
     return `$${getRandomNounCapitalized()} = ${getRandomEntry(options)};`;
   }
 
-  static getRandomWriteHost() {
-    const options = [
-      '"Goodbye, world!"',
-      '"test"',
-      '"hello"',
-      `"here ${getRandomInt(0, 100)}"`,
-      '"should be here"',
-      '"some error"',
-      "[object Object]",
-      '"undefined"',
-      '"=== DEBUG ==="',
-      '"to do"',
-      '"asdf"',
-      "NaN",
-      '"FIRE"',
-      '"schnitzel"',
-      '"TODO: refactor this"',
-    ];
-
-    return getRandomEntry(options);
-  }
-
   static getRandomFillerLine() {
     const options = [
-      `Write-Host ${Powershell.getRandomWriteHost()};`,
+      `Write-Host ${getRandomLogLine()};`,
       Powershell.getRandomVariableDeclaration(),
     ];
     return getRandomEntry(options);

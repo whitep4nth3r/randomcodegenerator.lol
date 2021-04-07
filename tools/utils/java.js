@@ -4,6 +4,7 @@ import {
   getRandomInt,
   getRandomNounCapitalized,
   getRandomVerb,
+  getRandomLogLine,
 } from "./helpers";
 
 export default class Java {
@@ -15,7 +16,7 @@ export default class Java {
     const types = [
       {
         name: () => "String",
-        generator: (_) => `${Java.getRandomLogMessage()}`,
+        generator: (_) => `${getRandomLogLine()}`,
       },
       {
         name: () => "int",
@@ -46,31 +47,9 @@ export default class Java {
     return capitalizeFirstChar(fullName);
   }
 
-  static getRandomLogMessage() {
-    const options = [
-      '"Goodbye, world!"',
-      '"test"',
-      '"hello"',
-      `"here ${getRandomInt(0, 100)}"`,
-      '"should be here"',
-      '"some error"',
-      "[object Object]",
-      '"undefined"',
-      '"=== DEBUG ==="',
-      '"to do"',
-      '"asdf"',
-      "null",
-      '"FIRE"',
-      '"schnitzel"',
-      '"TODO: refactor this"',
-    ];
-
-    return getRandomEntry(options);
-  }
-
   static getRandomFillerLine() {
     const options = [
-      `System.out.println(${Java.getRandomLogMessage()});`,
+      `System.out.println(${getRandomLogLine()});`,
       Java.getRandomVariableDeclaration(),
     ];
     return getRandomEntry(options);

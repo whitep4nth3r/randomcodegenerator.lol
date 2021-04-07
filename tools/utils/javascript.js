@@ -1,53 +1,63 @@
 import {
   getRandomEntry,
-  getRandomInt,
   getRandomNoun,
   getRandomNounCapitalized,
   getRandomVerb,
+  getRandomLogLine,
+  getRandomSingleCharacter,
 } from "./helpers";
 
 export default class JavaScript {
+  static getRandomInitializationVars() {
+    return [
+      "[]",
+      "this",
+      "self",
+      "0",
+      "1",
+      "true",
+      "false",
+      "{}",
+      "null",
+      "undefined",
+    ];
+  }
+
   static getRandomFunctionName() {
     return `${getRandomVerb()}${getRandomNounCapitalized()}`;
   }
 
   static getRandomVariableDeclaration() {
     const keyWords = ["let", "const", "var"];
-    const options = ["[]", "this"];
 
     return `${getRandomEntry(keyWords)} ${getRandomNoun()} = ${getRandomEntry(
-      options
+      JavaScript.getRandomInitializationVars()
     )};`;
-  }
-
-  static getRandomConsoleLog() {
-    const options = [
-      '"Goodbye, world!"',
-      '"test"',
-      '"hello"',
-      `"here ${getRandomInt(0, 100)}"`,
-      '"should be here"',
-      '"some error"',
-      "[object Object]",
-      '"undefined"',
-      '"=== DEBUG ==="',
-      '"to do"',
-      '"asdf"',
-      "NaN",
-      '"FIRE"',
-      '"schnitzel"',
-      '"TODO: refactor this"',
-    ];
-
-    return getRandomEntry(options);
   }
 
   static getRandomFillerLine() {
     const options = [
-      `console.log(${JavaScript.getRandomConsoleLog()});`,
+      `console.log(${getRandomLogLine()});`,
       JavaScript.getRandomVariableDeclaration(),
       `${JavaScript.getRandomFunctionName()}();`,
     ];
     return getRandomEntry(options);
+  }
+
+  static getRandomReturn() {
+    return `    return ${getRandomEntry(
+      JavaScript.getRandomInitializationVars()
+    )};`;
+  }
+
+  static getRandomForLoopAsArray() {
+    const randomChar = getRandomSingleCharacter();
+    const randomNoun = getRandomNoun();
+
+    return [
+      `    for (let ${randomChar} = 0; ${randomChar} <= ${randomNoun}.length; ${randomChar}++) {`,
+      `        ${JavaScript.getRandomFunctionName()}(${randomChar})`,
+      "    };",
+    ];
   }
 }
