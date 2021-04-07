@@ -100,8 +100,8 @@ export function generateRandomCode(language, lines) {
       
       //set up random package import[s]
       let importLine = "";
-      if (importstoGet >= 1){
-        for (let i = 1; i <= importstoGet; i++) {
+      if (importsToGet >= 1) {
+        for (let i = 1; i <= importsToGet; i++) {
           randomImports.push(`\t"${Go.getRandomImportName()}"\n\r`);
         }
         importLine = `import (\n\r\t\"fmt"\n${randomImports.join("")})\n\n\r`;

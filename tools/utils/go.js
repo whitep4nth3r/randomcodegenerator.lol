@@ -1,4 +1,4 @@
-import { getRandomInt } from "./helpers";
+import { getRandomInt, getRandomEntry } from "./helpers";
 import nouns from "../constants/nouns";
 import verbs from "../constants/verbs";
 import logs from "../constants/logs";
@@ -15,21 +15,20 @@ export default class Go {
     const types = ["int", "bool", "string"];
     const values = ["[]", "this", `${Math.floor(Math.random() * 100)}`];
 
-    const keyword = keyWords[Math.floor(Math.random() * keyWords.length)];
-    const type = types[Math.floor(Math.random() * types.length)];
-    let varName = nouns[Math.floor(Math.random() * nouns.length)];
-    const value = values[Math.floor(Math.random() * values.length)];
+    const keyword = getRandomEntry(keyWords);
+    const type = getRandomEntry(types);
+    let varName = getRandomEntry(nouns);
+    const value = getRandomEntry(values);
     
-    if(keyword === "const") 
-    {
+    if(keyword === "const") {
       varName = varName.toUpperCase();
     }
     return `${keyword} ${varName} ${type} = ${value}\n`;
   }
 
   static getRandomfmtPrintln() {
-    let msg = `${logs[Math.floor(Math.random() * logs.length)]}`;
-    return `fmt.Println(${msg})`
+    let msg = `${getRandomEntry(logs)}`;
+    return `fmt.Println(${msg})`;
   }
 
   static getRandomFillerLine() {
@@ -38,7 +37,7 @@ export default class Go {
       Go.getRandomVariableDeclaration(),
       `${Go.getRandomFunctionName()}()`,
     ];
-    return `\t${options[Math.floor(Math.random() * options.length)]}`;
+    return `\t${getRandomEntry(options)}`;
   }
 
   static getRandomImportName() {
@@ -91,7 +90,7 @@ export default class Go {
   }
 
   static getRandomPackageName() {
-    return nouns[Math.floor(Math.random() * nouns.length)];
+    return getRandomEntry(nouns);
   }
 
   static getExistingVariable() {
