@@ -11,6 +11,7 @@ const Contributors = {
   python: ["mistatwist", "callticketron"],
   powershell: ["lucecarter"],
   rust: ["sociablesteve"],
+  swift: ['justinhhorner']
 };
 
 export default Contributors;
