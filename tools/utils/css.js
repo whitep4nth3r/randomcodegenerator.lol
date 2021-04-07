@@ -8,6 +8,27 @@ export default class Css {
   // font family
 
   // list-style
+  static getRandomListStyleType() {
+    const listStyleTypeValues = [
+      "disc",
+      "circle",
+      "square",
+      "decimal",
+      "decimal-leading-zero",
+      "lower-roman",
+      "upper-roman",
+      "lower-greek",
+      "lower-latin",
+      "upper-latin",
+      "armenian",
+      "georgian",
+      "lower-alpha",
+      "upper-alpha",
+      "none",
+    ];
+
+    return `list-style-type: ${getRandomEntry(listStyleTypeValues)}`;
+  }
 
   static getRandomBorderStyle() {
     const borderStyleValues = [
