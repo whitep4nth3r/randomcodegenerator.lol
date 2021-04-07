@@ -1,0 +1,141 @@
+{
+  "files": [
+    "README.md"
+  ],
+  "imageSize": 100,
+  "commit": false,
+  "contributors": [
+    {
+      "login": "isabellabrookes",
+      "name": "Isabella Brookes",
+      "avatar_url": "https://avatars.githubusercontent.com/u/12928252?v=4",
+      "profile": "https://isabellabrookes.com",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "canhorn",
+      "name": "Cody Merritt Anhorn",
+      "avatar_url": "https://avatars.githubusercontent.com/u/5433919?v=4",
+      "profile": "https://codyanhorn.tech/",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "jwalter",
+      "name": "jwalter",
+      "avatar_url": "https://avatars.githubusercontent.com/u/349523?v=4",
+      "profile": "https://github.com/jwalter",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "callticketron",
+      "name": "ticketron",
+      "avatar_url": "https://avatars.githubusercontent.com/u/61888726?v=4",
+      "profile": "https://github.com/callticketron",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "LuceCarter",
+      "name": "Luce Carter",
+      "avatar_url": "https://avatars.githubusercontent.com/u/6980734?v=4",
+      "profile": "https://www.lucecarter.co.uk",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "lukeocodes",
+      "name": "Luke Oliff",
+      "avatar_url": "https://avatars.githubusercontent.com/u/956290?v=4",
+      "profile": "https://twitter.com/lukeocodes",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "rickvdbosch",
+      "name": "Rick van den Bosch",
+      "avatar_url": "https://avatars.githubusercontent.com/u/22077141?v=4",
+      "profile": "https://www.rickvandenbosch.net",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "MistaTwist",
+      "name": "Paul Perry",
+      "avatar_url": "https://avatars.githubusercontent.com/u/9354464?v=4",
+      "profile": "https://github.com/MistaTwist",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "DR-DinoMight",
+      "name": "Matthew Peck-Deloughry",
+      "avatar_url": "https://avatars.githubusercontent.com/u/1541665?v=4",
+      "profile": "https://deloughry.co.uk",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "negue",
+      "name": "negue",
+      "avatar_url": "https://avatars.githubusercontent.com/u/842273?v=4",
+      "profile": "http://negue.github.io",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "rhyspowell",
+      "name": "Rhys Powell",
+      "avatar_url": "https://avatars.githubusercontent.com/u/473860?v=4",
+      "profile": "http://www.rhyspowell.com",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "SociableSteve",
+      "name": "Sociable Steve",
+      "avatar_url": "https://avatars.githubusercontent.com/u/52213009?v=4",
+      "profile": "https://madhousesteve.codes",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "SketchNI",
+      "name": "Denver F",
+      "avatar_url": "https://avatars.githubusercontent.com/u/11874768?v=4",
+      "profile": "https://sketchni.codes",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "mrange",
+      "name": "mrange",
+      "avatar_url": "https://avatars.githubusercontent.com/u/2491891?v=4",
+      "profile": "https://github.com/mrange",
+      "contributions": [
+        "code"
+      ]
+    }
+  ],
+  "contributorsPerLine": 7,
+  "projectName": "randomcodegenerator.lol",
+  "projectOwner": "whitep4nth3r",
+  "repoType": "github",
+  "repoHost": "https://github.com",
+  "skipCi": true
+}

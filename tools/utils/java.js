@@ -1,79 +1,57 @@
-import { getRandomInt } from "../RandomCodeGenerator";
-import { nouns, verbs } from "./words";
+import {
+  getRandomEntry,
+  capitalizeFirstChar,
+  getRandomInt,
+  getRandomNounCapitalized,
+  getRandomVerb,
+  getRandomLogLine,
+} from "./helpers";
 
 export default class Java {
   static getRandomMethodSignature() {
-    const randomNoun = nouns[Math.floor(Math.random() * nouns.length)];
-    return `public void ${verbs[Math.floor(Math.random() * verbs.length)]}${
-      randomNoun.charAt(0).toUpperCase() + randomNoun.slice(1)
-    }`;
+    return `public void ${getRandomVerb()}${getRandomNounCapitalized()}`;
   }
 
   static getRandomVariableDeclaration() {
     const types = [
       {
         name: () => "String",
-        generator: (_) => `${Java.getRandomLogMessage()}`,
+        generator: (_) => `${getRandomLogLine()}`,
       },
       {
         name: () => "int",
-        generator: (_) => Math.floor(Math.random() * 666),
+        generator: (_) => getRandomInt(0, 666),
       },
       {
         name: () => {
           const randomName = Java.getRandomVariableName();
-          return randomName[0].toUpperCase() + randomName.slice(1);
+          return capitalizeFirstChar(randomName);
         },
         generator: (name) => `new ${name}()`,
       },
     ];
-    const randomType = types[Math.floor(Math.random() * types.length)];
+    const randomType = getRandomEntry(types);
     const typeName = randomType.name();
-    return `${typeName} ${this.getRandomVariableName()} = ${randomType.generator(typeName)};`;
+    return `${typeName} ${this.getRandomVariableName()} = ${randomType.generator(
+      typeName
+    )};`;
   }
 
   static getRandomVariableName() {
-    const fragmentCount = Math.floor(Math.random() * 2) + 1;
+    const fragmentCount = getRandomInt(1, 2);
     const fragments = [];
     for (var i = 0; i < fragmentCount; i++) {
-      const noun = this.randomNoun();
-      fragments.push(noun[0].toUpperCase() + noun.slice(1));
+      fragments.push(getRandomNounCapitalized());
     }
     const fullName = fragments.join("");
-    return fullName[0].toLowerCase() + fullName.slice(1);
-  }
-
-  static randomNoun() {
-    return nouns[Math.floor(Math.random() * nouns.length)];
-  }
-
-  static getRandomLogMessage() {
-    const options = [
-      '"Goodbye, world!"',
-      '"test"',
-      '"hello"',
-      `"here ${getRandomInt(0, 100)}"`,
-      '"should be here"',
-      '"some error"',
-      "[object Object]",
-      '"undefined"',
-      '"=== DEBUG ==="',
-      '"to do"',
-      '"asdf"',
-      "null",
-      '"FIRE"',
-      '"schnitzel"',
-      '"TODO: refactor this"',
-    ];
-
-    return options[Math.floor(Math.random() * options.length)];
+    return capitalizeFirstChar(fullName);
   }
 
   static getRandomFillerLine() {
     const options = [
-      `System.out.println(${Java.getRandomLogMessage()});`,
+      `System.out.println(${getRandomLogLine()});`,
       Java.getRandomVariableDeclaration(),
     ];
-    return options[Math.floor(Math.random() * options.length)];
+    return getRandomEntry(options);
   }
 }

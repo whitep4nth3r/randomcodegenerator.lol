@@ -1,51 +1,63 @@
-import { getRandomInt } from "../RandomCodeGenerator";
-import { nouns, verbs } from "./words";
+import {
+  getRandomEntry,
+  getRandomNoun,
+  getRandomNounCapitalized,
+  getRandomVerb,
+  getRandomLogLine,
+  getRandomSingleCharacter,
+} from "./helpers";
 
 export default class JavaScript {
+  static getRandomInitializationVars() {
+    return [
+      "[]",
+      "this",
+      "self",
+      "0",
+      "1",
+      "true",
+      "false",
+      "{}",
+      "null",
+      "undefined",
+    ];
+  }
+
   static getRandomFunctionName() {
-    const randomNoun = nouns[Math.floor(Math.random() * nouns.length)];
-    return `${verbs[Math.floor(Math.random() * verbs.length)]}${
-      randomNoun.charAt(0).toUpperCase() + randomNoun.slice(1)
-    }`;
+    return `${getRandomVerb()}${getRandomNounCapitalized()}`;
   }
 
   static getRandomVariableDeclaration() {
     const keyWords = ["let", "const", "var"];
-    const options = ["[]", "this"];
 
-    return `${keyWords[Math.floor(Math.random() * keyWords.length)]} ${
-      nouns[Math.floor(Math.random() * nouns.length)]
-    } = ${options[Math.floor(Math.random() * options.length)]};`;
-  }
-
-  static getRandomConsoleLog() {
-    const options = [
-      '"Goodbye, world!"',
-      '"test"',
-      '"hello"',
-      `"here ${getRandomInt(0, 100)}"`,
-      '"should be here"',
-      '"some error"',
-      "[object Object]",
-      '"undefined"',
-      '"=== DEBUG ==="',
-      '"to do"',
-      '"asdf"',
-      "NaN",
-      '"FIRE"',
-      '"schnitzel"',
-      '"TODO: refactor this"',
-    ];
-
-    return options[Math.floor(Math.random() * options.length)];
+    return `${getRandomEntry(keyWords)} ${getRandomNoun()} = ${getRandomEntry(
+      JavaScript.getRandomInitializationVars()
+    )};`;
   }
 
   static getRandomFillerLine() {
     const options = [
-      `console.log(${JavaScript.getRandomConsoleLog()});`,
+      `console.log(${getRandomLogLine()});`,
       JavaScript.getRandomVariableDeclaration(),
       `${JavaScript.getRandomFunctionName()}();`,
     ];
-    return options[Math.floor(Math.random() * options.length)];
+    return getRandomEntry(options);
+  }
+
+  static getRandomReturn() {
+    return `    return ${getRandomEntry(
+      JavaScript.getRandomInitializationVars()
+    )};`;
+  }
+
+  static getRandomForLoopAsArray() {
+    const randomChar = getRandomSingleCharacter();
+    const randomNoun = getRandomNoun();
+
+    return [
+      `    for (let ${randomChar} = 0; ${randomChar} <= ${randomNoun}.length; ${randomChar}++) {`,
+      `        ${JavaScript.getRandomFunctionName()}(${randomChar})`,
+      "    };",
+    ];
   }
 }
