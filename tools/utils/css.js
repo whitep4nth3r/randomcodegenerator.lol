@@ -8,6 +8,12 @@ export default class Css {
   // font family
 
   // list-style
+  static getRandomListStylePosition() {
+    const listStylePositionValues = ["inside", "outside", "initial", "inherit"];
+
+    return `list-style-position: ${getRandomEntry(listStylePositionValues)}`;
+  }
+  
   static getRandomListStyleType() {
     const listStyleTypeValues = [
       "disc",
