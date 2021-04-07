@@ -1,11 +1,12 @@
 import {
-  getRandomEntry,
+  addNewLine,
   capitalizeFirstChar,
+  getRandomEntry,
   getRandomInt,
+  getRandomLogLine,
   getRandomNounCapitalized,
   getRandomNoun,
   getRandomVerb,
-  getRandomLogLine,
 } from "./helpers";
 
 export default class Kotlin {
@@ -86,17 +87,19 @@ export default class Kotlin {
   static getRandomLoop(indentLevel) {
     let indent = Kotlin.indent(indentLevel);
     const loopLines = [
-      `${indent}for (${this.getRandomVariableName(1)} in ${this.getRandomFunctionCall(0, 0)}) {`,
+      `${indent}for (${this.getRandomVariableName(
+        1
+      )} in ${this.getRandomFunctionCall(0, 0)}) {`,
     ];
     if (indentLevel === 0) {
       indentLevel += 4;
       indent = Kotlin.indent(indentLevel);
     }
-    for (let index = 0; index < getRandomInt(0, 3); index++) {
+    for (let index = 0; index < getRandomInt(1, 3); index++) {
       loopLines.push(this.getRandomFillerLine(indentLevel + 2));
     }
     loopLines.push(`${indent}}`);
-    return loopLines.join("\n\r");
+    return loopLines.join(addNewLine());
   }
 
   static indent(level) {
