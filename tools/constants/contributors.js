@@ -4,6 +4,7 @@ const Contributors = {
   csharp: ["lucecarter", "rickvdbosch"],
   fsharp: ["mrange"],
   docker: ["jwalter"],
+  go: ["mistatwist"],
   php: ["dr_dinomight"],
   java: ["jwalter"],
   js: ["whitep4nth3r", "lukeocodes", "negue", "isabellabrookes"],

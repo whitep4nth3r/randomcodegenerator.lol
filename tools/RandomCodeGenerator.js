@@ -3,24 +3,27 @@ import {
   getRandomInt
 } from "./utils/helpers";
 
+import COBOL from "./utils/cobol";
+import Comments from "./utils/comments";
+import CPlusPlus from "./utils/cplusplus";
 import CSharp from "./utils/csharp";
 import Css from "./utils/css";
 import Docker from "./utils/docker";
 import FSharp from "./utils/fsharp";
+import Go from "./utils/go";
 import Java from "./utils/java";
 import JavaScript from "./utils/javascript";
 import Kotlin from "./utils/kotlin";
 import Python from "./utils/python";
-import Comments from "./utils/comments";
 import PHP from "./utils/php";
+import Python from "./utils/python";
 import Powershell from "./utils/powershell";
-import COBOL from "./utils/cobol";
 import Rust from "./utils/rust";
 import SQL from "./utils/sql";
-import CPlusPlus from "./utils/cplusplus";
 import Swift from './utils/swift';
 
 export const Languages = {
+  cplusplus: "C++",
   css: "CSS",
   cobol: "COBOL",
   csharp: "C#",
@@ -33,7 +36,6 @@ export const Languages = {
   python: "Python",
   powershell: "Powershell",
   rust: "Rust",
-  cplusplus: "C++",
   swift: "Swift",
 };
 
@@ -110,16 +112,58 @@ export function generateRandomCode(language, lines) {
       return firstLine + fillerLines.join("\n\r") + lastLine;
     case "fsharp":
       firstLine = FSharp.randomPreamble();
-
+      
       fillerLineQty = parseInt(lines, 10) - 2;
-
+      
       for (let i = 1; i <= fillerLineQty; i++) {
         fillerLines.push(`    ${FSharp.getRandomFillerLine()}`);
       }
-
+      
       lastLine = "\r\n    ()";
-
+      
       return firstLine + fillerLines.join("\n\r") + lastLine;
+    case "go":
+      // get a random amount of package imports.
+      const importstoGet = Math.floor(lines/5);
+      console.log(importstoGet);
+      // coin flip for adding a return statement or not
+      const addReturnLine = Math.floor(Math.random() * 2);
+      console.log(addReturnLine);
+      fillerLineQty = parseInt(lines, 10) - 2 - 2 - importstoGet - addReturnLine;
+      console.log(fillerLineQty);
+      let randomImports = [];
+  
+      //package name is mandatory, so let's always have this, and exclude it from the line count
+      const pkgLine = `package ${Go.getRandomPackageName()}\n\n\r`;
+      
+      //set up random package import[s]
+      let importLine = "";
+      if (importsToGet >= 1) {
+        for (let i = 1; i <= importsToGet; i++) {
+          randomImports.push(`\t"${Go.getRandomImportName()}"\n\r`);
+        }
+        importLine = `import (\n\r\t\"fmt"\n${randomImports.join("")})\n\n\r`;
+      }
+      else {
+        importLine = `import "fmt"\n\n\r`;
+      }
+
+      //set up a function
+      firstLine = `func ${Go.getRandomFunctionName()} { \n\r`;
+  
+      //add code to function
+      for (let i = 1; i <= fillerLineQty; i++) {
+          fillerLines.push(`${Go.getRandomFillerLine()}`);
+      }
+      
+      let lastLine = ""
+      if(addReturnLine === 1) {
+        lastLine = `\n\treturn ${Go.getExistingVariable()}`;
+      }
+
+      lastLine += `\n\r}`;
+  
+      return pkgLine + importLine + firstLine + fillerLines.join("\n\r") + lastLine;
     case "js":
       const firstLines = [
         (randomFunctionName) => {
