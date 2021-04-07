@@ -3,7 +3,7 @@ import Head from "next/head";
 export default function PageMeta() {
   const siteTitle = "[object Object] | By whitep4nth3r";
   const description =
-    "Need some code for your project? We've got you covered. Choose your language. Choose how much code. BÄM! You got code.";
+    "Need some code for your project? We've got you covered. Choose how much code. Choose your language. BÄM! You got code.";
   const url = "https://randomcodegenerator.lol";
 
   return (
