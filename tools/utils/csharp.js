@@ -3,7 +3,7 @@ import {
   getRandomNoun,
   getRandomNounCapitalized,
   getRandomVerbCapitalized,
-  getLogLines,
+  getRandomLogLine,
 } from "./helpers";
 
 export default class CSharp {
@@ -44,19 +44,13 @@ export default class CSharp {
     return getRandomEntry(options);
   }
 
-  static getRandomDebugWriteLine() {
-    const options = getLogLines();
-
-    return getRandomEntry(options);
-  }
-
   static getRandomMethodCall() {
     return `${this.getRandomMethodName()}();`;
   }
 
   static getRandomFillerLine() {
     const options = [
-      `Debug.WriteLine(${CSharp.getRandomDebugWriteLine()});`,
+      `Debug.WriteLine(${getRandomLogLine()});`,
       CSharp.getRandomVariableDeclaration(),
       CSharp.getRandomNewVariableDeclaration(),
       CSharp.getRandomMethodCall(),

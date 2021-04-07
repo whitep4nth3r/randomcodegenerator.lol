@@ -1,19 +1,12 @@
-import { Languages } from "../RandomCodeGenerator";
-import { nouns, verbs, singleCharacters } from "./words";
-
-export const Contributors = {
-  css: ["whitep4nth3r"],
-  cobol: ["canhorn"],
-  csharp: ["lucecarter", "rickvdbosch"],
-  docker: ["jwalter"],
-  go: ["mistatwist"],
-  php: ["dr_dinomight"],
-  java: ["jwalter"],
-  js: ["whitep4nth3r", "lukeocodes", "negue", "isabellabrookes"],
-  kotlin: ["jwalter"],
-  python: ["mistatwist", "callticketron"],
-  powershell: ["lucecarter"],
-};
+import {
+  Contributors,
+  Languages,
+  logs,
+  nouns,
+  singleCharacters,
+  suffixes,
+  verbs,
+} from "../constants";
 
 export function getContributors(lang) {
   return Contributors[lang];
@@ -44,6 +37,10 @@ export function getRandomVerb() {
   return getRandomEntry(verbs);
 }
 
+export function getRandomSuffix() {
+  return getRandomEntry(suffixes);
+}
+
 export function getRandomNounCapitalized() {
   return capitalizeFirstChar(getRandomNoun());
 }
@@ -60,26 +57,8 @@ export function getRandomVerbUpperCase() {
   return getRandomVerb().toUpperCase();
 }
 
-export function getLogLines() {
-  return [
-    '"Goodbye, world!"',
-    '"test"',
-    '"hello"',
-    `"here ${getRandomInt(0, 100)}"`,
-    '"should be here"',
-    '"some error"',
-    "**********",
-    "[object Object]",
-    '"undefined"',
-    '"=== DEBUG ==="',
-    '"to do"',
-    '"asdf"',
-    "NaN",
-    '"FIRE"',
-    '"schnitzel"',
-    '"TODO: refactor this"',
-    '"Marlon Webb says WATERMELON!"',
-  ];
+export function getRandomLogLine() {
+  return getRandomEntry(logs);
 }
 
 export function getRandomSingleCharacter() {

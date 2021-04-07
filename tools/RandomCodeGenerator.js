@@ -1,29 +1,17 @@
 import { getRandomEntry } from "./utils/helpers";
+import COBOL from "./utils/cobol";
 import CSharp from "./utils/csharp";
 import Css from "./utils/css";
 import Docker from "./utils/docker";
+import FSharp from "./utils/fsharp";
 import Go from "./utils/go";
 import Java from "./utils/java";
 import JavaScript from "./utils/javascript";
 import Kotlin from "./utils/kotlin";
-import Python from "./utils/python";
 import PHP from "./utils/php";
+import Python from "./utils/python";
 import Powershell from "./utils/powershell";
-import COBOL from "./utils/cobol";
-
-export const Languages = {
-  css: "CSS",
-  cobol: "COBOL",
-  csharp: "C#",
-  docker: "Docker",
-  go: "Go",
-  php: "PHP",
-  java: "Java",
-  js: "JavaScript",
-  kotlin: "Kotlin",
-  python: "Python",
-  powershell: "Powershell",
-};
+import Rust from "./utils/rust";
 
 export function generateRandomCode(language, lines) {
   let firstLine = "";
@@ -31,6 +19,7 @@ export function generateRandomCode(language, lines) {
   let fillerLines = [];
   let lastLine = "";
   let imports = "";
+  let returnLine = "";
   // 3 lines will be dedicated to a for loop if lines > 7
   let includeForLoop = parseInt(lines, 10) > 7;
 
@@ -46,6 +35,8 @@ export function generateRandomCode(language, lines) {
           `    ${Css.getRandomDisplayRule()};`,
           `    ${Css.getRandomZIndexRule()};`,
           `    ${Css.getRandomPositionRule()};`,
+          `    ${Css.getRandomBorderStyle()};`,
+          `    ${Css.getRandomTextAlign()};`,
         ];
 
         fillerLines.push(getRandomEntry(lineOptions));
@@ -81,13 +72,27 @@ export function generateRandomCode(language, lines) {
       lastLine = Docker.randomPostamble();
 
       return firstLine + fillerLines.join("\n\r") + lastLine;
+    case "fsharp":
+      firstLine = FSharp.randomPreamble();
+      
+      fillerLineQty = parseInt(lines, 10) - 2;
+      
+      for (let i = 1; i <= fillerLineQty; i++) {
+        fillerLines.push(`    ${FSharp.getRandomFillerLine()}`);
+      }
+      
+      lastLine = "\r\n    ()";
+      
+      return firstLine + fillerLines.join("\n\r") + lastLine;
     case "go":
       // get a random amount of package imports.
       const importstoGet = Math.floor(lines/5);
+      console.log(importstoGet);
       // coin flip for adding a return statement or not
       const addReturnLine = Math.floor(Math.random() * 2);
-
+      console.log(addReturnLine);
       fillerLineQty = parseInt(lines, 10) - 2 - 2 - importstoGet - addReturnLine;
+      console.log(fillerLineQty);
       let randomImports = [];
   
       //package name is mandatory, so let's always have this, and exclude it from the line count
@@ -95,7 +100,7 @@ export function generateRandomCode(language, lines) {
       
       //set up random package import[s]
       let importLine = "";
-      if (importstoGet !== 1){
+      if (importstoGet >= 1){
         for (let i = 1; i <= importstoGet; i++) {
           randomImports.push(`\t"${Go.getRandomImportName()}"\n\r`);
         }
@@ -133,7 +138,8 @@ export function generateRandomCode(language, lines) {
 
       firstLine = getRandomEntry(firstLines)(JavaScript.getRandomFunctionName());
 
-      fillerLineQty = parseInt(lines, 10) - 2;
+      // - 3 because we're now adding a firstLine, returnLine and lastLine
+      fillerLineQty = parseInt(lines, 10) - 3;
 
       // if line length > 7
       if (includeForLoop) {
@@ -155,6 +161,8 @@ export function generateRandomCode(language, lines) {
           fillerLines.push(`    ${JavaScript.getRandomFillerLine()}`);
         }
       }
+
+      fillerLines.push(JavaScript.getRandomReturn());
 
       lastLine = "\n\r}";
 
@@ -239,6 +247,18 @@ export function generateRandomCode(language, lines) {
       }
 
       lastLine = "\n\rSTOP RUN.";
+
+      return firstLine + fillerLines.join("\n\r") + lastLine;
+    case "rust":
+      firstLine = `fn ${Rust.getRandomFunctionName()}() -> ${Rust.getRandomType()} {\n\r`;
+
+      fillerLineQty = parseInt(lines, 10) - 2;
+
+      for (let i = 1; i <= fillerLineQty; i++) {
+        fillerLines.push(`    ${Rust.getRandomFillerLine()}`);
+      }
+
+      lastLine = "\n\r}";
 
       return firstLine + fillerLines.join("\n\r") + lastLine;
     default:

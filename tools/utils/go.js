@@ -1,6 +1,7 @@
-import { getRandomInt, getLogLines } from "./helpers";
-import { nouns, verbs } from "./words";
-
+import { getRandomInt } from "./helpers";
+import nouns from "../constants/nouns";
+import verbs from "../constants/verbs";
+import logs from "../constants/logs";
 
 export default class Go {
   static getRandomFunctionName() {
@@ -12,23 +13,22 @@ export default class Go {
   static getRandomVariableDeclaration() {
     const keyWords = ["const", "var"];
     const types = ["int", "bool", "string"];
-    const options = ["[]", "this", `${Math.floor(Math.random() * 100)}`];
+    const values = ["[]", "this", `${Math.floor(Math.random() * 100)}`];
 
     const keyword = keyWords[Math.floor(Math.random() * keyWords.length)];
     const type = types[Math.floor(Math.random() * types.length)];
     let varName = nouns[Math.floor(Math.random() * nouns.length)];
-    const value = options[Math.floor(Math.random() * options.length)];
+    const value = values[Math.floor(Math.random() * values.length)];
     
     if(keyword === "const") 
     {
       varName = varName.toUpperCase();
     }
-    return `${keyword} ${varName} ${type} = ${value}`;
+    return `${keyword} ${varName} ${type} = ${value}\n`;
   }
 
   static getRandomfmtPrintln() {
-    const options = getLogLines();
-    let msg = `${options[Math.floor(Math.random() * options.length)]}`;
+    let msg = `${logs[Math.floor(Math.random() * logs.length)]}`;
     return `fmt.Println(${msg})`
   }
 
