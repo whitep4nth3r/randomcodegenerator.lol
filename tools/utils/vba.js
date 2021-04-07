@@ -27,7 +27,8 @@ export default class VBA {
 	static getRandomVariableDeclaration() {
 	
 		var keyWord = `${VBA.getRandomDataType()}`;
-		return `Dim ${getRandomNoun()} As ${keyWord} \n\r ${keyWord}=${getRandomInt()}`;
+		const variableName=getRandomNoun();
+		return `Dim ${variableName} As ${keyWord} \n\r ${variableName}=${getRandomInt(0,99999)}`;
 	}
 	
 	static getRandomFillerLine() {
