@@ -1,4 +1,4 @@
-import { getRandomEntry, getRandomInt } from "./helpers";
+import { getRandomEntry, getRandomInt } from "../utils/helpers";
 
 export default class Css {
   // box-shadow props
@@ -49,7 +49,14 @@ export default class Css {
   }
 
   static getRandomTextAlign() {
-    const alignValues = ["left", "right", "center", "justify", "initial", "inherit"];
+    const alignValues = [
+      "left",
+      "right",
+      "center",
+      "justify",
+      "initial",
+      "inherit",
+    ];
 
     return `text-align: ${getRandomEntry(alignValues)}`;
   }
@@ -129,7 +136,10 @@ export default class Css {
   }
 
   static getRandomUnitRule() {
-    return `${Css.getRandomUnitProp()}: ${getRandomInt(0, 500)}${Css.getRandomUnit()}`;
+    return `${Css.getRandomUnitProp()}: ${getRandomInt(
+      0,
+      500
+    )}${Css.getRandomUnit()}`;
   }
 
   static getRandomColorRule() {

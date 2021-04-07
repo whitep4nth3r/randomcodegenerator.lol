@@ -3,7 +3,9 @@
 ![A screenshot from the first Twitch stream on this project](thumbnail.png)
 
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
+
 [![All Contributors](https://img.shields.io/badge/all_contributors-21-orange.svg?style=flat-square)](#contributors-)
+
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
 Need some code for your project? We've got you covered.
@@ -37,7 +39,7 @@ import {
   getRandomNounUpperCase,
   getRandomVerbUpperCase,
   getRandomLogLine,
-} from "./helpers";
+} from "../utils/helpers";
 ```
 
 It is worth looking at helpers.js in case any of the other functions are applicable to your language, or in case some are in fact not needed at all and don't need to be imported in your file.

@@ -5,20 +5,24 @@ import {
   getRandomNounCapitalized,
   getRandomVerb,
   getRandomLogLine,
-} from "./helpers";
+} from "../utils/helpers";
 
 export default class CPlusPlus {
   static getRandomFunctionName() {
     const keyWords = ["int", "string", "double", "char", "bool"];
 
-    return `${getRandomEntry(keyWords)} ${getRandomVerb()}${getRandomNounCapitalized()}`;
+    return `${getRandomEntry(
+      keyWords
+    )} ${getRandomVerb()}${getRandomNounCapitalized()}`;
   }
 
   static getRandomVariableDeclaration() {
     const keyWords = ["int", "string", "double", "char", "bool"];
     const options = ["[]", "this"];
 
-    return `${getRandomEntry(keyWords)} ${getRandomNoun()} = ${getRandomEntry(options)};`;
+    return `${getRandomEntry(keyWords)} ${getRandomNoun()} = ${getRandomEntry(
+      options
+    )};`;
   }
 
   static getRandomMethodKeyword() {

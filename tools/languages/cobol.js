@@ -4,7 +4,7 @@ import {
   getRandomNounUpperCase,
   getRandomVerbUpperCase,
   getRandomLogLine,
-} from "./helpers";
+} from "../utils/helpers";
 
 export default class COBOL {
   static randomValue() {

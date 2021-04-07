@@ -5,7 +5,7 @@ import {
   getRandomNounCapitalized,
   getRandomVerb,
   getRandomLogLine,
-} from "./helpers";
+} from "../utils/helpers";
 
 export default class Java {
   static getRandomMethodSignature() {
@@ -32,7 +32,9 @@ export default class Java {
     ];
     const randomType = getRandomEntry(types);
     const typeName = randomType.name();
-    return `${typeName} ${this.getRandomVariableName()} = ${randomType.generator(typeName)};`;
+    return `${typeName} ${this.getRandomVariableName()} = ${randomType.generator(
+      typeName
+    )};`;
   }
 
   static getRandomVariableName() {

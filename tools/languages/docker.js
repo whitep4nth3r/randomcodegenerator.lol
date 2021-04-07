@@ -5,7 +5,7 @@ import {
   getRandomNoun,
   getRandomVerb,
   getRandomSuffix,
-} from "./helpers";
+} from "../utils/helpers";
 
 const imageNames = [
   "ubuntu",
@@ -23,11 +23,13 @@ const imageNames = [
 const commandGenerators = [
   {
     command: "COPY",
-    parameters: () => getRandomNoun() + getRandomSuffix() + " " + getRandomNoun() + "/",
+    parameters: () =>
+      getRandomNoun() + getRandomSuffix() + " " + getRandomNoun() + "/",
   },
   {
     command: "ADD",
-    parameters: () => getRandomNoun() + getRandomSuffix() + " " + getRandomNoun() + "/",
+    parameters: () =>
+      getRandomNoun() + getRandomSuffix() + " " + getRandomNoun() + "/",
   },
   {
     command: "EXPOSE",

@@ -5,7 +5,7 @@ import {
   getRandomVerb,
   getRandomLogLine,
   getRandomSingleCharacter,
-} from "./helpers";
+} from "../utils/helpers";
 
 export default class JavaScript {
   static getRandomInitializationVars() {
@@ -26,7 +26,9 @@ export default class JavaScript {
 
   static getRandomFillerLine() {
     const options = [
-      `console.${getRandomEntry(JavaScript.getRandomConsoleLevel())}(${getRandomLogLine()});`,
+      `console.${getRandomEntry(
+        JavaScript.getRandomConsoleLevel()
+      )}(${getRandomLogLine()});`,
       JavaScript.getRandomVariableDeclaration(),
       `${JavaScript.getRandomFunctionName()}();`,
     ];

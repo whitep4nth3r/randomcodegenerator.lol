@@ -1,4 +1,4 @@
-import { addNewLine, getRandomEntry, getRandomInt } from "./helpers";
+import { addNewLine, getRandomEntry, getRandomInt } from "../utils/helpers";
 
 const fieldNames = [
   "customerNumber",

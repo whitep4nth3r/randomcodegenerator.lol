@@ -7,7 +7,7 @@ import {
   getRandomNounCapitalized,
   getRandomNoun,
   getRandomVerb,
-} from "./helpers";
+} from "../utils/helpers";
 
 export default class Kotlin {
   static getRandomMethodSignature() {
@@ -68,9 +68,9 @@ export default class Kotlin {
   }
 
   static getRandomFunctionCall(indentLevel, maxParamCount) {
-    return `${Kotlin.indent(indentLevel)}${this.getRandomVariableName(3)}(${this.getRandomTypes(
-      maxParamCount
-    )
+    return `${Kotlin.indent(indentLevel)}${this.getRandomVariableName(
+      3
+    )}(${this.getRandomTypes(maxParamCount)
       .map((p) => p.generator(p.name()))
       .join(", ")})`;
   }

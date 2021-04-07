@@ -1,4 +1,9 @@
-import { addNewLine, getRandomEntry, getRandomNoun, getRandomVerb } from "./helpers";
+import {
+  addNewLine,
+  getRandomEntry,
+  getRandomNoun,
+  getRandomVerb,
+} from "../utils/helpers";
 
 export default class FSharp {
   static getRandomValue() {
@@ -14,7 +19,10 @@ export default class FSharp {
   }
 
   static getRandomVariableName() {
-    const options = [`\`\`${getRandomVerb()} ${getRandomNoun()}\`\``, `${getRandomNoun()}`];
+    const options = [
+      `\`\`${getRandomVerb()} ${getRandomNoun()}\`\``,
+      `${getRandomNoun()}`,
+    ];
     return getRandomEntry(options);
   }
 

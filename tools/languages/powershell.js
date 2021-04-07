@@ -3,7 +3,7 @@ import {
   getRandomNounCapitalized,
   getRandomVerbCapitalized,
   getRandomLogLine,
-} from "./helpers";
+} from "../utils/helpers";
 
 export default class Powershell {
   static getRandomFunctionName() {

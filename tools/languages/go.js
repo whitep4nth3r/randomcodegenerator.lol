@@ -6,7 +6,8 @@ import {
   getRandomNoun,
   getRandomNounCapitalized,
   getRandomNounUpperCase,
-} from "./helpers";
+  getRandomVerb,
+} from "../utils/helpers";
 
 export default class Go {
   static getRandomFunctionName() {

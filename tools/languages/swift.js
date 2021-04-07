@@ -1,9 +1,26 @@
-import { getRandomEntry, getRandomNoun, getRandomNounCapitalized, getRandomVerb } from "./helpers";
+import {
+  getRandomEntry,
+  getRandomNoun,
+  getRandomNounCapitalized,
+  getRandomVerb,
+} from "../utils/helpers";
 import { logs } from "../constants";
 
 export default class Swift {
   static getRandomInitializationVars() {
-    return ["self", "0", "1", "true", "false", "nil", '"💩"', '"💻"', '"🍎"', '"🙀"', '"🐶"'];
+    return [
+      "self",
+      "0",
+      "1",
+      "true",
+      "false",
+      "nil",
+      '"💩"',
+      '"💻"',
+      '"🍎"',
+      '"🙀"',
+      '"🐶"',
+    ];
   }
 
   static getRandomFunctionName() {

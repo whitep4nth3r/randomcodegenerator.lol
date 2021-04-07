@@ -1,29 +1,23 @@
-import {
-  addNewLine,
-  getRandomEntry,
-  getRandomInt,
-  getRandomSingleCharacter,
-} from "./utils/helpers";
-
-import COBOL from "./utils/cobol";
 import Comments from "./utils/comments";
-import CPlusPlus from "./utils/cplusplus";
-import CSharp from "./utils/csharp";
-import Css from "./utils/css";
-import Docker from "./utils/docker";
-import FSharp from "./utils/fsharp";
-import Go from "./utils/go";
-import Java from "./utils/java";
-import JavaScript from "./utils/javascript";
-import TypeScript from "./utils/typescript";
-import Kotlin from "./utils/kotlin";
-import PHP from "./utils/php";
-import Python from "./utils/python";
-import Powershell from "./utils/powershell";
-import Rust from "./utils/rust";
-import SQL from "./utils/sql";
-import Swift from "./utils/swift";
-import VBA from "./utils/vba";
+import { addNewLine, getRandomEntry, getRandomInt } from "./utils/helpers";
+import {
+  COBOL,
+  CPlusPlus,
+  CSharp,
+  Css,
+  Docker,
+  FSharp,
+  Go,
+  Java,
+  JavaScript,
+  Kotlin,
+  PHP,
+  Python,
+  Powershell,
+  Rust,
+  SQL,
+  Swift,
+} from "./languages";
 
 export function generateRandomCode(language, lines) {
   let firstLine = "";
