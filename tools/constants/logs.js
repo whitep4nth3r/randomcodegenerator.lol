@@ -18,6 +18,7 @@ const logs = [
   '"schnitzel"',
   '"TODO: refactor this"',
   '"Marlon Webb says WATERMELON!"',
+  '"SHIPIT"',
 ];
 
 export default logs;

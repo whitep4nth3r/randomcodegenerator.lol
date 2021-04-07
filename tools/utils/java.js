@@ -32,9 +32,7 @@ export default class Java {
     ];
     const randomType = getRandomEntry(types);
     const typeName = randomType.name();
-    return `${typeName} ${this.getRandomVariableName()} = ${randomType.generator(
-      typeName
-    )};`;
+    return `${typeName} ${this.getRandomVariableName()} = ${randomType.generator(typeName)};`;
   }
 
   static getRandomVariableName() {

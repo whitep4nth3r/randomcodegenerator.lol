@@ -1,5 +1,11 @@
-import { getRandomEntry } from "./utils/helpers";
+import {
+  getRandomEntry,
+  getRandomInt
+} from "./utils/helpers";
+
 import COBOL from "./utils/cobol";
+import Comments from "./utils/comments";
+import CPlusPlus from "./utils/cplusplus";
 import CSharp from "./utils/csharp";
 import Css from "./utils/css";
 import Docker from "./utils/docker";
@@ -8,16 +14,37 @@ import Go from "./utils/go";
 import Java from "./utils/java";
 import JavaScript from "./utils/javascript";
 import Kotlin from "./utils/kotlin";
+import Python from "./utils/python";
 import PHP from "./utils/php";
 import Python from "./utils/python";
 import Powershell from "./utils/powershell";
 import Rust from "./utils/rust";
+import SQL from "./utils/sql";
+import Swift from './utils/swift';
+
+export const Languages = {
+  cplusplus: "C++",
+  css: "CSS",
+  cobol: "COBOL",
+  csharp: "C#",
+  fsharp: "F#",
+  docker: "Docker",
+  php: "PHP",
+  java: "Java",
+  js: "JavaScript",
+  kotlin: "Kotlin",
+  python: "Python",
+  powershell: "Powershell",
+  rust: "Rust",
+  swift: "Swift",
+};
 
 export function generateRandomCode(language, lines) {
   let firstLine = "";
   let fillerLineQty = "";
   let fillerLines = [];
   let lastLine = "";
+  const addComment = Math.random() + .5 >> 0;
   let imports = "";
   let returnLine = "";
   // 3 lines will be dedicated to a for loop if lines > 7
@@ -27,6 +54,11 @@ export function generateRandomCode(language, lines) {
     case "css":
       firstLine = `.${Css.getRandomClassName()} {\n\r`;
       fillerLineQty = parseInt(lines, 10) - 2;
+
+      if (addComment) {
+        fillerLineQty = fillerLineQty - 1;
+        fillerLines.push(Comments.getRandomComment());
+      }
 
       for (let i = 1; i <= fillerLineQty; i++) {
         const lineOptions = [
@@ -54,6 +86,12 @@ export function generateRandomCode(language, lines) {
       fillerLineQty = parseInt(lines, 10) - 3;
 
       fillerLines.push("{");
+
+      if (addComment) {
+        fillerLineQty = fillerLineQty - 1;
+        fillerLines.push(Comments.getRandomComment());
+      }
+
       for (let i = 1; i <= fillerLineQty; i++) {
         fillerLines.push(`    ${CSharp.getRandomFillerLine()}`);
       }
@@ -141,6 +179,11 @@ export function generateRandomCode(language, lines) {
       // - 3 because we're now adding a firstLine, returnLine and lastLine
       fillerLineQty = parseInt(lines, 10) - 3;
 
+      if (addComment) {
+        fillerLineQty = fillerLineQty - 1;
+        fillerLines.push(Comments.getRandomComment());
+      }
+
       // if line length > 7
       if (includeForLoop) {
         // add 2 lines
@@ -172,6 +215,12 @@ export function generateRandomCode(language, lines) {
       let namespaceLine = `${PHP.getRandomNamespace()}\n\r\n\r`;
 
       let classLine = `class ${PHP.getRandomClassName()} { \r\n`;
+
+      if (addComment) {
+        fillerLineQty = fillerLineQty - 1;
+        classLine += `${Comments.getRandomComment()}\n\r`;
+      }
+
       let functionLine = `    ${PHP.getRandomFunctionKeyword()} ${PHP.getRandomFunctionName()}(${PHP.getRandomParamtersRead()}) {\n\r`;
 
       fillerLineQty = parseInt(lines, 10) - 2;
@@ -198,6 +247,11 @@ export function generateRandomCode(language, lines) {
 
       fillerLineQty = parseInt(lines, 10) - 2;
 
+      if (addComment) {
+        fillerLineQty = fillerLineQty - 1;
+        firstLine += `${Comments.getRandomComment("powershell")}\n\r`;
+      }
+
       for (let i = 1; i <= fillerLineQty; i++) {
         fillerLines.push(`    ${Powershell.getRandomFillerLine()}`);
       }
@@ -208,6 +262,11 @@ export function generateRandomCode(language, lines) {
     case "java":
       firstLine = `${Java.getRandomMethodSignature()}() {\n\r`;
       fillerLineQty = parseInt(lines, 10) - 2;
+
+      if (addComment) {
+        fillerLineQty = fillerLineQty - 1;
+        fillerLines.push(Comments.getRandomComment());
+      }
 
       for (let i = 1; i <= fillerLineQty; i++) {
         fillerLines.push(`    ${Java.getRandomFillerLine()}`);
@@ -232,6 +291,11 @@ export function generateRandomCode(language, lines) {
       firstLine = `def ${Python.getRandomFunctionName()}():\n\r`;
 
       fillerLineQty = parseInt(lines, 10) - 2;
+
+      if (addComment) {
+        fillerLineQty = fillerLineQty - 1;
+        fillerLines.push(Comments.getRandomComment());
+      }
 
       for (let i = 1; i <= fillerLineQty; i++) {
         fillerLines.push(`\t${Python.getRandomFillerLine()}`);
@@ -258,9 +322,74 @@ export function generateRandomCode(language, lines) {
         fillerLines.push(`    ${Rust.getRandomFillerLine()}`);
       }
 
+        lastLine = "\n\r}";
+
+        return firstLine + fillerLines.join("\n\r") + lastLine;
+
+    case "cplusplus":
+      firstLine = `${CPlusPlus.getRandomFunctionName()}() {\n\r`;
+      fillerLineQty = parseInt(lines, 10) - 2;
+
+      for (let i = 1; i <= fillerLineQty; i++) {
+        fillerLines.push(`    ${CPlusPlus.getRandomFillerLine()}`);
+      }
+
       lastLine = "\n\r}";
 
       return firstLine + fillerLines.join("\n\r") + lastLine;
+    case "sql":
+      firstLine = 'SELECT' + ` ${SQL.getRandomFieldName()}\n\r` ;
+      fillerLineQty = parseInt(lines, 10);
+
+      //first loop is just for field names sorry
+      for (let i = 1; i <= fillerLineQty; i++) {
+        const lineOptions = [
+          ` ,${SQL.getRandomFieldName()}`
+        ];
+
+        fillerLines.push(lineOptions[Math.floor(Math.random() * lineOptions.length)]);
+      }
+      let lineBreak;
+      if (fillerLineQty > 1) { 
+          lineBreak = '\n\r';
+        }
+      else lineBreak = "";
+      let fromStatement = lineBreak + 'FROM' + ` ${SQL.getRandomSchemaName()}` + `.${SQL.getRandomTableName()}`;
+      
+      let whereCond = "";
+      //this part is for the other functions like WHERE, GROUP BY etc.
+      if(getRandomInt(1,10) <= 3){
+        whereCond = `\n\rWHERE ${SQL.getRandomWhereCondition()}`
+      }
+      else if (getRandomInt(1,10) <= 5) {
+        whereCond = `\n\rWHERE ${SQL.getRandomWhereCondition()}${SQL.getRandomOperator()}${SQL.getRandomWhereCondition()}`;
+      }
+
+      let groupByCond = "";
+      if (getRandomInt(1,10) <= 5) {
+        groupByCond = `\n\rGROUP BY ${SQL.getRandomGroupByCondition(fillerLineQty)}` 
+      }
+      else;
+
+      let orderByCond = "";
+      if (getRandomInt(1,10) <= 5) {
+        groupByCond = `\n\rORDER BY ${SQL.getRandomOrderByCondition(fillerLineQty)} ASC` 
+      }
+      else;
+
+      lastLine = ";";
+      return firstLine + fillerLines.join("\n\r") + fromStatement + whereCond + groupByCond + orderByCond + lastLine;
+    case "swift":
+        firstLine = `func ${Swift.getRandomFunctionName()} {\n\r`;
+
+        fillerLineQty = parseInt(lines, 10) - 2;
+
+        for (let i = 0; i < fillerLineQty; i++) {
+            fillerLines.push(`   ${Swift.getRandomFillerLine()}`);
+        }
+
+        lastLine = "\n\r}";
+        return firstLine + fillerLines.join("\n\r") + lastLine;
     default:
       return "lol";
   }

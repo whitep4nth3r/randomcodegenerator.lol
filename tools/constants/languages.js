@@ -12,6 +12,10 @@ const Languages = {
   python: "Python",
   powershell: "Powershell",
   rust: "Rust",
+  swift: 'Swift',
+  cplusplus: 'C++',
+  sql: "SQL",
+  swift: 'Swift'
 };
 
 export default Languages;

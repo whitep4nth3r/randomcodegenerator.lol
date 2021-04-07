@@ -47,7 +47,8 @@
       "avatar_url": "https://avatars.githubusercontent.com/u/6980734?v=4",
       "profile": "https://www.lucecarter.co.uk",
       "contributions": [
-        "code"
+        "code",
+        "doc"
       ]
     },
     {
@@ -127,6 +128,42 @@
       "name": "mrange",
       "avatar_url": "https://avatars.githubusercontent.com/u/2491891?v=4",
       "profile": "https://github.com/mrange",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "matthewbrandt",
+      "name": "matthewbrandt",
+      "avatar_url": "https://avatars.githubusercontent.com/u/67697593?v=4",
+      "profile": "https://github.com/matthewbrandt",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "justinhhorner",
+      "name": "Justin Horner",
+      "avatar_url": "https://avatars.githubusercontent.com/u/4635843?v=4",
+      "profile": "https://github.com/justinhhorner",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "tBoccinfuso",
+      "name": "Thomas Boccinfuso",
+      "avatar_url": "https://avatars.githubusercontent.com/u/25520666?v=4",
+      "profile": "https://github.com/tBoccinfuso",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "michaud",
+      "name": "michaud",
+      "avatar_url": "https://avatars.githubusercontent.com/u/338436?v=4",
+      "profile": "https://github.com/michaud",
       "contributions": [
         "code"
       ]
