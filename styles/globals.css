@@ -32,6 +32,16 @@ a {
   box-sizing: border-box;
 }
 
+.header {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  justify-content: center;
+  align-content: center;
+  background-color: var(--black);
+  border-bottom: 0.25rem solid var(--yellow);
+}
+
 .container {
   margin-left: auto;
   margin-right: auto;
@@ -43,8 +53,9 @@ a {
   font-size: 2rem;
   text-align: center;
   margin-bottom: 2rem;
-  margin-top: 0;
+  margin-top: 2rem;
   font-family: var(--font-family-heading);
+  color: var(--white);
 }
 
 .blurb {

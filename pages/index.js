@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import hljs from "highlight.js";
 import "highlight.js/styles/a11y-dark.css";
+import dynamic from "next/dynamic";
 
 import { generateRandomCode } from "../tools/RandomCodeGenerator";
 import { getRandomLang, getRandomInt, getContributors } from "../tools/utils/helpers";
@@ -8,6 +9,8 @@ import { Languages } from "../tools/constants";
 
 import PageMeta from "../components/PageMeta";
 import Footer from "../components/Footer";
+
+const DynamicVideoEmbed = dynamic(() => import("../components/VideoEmbed"));
 
 export default function Home({ randomNumberOfLines, randomLang, randomCode }) {
   const [selectedLang, setSelectedLang] = useState(randomLang);
@@ -58,9 +61,12 @@ export default function Home({ randomNumberOfLines, randomLang, randomCode }) {
     <>
       <PageMeta />
 
-      <main className="container">
+      <header className="header">
         <h1 className="title">[object Object]</h1>
-        <p className="blurb">Need some code for your project? We've got you covered.</p>
+      </header>
+
+      <main className="container">
+        <h2 className="blurb">Need some code for your project? We've got you covered.</h2>
         <p className="blurb">Choose how much code. Choose your language.</p>
         <p className="blurb">BÄM! You got code.</p>
 
@@ -154,6 +160,8 @@ export default function Home({ randomNumberOfLines, randomLang, randomCode }) {
         >
           Submit a PR
         </a>
+
+        <DynamicVideoEmbed />
       </main>
       <Footer />
     </>
