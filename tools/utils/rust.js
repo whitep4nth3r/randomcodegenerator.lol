@@ -2,7 +2,7 @@ import {
   getRandomEntry,
   getRandomNoun,
   getRandomVerb,
-  getLogLines,
+  getRandomLogLine,
 } from "./helpers";
 
 export default class Rust {
@@ -13,9 +13,7 @@ export default class Rust {
   static getRandomVariableDeclaration() {
     const keyWords = ["let", "const", "let mut"];
     const options = [
-      `${Rust.getRandomFunctionName()}().expect(${getRandomEntry(
-        getLogLines()
-      )})`,
+      `${Rust.getRandomFunctionName()}().expect(${getRandomLogLine()})`,
       `${Rust.getRandomFunctionName()}()`,
     ];
 
@@ -24,14 +22,9 @@ export default class Rust {
     )};`;
   }
 
-  static getRandomConsoleLog() {
-    const options = getLogLines();
-    return getRandomEntry(options);
-  }
-
   static getRandomFillerLine() {
     const options = [
-      `printf!("{}", ${Rust.getRandomConsoleLog()});`,
+      `printf!("{}", ${getRandomLogLine()});`,
       Rust.getRandomVariableDeclaration(),
       `${Rust.getRandomFunctionName()}();`,
     ];

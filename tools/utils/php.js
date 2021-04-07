@@ -4,7 +4,7 @@ import {
   getRandomNounCapitalized,
   getRandomVerb,
   getRandomVerbCapitalized,
-  getLogLines,
+  getRandomLogLine,
 } from "./helpers";
 
 export default class PHP {
@@ -27,12 +27,20 @@ export default class PHP {
   }
 
   static getRandomParamtersSet() {
-    const paramaters = ["", `'${getRandomNoun()}'`, `'${getRandomNoun()}', '${getRandomNoun()}'`];
+    const paramaters = [
+      "",
+      `'${getRandomNoun()}'`,
+      `'${getRandomNoun()}', '${getRandomNoun()}'`,
+    ];
     return `${getRandomEntry(paramaters)}`;
   }
 
   static getRandomParamtersRead() {
-    const paramaters = ["", `$${getRandomNoun()}`, `$${getRandomNoun()}, $${getRandomNoun()}`];
+    const paramaters = [
+      "",
+      `$${getRandomNoun()}`,
+      `$${getRandomNoun()}, $${getRandomNoun()}`,
+    ];
     return getRandomEntry(paramaters);
   }
 
@@ -47,18 +55,14 @@ export default class PHP {
       `"${getRandomVerb()}"`,
     ];
 
-    return `${getRandomEntry(keyWords)}${getRandomNoun()} = ${getRandomEntry(options)};`;
-  }
-
-  static getRandomConsoleLog() {
-    const options = getLogLines();
-
-    return getRandomEntry(options);
+    return `${getRandomEntry(keyWords)}${getRandomNoun()} = ${getRandomEntry(
+      options
+    )};`;
   }
 
   static getRandomFillerLine() {
     const options = [
-      `var_dump(${PHP.getRandomConsoleLog()}); die();`,
+      `var_dump(${getRandomLogLine()}); die();`,
       PHP.getRandomVariableDeclaration(),
     ];
     return getRandomEntry(options);

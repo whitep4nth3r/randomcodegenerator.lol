@@ -12,6 +12,7 @@ import Powershell from "./utils/powershell";
 import COBOL from "./utils/cobol";
 import Rust from "./utils/rust";
 import CPlusPlus from "./utils/cplusplus";
+import Swift from './utils/swift';
 
 export const Languages = {
   css: "CSS",
@@ -26,7 +27,8 @@ export const Languages = {
   python: "Python",
   powershell: "Powershell",
   rust: "Rust",
-  cplusplus: "C++"
+  cplusplus: "C++",
+  swift: "Swift",
 };
 
 export function generateRandomCode(language, lines) {
@@ -247,6 +249,17 @@ export function generateRandomCode(language, lines) {
       lastLine = "\n\r}";
 
       return firstLine + fillerLines.join("\n\r") + lastLine;
+    case "swift":
+        firstLine = `func ${Swift.getRandomFunctionName()} {\n\r`;
+
+        fillerLineQty = parseInt(lines, 10) - 2;
+
+        for (let i = 0; i < fillerLineQty; i++) {
+            fillerLines.push(`   ${Swift.getRandomFillerLine()}`);
+        }
+
+        lastLine = "\n\r}";
+        return firstLine + fillerLines.join("\n\r") + lastLine;
     default:
       return "lol";
   }

@@ -4,7 +4,7 @@ import {
     getRandomNoun,
     getRandomNounCapitalized,
     getRandomVerb,
-    getLogLines,
+    getRandomLogLine,
   } from "./helpers";
 
   export default class CPlusPlus {
@@ -34,7 +34,7 @@ import {
     
       static getRandomFillerLine() {
         const options = [
-          `clog << ${getRandomEntry(getLogLines())};`,
+          `clog << ${getRandomEntry(getRandomLogLine())};`,
           CPlusPlus.getRandomVariableDeclaration(),
           `${CPlusPlus.getRandomFunctionName()}();`,
         ];

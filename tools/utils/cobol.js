@@ -3,20 +3,14 @@ import {
   getRandomInt,
   getRandomNounUpperCase,
   getRandomVerbUpperCase,
-  getLogLines,
+  getRandomLogLine,
 } from "./helpers";
 
 export default class COBOL {
-  static getRandomPrint() {
-    const options = getLogLines();
-
-    return getRandomEntry(options);
-  }
-
   static randomValue() {
     const options = [
       `${getRandomInt(-999999999, 99999999999)}`,
-      COBOL.getRandomPrint(),
+      getRandomLogLine(),
       `WS-${getRandomVerbUpperCase()}`,
       `WS-${getRandomNounUpperCase()}`,
     ];
