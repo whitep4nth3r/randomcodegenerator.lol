@@ -157,6 +157,15 @@
       "contributions": [
         "code"
       ]
+    },
+    {
+      "login": "michaud",
+      "name": "michaud",
+      "avatar_url": "https://avatars.githubusercontent.com/u/338436?v=4",
+      "profile": "https://github.com/michaud",
+      "contributions": [
+        "code"
+      ]
     }
   ],
   "contributorsPerLine": 7,
