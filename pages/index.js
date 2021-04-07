@@ -1,8 +1,14 @@
-import hljs from 'highlight.js';
-import 'highlight.js/styles/a11y-dark.css';
 import { useState, useEffect } from "react";
-import { generateRandomCode, Languages } from "../tools/RandomCodeGenerator";
-import { getRandomLang, getRandomInt, getContributors } from "../tools/utils/helpers";
+import hljs from "highlight.js";
+import "highlight.js/styles/a11y-dark.css";
+
+import { generateRandomCode } from "../tools/RandomCodeGenerator";
+import {
+  getRandomLang,
+  getRandomInt,
+  getContributors,
+} from "../tools/utils/helpers";
+import { Languages } from "../tools/constants";
 
 import PageMeta from "../components/PageMeta";
 import Footer from "../components/Footer";

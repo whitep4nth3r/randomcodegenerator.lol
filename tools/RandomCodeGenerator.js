@@ -12,21 +12,6 @@ import Powershell from "./utils/powershell";
 import COBOL from "./utils/cobol";
 import Rust from "./utils/rust";
 
-export const Languages = {
-  css: "CSS",
-  cobol: "COBOL",
-  csharp: "C#",
-  fsharp: "F#",
-  docker: "Docker",
-  php: "PHP",
-  java: "Java",
-  js: "JavaScript",
-  kotlin: "Kotlin",
-  python: "Python",
-  powershell: "Powershell",
-  rust: "Rust",
-};
-
 export function generateRandomCode(language, lines) {
   let firstLine = "";
   let fillerLineQty = "";
