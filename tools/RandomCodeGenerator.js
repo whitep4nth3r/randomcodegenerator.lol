@@ -1,7 +1,4 @@
-import {
-  getRandomEntry,
-  getRandomInt
-} from "./utils/helpers";
+import { getRandomEntry, getRandomInt } from "./utils/helpers";
 
 import COBOL from "./utils/cobol";
 import Comments from "./utils/comments";
@@ -14,13 +11,12 @@ import Go from "./utils/go";
 import Java from "./utils/java";
 import JavaScript from "./utils/javascript";
 import Kotlin from "./utils/kotlin";
-import Python from "./utils/python";
 import PHP from "./utils/php";
 import Python from "./utils/python";
 import Powershell from "./utils/powershell";
 import Rust from "./utils/rust";
 import SQL from "./utils/sql";
-import Swift from './utils/swift';
+import Swift from "./utils/swift";
 
 export const Languages = {
   cplusplus: "C++",
@@ -44,7 +40,7 @@ export function generateRandomCode(language, lines) {
   let fillerLineQty = "";
   let fillerLines = [];
   let lastLine = "";
-  const addComment = Math.random() + .5 >> 0;
+  const addComment = (Math.random() + 0.5) >> 0;
   let imports = "";
   let returnLine = "";
   // 3 lines will be dedicated to a for loop if lines > 7
@@ -112,19 +108,19 @@ export function generateRandomCode(language, lines) {
       return firstLine + fillerLines.join("\n\r") + lastLine;
     case "fsharp":
       firstLine = FSharp.randomPreamble();
-      
+
       fillerLineQty = parseInt(lines, 10) - 2;
-      
+
       for (let i = 1; i <= fillerLineQty; i++) {
         fillerLines.push(`    ${FSharp.getRandomFillerLine()}`);
       }
-      
+
       lastLine = "\r\n    ()";
-      
+
       return firstLine + fillerLines.join("\n\r") + lastLine;
     case "go":
       // get a random amount of package imports.
-      const importstoGet = Math.floor(lines/5);
+      const importstoGet = Math.floor(lines / 5);
       console.log(importstoGet);
       // coin flip for adding a return statement or not
       const addReturnLine = Math.floor(Math.random() * 2);
@@ -132,10 +128,10 @@ export function generateRandomCode(language, lines) {
       fillerLineQty = parseInt(lines, 10) - 2 - 2 - importstoGet - addReturnLine;
       console.log(fillerLineQty);
       let randomImports = [];
-  
+
       //package name is mandatory, so let's always have this, and exclude it from the line count
       const pkgLine = `package ${Go.getRandomPackageName()}\n\n\r`;
-      
+
       //set up random package import[s]
       let importLine = "";
       if (importsToGet >= 1) {
@@ -143,26 +139,25 @@ export function generateRandomCode(language, lines) {
           randomImports.push(`\t"${Go.getRandomImportName()}"\n\r`);
         }
         importLine = `import (\n\r\t\"fmt"\n${randomImports.join("")})\n\n\r`;
-      }
-      else {
+      } else {
         importLine = `import "fmt"\n\n\r`;
       }
 
       //set up a function
       firstLine = `func ${Go.getRandomFunctionName()} { \n\r`;
-  
+
       //add code to function
       for (let i = 1; i <= fillerLineQty; i++) {
-          fillerLines.push(`${Go.getRandomFillerLine()}`);
+        fillerLines.push(`${Go.getRandomFillerLine()}`);
       }
-      
-      let lastLine = ""
-      if(addReturnLine === 1) {
+
+      let lastLine = "";
+      if (addReturnLine === 1) {
         lastLine = `\n\treturn ${Go.getExistingVariable()}`;
       }
 
       lastLine += `\n\r}`;
-  
+
       return pkgLine + importLine + firstLine + fillerLines.join("\n\r") + lastLine;
     case "js":
       const firstLines = [
@@ -322,9 +317,9 @@ export function generateRandomCode(language, lines) {
         fillerLines.push(`    ${Rust.getRandomFillerLine()}`);
       }
 
-        lastLine = "\n\r}";
+      lastLine = "\n\r}";
 
-        return firstLine + fillerLines.join("\n\r") + lastLine;
+      return firstLine + fillerLines.join("\n\r") + lastLine;
 
     case "cplusplus":
       firstLine = `${CPlusPlus.getRandomFunctionName()}() {\n\r`;
@@ -338,58 +333,61 @@ export function generateRandomCode(language, lines) {
 
       return firstLine + fillerLines.join("\n\r") + lastLine;
     case "sql":
-      firstLine = 'SELECT' + ` ${SQL.getRandomFieldName()}\n\r` ;
+      firstLine = "SELECT" + ` ${SQL.getRandomFieldName()}\n\r`;
       fillerLineQty = parseInt(lines, 10);
 
       //first loop is just for field names sorry
       for (let i = 1; i <= fillerLineQty; i++) {
-        const lineOptions = [
-          ` ,${SQL.getRandomFieldName()}`
-        ];
+        const lineOptions = [` ,${SQL.getRandomFieldName()}`];
 
         fillerLines.push(lineOptions[Math.floor(Math.random() * lineOptions.length)]);
       }
       let lineBreak;
-      if (fillerLineQty > 1) { 
-          lineBreak = '\n\r';
-        }
-      else lineBreak = "";
-      let fromStatement = lineBreak + 'FROM' + ` ${SQL.getRandomSchemaName()}` + `.${SQL.getRandomTableName()}`;
-      
+      if (fillerLineQty > 1) {
+        lineBreak = "\n\r";
+      } else lineBreak = "";
+      let fromStatement =
+        lineBreak + "FROM" + ` ${SQL.getRandomSchemaName()}` + `.${SQL.getRandomTableName()}`;
+
       let whereCond = "";
       //this part is for the other functions like WHERE, GROUP BY etc.
-      if(getRandomInt(1,10) <= 3){
-        whereCond = `\n\rWHERE ${SQL.getRandomWhereCondition()}`
-      }
-      else if (getRandomInt(1,10) <= 5) {
+      if (getRandomInt(1, 10) <= 3) {
+        whereCond = `\n\rWHERE ${SQL.getRandomWhereCondition()}`;
+      } else if (getRandomInt(1, 10) <= 5) {
         whereCond = `\n\rWHERE ${SQL.getRandomWhereCondition()}${SQL.getRandomOperator()}${SQL.getRandomWhereCondition()}`;
       }
 
       let groupByCond = "";
-      if (getRandomInt(1,10) <= 5) {
-        groupByCond = `\n\rGROUP BY ${SQL.getRandomGroupByCondition(fillerLineQty)}` 
-      }
-      else;
+      if (getRandomInt(1, 10) <= 5) {
+        groupByCond = `\n\rGROUP BY ${SQL.getRandomGroupByCondition(fillerLineQty)}`;
+      } else;
 
       let orderByCond = "";
-      if (getRandomInt(1,10) <= 5) {
-        groupByCond = `\n\rORDER BY ${SQL.getRandomOrderByCondition(fillerLineQty)} ASC` 
-      }
-      else;
+      if (getRandomInt(1, 10) <= 5) {
+        groupByCond = `\n\rORDER BY ${SQL.getRandomOrderByCondition(fillerLineQty)} ASC`;
+      } else;
 
       lastLine = ";";
-      return firstLine + fillerLines.join("\n\r") + fromStatement + whereCond + groupByCond + orderByCond + lastLine;
+      return (
+        firstLine +
+        fillerLines.join("\n\r") +
+        fromStatement +
+        whereCond +
+        groupByCond +
+        orderByCond +
+        lastLine
+      );
     case "swift":
-        firstLine = `func ${Swift.getRandomFunctionName()} {\n\r`;
+      firstLine = `func ${Swift.getRandomFunctionName()} {\n\r`;
 
-        fillerLineQty = parseInt(lines, 10) - 2;
+      fillerLineQty = parseInt(lines, 10) - 2;
 
-        for (let i = 0; i < fillerLineQty; i++) {
-            fillerLines.push(`   ${Swift.getRandomFillerLine()}`);
-        }
+      for (let i = 0; i < fillerLineQty; i++) {
+        fillerLines.push(`   ${Swift.getRandomFillerLine()}`);
+      }
 
-        lastLine = "\n\r}";
-        return firstLine + fillerLines.join("\n\r") + lastLine;
+      lastLine = "\n\r}";
+      return firstLine + fillerLines.join("\n\r") + lastLine;
     default:
       return "lol";
   }
