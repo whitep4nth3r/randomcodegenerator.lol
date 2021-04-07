@@ -34,10 +34,10 @@ export default class JavaScript {
       JavaScript.getRandomInitializationVars()
     )};`;
   }
-
+  
   static getRandomFillerLine() {
     const options = [
-      `console.log(${getRandomLogLine()});`,
+      `console.${getRandomEntry(JavaScript.getRandomConsoleLevel())}(${getRandomLogLine()});`,
       JavaScript.getRandomVariableDeclaration(),
       `${JavaScript.getRandomFunctionName()}();`,
     ];
@@ -59,5 +59,15 @@ export default class JavaScript {
       `        ${JavaScript.getRandomFunctionName()}(${randomChar})`,
       "    };",
     ];
+  }
+
+  static getRandomConsoleLevel() {
+    return [
+      'debug',
+      'info',
+      'log',
+      'warning',
+      'error',
+    ]
   }
 }
