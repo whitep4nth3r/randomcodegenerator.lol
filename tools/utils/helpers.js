@@ -8,6 +8,10 @@ import {
   verbs,
 } from "../constants";
 
+export function addNewLine(numberOfLines = 1) {
+  return "\n".repeat(numberOfLines);
+}
+
 export function getContributors(lang) {
   return Contributors[lang];
 }
