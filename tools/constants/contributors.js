@@ -12,7 +12,8 @@ const Contributors = {
   powershell: ["lucecarter"],
   rust: ["sociablesteve"],
   swift: ['justinhhorner'],
-  cplusplus: ['lucecarter']
+  cplusplus: ['lucecarter'],
+  sql: ["mattytwoshoes"]
 };
 
 export default Contributors;

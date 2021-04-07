@@ -1,6 +1,6 @@
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-14-orange.svg?style=flat-square)](#contributors-)
+[![All Contributors](https://img.shields.io/badge/all_contributors-17-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
 ## Getting Started
@@ -61,6 +61,11 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
     <td align="center"><a href="https://madhousesteve.codes"><img src="https://avatars.githubusercontent.com/u/52213009?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Sociable Steve</b></sub></a><br /><a href="https://github.com/whitep4nth3r/randomcodegenerator.lol/commits?author=SociableSteve" title="Code">💻</a></td>
     <td align="center"><a href="https://sketchni.codes"><img src="https://avatars.githubusercontent.com/u/11874768?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Denver F</b></sub></a><br /><a href="https://github.com/whitep4nth3r/randomcodegenerator.lol/commits?author=SketchNI" title="Code">💻</a></td>
     <td align="center"><a href="https://github.com/mrange"><img src="https://avatars.githubusercontent.com/u/2491891?v=4?s=100" width="100px;" alt=""/><br /><sub><b>mrange</b></sub></a><br /><a href="https://github.com/whitep4nth3r/randomcodegenerator.lol/commits?author=mrange" title="Code">💻</a></td>
+  </tr>
+  <tr>
+    <td align="center"><a href="https://github.com/matthewbrandt"><img src="https://avatars.githubusercontent.com/u/67697593?v=4?s=100" width="100px;" alt=""/><br /><sub><b>matthewbrandt</b></sub></a><br /><a href="https://github.com/whitep4nth3r/randomcodegenerator.lol/commits?author=matthewbrandt" title="Code">💻</a></td>
+    <td align="center"><a href="https://github.com/justinhhorner"><img src="https://avatars.githubusercontent.com/u/4635843?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Justin Horner</b></sub></a><br /><a href="https://github.com/whitep4nth3r/randomcodegenerator.lol/commits?author=justinhhorner" title="Code">💻</a></td>
+    <td align="center"><a href="https://github.com/tBoccinfuso"><img src="https://avatars.githubusercontent.com/u/25520666?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Thomas Boccinfuso</b></sub></a><br /><a href="https://github.com/whitep4nth3r/randomcodegenerator.lol/commits?author=tBoccinfuso" title="Code">💻</a></td>
   </tr>
 </table>
 
