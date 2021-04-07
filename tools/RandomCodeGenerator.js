@@ -216,7 +216,7 @@ export function generateRandomCode(language, lines) {
       firstLine = `<?php \r\n\r\n`;
       let namespaceLine = `${PHP.getRandomNamespace()}\n\r\n\r`;
 
-      let classLine = `class ${PHP.getRandomClassName()} { \r\n`;
+      let classLine = `class ${PHP.getRandomClassName()} {\r\n\r\n`;
 
       if (addComment) {
         fillerLineQty = fillerLineQty - 1;

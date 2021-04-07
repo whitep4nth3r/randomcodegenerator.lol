@@ -118,7 +118,7 @@ export default function Home({ randomNumberOfLines, randomLang, randomCode }) {
         {result.length > 0 && (
           <>
             <div className="result">
-              <pre className="result__pre">
+              <pre className="result__pre hljs">
                 <button type="button" className="copyButton" onClick={copyCode}>
                   Copy
                 </button>

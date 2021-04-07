@@ -159,23 +159,13 @@ a {
 
 .result__pre {
   position: relative;
-  border-radius: 0;
-  background: var(--black);
-  padding: 1rem;
-  overflow: auto;
-  color: var(--white);
-  text-shadow: 0 1px rgb(0 0 0 / 30%);
-  font-family: var(--font-family-heading);
+  padding: 1rem !important;
   font-size: 1.4rem;
-  text-align: left;
-  word-spacing: normal;
   white-space: pre-wrap;
   word-wrap: normal;
   overflow-x: auto;
   word-break: break-all;
-  line-height: 1.1rem;
   tab-size: 4;
-  overflow: hidden;
 }
 
 .copyButton {
