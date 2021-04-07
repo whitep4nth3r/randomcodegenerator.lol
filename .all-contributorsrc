@@ -130,6 +130,33 @@
       "contributions": [
         "code"
       ]
+    },
+    {
+      "login": "matthewbrandt",
+      "name": "matthewbrandt",
+      "avatar_url": "https://avatars.githubusercontent.com/u/67697593?v=4",
+      "profile": "https://github.com/matthewbrandt",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "justinhhorner",
+      "name": "Justin Horner",
+      "avatar_url": "https://avatars.githubusercontent.com/u/4635843?v=4",
+      "profile": "https://github.com/justinhhorner",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "tBoccinfuso",
+      "name": "Thomas Boccinfuso",
+      "avatar_url": "https://avatars.githubusercontent.com/u/25520666?v=4",
+      "profile": "https://github.com/tBoccinfuso",
+      "contributions": [
+        "code"
+      ]
     }
   ],
   "contributorsPerLine": 7,
