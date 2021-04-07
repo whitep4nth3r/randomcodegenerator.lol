@@ -47,6 +47,17 @@ export function generateRandomCode(language, lines) {
   let includeForLoop = parseInt(lines, 10) > 7;
 
   switch (language) {
+    case "cplusplus":
+      firstLine = `${CPlusPlus.getRandomFunctionName()}() {\n\r`;
+      fillerLineQty = parseInt(lines, 10) - 2;
+
+      for (let i = 1; i <= fillerLineQty; i++) {
+        fillerLines.push(`    ${CPlusPlus.getRandomFillerLine()}`);
+      }
+
+      lastLine = "\n\r}";
+
+      return firstLine + fillerLines.join("\n\r") + lastLine;
     case "css":
       firstLine = `.${Css.getRandomClassName()} {\n\r`;
       fillerLineQty = parseInt(lines, 10) - 2;
@@ -120,13 +131,10 @@ export function generateRandomCode(language, lines) {
       return firstLine + fillerLines.join("\n\r") + lastLine;
     case "go":
       // get a random amount of package imports.
-      const importstoGet = Math.floor(lines / 5);
-      console.log(importstoGet);
+      const importsToGet = Math.floor(lines / 5);
       // coin flip for adding a return statement or not
       const addReturnLine = Math.floor(Math.random() * 2);
-      console.log(addReturnLine);
-      fillerLineQty = parseInt(lines, 10) - 2 - 2 - importstoGet - addReturnLine;
-      console.log(fillerLineQty);
+      fillerLineQty = parseInt(lines, 10) - 2 - 2 - importsToGet - addReturnLine;
       let randomImports = [];
 
       //package name is mandatory, so let's always have this, and exclude it from the line count
@@ -151,7 +159,6 @@ export function generateRandomCode(language, lines) {
         fillerLines.push(`${Go.getRandomFillerLine()}`);
       }
 
-      let lastLine = "";
       if (addReturnLine === 1) {
         lastLine = `\n\treturn ${Go.getExistingVariable()}`;
       }
@@ -315,18 +322,6 @@ export function generateRandomCode(language, lines) {
 
       for (let i = 1; i <= fillerLineQty; i++) {
         fillerLines.push(`    ${Rust.getRandomFillerLine()}`);
-      }
-
-      lastLine = "\n\r}";
-
-      return firstLine + fillerLines.join("\n\r") + lastLine;
-
-    case "cplusplus":
-      firstLine = `${CPlusPlus.getRandomFunctionName()}() {\n\r`;
-      fillerLineQty = parseInt(lines, 10) - 2;
-
-      for (let i = 1; i <= fillerLineQty; i++) {
-        fillerLines.push(`    ${CPlusPlus.getRandomFillerLine()}`);
       }
 
       lastLine = "\n\r}";
