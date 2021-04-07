@@ -1,4 +1,7 @@
-import { getRandomEntry } from "./utils/helpers";
+import {
+  getRandomEntry,
+  getRandomInt
+} from "./utils/helpers";
 import CSharp from "./utils/csharp";
 import Css from "./utils/css";
 import Docker from "./utils/docker";
@@ -221,13 +224,13 @@ export function generateRandomCode(language, lines) {
       return firstLine + fillerLines.join("\n\r") + lastLine;
     
     case "sql":
-      firstLine = 'SELECT' + ` ${s_q_l.getRandomFieldName()}\n\r` ;
+      firstLine = 'SELECT' + ` ${SQL.getRandomFieldName()}\n\r` ;
       fillerLineQty = parseInt(lines, 10);
 
       //first loop is just for field names sorry
       for (let i = 1; i <= fillerLineQty; i++) {
         const lineOptions = [
-          ` ,${sql.getRandomFieldName()}`
+          ` ,${SQL.getRandomFieldName()}`
         ];
 
         fillerLines.push(lineOptions[Math.floor(Math.random() * lineOptions.length)]);
@@ -237,26 +240,26 @@ export function generateRandomCode(language, lines) {
           lineBreak = '\n\r';
         }
       else lineBreak = "";
-      let fromStatement = lineBreak + 'FROM' + ` ${sql.getRandomSchemaName()}` + `.${sql.getRandomTableName()}`;
+      let fromStatement = lineBreak + 'FROM' + ` ${SQL.getRandomSchemaName()}` + `.${SQL.getRandomTableName()}`;
       
       let whereCond = "";
       //this part is for the other functions like WHERE, GROUP BY etc.
       if(getRandomInt(1,10) <= 3){
-        whereCond = `\n\rWHERE ${sql.getRandomWhereCondition()}`
+        whereCond = `\n\rWHERE ${SQL.getRandomWhereCondition()}`
       }
       else if (getRandomInt(1,10) <= 5) {
-        whereCond = `\n\rWHERE ${sql.getRandomWhereCondition()}${sql.getRandomOperator()}${sql.getRandomWhereCondition()}`;
+        whereCond = `\n\rWHERE ${SQL.getRandomWhereCondition()}${SQL.getRandomOperator()}${SQL.getRandomWhereCondition()}`;
       }
 
       let groupByCond = "";
       if (getRandomInt(1,10) <= 5) {
-        groupByCond = `\n\rGROUP BY ${sql.getRandomGroupByCondition(fillerLineQty)}` 
+        groupByCond = `\n\rGROUP BY ${SQL.getRandomGroupByCondition(fillerLineQty)}` 
       }
       else;
 
       let orderByCond = "";
       if (getRandomInt(1,10) <= 5) {
-        groupByCond = `\n\rORDER BY ${sql.getRandomOrderByCondition(fillerLineQty)} ASC` 
+        groupByCond = `\n\rORDER BY ${SQL.getRandomOrderByCondition(fillerLineQty)} ASC` 
       }
       else;
 

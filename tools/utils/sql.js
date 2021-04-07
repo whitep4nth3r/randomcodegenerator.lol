@@ -88,7 +88,7 @@ const fieldNames = [
     "Unemployment",
   ];
 
-export default class s_q_l {
+export default class SQL {
 
 
   static getRandomOperator() {
