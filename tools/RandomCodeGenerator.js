@@ -15,6 +15,7 @@ import Powershell from "./utils/powershell";
 import COBOL from "./utils/cobol";
 import Rust from "./utils/rust";
 import SQL from "./utils/sql";
+import Swift from './utils/swift';
 
 export function generateRandomCode(language, lines) {
   let firstLine = "";
@@ -222,7 +223,6 @@ export function generateRandomCode(language, lines) {
       lastLine = "\n\r}";
 
       return firstLine + fillerLines.join("\n\r") + lastLine;
-    
     case "sql":
       firstLine = 'SELECT' + ` ${SQL.getRandomFieldName()}\n\r` ;
       fillerLineQty = parseInt(lines, 10);
@@ -265,7 +265,17 @@ export function generateRandomCode(language, lines) {
 
       lastLine = ";";
       return firstLine + fillerLines.join("\n\r") + fromStatement + whereCond + groupByCond + orderByCond + lastLine;
-    
+    case "swift":
+        firstLine = `func ${Swift.getRandomFunctionName()} {\n\r`;
+
+        fillerLineQty = parseInt(lines, 10) - 2;
+
+        for (let i = 0; i < fillerLineQty; i++) {
+            fillerLines.push(`   ${Swift.getRandomFillerLine()}`);
+        }
+
+        lastLine = "\n\r}";
+        return firstLine + fillerLines.join("\n\r") + lastLine;
     default:
       return "lol";
   }

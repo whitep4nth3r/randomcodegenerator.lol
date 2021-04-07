@@ -70,6 +70,10 @@ a {
   flex-wrap: wrap;
 }
 
+.selector__buttonGroup--lines {
+  margin-bottom: 2rem;
+}
+
 .selector__button,
 .submitPr__button {
   background-color: var(--black);
@@ -77,8 +81,8 @@ a {
   font-family: var(--font-family-heading);
   border-width: 0;
   border-radius: 1rem;
-  font-size: 1.5rem;
-  padding: 0.5rem 1rem;
+  font-size: 1.2rem;
+  padding: 0.5rem;
   cursor: pointer;
   transition: all 0.2s ease-in-out;
   margin-bottom: 1rem;
@@ -102,6 +106,11 @@ a {
   outline-width: 0;
   box-shadow: var(--green) 0 0 0 0.25rem;
   transition: box-shadow 0.2s ease 0s;
+}
+
+.selector__button--lines {
+  background-color: var(--white);
+  color: var(--black);
 }
 
 .selector__button--luckyDip {
