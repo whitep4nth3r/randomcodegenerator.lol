@@ -1,5 +1,5 @@
 const Contributors = {
-  css: ["whitep4nth3r"],
+  css: ["whitep4nth3r", "Refito"],
   cobol: ["canhorn"],
   csharp: ["lucecarter", "rickvdbosch"],
   fsharp: ["mrange"],
