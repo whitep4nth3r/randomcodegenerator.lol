@@ -19,6 +19,7 @@ const logs = [
   '"TODO: refactor this"',
   '"Marlon Webb says WATERMELON!"',
   '"SHIPIT"',
+  '"HACK: the docs told me to do this"'
 ];
 
 export default logs;

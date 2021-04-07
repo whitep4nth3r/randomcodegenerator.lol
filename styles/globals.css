@@ -172,6 +172,7 @@ a {
   position: relative;
   padding: 1rem !important;
   font-size: 1.4rem;
+  line-height: 1.5;
   white-space: pre-wrap;
   word-wrap: normal;
   overflow-x: auto;

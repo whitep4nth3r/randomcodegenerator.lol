@@ -1,4 +1,4 @@
-import { getRandomInt } from "./helpers";
+import { addNewLine, getRandomInt } from "./helpers";
 
 const fieldNames = [
   "customerNumber",
@@ -90,7 +90,9 @@ export default class SQL {
   static getRandomOperator() {
     const positionValues = ["AND", "OR"];
 
-    return `\n\r ${positionValues[Math.floor(Math.random() * positionValues.length)]} `;
+    return `${addNewLine()} ${
+      positionValues[Math.floor(Math.random() * positionValues.length)]
+    } `;
   }
 
   static getRandomFieldName() {

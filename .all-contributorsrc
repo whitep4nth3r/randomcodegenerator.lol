@@ -167,6 +167,15 @@
       "contributions": [
         "code"
       ]
+    },
+    {
+      "login": "ukmadlz",
+      "name": "Mike Elsmore",
+      "avatar_url": "https://avatars.githubusercontent.com/u/804683?v=4",
+      "profile": "http://elsmore.me",
+      "contributions": [
+        "code"
+      ]
     }
   ],
   "contributorsPerLine": 7,

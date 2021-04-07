@@ -5,7 +5,7 @@ const Contributors = {
   fsharp: ["mrange"],
   docker: ["jwalter"],
   go: ["mistatwist"],
-  php: ["dr_dinomight"],
+  php: ["dr-dinomight"],
   java: ["jwalter"],
   js: ["whitep4nth3r", "lukeocodes", "negue", "isabellabrookes"],
   kotlin: ["jwalter"],
