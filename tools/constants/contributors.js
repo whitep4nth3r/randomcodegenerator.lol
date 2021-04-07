@@ -14,7 +14,8 @@ const Contributors = {
   rust: ["sociablesteve"],
   swift: ['justinhhorner'],
   cplusplus: ['lucecarter'],
-  sql: ["mattytwoshoes"]
+  sql: ["mattytwoshoes"],
+  vba: ["mark-phillipson"]
 };
 
 export default Contributors;

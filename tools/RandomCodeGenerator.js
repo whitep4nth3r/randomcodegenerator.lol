@@ -17,6 +17,7 @@ import Powershell from "./utils/powershell";
 import Rust from "./utils/rust";
 import SQL from "./utils/sql";
 import Swift from "./utils/swift";
+import VBA from "./utils/vba";
 
 export const Languages = {
   cplusplus: "C++",
@@ -33,6 +34,7 @@ export const Languages = {
   powershell: "Powershell",
   rust: "Rust",
   swift: "Swift",
+  vba: "VBA"
 };
 
 export function generateRandomCode(language, lines) {
@@ -383,6 +385,27 @@ export function generateRandomCode(language, lines) {
 
       lastLine = "\n\r}";
       return firstLine + fillerLines.join("\n\r") + lastLine;
+    case "vba": 
+      firstLine = `\n\r${VBA.getRandomAccessModifier()} Function ${VBA.getRandomMethodName()}(${VBA.getRandomMethodName()} As ${VBA.getRandomDataType()}) As ${VBA.getRandomDataType()}\n\r`.replace(
+        "  ",
+        " "
+      );
+      if (firstLine[0] === " ") firstLine = firstLine.slice(1);
+      fillerLineQty = parseInt(lines, 10) - 3;
+
+      if (addComment) {
+        fillerLineQty = fillerLineQty - 1;
+        fillerLines.push(Comments.getRandomComment('vba'));
+      }
+
+      for (let i = 1; i <= fillerLineQty; i++) {
+        fillerLines.push(`    ${VBA.getRandomFillerLine()}`);
+      }
+
+      lastLine = "\n\rEnd Function";
+
+      return firstLine + fillerLines.join("\n\r") + lastLine;
+
     default:
       return "lol";
   }
