@@ -1,4 +1,9 @@
-import { getRandomEntry, getRandomNoun, getRandomNounCapitalized, getRandomVerb } from "./helpers";
+import {
+  addNewLine,
+  getRandomEntry,
+  getRandomNoun,
+  getRandomVerb,
+} from "./helpers";
 
 export default class FSharp {
   static getRandomValue() {
@@ -46,7 +51,7 @@ export default class FSharp {
   }
 
   static randomPreamble() {
-    return `let ${FSharp.getRandomMethodKeyword()} ${FSharp.getRandomVariableName()} input =\n\r`;
+    return `let ${FSharp.getRandomMethodKeyword()} ${FSharp.getRandomVariableName()} input =${addNewLine()}`;
   }
 
   static getRandomFillerLine() {
