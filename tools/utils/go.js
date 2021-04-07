@@ -1,13 +1,16 @@
-import { addNewLine, getRandomInt, getRandomEntry } from "./helpers";
-import nouns from "../constants/nouns";
-import verbs from "../constants/verbs";
-import logs from "../constants/logs";
+import {
+  addNewLine,
+  getRandomEntry,
+  getRandomInt,
+  getRandomLogLine,
+  getRandomNoun,
+  getRandomNounCapitalized,
+  getRandomNounUpperCase,
+} from "./helpers";
 
 export default class Go {
   static getRandomFunctionName() {
-    const randomNoun = nouns[getRandomInt(0, nouns.length - 1)];
-    const randomVerb = verbs[getRandomInt(0, verbs.length - 1)];
-    return `${randomVerb}${randomNoun.charAt(0).toUpperCase() + randomNoun.slice(1)}`;
+    return `${getRandomVerb()}${getRandomNounCapitalized()}`;
   }
 
   static getRandomVariableDeclaration() {
@@ -17,17 +20,17 @@ export default class Go {
 
     const keyword = getRandomEntry(keyWords);
     const type = getRandomEntry(types);
-    let varName = getRandomEntry(nouns);
+    let varName = getRandomNoun();
     const value = getRandomEntry(values);
 
     if (keyword === "const") {
-      varName = varName.toUpperCase();
+      varName = getRandomNounUpperCase();
     }
     return `${keyword} ${varName} ${type} = ${value}${addNewLine()}`;
   }
 
   static getRandomfmtPrintln() {
-    let msg = `${getRandomEntry(logs)}`;
+    let msg = getRandomLogLine();
     return `fmt.Println(${msg})`;
   }
 
@@ -220,11 +223,11 @@ export default class Go {
       "unicode/utf8",
       "unsafe",
     ];
-    return imports[Math.floor(Math.random() * imports.length)];
+    return getRandomEntry(imports);
   }
 
   static getRandomPackageName() {
-    return getRandomEntry(nouns);
+    return getRandomNoun();
   }
 
   static getExistingVariable() {

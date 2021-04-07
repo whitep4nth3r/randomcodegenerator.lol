@@ -1,4 +1,4 @@
-import { addNewLine, getRandomInt } from "./helpers";
+import { addNewLine, getRandomEntry, getRandomInt } from "./helpers";
 
 const fieldNames = [
   "customerNumber",
@@ -90,17 +90,15 @@ export default class SQL {
   static getRandomOperator() {
     const positionValues = ["AND", "OR"];
 
-    return `${addNewLine()} ${positionValues[Math.floor(Math.random() * positionValues.length)]} `;
+    return `${addNewLine()} ${getRandomEntry(positionValues)} `;
   }
 
   static getRandomFieldName() {
     if (getRandomInt(1, 10) <= 3) {
-      let alias =
-        fieldNames[Math.floor(Math.random() * fieldNames.length)] +
-        " AS " +
-        fieldNames[Math.floor(Math.random() * fieldNames.length)];
-      return alias;
-    } else return fieldNames[Math.floor(Math.random() * fieldNames.length)];
+      return getRandomEntry(fieldNames) + " AS " + getRandomEntry(fieldNames);
+    } else {
+      return getRandomEntry(fieldNames);
+    }
   }
 
   static getRandomSchemaName() {
@@ -116,7 +114,7 @@ export default class SQL {
       "pretzel",
       "schnitzel",
     ];
-    return schemaName[Math.floor(Math.random() * schemaName.length)];
+    return getRandomEntry(schemaName);
   }
 
   static getRandomTableName() {
@@ -157,12 +155,11 @@ export default class SQL {
       "flat",
       "summer",
     ];
-    return tableName[Math.floor(Math.random() * tableName.length)];
+    return getRandomEntry(tableName);
   }
 
   static getRandomWhereCondition() {
-    let where =
-      fieldNames[Math.floor(Math.random() * fieldNames.length)] + " = " + getRandomInt(1, 100000);
+    let where = getRandomEntry(fieldNames) + " = " + getRandomInt(1, 100000);
     return where;
   }
 
