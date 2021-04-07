@@ -5,7 +5,7 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
 
 ## Getting Started
 
-First, install node_modules and run the development server:
+First, install dependencies and run the development server:
 
 ```bash
 npm i
@@ -16,7 +16,7 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 
 ## Adding a new language
 
-The following guide will walk you through how to add a new language to the generator.
+The following instructions will guide you through how to add a new language to the generator.
 
 1. Add a new file in tools/utils called the language with a .js extension
 2. There are some helper functions available in tools/utils/helpers.js so the first step in your new empty js file is to import those functions:
@@ -26,10 +26,10 @@ The following guide will walk you through how to add a new language to the gener
     getRandomInt,
     getRandomNounUpperCase,
     getRandomVerbUpperCase,
-    getLogLines,
+    getRandomLogLine,
   } from "./helpers";
   ```
-  It is worth looking at helpers.js in case any of the other functions are applicable to your language, or in case some are in fact not needed at all
+  It is worth looking at helpers.js in case any of the other functions are applicable to your language, or in case some are in fact not needed at all and don't need to be imported in your file
   
 3. Create a class with the name of your language
   ```js
@@ -73,7 +73,8 @@ The following guide will walk you through how to add a new language to the gener
 
       return firstLine + fillerLines.join("\n\r") + lastLine;
      ```
-  17. Open helpers.js and add your language and GitHub username to the Contributors const at the top of the file
+  17. Open languages.js and add your language and your language to the const object
+  18. Open contributors.js and add your GitHub username to the Contributors const at the top of the file
   18. Make sure everything is saved, then either refresh the page at [http://localhost:3000](http://localhost:3000) if it is already running, to ensure it picks up the latest changes or if it is not running
     ```bash
       npm run dev
