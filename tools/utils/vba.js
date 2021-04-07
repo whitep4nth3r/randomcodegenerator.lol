@@ -1,8 +1,7 @@
 import {
 	getRandomEntry,
 	getRandomInt,
-	getRandomNounUpperCase,
-	getRandomVerbUpperCase,
+	getRandomSingleCharacter,
 	getRandomNounCapitalized,
 	getRandomVerbCapitalized,
 	getRandomLogLine,
@@ -28,7 +27,7 @@ export default class VBA {
 	
 		var keyWord = `${VBA.getRandomDataType()}`;
 		const variableName=getRandomNoun();
-		return `Dim ${variableName} As ${keyWord} \n\r ${variableName}=${getRandomInt(0,99999)}`;
+		return `Dim ${variableName} As ${keyWord} \n\r    ${variableName} = ${getRandomInt(0,99999)}`;
 	}
 	
 	static getRandomFillerLine() {
@@ -37,6 +36,7 @@ export default class VBA {
 		  VBA.getRandomVariableDeclaration(),
 		  VBA.getRandomNewVariableDeclaration(),
 		  VBA.getRandomMethodCall(),
+		  VBA.getRandomForLoopAsArray(),
 		  `On Error Resume Next 'DON'T ever do this! `
 		];
 		return getRandomEntry(options);
@@ -52,7 +52,7 @@ export default class VBA {
 	 }
 	
 	static getRandomMethodCall() {
-		return `${this.getRandomMethodName()}(${VBA.getRandomMethodName()} As ${VBA.getRandomDataType()})`;
+		return `${this.getRandomMethodName()}( ${getRandomNoun()} )`;
 	}
 	
 	static getRandomAccessModifier() {
@@ -60,5 +60,12 @@ export default class VBA {
 	
 		return getRandomEntry(options);
 	}
-	
+	static getRandomForLoopAsArray() {
+		const randomChar = getRandomSingleCharacter();
+
+		return `For ${randomChar} = 0 to ${getRandomInt(1,4000)}\n\r        If ${randomChar} > 666 Then\n\r            ${VBA.getRandomFunctionName()}(${randomChar})\n\r        End If\n\r    Next`
+		  ;
+
+	  }
+		
 }
