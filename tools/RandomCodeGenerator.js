@@ -11,6 +11,7 @@ import PHP from "./utils/php";
 import Powershell from "./utils/powershell";
 import COBOL from "./utils/cobol";
 import Rust from "./utils/rust";
+import SQL from "./utils/sql";
 
 export function generateRandomCode(language, lines) {
   let firstLine = "";
@@ -218,6 +219,50 @@ export function generateRandomCode(language, lines) {
       lastLine = "\n\r}";
 
       return firstLine + fillerLines.join("\n\r") + lastLine;
+    
+    case "sql":
+      firstLine = 'SELECT' + ` ${s_q_l.getRandomFieldName()}\n\r` ;
+      fillerLineQty = parseInt(lines, 10);
+
+      //first loop is just for field names sorry
+      for (let i = 1; i <= fillerLineQty; i++) {
+        const lineOptions = [
+          ` ,${sql.getRandomFieldName()}`
+        ];
+
+        fillerLines.push(lineOptions[Math.floor(Math.random() * lineOptions.length)]);
+      }
+      let lineBreak;
+      if (fillerLineQty > 1) { 
+          lineBreak = '\n\r';
+        }
+      else lineBreak = "";
+      let fromStatement = lineBreak + 'FROM' + ` ${sql.getRandomSchemaName()}` + `.${sql.getRandomTableName()}`;
+      
+      let whereCond = "";
+      //this part is for the other functions like WHERE, GROUP BY etc.
+      if(getRandomInt(1,10) <= 3){
+        whereCond = `\n\rWHERE ${sql.getRandomWhereCondition()}`
+      }
+      else if (getRandomInt(1,10) <= 5) {
+        whereCond = `\n\rWHERE ${sql.getRandomWhereCondition()}${sql.getRandomOperator()}${sql.getRandomWhereCondition()}`;
+      }
+
+      let groupByCond = "";
+      if (getRandomInt(1,10) <= 5) {
+        groupByCond = `\n\rGROUP BY ${sql.getRandomGroupByCondition(fillerLineQty)}` 
+      }
+      else;
+
+      let orderByCond = "";
+      if (getRandomInt(1,10) <= 5) {
+        groupByCond = `\n\rORDER BY ${sql.getRandomOrderByCondition(fillerLineQty)} ASC` 
+      }
+      else;
+
+      lastLine = ";";
+      return firstLine + fillerLines.join("\n\r") + fromStatement + whereCond + groupByCond + orderByCond + lastLine;
+    
     default:
       return "lol";
   }
