@@ -5,16 +5,16 @@ const Contributors = {
   fsharp: ["mrange"],
   docker: ["jwalter"],
   go: ["mistatwist"],
-  php: ["dr_dinomight"],
+  php: ["dr-dinomight"],
   java: ["jwalter"],
   js: ["whitep4nth3r", "lukeocodes", "negue", "isabellabrookes"],
   kotlin: ["jwalter"],
   python: ["mistatwist", "callticketron"],
   powershell: ["lucecarter"],
   rust: ["sociablesteve"],
-  swift: ['justinhhorner'],
-  cplusplus: ['lucecarter'],
-  sql: ["mattytwoshoes"]
+  swift: ["justinhhorner"],
+  cplusplus: ["lucecarter"],
+  sql: ["mattytwoshoes"],
 };
 
 export default Contributors;
