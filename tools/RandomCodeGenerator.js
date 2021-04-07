@@ -179,6 +179,11 @@ export function generateRandomCode(language, lines) {
 
       fillerLineQty = parseInt(lines, 10) - 2;
 
+      if (addComment) {
+        fillerLineQty = fillerLineQty - 1;
+        firstLine += `${Comments.getRandomComment("powershell")}\n\r`;
+      }
+
       for (let i = 1; i <= fillerLineQty; i++) {
         fillerLines.push(`    ${Powershell.getRandomFillerLine()}`);
       }
