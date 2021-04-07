@@ -87,9 +87,9 @@ for (let i = 1; i <= fillerLineQty; i++) {
   fillerLines.push(`    ${CPlusPlus.getRandomFillerLine()}`);
 }
 
-lastLine = "\n\r}";
+lastLine = "${addNewLine()}}";
 
-return firstLine + fillerLines.join("\n\r") + lastLine;
+return firstLine + fillerLines.join(addNewLine()) + lastLine;
 ```
 
 17. Open languages.js and add your language to the Languages object
