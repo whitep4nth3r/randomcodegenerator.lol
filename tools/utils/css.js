@@ -235,4 +235,20 @@ export default class Css {
 
     return `flex-direction: ${getRandomEntry(flexDirectionValues)}`;
   }
+  
+  static getRandomBackgroundPostition() {
+    const backgroundPositionValues = [
+      "left top",
+      "left center",
+      "left bottom",
+      "right top",
+      "right center",
+      "right bottom",
+      "center top",
+      "center center",
+      "center bottom",
+    ];
+
+    return `background-position: ${getRandomEntry(backgroundPositionValues)}`;
+  }
 }
