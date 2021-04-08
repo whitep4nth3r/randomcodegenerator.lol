@@ -222,4 +222,17 @@ export default class Css {
 
     return `cursor: ${getRandomEntry(cursorStyleValues)}`;
   }
+  
+  static getRandomFlexDirection() {
+    const flexDirectionValues = [
+      "row",
+      "column",
+      "row-reverse",
+      "column-reverse",
+      "initial",
+      "inherit",
+    ];
+
+    return `flex-direction: ${getRandomEntry(flexDirectionValues)}`;
+  }
 }
