@@ -170,4 +170,21 @@ export default class Css {
 
     return `justify-content: ${getRandomEntry(justifyValues)}`;
   }
+  
+  static getRandomAlign() {
+    const alignTypes = ["items", "content", "self"];
+    const alignValues = [
+      "stretch",
+      "center",
+      "flex-start",
+      "flex-end",
+      "baseline",
+      "initial",
+      "inherit",
+    ];
+
+    return `align-${getRandomEntry(alignTypes)}: ${getRandomEntry(
+      alignValues
+    )}`;
+  }
 }
