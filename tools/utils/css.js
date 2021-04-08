@@ -6,8 +6,7 @@ export default class Css {
 
   // font style props
   // font family
-
-  // list-style
+  
   static getRandomListStyle() {
     const listStyleValues = [
       "disc",
@@ -155,5 +154,20 @@ export default class Css {
     ];
 
     return `${getRandomEntry(options)}__${getRandomEntry(options)}`;
+  }
+  
+  static getRandomJustify() {
+    const justifyValues = [
+      "flex-start",
+      "flex-end",
+      "center",
+      "space-around",
+      "space-between",
+      "space-evenly",
+      "initial",
+      "inherit",
+    ];
+
+    return `justify-content: ${getRandomEntry(justifyValues)}`;
   }
 }
