@@ -8,14 +8,8 @@ export default class Css {
   // font family
 
   // list-style
-  static getRandomListStylePosition() {
-    const listStylePositionValues = ["inside", "outside", "initial", "inherit"];
-
-    return `list-style-position: ${getRandomEntry(listStylePositionValues)}`;
-  }
-  
-  static getRandomListStyleType() {
-    const listStyleTypeValues = [
+  static getRandomListStyle() {
+    const listStyleValues = [
       "disc",
       "circle",
       "square",
@@ -33,7 +27,7 @@ export default class Css {
       "none",
     ];
 
-    return `list-style-type: ${getRandomEntry(listStyleTypeValues)}`;
+    return `list-style: ${getRandomEntry(listStyleValues)}`;
   }
 
   static getRandomBorderStyle() {

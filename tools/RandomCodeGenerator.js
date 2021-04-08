@@ -76,8 +76,7 @@ export function generateRandomCode(language, lines) {
           `    ${Css.getRandomPositionRule()};`,
           `    ${Css.getRandomBorderStyle()};`,
           `    ${Css.getRandomTextAlign()};`,
-          `    ${Css.getRandomListStyleType()};`,
-          `    ${Css.getRandomListStylePosition()};`,
+          `    ${Css.getRandomListStyle()};`,
         ];
 
         fillerLines.push(getRandomEntry(lineOptions));
