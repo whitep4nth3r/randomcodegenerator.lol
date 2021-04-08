@@ -257,4 +257,19 @@ export default class Css {
 
     return `border-collapse: ${getRandomEntry(borderCollapseValues)}`;
   }
+  
+  static getRandomBackgroundRepeat() {
+    const backgroundRepeatValues = [
+      "repeat",
+      "repeat-x",
+      "repeat-y",
+      "no-repeat",
+      "space",
+      "round",
+      "initial",
+      "inherit",
+    ];
+
+    return `background-repeat: ${getRandomEntry(backgroundRepeatValues)}`;
+  }
 }
