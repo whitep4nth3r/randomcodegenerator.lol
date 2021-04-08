@@ -1,4 +1,5 @@
 import {
+  addNewLine,
   getRandomInt,
   getRandomEntry,
   getRandomNoun,
@@ -57,7 +58,7 @@ export default class Docker {
   }
 
   static randomPreamble() {
-    return "FROM " + this.getRandomImageName() + "\n\r";
+    return "FROM " + this.getRandomImageName() + addNewLine();
   }
 
   static getRandomImageName() {
@@ -65,7 +66,7 @@ export default class Docker {
   }
 
   static randomPostamble() {
-    return "\n\rCMD bin";
+    return `${addNewLine()}CMD bin`;
   }
 
   static getRandomFillerLine() {
