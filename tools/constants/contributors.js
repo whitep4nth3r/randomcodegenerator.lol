@@ -15,6 +15,7 @@ const Contributors = {
   swift: ["justinhhorner"],
   cplusplus: ["lucecarter"],
   sql: ["mattytwoshoes"],
+  scala: ["firephil"],
 };
 
 export default Contributors;

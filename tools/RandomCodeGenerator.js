@@ -17,6 +17,7 @@ import Powershell from "./utils/powershell";
 import Rust from "./utils/rust";
 import SQL from "./utils/sql";
 import Swift from "./utils/swift";
+import Scala from "./utils/scala";
 
 export const Languages = {
   cplusplus: "C++",
@@ -33,6 +34,7 @@ export const Languages = {
   powershell: "Powershell",
   rust: "Rust",
   swift: "Swift",
+  swift: "Scala",
 };
 
 export function generateRandomCode(language, lines) {
@@ -414,6 +416,25 @@ export function generateRandomCode(language, lines) {
 
       lastLine = `${addNewLine()}}`;
       return firstLine + fillerLines.join(addNewLine()) + lastLine;
+
+      case "scala":
+        
+        let commentLine = `//scala 3 ${addNewLine()}`;
+
+        importLine = `import ${Scala.getRandomImport()} ${addNewLine()}`;
+
+        firstLine = `@main ${addNewLine()} def ${Scala.getRandomFunctionName()} = ${addNewLine()}`;
+  
+        fillerLineQty = parseInt(lines, 10) - 2;
+  
+        for (let i = 0; i < fillerLineQty; i++) {
+          fillerLines.push(`   ${Scala.getRandomFillerLine()}`);
+        }
+  
+        lastLine = `${addNewLine()}`;
+
+        return  importLine + commentLine + firstLine + fillerLines.join(addNewLine()) + lastLine;
+        
     default:
       return "lol";
   }
