@@ -272,4 +272,21 @@ export default class Css {
 
     return `background-repeat: ${getRandomEntry(backgroundRepeatValues)}`;
   }
+  
+  static getRandomBoxShadow() {
+    let boxShadowValue = `${getRandomInt(
+      1,
+      10
+    )}${this.getRandomUnit()} ${getRandomInt(1, 10)}${this.getRandomUnit()} `;
+
+    // 50% chance to have spread and blur
+    if (getRandomInt(1, 100) <= 50) {
+      boxShadowValue += `${getRandomInt(
+        2,
+        20
+      )}${this.getRandomUnit()} ${getRandomInt(2, 20)}${this.getRandomUnit()} `;
+    }
+
+    return `box-shadow: ${boxShadowValue + `${this.getRandomHexCode()}`}`;
+  }
 }
