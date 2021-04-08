@@ -251,4 +251,10 @@ export default class Css {
 
     return `background-position: ${getRandomEntry(backgroundPositionValues)}`;
   }
+  
+  static getRandomBorderCollapse() {
+    const borderCollapseValues = ["seperate", "collapse", "initial", "inherit"];
+
+    return `border-collapse: ${getRandomEntry(borderCollapseValues)}`;
+  }
 }
