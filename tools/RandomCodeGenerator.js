@@ -405,8 +405,8 @@ export function generateRandomCode(language, lines) {
         fillerLines.push(`   ${Swift.getRandomFillerLine()}`);
       }
 
-      lastLine = "\n\r}";
-      return firstLine + fillerLines.join("\n\r") + lastLine;
+      lastLine = `${addNewLine()}}`;
+      return firstLine + fillerLines.join(addNewLine()) + lastLine;
 
     case "vba": 
       firstLine = `\n\r${VBA.getRandomAccessModifier()} Function ${VBA.getRandomMethodName()}(${VBA.getRandomMethodName()} As ${VBA.getRandomDataType()}) As ${VBA.getRandomDataType()}\n\r`.replace(
