@@ -409,7 +409,7 @@ export function generateRandomCode(language, lines) {
       return firstLine + fillerLines.join(addNewLine()) + lastLine;
 
     case "vba": 
-      firstLine = `\n\r${VBA.getRandomAccessModifier()} Function ${VBA.getRandomMethodName()}(${VBA.getRandomMethodName()} As ${VBA.getRandomDataType()}) As ${VBA.getRandomDataType()}\n\r`.replace(
+      firstLine = `${addNewLine()}${VBA.getRandomAccessModifier()} Function ${VBA.getRandomMethodName()}() As ${VBA.getRandomDataType()}${addNewLine()}`.replace(
         "  ",
         " "
       );
@@ -425,9 +425,9 @@ export function generateRandomCode(language, lines) {
         fillerLines.push(`    ${VBA.getRandomFillerLine()}`);
       }
 
-      lastLine = "\n\rEnd Function";
+      lastLine = `${addNewLine()}End Function`;
 
-      return firstLine + fillerLines.join("\n\r") + lastLine;
+      return firstLine + fillerLines.join(`${addNewLine()}`) + lastLine;
 
     default:
       return "lol";

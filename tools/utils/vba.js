@@ -1,4 +1,5 @@
 import {
+	addNewLine,
 	getRandomEntry,
 	getRandomInt,
 	getRandomSingleCharacter,
@@ -17,7 +18,7 @@ export default class VBA {
 	}
 
 	static getRandomDataType() {
-		const keyWords = ["Integer", "String", "Double", "Single", "Date", "Boolean","Excel.Application","Access.Application","Word.Application","DAO.Recordset","Object","DAO.Database","Variant"];
+		const keyWords = ["Integer","Long", "String", "Double", "Single", "Date", "Boolean","Excel.Application","Access.Application","Word.Application","DAO.Recordset","Object","DAO.Database","Variant"];
 	
 		var keyWord = getRandomEntry(keyWords);
 		return `${keyWord}`;
@@ -27,7 +28,7 @@ export default class VBA {
 	
 		var keyWord = `${VBA.getRandomDataType()}`;
 		const variableName=getRandomNoun();
-		return `Dim ${variableName} As ${keyWord} \n\r    ${variableName} = ${getRandomInt(0,99999)}`;
+		return `Dim ${variableName} As ${keyWord} ${addNewLine()}    ${variableName} = ${getRandomInt(0,99999)}`;
 	}
 	
 	static getRandomFillerLine() {
@@ -37,11 +38,15 @@ export default class VBA {
 		  VBA.getRandomNewVariableDeclaration(),
 		  VBA.getRandomMethodCall(),
 		  VBA.getRandomForLoopAsArray(),
+		  VBA.getRandomIfBlock(),
 		  `On Error Resume Next 'DON'T ever do this! `
 		];
 		return getRandomEntry(options);
 	}
 	
+	static getRandomIfBlock(){
+		return `If ${getRandomNounCapitalized()} > ${getRandomInt(1,8765)} Then${addNewLine()}        ${VBA.getRandomFunctionName()}(${getRandomInt(5,99)})${addNewLine()}    End If`
+	}
 	static getRandomNewVariableDeclaration() {
 		const keyWords = [
 		  "Dim","Static"
@@ -63,8 +68,7 @@ export default class VBA {
 	static getRandomForLoopAsArray() {
 		const randomChar = getRandomSingleCharacter();
 
-		return `For ${randomChar} = 0 to ${getRandomInt(1,4000)}\n\r        If ${randomChar} > 666 Then\n\r            ${VBA.getRandomFunctionName()}(${randomChar})\n\r        End If\n\r    Next`
-		  ;
+		return `For ${randomChar} = 0 to ${getRandomInt(1,4000)}${addNewLine()}        ${VBA.getRandomFunctionName()}(${randomChar})${addNewLine()}    Next`;
 
 	  }
 		
