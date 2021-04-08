@@ -187,4 +187,39 @@ export default class Css {
       alignValues
     )}`;
   }
+  
+  static getRandomCursorStyle() {
+    const cursorStyleValues = [
+      "alias",
+      "all-scroll",
+      "auto",
+      "cell",
+      "col-resize",
+      "copy",
+      "crosshair",
+      "default",
+      "e-resize",
+      "grab",
+      "grabbing",
+      "help",
+      "move",
+      "n-resize",
+      "ne-resize",
+      "nw-resize",
+      "no-drop",
+      "none",
+      "not-allowed",
+      "pointer",
+      "progress",
+      "row-resize",
+      "text",
+      "vertical-text",
+      "wait",
+      "zoom-in",
+      "zoom-out",
+      "initial",
+    ];
+
+    return `cursor: ${getRandomEntry(cursorStyleValues)}`;
+  }
 }
