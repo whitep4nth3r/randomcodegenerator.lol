@@ -32,6 +32,16 @@ a {
   box-sizing: border-box;
 }
 
+.header {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  justify-content: center;
+  align-content: center;
+  background-color: var(--black);
+  border-bottom: 0.25rem solid var(--yellow);
+}
+
 .container {
   margin-left: auto;
   margin-right: auto;
@@ -43,8 +53,9 @@ a {
   font-size: 2rem;
   text-align: center;
   margin-bottom: 2rem;
-  margin-top: 0;
+  margin-top: 2rem;
   font-family: var(--font-family-heading);
+  color: var(--white);
 }
 
 .blurb {
@@ -70,6 +81,10 @@ a {
   flex-wrap: wrap;
 }
 
+.selector__buttonGroup--lines {
+  margin-bottom: 2rem;
+}
+
 .selector__button,
 .submitPr__button {
   background-color: var(--black);
@@ -77,8 +92,8 @@ a {
   font-family: var(--font-family-heading);
   border-width: 0;
   border-radius: 1rem;
-  font-size: 1.5rem;
-  padding: 0.5rem 1rem;
+  font-size: 1.2rem;
+  padding: 0.5rem;
   cursor: pointer;
   transition: all 0.2s ease-in-out;
   margin-bottom: 1rem;
@@ -102,6 +117,11 @@ a {
   outline-width: 0;
   box-shadow: var(--green) 0 0 0 0.25rem;
   transition: box-shadow 0.2s ease 0s;
+}
+
+.selector__button--lines {
+  background-color: var(--white);
+  color: var(--black);
 }
 
 .selector__button--luckyDip {
@@ -150,23 +170,14 @@ a {
 
 .result__pre {
   position: relative;
-  border-radius: 0;
-  background: var(--black);
-  padding: 1rem;
-  overflow: auto;
-  color: var(--white);
-  text-shadow: 0 1px rgb(0 0 0 / 30%);
-  font-family: var(--font-family-heading);
+  padding: 1rem !important;
   font-size: 1.4rem;
-  text-align: left;
-  word-spacing: normal;
+  line-height: 1.5;
   white-space: pre-wrap;
   word-wrap: normal;
   overflow-x: auto;
   word-break: break-all;
-  line-height: 1.1rem;
   tab-size: 4;
-  overflow: hidden;
 }
 
 .copyButton {

@@ -2,7 +2,7 @@ import {
   getRandomEntry,
   getRandomNounCapitalized,
   getRandomVerbCapitalized,
-  getLogLines,
+  getRandomLogLine,
 } from "./helpers";
 
 export default class Powershell {
@@ -16,15 +16,9 @@ export default class Powershell {
     return `$${getRandomNounCapitalized()} = ${getRandomEntry(options)};`;
   }
 
-  static getRandomWriteHost() {
-    const options = getLogLines();
-
-    return getRandomEntry(options);
-  }
-
   static getRandomFillerLine() {
     const options = [
-      `Write-Host ${Powershell.getRandomWriteHost()};`,
+      `Write-Host ${getRandomLogLine()};`,
       Powershell.getRandomVariableDeclaration(),
     ];
     return getRandomEntry(options);

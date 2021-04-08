@@ -6,17 +6,50 @@ export default class Css {
 
   // font style props
   // font family
+  
+  static getRandomListStyle() {
+    const listStyleValues = [
+      "disc",
+      "circle",
+      "square",
+      "decimal",
+      "decimal-leading-zero",
+      "lower-roman",
+      "upper-roman",
+      "lower-greek",
+      "lower-latin",
+      "upper-latin",
+      "armenian",
+      "georgian",
+      "lower-alpha",
+      "upper-alpha",
+      "none",
+    ];
 
-  // list-style
+    return `list-style: ${getRandomEntry(listStyleValues)}`;
+  }
 
-  static getRandomBorderStyle(){
-    const borderStyleValues = ["none", "hidden", "dotted", "dashed", "solid", "double", "groove", "ridge", "inset", "outset", "initial", "inherit"]
+  static getRandomBorderStyle() {
+    const borderStyleValues = [
+      "none",
+      "hidden",
+      "dotted",
+      "dashed",
+      "solid",
+      "double",
+      "groove",
+      "ridge",
+      "inset",
+      "outset",
+      "initial",
+      "inherit",
+    ];
 
     return `border-style: ${getRandomEntry(borderStyleValues)}`;
   }
-  
-  static getRandomTextAlign(){
-    const alignValues = ["left", "right", "center", "justify", "initial", "inherit"]
+
+  static getRandomTextAlign() {
+    const alignValues = ["left", "right", "center", "justify", "initial", "inherit"];
 
     return `text-align: ${getRandomEntry(alignValues)}`;
   }
@@ -121,5 +154,139 @@ export default class Css {
     ];
 
     return `${getRandomEntry(options)}__${getRandomEntry(options)}`;
+  }
+  
+  static getRandomJustify() {
+    const justifyValues = [
+      "flex-start",
+      "flex-end",
+      "center",
+      "space-around",
+      "space-between",
+      "space-evenly",
+      "initial",
+      "inherit",
+    ];
+
+    return `justify-content: ${getRandomEntry(justifyValues)}`;
+  }
+  
+  static getRandomAlign() {
+    const alignTypes = ["items", "content", "self"];
+    const alignValues = [
+      "stretch",
+      "center",
+      "flex-start",
+      "flex-end",
+      "baseline",
+      "initial",
+      "inherit",
+    ];
+
+    return `align-${getRandomEntry(alignTypes)}: ${getRandomEntry(
+      alignValues
+    )}`;
+  }
+  
+  static getRandomCursorStyle() {
+    const cursorStyleValues = [
+      "alias",
+      "all-scroll",
+      "auto",
+      "cell",
+      "col-resize",
+      "copy",
+      "crosshair",
+      "default",
+      "e-resize",
+      "grab",
+      "grabbing",
+      "help",
+      "move",
+      "n-resize",
+      "ne-resize",
+      "nw-resize",
+      "no-drop",
+      "none",
+      "not-allowed",
+      "pointer",
+      "progress",
+      "row-resize",
+      "text",
+      "vertical-text",
+      "wait",
+      "zoom-in",
+      "zoom-out",
+      "initial",
+    ];
+
+    return `cursor: ${getRandomEntry(cursorStyleValues)}`;
+  }
+  
+  static getRandomFlexDirection() {
+    const flexDirectionValues = [
+      "row",
+      "column",
+      "row-reverse",
+      "column-reverse",
+      "initial",
+      "inherit",
+    ];
+
+    return `flex-direction: ${getRandomEntry(flexDirectionValues)}`;
+  }
+  
+  static getRandomBackgroundPostition() {
+    const backgroundPositionValues = [
+      "left top",
+      "left center",
+      "left bottom",
+      "right top",
+      "right center",
+      "right bottom",
+      "center top",
+      "center center",
+      "center bottom",
+    ];
+
+    return `background-position: ${getRandomEntry(backgroundPositionValues)}`;
+  }
+  
+  static getRandomBorderCollapse() {
+    const borderCollapseValues = ["seperate", "collapse", "initial", "inherit"];
+
+    return `border-collapse: ${getRandomEntry(borderCollapseValues)}`;
+  }
+  
+  static getRandomBackgroundRepeat() {
+    const backgroundRepeatValues = [
+      "repeat",
+      "repeat-x",
+      "repeat-y",
+      "no-repeat",
+      "space",
+      "round",
+      "initial",
+      "inherit",
+    ];
+
+    return `background-repeat: ${getRandomEntry(backgroundRepeatValues)}`;
+  }
+  
+  static getRandomBoxShadow() {
+    let boxShadowValue = `${getRandomInt(
+      1,
+      10
+    )}${this.getRandomUnit()} ${getRandomInt(1, 10)}${this.getRandomUnit()} `;
+
+    // 50% chance to have spread and blur
+    if (getRandomInt(1, 100) <= 50) {
+      boxShadowValue += `${getRandomInt(
+        2,
+        20
+      )}${this.getRandomUnit()} ${getRandomInt(2, 20)}${this.getRandomUnit()} `;
+    }
+
+    return `box-shadow: ${boxShadowValue + `${this.getRandomHexCode()}`}`;
   }
 }

@@ -1,29 +1,26 @@
-import hljs from 'highlight.js';
-import 'highlight.js/styles/a11y-dark.css';
 import { useState, useEffect } from "react";
-import { generateRandomCode, Languages } from "../tools/RandomCodeGenerator";
+import hljs from "highlight.js";
+import "highlight.js/styles/a11y-dark.css";
+import dynamic from "next/dynamic";
+
+import { generateRandomCode } from "../tools/RandomCodeGenerator";
 import { getRandomLang, getRandomInt, getContributors } from "../tools/utils/helpers";
+import { Languages } from "../tools/constants";
 
 import PageMeta from "../components/PageMeta";
 import Footer from "../components/Footer";
 
-export default function Home() {
-  const [selectedLang, setSelectedLang] = useState("js");
-  const [numberOfLines, setNumberOfLines] = useState("3");
-  const [result, setResult] = useState("");
+const DynamicVideoEmbed = dynamic(() => import("../components/VideoEmbed"));
+
+export default function Home({ randomNumberOfLines, randomLang, randomCode }) {
+  const [selectedLang, setSelectedLang] = useState(randomLang);
+  const [numberOfLines, setNumberOfLines] = useState(randomNumberOfLines);
+  const [result, setResult] = useState(randomCode);
   const [contributors, setContributors] = useState([]);
 
   useEffect(() => {
-    const randomLang = getRandomLang();
-    const randomInt = getRandomInt(3, 8);
-
-    setSelectedLang(randomLang);
-    setNumberOfLines(randomInt);
-
-    const newCode = generateRandomCode(randomLang, randomInt);
-    setResult(newCode);
-
-    updateContributors(randomLang);
+    generateNewCode(selectedLang, numberOfLines);
+    updateContributors(selectedLang);
   }, []);
 
   function updateContributors(newLang) {
@@ -33,20 +30,13 @@ export default function Home() {
 
   function handleButtonClick(newLang) {
     setSelectedLang(newLang);
-    const newCode = generateRandomCode(newLang, numberOfLines);
-    setResult(newCode);
+    generateNewCode(newLang, numberOfLines);
     updateContributors(newLang);
   }
 
-  function handleInputOnChange(value) {
-    setNumberOfLines(value);
-  }
-
-  function handleInputOnKeyDown(event) {
-    if (event.keyCode === 13) {
-      const newCode = generateRandomCode(selectedLang, numberOfLines);
-      setResult(newCode);
-    }
+  function chooseAmount(randomInt) {
+    setNumberOfLines(randomInt);
+    generateNewCode(selectedLang, randomInt);
   }
 
   function luckyDip() {
@@ -54,10 +44,13 @@ export default function Home() {
     const randomInt = getRandomInt(3, 20);
     setNumberOfLines(randomInt);
     setSelectedLang(newLang);
-
-    const newCode = generateRandomCode(newLang, randomInt);
-    setResult(newCode);
+    generateNewCode(newLang, randomInt);
     updateContributors(newLang);
+  }
+
+  function generateNewCode(newLang, newLines) {
+    const newCode = generateRandomCode(newLang, newLines);
+    setResult(newCode);
   }
 
   function copyCode() {
@@ -68,10 +61,13 @@ export default function Home() {
     <>
       <PageMeta />
 
-      <main className="container">
+      <header className="header">
         <h1 className="title">[object Object]</h1>
-        <p className="blurb">Need some code for your project? We've got you covered.</p>
-        <p className="blurb">Choose your language. Choose how many lines.</p>
+      </header>
+
+      <main className="container">
+        <h2 className="blurb">Need some code for your project? We've got you covered.</h2>
+        <p className="blurb">Choose how much code. Choose your language.</p>
         <p className="blurb">BÄM! You got code.</p>
 
         <button
@@ -83,19 +79,31 @@ export default function Home() {
         </button>
 
         <div className="selector">
-          <label className="selector__item__label">I want</label>
-          <input
-            value={numberOfLines}
-            onKeyDown={(e) => handleInputOnKeyDown(e)}
-            onChange={(e) => handleInputOnChange(e.target.value)}
-            type="number"
-            className="input"
-            min="3"
-            pattern="[0-9]*"
-          />
+          <p className="selector__item__label">I want</p>
 
-          <label className="selector__item__label">lines of</label>
-
+          <div className="selector__buttonGroup selector__buttonGroup--lines">
+            <button
+              type="button"
+              className={`selector__button selector__button--lines`}
+              onClick={() => chooseAmount(getRandomInt(3, 8))}
+            >
+              A little
+            </button>
+            <button
+              type="button"
+              className={`selector__button selector__button--lines`}
+              onClick={() => chooseAmount(getRandomInt(9, 13))}
+            >
+              Some
+            </button>
+            <button
+              type="button"
+              className={`selector__button selector__button--lines`}
+              onClick={() => chooseAmount(getRandomInt(14, 20))}
+            >
+              A lot
+            </button>
+          </div>
           <div className="selector__buttonGroup">
             {Object.entries(Languages).map(([key, value]) => {
               const selectedClass = selectedLang === key ? " selector__button--selected" : "";
@@ -116,11 +124,11 @@ export default function Home() {
         {result.length > 0 && (
           <>
             <div className="result">
-              <pre className="result__pre">
+              <pre className="result__pre hljs">
                 <button type="button" className="copyButton" onClick={copyCode}>
                   Copy
                 </button>
-                <code dangerouslySetInnerHTML={{ __html: hljs.highlightAuto(result).value}}></code>
+                <code dangerouslySetInnerHTML={{ __html: hljs.highlightAuto(result).value }}></code>
               </pre>
             </div>
             {contributors.length > 0 && (
@@ -152,8 +160,23 @@ export default function Home() {
         >
           Submit a PR
         </a>
+
+        <DynamicVideoEmbed />
       </main>
       <Footer />
     </>
   );
+}
+
+export async function getStaticProps() {
+  const randomNumberOfLines = getRandomInt(3, 9);
+  const randomLang = getRandomLang();
+  const randomCode = generateRandomCode(randomLang, randomNumberOfLines);
+  return {
+    props: {
+      randomLang,
+      randomNumberOfLines,
+      randomCode,
+    },
+  };
 }
