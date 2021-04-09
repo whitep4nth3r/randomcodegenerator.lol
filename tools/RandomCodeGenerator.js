@@ -32,8 +32,10 @@ function generateRandomCode(language, lines) {
   let includeForLoop = parseInt(lines, 10) > 7;
 
   switch (language) {
+    // case "cobol":
+    // return LANGUAGES.COBOL.generateRandomCode(lines);
     case "cplusplus":
-      return LANGUAGESCPlusPlus.generateRandomCode(lines);
+      return LANGUAGES.CPlusPlus.generateRandomCode(lines);
     case "css":
       firstLine = `.${LANGUAGES.Css.getRandomClassName()} {${Helpers.addNewLine()}`;
       fillerLineQty = parseInt(lines, 10) - 2;

@@ -67,9 +67,3 @@ export function getRandomLogLine() {
 export function getRandomSingleCharacter() {
   return getRandomEntry(CONSTANTS.singleCharacters);
 }
-
-export function populateFillerLines(string, iterations) {
-  return Array(iterations)
-    .fill()
-    .map((l) => string);
-}

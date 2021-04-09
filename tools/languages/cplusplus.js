@@ -36,10 +36,11 @@ export default class CPlusPlus {
   static generateRandomCode(lines) {
     const firstLine = `${CPlusPlus.getRandomFunctionName()}() {${Helpers.addNewLine()}`;
     const fillerLineQty = parseInt(lines, 10) - 2;
-    const fillerLines = Helpers.populateFillerLines(
-      `${Helpers.getIndentation(1)}${CPlusPlus.getRandomFillerLine()}`,
-      fillerLineQty
-    );
+    const fillerLines = Array(fillerLineQty)
+      .fill()
+      .map(
+        (l) => `${Helpers.getIndentation(1)}${CPlusPlus.getRandomFillerLine()}`
+      );
     const lastLine = `${Helpers.addNewLine()}}`;
     return firstLine + fillerLines.join(Helpers.addNewLine()) + lastLine;
   }
