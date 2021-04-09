@@ -1,6 +1,6 @@
 import { Comments } from "./utils";
 import { Helpers } from "./utils";
-import { Java, Kotlin, Python, Rust, SQL, Swift, VBA } from "./languages";
+import { Kotlin, Python, Rust, SQL, Swift, VBA } from "./languages";
 import * as LANGUAGES from "./languages";
 
 function generateRandomCode(language, lines) {
@@ -28,6 +28,8 @@ function generateRandomCode(language, lines) {
       return LANGUAGES.FSharp.generateRandomCode(lines);
     case "go":
       return LANGUAGES.Go.generateRandomCode(lines);
+    case "java":
+      return LANGUAGES.Java.generateRandomCode(lines, addComment);
     case "js":
       return LANGUAGES.JavaScript.generateRandomCode(
         lines,
@@ -44,22 +46,6 @@ function generateRandomCode(language, lines) {
       return LANGUAGES.PHP.generateRandomCode(lines, addComment);
     case "powershell":
       return LANGUAGES.Powershell.generateRandomCode(lines, addComment);
-    case "java":
-      firstLine = `${Java.getRandomMethodSignature()}() {${Helpers.addNewLine()}`;
-      fillerLineQty = parseInt(lines, 10) - 2;
-
-      if (addComment) {
-        fillerLineQty = fillerLineQty - 1;
-        fillerLines.push(Comments.getRandomComment());
-      }
-
-      for (let i = 1; i <= fillerLineQty; i++) {
-        fillerLines.push(`    ${Java.getRandomFillerLine()}`);
-      }
-
-      lastLine = `${Helpers.addNewLine()}}`;
-
-      return firstLine + fillerLines.join(Helpers.addNewLine()) + lastLine;
     case "kotlin":
       firstLine = `${Kotlin.getRandomMethodSignature()} {${Helpers.addNewLine()}`;
       fillerLineQty = parseInt(lines, 10) - 2;

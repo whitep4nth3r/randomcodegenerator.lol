@@ -1,36 +1,29 @@
-import {
-  getRandomEntry,
-  capitalizeFirstChar,
-  getRandomInt,
-  getRandomNounCapitalized,
-  getRandomVerb,
-  getRandomLogLine,
-} from "../utils/helpers";
+import { Comments, Helpers } from "../utils";
 
 export default class Java {
   static getRandomMethodSignature() {
-    return `public void ${getRandomVerb()}${getRandomNounCapitalized()}`;
+    return `public void ${Helpers.getRandomVerb()}${Helpers.getRandomNounCapitalized()}`;
   }
 
   static getRandomVariableDeclaration() {
     const types = [
       {
         name: () => "String",
-        generator: (_) => `${getRandomLogLine()}`,
+        generator: (_) => `${Helpers.getRandomLogLine()}`,
       },
       {
         name: () => "int",
-        generator: (_) => getRandomInt(0, 666),
+        generator: (_) => Helpers.getRandomInt(0, 666),
       },
       {
         name: () => {
           const randomName = Java.getRandomVariableName();
-          return capitalizeFirstChar(randomName);
+          return Helpers.capitalizeFirstChar(randomName);
         },
         generator: (name) => `new ${name}()`,
       },
     ];
-    const randomType = getRandomEntry(types);
+    const randomType = Helpers.getRandomEntry(types);
     const typeName = randomType.name();
     return `${typeName} ${this.getRandomVariableName()} = ${randomType.generator(
       typeName
@@ -38,20 +31,39 @@ export default class Java {
   }
 
   static getRandomVariableName() {
-    const fragmentCount = getRandomInt(1, 2);
+    const fragmentCount = Helpers.getRandomInt(1, 2);
     const fragments = [];
     for (var i = 0; i < fragmentCount; i++) {
-      fragments.push(getRandomNounCapitalized());
+      fragments.push(Helpers.getRandomNounCapitalized());
     }
     const fullName = fragments.join("");
-    return capitalizeFirstChar(fullName);
+    return Helpers.capitalizeFirstChar(fullName);
   }
 
   static getRandomFillerLine() {
     const options = [
-      `System.out.println(${getRandomLogLine()});`,
+      `System.out.println(${Helpers.getRandomLogLine()});`,
       Java.getRandomVariableDeclaration(),
     ];
-    return getRandomEntry(options);
+    return Helpers.getRandomEntry(options);
+  }
+
+  static generateRandomCode(lines, addComment) {
+    const firstLine = `${Java.getRandomMethodSignature()}() {${Helpers.addNewLine()}`;
+    let fillerLineQty = parseInt(lines, 10) - 2;
+    let fillerLines = [];
+
+    if (addComment) {
+      fillerLineQty = fillerLineQty - 1;
+      fillerLines.push(Comments.getRandomComment());
+    }
+
+    for (let i = 1; i <= fillerLineQty; i++) {
+      fillerLines.push(`    ${Java.getRandomFillerLine()}`);
+    }
+
+    const lastLine = `${Helpers.addNewLine()}}`;
+
+    return firstLine + fillerLines.join(Helpers.addNewLine()) + lastLine;
   }
 }
