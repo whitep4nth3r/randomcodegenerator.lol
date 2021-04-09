@@ -50,62 +50,10 @@ function generateRandomCode(language, lines) {
         addComment,
         includeForLoop
       );
-
     case "rust":
       return LANGUAGES.Rust.generateRandomCode(lines);
     case "sql":
-      firstLine =
-        "SELECT" + ` ${SQL.getRandomFieldName()}${Helpers.addNewLine()}`;
-      fillerLineQty = parseInt(lines, 10);
-
-      //first loop is just for field names sorry
-      for (let i = 1; i <= fillerLineQty; i++) {
-        const lineOptions = [` ,${SQL.getRandomFieldName()}`];
-
-        fillerLines.push(Helpers.getRandomEntry(lineOptions));
-      }
-      let lineBreak;
-      if (fillerLineQty > 1) {
-        lineBreak = Helpers.addNewLine();
-      } else lineBreak = "";
-      let fromStatement =
-        lineBreak +
-        "FROM" +
-        ` ${SQL.getRandomSchemaName()}` +
-        `.${SQL.getRandomTableName()}`;
-
-      let whereCond = "";
-      //this part is for the other functions like WHERE, GROUP BY etc.
-      if (Helpers.getRandomInt(1, 10) <= 3) {
-        whereCond = `${Helpers.addNewLine()}WHERE ${SQL.getRandomWhereCondition()}`;
-      } else if (Helpers.getRandomInt(1, 10) <= 5) {
-        whereCond = `${Helpers.addNewLine()}WHERE ${SQL.getRandomWhereCondition()}${SQL.getRandomOperator()}${SQL.getRandomWhereCondition()}`;
-      }
-
-      let groupByCond = "";
-      if (Helpers.getRandomInt(1, 10) <= 5) {
-        groupByCond = `${Helpers.addNewLine()}GROUP BY ${SQL.getRandomGroupByCondition(
-          fillerLineQty
-        )}`;
-      } else;
-
-      let orderByCond = "";
-      if (Helpers.getRandomInt(1, 10) <= 5) {
-        groupByCond = `${Helpers.addNewLine()}ORDER BY ${SQL.getRandomOrderByCondition(
-          fillerLineQty
-        )} ASC`;
-      } else;
-
-      lastLine = ";";
-      return (
-        firstLine +
-        fillerLines.join(Helpers.addNewLine()) +
-        fromStatement +
-        whereCond +
-        groupByCond +
-        orderByCond +
-        lastLine
-      );
+      return LANGUAGES.SQL.generateRandomCode(lines);
     case "swift":
       firstLine = `func ${Swift.getRandomFunctionName()} {${Helpers.addNewLine()}`;
 

@@ -1,4 +1,4 @@
-import { addNewLine, getRandomEntry, getRandomInt } from "../utils/helpers";
+import { Helpers } from "../utils";
 
 const fieldNames = [
   "customerNumber",
@@ -90,20 +90,24 @@ export default class SQL {
   static getRandomOperator() {
     const positionValues = ["AND", "OR"];
 
-    return `${addNewLine()} ${getRandomEntry(positionValues)} `;
+    return `${Helpers.addNewLine()} ${Helpers.getRandomEntry(positionValues)} `;
   }
 
   static getRandomFieldName() {
-    if (getRandomInt(1, 10) <= 3) {
-      return getRandomEntry(fieldNames) + " AS " + getRandomEntry(fieldNames);
+    if (Helpers.getRandomInt(1, 10) <= 3) {
+      return (
+        Helpers.getRandomEntry(fieldNames) +
+        " AS " +
+        Helpers.getRandomEntry(fieldNames)
+      );
     } else {
-      return getRandomEntry(fieldNames);
+      return Helpers.getRandomEntry(fieldNames);
     }
   }
 
   static getRandomSchemaName() {
     const schemaName = [
-      "schema" + getRandomInt(1, 999),
+      "schema" + Helpers.getRandomInt(1, 999),
       "sql",
       "dbo",
       "postgres",
@@ -114,7 +118,7 @@ export default class SQL {
       "pretzel",
       "schnitzel",
     ];
-    return getRandomEntry(schemaName);
+    return Helpers.getRandomEntry(schemaName);
   }
 
   static getRandomTableName() {
@@ -155,21 +159,79 @@ export default class SQL {
       "flat",
       "summer",
     ];
-    return getRandomEntry(tableName);
+    return Helpers.getRandomEntry(tableName);
   }
 
   static getRandomWhereCondition() {
-    let where = getRandomEntry(fieldNames) + " = " + getRandomInt(1, 100000);
+    let where =
+      Helpers.getRandomEntry(fieldNames) +
+      " = " +
+      Helpers.getRandomInt(1, 100000);
     return where;
   }
 
   static getRandomGroupByCondition(lineQty) {
-    let groupBy = getRandomInt(1, lineQty);
+    let groupBy = Helpers.getRandomInt(1, lineQty);
     return groupBy;
   }
 
   static getRandomOrderByCondition(lineQty) {
-    let orderBy = getRandomInt(1, lineQty);
+    let orderBy = Helpers.getRandomInt(1, lineQty);
     return orderBy;
+  }
+
+  static generateRandomCode(lines) {
+    let firstLine =
+      "SELECT" + ` ${SQL.getRandomFieldName()}${Helpers.addNewLine()}`;
+    let fillerLineQty = parseInt(lines, 10);
+    let fillerLines = [];
+    //first loop is just for field names sorry
+    for (let i = 1; i <= fillerLineQty; i++) {
+      const lineOptions = [` ,${SQL.getRandomFieldName()}`];
+
+      fillerLines.push(Helpers.getRandomEntry(lineOptions));
+    }
+    let lineBreak;
+    if (fillerLineQty > 1) {
+      lineBreak = Helpers.addNewLine();
+    } else lineBreak = "";
+    let fromStatement =
+      lineBreak +
+      "FROM" +
+      ` ${SQL.getRandomSchemaName()}` +
+      `.${SQL.getRandomTableName()}`;
+
+    let whereCond = "";
+    //this part is for the other functions like WHERE, GROUP BY etc.
+    if (Helpers.getRandomInt(1, 10) <= 3) {
+      whereCond = `${Helpers.addNewLine()}WHERE ${SQL.getRandomWhereCondition()}`;
+    } else if (Helpers.getRandomInt(1, 10) <= 5) {
+      whereCond = `${Helpers.addNewLine()}WHERE ${SQL.getRandomWhereCondition()}${SQL.getRandomOperator()}${SQL.getRandomWhereCondition()}`;
+    }
+
+    let groupByCond = "";
+    if (Helpers.getRandomInt(1, 10) <= 5) {
+      groupByCond = `${Helpers.addNewLine()}GROUP BY ${SQL.getRandomGroupByCondition(
+        fillerLineQty
+      )}`;
+    } else;
+
+    let orderByCond = "";
+    if (Helpers.getRandomInt(1, 10) <= 5) {
+      groupByCond = `${Helpers.addNewLine()}ORDER BY ${SQL.getRandomOrderByCondition(
+        fillerLineQty
+      )} ASC`;
+    } else;
+
+    const lastLine = ";";
+    return (
+      firstLine +
+      fillerLines.join(Helpers.addNewLine()) +
+      fromStatement +
+      whereCond +
+      groupByCond +
+      orderByCond +
+      lastLine
+    );
   }
 }
