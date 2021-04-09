@@ -44,9 +44,9 @@ export default class CPlusPlus {
   static generateRandomCode(lines) {
     const firstLine = `${CPlusPlus.getRandomFunctionName()}() {${addNewLine()}`;
     const fillerLineQty = parseInt(lines, 10) - 2;
-    const fillerLines = Array(fillerLineQty).fill(
-      `${getIndentation(1)}${CPlusPlus.getRandomFillerLine()}`
-    );
+    const fillerLines = Array(fillerLineQty)
+      .fill()
+      .map((l) => `${getIndentation(1)}${CPlusPlus.getRandomFillerLine()}`);
     const lastLine = `${addNewLine()}}`;
     return firstLine + fillerLines.join(addNewLine()) + lastLine;
   }
