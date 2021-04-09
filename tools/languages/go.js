@@ -263,9 +263,8 @@ export default class Go {
 
     //set up a function
     const firstLine = `func ${Go.getRandomFunctionName()} { ${Helpers.addNewLine()}`;
-
     //add code to function
-    const fillerLines = Array(fillerLineQty)
+    const fillerLines = Array(fillerLineQty < 1 ? 1 : fillerLineQty)
       .fill()
       .map((l) => Go.getRandomFillerLine());
 
