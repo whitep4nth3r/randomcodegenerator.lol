@@ -36,6 +36,8 @@ function generateRandomCode(language, lines) {
       return LANGUAGES.COBOL.generateRandomCode(lines);
     case "cplusplus":
       return LANGUAGES.CPlusPlus.generateRandomCode(lines);
+    case "csharp":
+      return LANGUAGES.CSharp.generateRandomCode(lines, addComment);
     case "css":
       firstLine = `.${LANGUAGES.Css.getRandomClassName()} {${Helpers.addNewLine()}`;
       fillerLineQty = parseInt(lines, 10) - 2;
@@ -69,29 +71,6 @@ function generateRandomCode(language, lines) {
       }
 
       lastLine = `${Helpers.addNewLine()}}`;
-      return firstLine + fillerLines.join(Helpers.addNewLine()) + lastLine;
-    case "csharp":
-      firstLine = `${CSharp.getRandomAccessModifier()} ${CSharp.getRandomMethodKeyword()} void ${CSharp.getRandomMethodName()}()${Helpers.addNewLine()}`.replace(
-        "  ",
-        " "
-      );
-      if (firstLine[0] === " ") firstLine = firstLine.slice(1);
-
-      fillerLineQty = parseInt(lines, 10) - 3;
-
-      fillerLines.push("{");
-
-      if (addComment) {
-        fillerLineQty = fillerLineQty - 1;
-        fillerLines.push(Comments.getRandomComment());
-      }
-
-      for (let i = 1; i <= fillerLineQty; i++) {
-        fillerLines.push(`    ${CSharp.getRandomFillerLine()}`);
-      }
-
-      lastLine = `${Helpers.addNewLine()}}`;
-
       return firstLine + fillerLines.join(Helpers.addNewLine()) + lastLine;
     case "docker":
       firstLine = Docker.randomPreamble();
@@ -436,7 +415,6 @@ function generateRandomCode(language, lines) {
 
       lastLine = `${Helpers.addNewLine()}}`;
       return firstLine + fillerLines.join(Helpers.addNewLine()) + lastLine;
-
     case "vba":
       firstLine = `${VBA.getRandomAccessModifier()} Function ${VBA.getRandomMethodName()}() As ${VBA.getRandomDataType()}${Helpers.addNewLine()}`.replace(
         "  ",
@@ -457,7 +435,6 @@ function generateRandomCode(language, lines) {
       lastLine = `${Helpers.addNewLine()}End Function`;
 
       return firstLine + fillerLines.join(`${Helpers.addNewLine()}`) + lastLine;
-
     default:
       return "lol";
   }
