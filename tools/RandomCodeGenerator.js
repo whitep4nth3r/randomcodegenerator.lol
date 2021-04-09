@@ -19,24 +19,6 @@ import Rust from "./utils/rust";
 import SQL from "./utils/sql";
 import Swift from "./utils/swift";
 
-export const Languages = {
-  cplusplus: "C++",
-  css: "CSS",
-  cobol: "COBOL",
-  csharp: "C#",
-  fsharp: "F#",
-  docker: "Docker",
-  php: "PHP",
-  java: "Java",
-  js: "JavaScript",
-  ts: "TypeScript",
-  kotlin: "Kotlin",
-  python: "Python",
-  powershell: "Powershell",
-  rust: "Rust",
-  swift: "Swift",
-};
-
 export function generateRandomCode(language, lines) {
   let firstLine = "";
   let fillerLineQty = "";
@@ -235,26 +217,51 @@ export function generateRandomCode(language, lines) {
 
       return firstLine + fillerLines.join(addNewLine()) + lastLine;
     case "ts":
-      const firstTSLines = [
+      const firstTsLines = [
         (randomFunctionName) => {
-          return `function ${randomFunctionName}(x: any, y: any): void {\n\r`;
+          return `function ${randomFunctionName}(x: any, y: any): any {${addNewLine()}`;
         },
         (randomFunctionName) => {
-          return `const ${randomFunctionName} = function (x: any, y: any): void {\n\r`;
+          return `const ${randomFunctionName} = function (x: any, y: any): any {${addNewLine()}`;
         },
       ];
 
-      firstLine = getRandomEntry(firstTSLines)(
+      firstLine = getRandomEntry(firstTsLines)(
         TypeScript.getRandomFunctionName()
       );
 
-      fillerLineQty = parseInt(lines, 10) - 2;
+      // - 3 because we're now adding a firstLine, returnLine and lastLine
+      fillerLineQty = parseInt(lines, 10) - 3;
 
-      for (let i = 1; i <= fillerLineQty; i++) {
-        fillerLines.push(`    ${TypeScript.getRandomFillerLine()}`);
+      if (addComment) {
+        fillerLineQty = fillerLineQty - 1;
+        fillerLines.push(Comments.getRandomComment());
       }
 
-      lastLine = "\n\r}";
+      // if line length > 7
+      if (includeForLoop) {
+        // add 2 lines
+        fillerLines.push(`    ${TypeScript.getRandomFillerLine()}`);
+        fillerLines.push(`    ${TypeScript.getRandomFillerLine()}`);
+
+        // add 3 lines
+        const forLoopLines = TypeScript.getRandomForLoopAsArray(); // return array
+
+        fillerLines = [...fillerLines, ...forLoopLines];
+
+        // add the rest
+        for (let i = 6; i <= fillerLineQty; i++) {
+          fillerLines.push(`    ${TypeScript.getRandomFillerLine()}`);
+        }
+      } else {
+        for (let i = 1; i <= fillerLineQty; i++) {
+          fillerLines.push(`    ${TypeScript.getRandomFillerLine()}`);
+        }
+      }
+
+      fillerLines.push(TypeScript.getRandomReturn());
+
+      lastLine = `${addNewLine()}}`;
 
       return firstLine + fillerLines.join(addNewLine()) + lastLine;
     case "php":

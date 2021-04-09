@@ -1,50 +1,25 @@
+import JavaScript from './javascript'
+
 import {
   getRandomEntry,
-  getRandomInt,
   getRandomNoun,
-  getRandomNounCapitalized,
-  getRandomVerb,
+  getRandomLogLine,
 } from "./helpers";
 
-export default class TypeScript {
-  static getRandomFunctionName() {
-    return `${getRandomVerb()}${getRandomNounCapitalized()}`;
-  }
-
+export default class TypeScript extends JavaScript {
   static getRandomVariableDeclaration() {
     const keyWords = ["let", "const", "var"];
-    const options = ["[]", "this"];
+
+    console.log('do a thing');
 
     return `${getRandomEntry(keyWords)} ${getRandomNoun()}: any = ${getRandomEntry(
-      options
+      TypeScript.getRandomInitializationVars()
     )};`;
-  }
-
-  static getRandomConsoleLog() {
-    const options = [
-      '"Goodbye, world!"',
-      '"test"',
-      '"hello"',
-      `"here ${getRandomInt(0, 100)}"`,
-      '"should be here"',
-      '"some error"',
-      "[object Object]",
-      '"undefined"',
-      '"=== DEBUG ==="',
-      '"to do"',
-      '"asdf"',
-      "NaN",
-      '"FIRE"',
-      '"schnitzel"',
-      '"TODO: refactor this"',
-    ];
-
-    return getRandomEntry(options);
   }
 
   static getRandomFillerLine() {
     const options = [
-      `console.log(${TypeScript.getRandomConsoleLog()});`,
+      `console.${getRandomEntry(TypeScript.getRandomConsoleLevel())}(${getRandomLogLine()});`,
       TypeScript.getRandomVariableDeclaration(),
       `${TypeScript.getRandomFunctionName()}();`,
     ];

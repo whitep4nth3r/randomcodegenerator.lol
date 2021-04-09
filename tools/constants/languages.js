@@ -8,6 +8,7 @@ const Languages = {
   php: "PHP",
   java: "Java",
   js: "JavaScript",
+  ts: "TypeScript",
   kotlin: "Kotlin",
   python: "Python",
   powershell: "Powershell",
