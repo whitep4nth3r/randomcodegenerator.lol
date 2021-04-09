@@ -1,6 +1,6 @@
 import { Comments } from "./utils";
 import { Helpers } from "./utils";
-import { Rust, SQL, Swift, VBA } from "./languages";
+import { VBA } from "./languages";
 import * as LANGUAGES from "./languages";
 
 function generateRandomCode(language, lines) {
@@ -44,27 +44,19 @@ function generateRandomCode(language, lines) {
       return LANGUAGES.Powershell.generateRandomCode(lines, addComment);
     case "python":
       return LANGUAGES.Python.generateRandomCode(lines, addComment);
+
+    case "rust":
+      return LANGUAGES.Rust.generateRandomCode(lines);
+    case "sql":
+      return LANGUAGES.SQL.generateRandomCode(lines);
+    case "swift":
+      return LANGUAGES.Swift.generateRandomCode(lines);
     case "ts":
       return LANGUAGES.TypeScript.generateRandomCode(
         lines,
         addComment,
         includeForLoop
       );
-    case "rust":
-      return LANGUAGES.Rust.generateRandomCode(lines);
-    case "sql":
-      return LANGUAGES.SQL.generateRandomCode(lines);
-    case "swift":
-      firstLine = `func ${Swift.getRandomFunctionName()} {${Helpers.addNewLine()}`;
-
-      fillerLineQty = parseInt(lines, 10) - 2;
-
-      for (let i = 0; i < fillerLineQty; i++) {
-        fillerLines.push(`   ${Swift.getRandomFillerLine()}`);
-      }
-
-      lastLine = `${Helpers.addNewLine()}}`;
-      return firstLine + fillerLines.join(Helpers.addNewLine()) + lastLine;
     case "vba":
       firstLine = `${VBA.getRandomAccessModifier()} Function ${VBA.getRandomMethodName()}() As ${VBA.getRandomDataType()}${Helpers.addNewLine()}`.replace(
         "  ",
