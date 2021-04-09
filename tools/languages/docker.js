@@ -1,11 +1,4 @@
-import {
-  addNewLine,
-  getRandomInt,
-  getRandomEntry,
-  getRandomNoun,
-  getRandomVerb,
-  getRandomSuffix,
-} from "../utils/helpers";
+import { Helpers } from "../utils";
 
 const imageNames = [
   "ubuntu",
@@ -24,20 +17,28 @@ const commandGenerators = [
   {
     command: "COPY",
     parameters: () =>
-      getRandomNoun() + getRandomSuffix() + " " + getRandomNoun() + "/",
+      Helpers.getRandomNoun() +
+      Helpers.getRandomSuffix() +
+      " " +
+      Helpers.getRandomNoun() +
+      "/",
   },
   {
     command: "ADD",
     parameters: () =>
-      getRandomNoun() + getRandomSuffix() + " " + getRandomNoun() + "/",
+      Helpers.getRandomNoun() +
+      Helpers.getRandomSuffix() +
+      " " +
+      Helpers.getRandomNoun() +
+      "/",
   },
   {
     command: "EXPOSE",
-    parameters: () => getRandomInt(80, 8080),
+    parameters: () => Helpers.getRandomInt(80, 8080),
   },
   {
     command: "RUN",
-    parameters: () => Docker.getRandomPath() + getRandomVerb(),
+    parameters: () => Docker.getRandomPath() + Helpers.getRandomVerb(),
   },
 ];
 
@@ -45,34 +46,47 @@ const fileSuffixes = [".sh", ".txt", ".xml", ".png"];
 
 export default class Docker {
   static getRandomCommand() {
-    const randomCommand = getRandomEntry(commandGenerators);
+    const randomCommand = Helpers.getRandomEntry(commandGenerators);
     const commandName = randomCommand.command;
     return `${commandName} ${randomCommand.parameters()}`;
   }
 
   static getRandomPath() {
     const options = ["/bin/", "/sbin/", "/lib/", "/opt/"];
-    return getRandomEntry(options);
+    return Helpers.getRandomEntry(options);
   }
 
   static getRandomComment() {
-    return "# " + getRandomVerb() + " " + getRandomNoun();
+    return "# " + Helpers.getRandomVerb() + " " + Helpers.getRandomNoun();
   }
 
   static randomPreamble() {
-    return "FROM " + this.getRandomImageName() + addNewLine();
+    return "FROM " + this.getRandomImageName() + Helpers.addNewLine();
   }
 
   static getRandomImageName() {
-    return getRandomEntry(imageNames);
+    return Helpers.getRandomEntry(imageNames);
   }
 
   static randomPostamble() {
-    return `${addNewLine()}CMD bin`;
+    return `${Helpers.addNewLine()}CMD bin`;
   }
 
   static getRandomFillerLine() {
     const options = [Docker.getRandomComment(), Docker.getRandomCommand()];
-    return getRandomEntry(options);
+    return Helpers.getRandomEntry(options);
+  }
+
+  static generateRandomCode(lines) {
+    const firstLine = Docker.randomPreamble();
+    const fillerLineQty = parseInt(lines, 10) - 2;
+
+    const fillerLines = Array(fillerLineQty)
+      .fill()
+      .map((l) => Docker.getRandomFillerLine());
+
+    const lastLine = Docker.randomPostamble();
+
+    return firstLine + fillerLines.join(Helpers.addNewLine()) + lastLine;
   }
 }

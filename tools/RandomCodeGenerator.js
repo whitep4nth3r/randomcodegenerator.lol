@@ -1,7 +1,6 @@
 import { Comments } from "./utils";
 import { Helpers } from "./utils";
 import {
-  Docker,
   FSharp,
   Go,
   Java,
@@ -38,16 +37,7 @@ function generateRandomCode(language, lines) {
     case "css":
       return LANGUAGES.Css.generateRandomCode(lines, addComment);
     case "docker":
-      firstLine = Docker.randomPreamble();
-      fillerLineQty = parseInt(lines, 10) - 2;
-      fillerLines = [];
-
-      for (let i = 1; i <= fillerLineQty; i++) {
-        fillerLines.push(`${Docker.getRandomFillerLine()}`);
-      }
-      lastLine = Docker.randomPostamble();
-
-      return firstLine + fillerLines.join(Helpers.addNewLine()) + lastLine;
+      return LANGUAGES.Docker.generateRandomCode(lines);
     case "fsharp":
       firstLine = FSharp.randomPreamble();
 
