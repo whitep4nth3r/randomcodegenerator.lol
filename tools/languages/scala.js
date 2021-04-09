@@ -1,4 +1,4 @@
-import { getRandomEntry, getRandomNoun, getRandomNounCapitalized, getRandomVerb } from "../utils/helpers";
+import { Comments, Helpers } from "../utils";
 import { logs } from "../constants";
 
 export default class Scala {
