@@ -1,6 +1,6 @@
 import { Comments } from "./utils";
 import { Helpers } from "./utils";
-import { Kotlin, Python, Rust, SQL, Swift, VBA } from "./languages";
+import { Python, Rust, SQL, Swift, VBA } from "./languages";
 import * as LANGUAGES from "./languages";
 
 function generateRandomCode(language, lines) {
@@ -36,27 +36,18 @@ function generateRandomCode(language, lines) {
         addComment,
         includeForLoop
       );
+    case "kotlin":
+      return LANGUAGES.Kotlin.generateRandomCode(lines);
+    case "php":
+      return LANGUAGES.PHP.generateRandomCode(lines, addComment);
+    case "powershell":
+      return LANGUAGES.Powershell.generateRandomCode(lines, addComment);
     case "ts":
       return LANGUAGES.TypeScript.generateRandomCode(
         lines,
         addComment,
         includeForLoop
       );
-    case "php":
-      return LANGUAGES.PHP.generateRandomCode(lines, addComment);
-    case "powershell":
-      return LANGUAGES.Powershell.generateRandomCode(lines, addComment);
-    case "kotlin":
-      firstLine = `${Kotlin.getRandomMethodSignature()} {${Helpers.addNewLine()}`;
-      fillerLineQty = parseInt(lines, 10) - 2;
-
-      for (let i = 1; i <= fillerLineQty; i++) {
-        fillerLines.push(`    ${Kotlin.getRandomFillerLine()}`);
-      }
-
-      lastLine = `${Helpers.addNewLine()}}`;
-
-      return firstLine + fillerLines.join(Helpers.addNewLine()) + lastLine;
     case "python":
       imports = `${Python.getRandomImport()}${Helpers.addNewLine(2)}`;
       firstLine = `def ${Python.getRandomFunctionName()}():${Helpers.addNewLine()}`;
