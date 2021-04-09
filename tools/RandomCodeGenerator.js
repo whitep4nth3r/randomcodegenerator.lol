@@ -18,6 +18,7 @@ import Powershell from "./utils/powershell";
 import Rust from "./utils/rust";
 import SQL from "./utils/sql";
 import Swift from "./utils/swift";
+import VBA from "./utils/vba";
 
 export function generateRandomCode(language, lines) {
   let firstLine = "";
@@ -448,6 +449,28 @@ export function generateRandomCode(language, lines) {
 
       lastLine = `${addNewLine()}}`;
       return firstLine + fillerLines.join(addNewLine()) + lastLine;
+
+    case "vba": 
+      firstLine = `${addNewLine()}${VBA.getRandomAccessModifier()} Function ${VBA.getRandomMethodName()}() As ${VBA.getRandomDataType()}${addNewLine()}`.replace(
+        "  ",
+        " "
+      );
+      if (firstLine[0] === " ") firstLine = firstLine.slice(1);
+      fillerLineQty = parseInt(lines, 10) - 3;
+
+      if (addComment) {
+        fillerLineQty = fillerLineQty - 1;
+        fillerLines.push(Comments.getRandomComment('vba'));
+      }
+
+      for (let i = 1; i <= fillerLineQty; i++) {
+        fillerLines.push(`    ${VBA.getRandomFillerLine()}`);
+      }
+
+      lastLine = `${addNewLine()}End Function`;
+
+      return firstLine + fillerLines.join(`${addNewLine()}`) + lastLine;
+
     default:
       return "lol";
   }
