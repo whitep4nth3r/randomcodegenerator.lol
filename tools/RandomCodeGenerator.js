@@ -1,7 +1,6 @@
 import { Comments } from "./utils";
 import { Helpers } from "./utils";
 import {
-  FSharp,
   Go,
   Java,
   JavaScript,
@@ -39,17 +38,7 @@ function generateRandomCode(language, lines) {
     case "docker":
       return LANGUAGES.Docker.generateRandomCode(lines);
     case "fsharp":
-      firstLine = FSharp.randomPreamble();
-
-      fillerLineQty = parseInt(lines, 10) - 2;
-
-      for (let i = 1; i <= fillerLineQty; i++) {
-        fillerLines.push(`    ${FSharp.getRandomFillerLine()}`);
-      }
-
-      lastLine = `${Helpers.addNewLine()}    ()`;
-
-      return firstLine + fillerLines.join(Helpers.addNewLine()) + lastLine;
+      return LANGUAGES.FSharp.generateRandomCode(lines);
     case "go":
       // get a random amount of package imports.
       const importsToGet = Math.floor(lines / 5);
