@@ -1,0 +1,21 @@
+.videoEmbed {
+  position: relative;
+  padding-bottom: 56.25%;
+  border: 0.25rem solid var(--yellow);
+}
+
+.videoEmbed__iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.videoEmbed__title {
+  font-size: 2rem;
+  text-align: center;
+  margin-bottom: 2rem;
+  margin-top: 4rem;
+  font-family: var(--font-family-heading);
+}

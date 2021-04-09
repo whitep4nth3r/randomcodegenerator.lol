@@ -1,24 +1,25 @@
 import {
-  getRandomEntry,
+  addNewLine,
   capitalizeFirstChar,
+  getRandomEntry,
   getRandomInt,
+  getRandomLogLine,
   getRandomNounCapitalized,
   getRandomNoun,
   getRandomVerb,
-  getLogLines,
 } from "./helpers";
 
 export default class Kotlin {
   static getRandomMethodSignature() {
     const randomNoun = getRandomNounCapitalized();
 
-    return `fun ${getRandomVerb()}${randomNoun}(${this.getRandomTypes()
-      .map((p) => `${this.getRandomLengthNounChain(3)}: ${p.name()}`)
+    return `fun ${getRandomVerb()}${randomNoun}(${this.getRandomTypes(3)
+      .map((p) => `${this.getRandomVariableName(3)}: ${p.name()}`)
       .join(", ")})`;
   }
 
-  static getRandomTypes() {
-    const paramCount = getRandomInt(0, 3);
+  static getRandomTypes(maxParamCount) {
+    const paramCount = getRandomInt(0, maxParamCount);
     const params = [];
     for (let p = 0; p < paramCount; p++) {
       const randomType = this.getRandomType();
@@ -27,23 +28,29 @@ export default class Kotlin {
     return params;
   }
 
-  static getRandomVariableDeclaration() {
+  static getRandomVariableDeclaration(indentLevel) {
     const randomType = this.getRandomType();
     const typeName = randomType.name();
     let typeValue;
     if (getRandomInt(0, 10) > 6) {
-      typeValue = this.getRandomFunctionCall();
+      typeValue = this.getRandomFunctionCall(0, 3);
     } else {
       typeValue = randomType.generator(typeName);
     }
-    return `val ${this.getRandomLengthNounChain(3)}: ${typeName} = ${typeValue}`;
+    return `${Kotlin.indent(indentLevel)}val ${this.getRandomVariableName(
+      3
+    )}: ${typeName} = ${typeValue}`;
+  }
+
+  static getRandomVariableName(maxLength) {
+    return this.getRandomLengthNounChain(maxLength);
   }
 
   static getRandomType() {
     const types = [
       {
         name: () => "String",
-        generator: (_) => `${Kotlin.getRandomLogMessage()}`,
+        generator: (_) => `${getRandomLogLine()}`,
       },
       {
         name: () => "int",
@@ -51,7 +58,7 @@ export default class Kotlin {
       },
       {
         name: () => {
-          const randomName = Kotlin.getRandomLengthNounChain(2);
+          const randomName = this.getRandomVariableName(2);
           return capitalizeFirstChar(randomName);
         },
         generator: (name) => `${name}()`,
@@ -60,8 +67,10 @@ export default class Kotlin {
     return getRandomEntry(types);
   }
 
-  static getRandomFunctionCall() {
-    return `${this.getRandomLengthNounChain(3)}(${this.getRandomTypes()
+  static getRandomFunctionCall(indentLevel, maxParamCount) {
+    return `${Kotlin.indent(indentLevel)}${this.getRandomVariableName(3)}(${this.getRandomTypes(
+      maxParamCount
+    )
       .map((p) => p.generator(p.name()))
       .join(", ")})`;
   }
@@ -75,18 +84,35 @@ export default class Kotlin {
     return fragments.join("");
   }
 
-  static getRandomLogMessage() {
-    const options = getLogLines();
-
-    return getRandomEntry(options);
+  static getRandomLoop(indentLevel) {
+    let indent = Kotlin.indent(indentLevel);
+    const loopLines = [
+      `${indent}for (${this.getRandomVariableName(
+        1
+      )} in ${this.getRandomFunctionCall(0, 0)}) {`,
+    ];
+    if (indentLevel === 0) {
+      indentLevel += 4;
+      indent = Kotlin.indent(indentLevel);
+    }
+    for (let index = 0; index < getRandomInt(1, 3); index++) {
+      loopLines.push(this.getRandomFillerLine(indentLevel + 2));
+    }
+    loopLines.push(`${indent}}`);
+    return loopLines.join(addNewLine());
   }
 
-  static getRandomFillerLine() {
+  static indent(level) {
+    return "".padStart(level || 0, " ");
+  }
+
+  static getRandomFillerLine(indentLevel) {
     const options = [
-      `println(${Kotlin.getRandomLogMessage()})`,
-      Kotlin.getRandomVariableDeclaration(),
-      Kotlin.getRandomFunctionCall(),
+      () => `${Kotlin.indent(indentLevel)}println(${getRandomLogLine()})`,
+      () => Kotlin.getRandomVariableDeclaration(indentLevel),
+      () => Kotlin.getRandomFunctionCall(indentLevel, 3),
+      () => Kotlin.getRandomLoop(indentLevel || 0),
     ];
-    return getRandomEntry(options);
+    return getRandomEntry(options)();
   }
 }

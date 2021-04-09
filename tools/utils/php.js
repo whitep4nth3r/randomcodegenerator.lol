@@ -4,7 +4,7 @@ import {
   getRandomNounCapitalized,
   getRandomVerb,
   getRandomVerbCapitalized,
-  getLogLines,
+  getRandomLogLine,
 } from "./helpers";
 
 export default class PHP {
@@ -50,17 +50,8 @@ export default class PHP {
     return `${getRandomEntry(keyWords)}${getRandomNoun()} = ${getRandomEntry(options)};`;
   }
 
-  static getRandomConsoleLog() {
-    const options = getLogLines();
-
-    return getRandomEntry(options);
-  }
-
   static getRandomFillerLine() {
-    const options = [
-      `var_dump(${PHP.getRandomConsoleLog()}); die();`,
-      PHP.getRandomVariableDeclaration(),
-    ];
+    const options = [`var_dump(${getRandomLogLine()}); die();`, PHP.getRandomVariableDeclaration()];
     return getRandomEntry(options);
   }
 }

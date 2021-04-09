@@ -4,7 +4,7 @@ import {
   getRandomInt,
   getRandomNounCapitalized,
   getRandomVerb,
-  getLogLines,
+  getRandomLogLine,
 } from "./helpers";
 
 export default class Java {
@@ -16,7 +16,7 @@ export default class Java {
     const types = [
       {
         name: () => "String",
-        generator: (_) => `${Java.getRandomLogMessage()}`,
+        generator: (_) => `${getRandomLogLine()}`,
       },
       {
         name: () => "int",
@@ -45,15 +45,9 @@ export default class Java {
     return capitalizeFirstChar(fullName);
   }
 
-  static getRandomLogMessage() {
-    const options = getLogLines();
-
-    return getRandomEntry(options);
-  }
-
   static getRandomFillerLine() {
     const options = [
-      `System.out.println(${Java.getRandomLogMessage()});`,
+      `System.out.println(${getRandomLogLine()});`,
       Java.getRandomVariableDeclaration(),
     ];
     return getRandomEntry(options);
