@@ -1,25 +1,16 @@
-import {
-  addNewLine,
-  capitalizeFirstChar,
-  getRandomEntry,
-  getRandomInt,
-  getRandomLogLine,
-  getRandomNounCapitalized,
-  getRandomNoun,
-  getRandomVerb,
-} from "./helpers";
+import { Helpers } from "../utils";
 
 export default class Kotlin {
   static getRandomMethodSignature() {
-    const randomNoun = getRandomNounCapitalized();
+    const randomNoun = Helpers.getRandomNounCapitalized();
 
-    return `fun ${getRandomVerb()}${randomNoun}(${this.getRandomTypes(3)
+    return `fun ${Helpers.getRandomVerb()}${randomNoun}(${this.getRandomTypes(3)
       .map((p) => `${this.getRandomVariableName(3)}: ${p.name()}`)
       .join(", ")})`;
   }
 
   static getRandomTypes(maxParamCount) {
-    const paramCount = getRandomInt(0, maxParamCount);
+    const paramCount = Helpers.getRandomInt(0, maxParamCount);
     const params = [];
     for (let p = 0; p < paramCount; p++) {
       const randomType = this.getRandomType();
@@ -32,7 +23,7 @@ export default class Kotlin {
     const randomType = this.getRandomType();
     const typeName = randomType.name();
     let typeValue;
-    if (getRandomInt(0, 10) > 6) {
+    if (Helpers.getRandomInt(0, 10) > 6) {
       typeValue = this.getRandomFunctionCall(0, 3);
     } else {
       typeValue = randomType.generator(typeName);
@@ -50,7 +41,7 @@ export default class Kotlin {
     const types = [
       {
         name: () => "String",
-        generator: (_) => `${getRandomLogLine()}`,
+        generator: (_) => `${Helpers.getRandomLogLine()}`,
       },
       {
         name: () => "int",
@@ -59,27 +50,27 @@ export default class Kotlin {
       {
         name: () => {
           const randomName = this.getRandomVariableName(2);
-          return capitalizeFirstChar(randomName);
+          return Helpers.capitalizeFirstChar(randomName);
         },
         generator: (name) => `${name}()`,
       },
     ];
-    return getRandomEntry(types);
+    return Helpers.getRandomEntry(types);
   }
 
   static getRandomFunctionCall(indentLevel, maxParamCount) {
-    return `${Kotlin.indent(indentLevel)}${this.getRandomVariableName(3)}(${this.getRandomTypes(
-      maxParamCount
-    )
+    return `${Kotlin.indent(indentLevel)}${this.getRandomVariableName(
+      3
+    )}(${this.getRandomTypes(maxParamCount)
       .map((p) => p.generator(p.name()))
       .join(", ")})`;
   }
 
   static getRandomLengthNounChain(maxNouns) {
     const fragmentCount = Math.floor(Math.random() * maxNouns);
-    const fragments = [getRandomNoun()];
+    const fragments = [Helpers.getRandomNoun()];
     for (var i = 0; i < fragmentCount; i++) {
-      fragments.push(getRandomNounCapitalized());
+      fragments.push(Helpers.getRandomNounCapitalized());
     }
     return fragments.join("");
   }
@@ -95,11 +86,11 @@ export default class Kotlin {
       indentLevel += 4;
       indent = Kotlin.indent(indentLevel);
     }
-    for (let index = 0; index < getRandomInt(1, 3); index++) {
+    for (let index = 0; index < Helpers.getRandomInt(1, 3); index++) {
       loopLines.push(this.getRandomFillerLine(indentLevel + 2));
     }
     loopLines.push(`${indent}}`);
-    return loopLines.join(addNewLine());
+    return loopLines.join(Helpers.addNewLine());
   }
 
   static indent(level) {
@@ -108,11 +99,26 @@ export default class Kotlin {
 
   static getRandomFillerLine(indentLevel) {
     const options = [
-      () => `${Kotlin.indent(indentLevel)}println(${getRandomLogLine()})`,
+      () =>
+        `${Kotlin.indent(indentLevel)}println(${Helpers.getRandomLogLine()})`,
       () => Kotlin.getRandomVariableDeclaration(indentLevel),
       () => Kotlin.getRandomFunctionCall(indentLevel, 3),
       () => Kotlin.getRandomLoop(indentLevel || 0),
     ];
-    return getRandomEntry(options)();
+    return Helpers.getRandomEntry(options)();
+  }
+
+  static generateRandomCode(lines) {
+    const firstLine = `${Kotlin.getRandomMethodSignature()} {${Helpers.addNewLine()}`;
+    let fillerLineQty = parseInt(lines, 10) - 2;
+    let fillerLines = [];
+
+    for (let i = 1; i <= fillerLineQty; i++) {
+      fillerLines.push(`    ${Kotlin.getRandomFillerLine()}`);
+    }
+
+    const lastLine = `${Helpers.addNewLine()}}`;
+
+    return firstLine + fillerLines.join(Helpers.addNewLine()) + lastLine;
   }
 }

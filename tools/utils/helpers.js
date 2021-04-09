@@ -1,19 +1,22 @@
-import {
-  Contributors,
-  Languages,
-  logs,
-  nouns,
-  singleCharacters,
-  suffixes,
-  verbs,
-} from "../constants";
+import * as CONSTANTS from "../constants";
 
 export function addNewLine(numberOfLines = 1) {
   return "\n".repeat(numberOfLines);
 }
 
+export function capitalizeFirstChar(string) {
+  return string.charAt(0).toUpperCase() + string.slice(1);
+}
+
 export function getContributors(lang) {
-  return Contributors[lang];
+  return CONSTANTS.Contributors[lang];
+}
+
+export function getIndentation({ type = "spaces", level = 1 }) {
+  if (type === "tabs") {
+    return "\t".repeat(level);
+  }
+  return "  ".repeat(level);
 }
 
 export function getRandomInt(min, max) {
@@ -25,24 +28,20 @@ export function getRandomEntry(array) {
 }
 
 export function getRandomLang() {
-  const languages = Object.keys(Languages);
+  const languages = Object.keys(CONSTANTS.Languages);
   return getRandomEntry(languages);
 }
 
-export function capitalizeFirstChar(string) {
-  return string.charAt(0).toUpperCase() + string.slice(1);
-}
-
 export function getRandomNoun() {
-  return getRandomEntry(nouns);
+  return getRandomEntry(CONSTANTS.nouns);
 }
 
 export function getRandomVerb() {
-  return getRandomEntry(verbs);
+  return getRandomEntry(CONSTANTS.verbs);
 }
 
 export function getRandomSuffix() {
-  return getRandomEntry(suffixes);
+  return getRandomEntry(CONSTANTS.suffixes);
 }
 
 export function getRandomNounCapitalized() {
@@ -62,9 +61,15 @@ export function getRandomVerbUpperCase() {
 }
 
 export function getRandomLogLine() {
-  return getRandomEntry(logs);
+  return getRandomEntry(CONSTANTS.logs);
 }
 
-export function getRandomSingleCharacter() {
-  return getRandomEntry(singleCharacters);
+export function getRandomSingleCharacter(except = "") {
+  let singleCharacter;
+
+  do {
+    singleCharacter = getRandomEntry(singleCharacters);
+  } while (singleCharacter === except);
+
+  return singleCharacter;
 }

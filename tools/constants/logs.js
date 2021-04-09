@@ -7,19 +7,19 @@ const logs = [
   `"here ${getRandomInt(0, 100)}"`,
   '"should be here"',
   '"some error"',
-  "**********",
-  "[object Object]",
+  '"**********"',
+  '"[object Object]"',
   '"undefined"',
   '"=== DEBUG ==="',
   '"to do"',
   '"asdf"',
-  "NaN",
+  '"NaN"',
   '"FIRE"',
   '"schnitzel"',
   '"TODO: refactor this"',
   '"Marlon Webb says WATERMELON!"',
   '"SHIPIT"',
-  '"HACK: the docs told me to do this"'
+  '"HACK: the docs told me to do this"',
 ];
 
 export default logs;

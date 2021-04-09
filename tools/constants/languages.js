@@ -8,15 +8,16 @@ const Languages = {
   php: "PHP",
   java: "Java",
   js: "JavaScript",
+  ts: "TypeScript",
   kotlin: "Kotlin",
   python: "Python",
   powershell: "Powershell",
   rust: "Rust",
-  swift: 'Swift',
-  cplusplus: 'C++',
+  swift: "Swift",
+  cplusplus: "C++",
   sql: "SQL",
-  swift: 'Swift',
-  scala: 'Scala',
+  swift: "Swift",
+  vba: "VBA",
 };
 
 export default Languages;

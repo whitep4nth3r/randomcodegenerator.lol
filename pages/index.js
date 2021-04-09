@@ -3,8 +3,12 @@ import hljs from "highlight.js";
 import "highlight.js/styles/a11y-dark.css";
 import dynamic from "next/dynamic";
 
-import { generateRandomCode } from "../tools/RandomCodeGenerator";
-import { getRandomLang, getRandomInt, getContributors } from "../tools/utils/helpers";
+import generateRandomCode from "../tools/RandomCodeGenerator";
+import {
+  getRandomLang,
+  getRandomInt,
+  getContributors,
+} from "../tools/utils/helpers";
 import { Languages } from "../tools/constants";
 
 import PageMeta from "../components/PageMeta";
