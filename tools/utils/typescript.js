@@ -10,8 +10,6 @@ export default class TypeScript extends JavaScript {
   static getRandomVariableDeclaration() {
     const keyWords = ["let", "const", "var"];
 
-    console.log('do a thing');
-
     return `${getRandomEntry(keyWords)} ${getRandomNoun()}: any = ${getRandomEntry(
       TypeScript.getRandomInitializationVars()
     )};`;

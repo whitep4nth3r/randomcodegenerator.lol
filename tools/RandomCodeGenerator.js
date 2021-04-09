@@ -1,4 +1,4 @@
-import { addNewLine, getRandomEntry, getRandomInt } from "./utils/helpers";
+import { addNewLine, getRandomEntry, getRandomInt, getRandomSingleCharacter } from "./utils/helpers";
 
 import COBOL from "./utils/cobol";
 import Comments from "./utils/comments";
@@ -217,12 +217,14 @@ export function generateRandomCode(language, lines) {
 
       return firstLine + fillerLines.join(addNewLine()) + lastLine;
     case "ts":
+      const functionProperties = `${getRandomSingleCharacter()}: any, ${getRandomSingleCharacter()}: any`
+
       const firstTsLines = [
         (randomFunctionName) => {
-          return `function ${randomFunctionName}(x: any, y: any): any {${addNewLine()}`;
+          return `function ${randomFunctionName}(${functionProperties}): any {${addNewLine()}`;
         },
         (randomFunctionName) => {
-          return `const ${randomFunctionName} = function (x: any, y: any): any {${addNewLine()}`;
+          return `const ${randomFunctionName} = function (${functionProperties}): any {${addNewLine()}`;
         },
       ];
 
