@@ -77,7 +77,7 @@ export default class Scala {
     return getRandomEntry(options);
   }
   static generateRandomCode(lines) {
-    const firstLine = `func ${Scala.getRandomFunctionName()} {${Helpers.addNewLine()}`;
+    const firstLine = `def ${Scala.getRandomFunctionName()} =${Helpers.addNewLine()}`;
     let fillerLineQty = parseInt(lines, 10) - 2;
     let fillerLines = [];
 
