@@ -2,7 +2,6 @@ import { Comments } from "./utils";
 import { Helpers } from "./utils";
 import {
   Java,
-  JavaScript,
   Kotlin,
   PHP,
   Python,
@@ -41,53 +40,11 @@ function generateRandomCode(language, lines) {
     case "go":
       return LANGUAGES.Go.generateRandomCode(lines);
     case "js":
-      const firstLines = [
-        (randomFunctionName) => {
-          return `function ${randomFunctionName}() {${Helpers.addNewLine()}`;
-        },
-        (randomFunctionName) => {
-          return `const ${randomFunctionName} = () => {${Helpers.addNewLine()}`;
-        },
-      ];
-
-      firstLine = Helpers.getRandomEntry(firstLines)(
-        JavaScript.getRandomFunctionName()
+      return LANGUAGES.JavaScript.generateRandomCode(
+        lines,
+        addComment,
+        includeForLoop
       );
-
-      // - 3 because we're now adding a firstLine, returnLine and lastLine
-      fillerLineQty = parseInt(lines, 10) - 3;
-
-      if (addComment) {
-        fillerLineQty = fillerLineQty - 1;
-        fillerLines.push(Comments.getRandomComment());
-      }
-
-      // if line length > 7
-      if (includeForLoop) {
-        // add 2 lines
-        fillerLines.push(`    ${JavaScript.getRandomFillerLine()}`);
-        fillerLines.push(`    ${JavaScript.getRandomFillerLine()}`);
-
-        // add 3 lines
-        const forLoopLines = JavaScript.getRandomForLoopAsArray(); // return array
-
-        fillerLines = [...fillerLines, ...forLoopLines];
-
-        // add the rest
-        for (let i = 6; i <= fillerLineQty; i++) {
-          fillerLines.push(`    ${JavaScript.getRandomFillerLine()}`);
-        }
-      } else {
-        for (let i = 1; i <= fillerLineQty; i++) {
-          fillerLines.push(`    ${JavaScript.getRandomFillerLine()}`);
-        }
-      }
-
-      fillerLines.push(JavaScript.getRandomReturn());
-
-      lastLine = `${Helpers.addNewLine()}}`;
-
-      return firstLine + fillerLines.join(Helpers.addNewLine()) + lastLine;
     case "ts":
       const functionProperties = `${Helpers.getRandomSingleCharacter()}: any, ${Helpers.getRandomSingleCharacter()}: any`;
 
