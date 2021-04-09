@@ -65,6 +65,12 @@ export function getRandomLogLine() {
   return getRandomEntry(logs);
 }
 
-export function getRandomSingleCharacter() {
-  return getRandomEntry(singleCharacters);
+export function getRandomSingleCharacter(except = '') {
+  let singleCharacter;
+
+  do {
+    singleCharacter = getRandomEntry(singleCharacters)
+  } while (singleCharacter === except);
+
+  return singleCharacter;
 }

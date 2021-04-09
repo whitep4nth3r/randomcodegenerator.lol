@@ -214,7 +214,7 @@ export function generateRandomCode(language, lines) {
 
       return firstLine + fillerLines.join(addNewLine()) + lastLine;
     case "ts":
-      const functionProperties = `${getRandomSingleCharacter()}: any, ${getRandomSingleCharacter()}: any`;
+      const functionProperties = `${TypeScript.getRandomProperties().join(': any, ')}: any`
 
       const firstTsLines = [
         (randomFunctionName) => {
