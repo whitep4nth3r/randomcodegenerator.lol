@@ -1,5 +1,10 @@
 import Comments from "./utils/comments";
-import { addNewLine, getRandomEntry, getRandomInt } from "./utils/helpers";
+import {
+  addNewLine,
+  getRandomEntry,
+  getRandomInt,
+  getRandomSingleCharacter,
+} from "./utils/helpers";
 import {
   COBOL,
   CPlusPlus,
@@ -17,6 +22,8 @@ import {
   Rust,
   SQL,
   Swift,
+  TypeScript,
+  VBA,
 } from "./languages";
 
 function generateRandomCode(language, lines) {

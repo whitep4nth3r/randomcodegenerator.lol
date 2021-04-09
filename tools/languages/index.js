@@ -14,3 +14,5 @@ export { default as Python } from "./python";
 export { default as Rust } from "./rust";
 export { default as SQL } from "./sql";
 export { default as Swift } from "./swift";
+export { default as TypeScript } from "./typescript";
+export { default as VBA } from "./vba";

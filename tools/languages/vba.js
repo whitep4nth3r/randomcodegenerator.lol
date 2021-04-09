@@ -7,7 +7,7 @@ import {
   getRandomVerbCapitalized,
   getRandomLogLine,
   getRandomNoun,
-} from "./helpers";
+} from "../utils/helpers";
 
 export default class VBA {
   static getRandomMethodName() {
