@@ -1,6 +1,6 @@
 import { Comments } from "./utils";
 import { Helpers } from "./utils";
-import { Python, Rust, SQL, Swift, VBA } from "./languages";
+import { Rust, SQL, Swift, VBA } from "./languages";
 import * as LANGUAGES from "./languages";
 
 function generateRandomCode(language, lines) {
@@ -42,30 +42,15 @@ function generateRandomCode(language, lines) {
       return LANGUAGES.PHP.generateRandomCode(lines, addComment);
     case "powershell":
       return LANGUAGES.Powershell.generateRandomCode(lines, addComment);
+    case "python":
+      return LANGUAGES.Python.generateRandomCode(lines, addComment);
     case "ts":
       return LANGUAGES.TypeScript.generateRandomCode(
         lines,
         addComment,
         includeForLoop
       );
-    case "python":
-      imports = `${Python.getRandomImport()}${Helpers.addNewLine(2)}`;
-      firstLine = `def ${Python.getRandomFunctionName()}():${Helpers.addNewLine()}`;
 
-      fillerLineQty = parseInt(lines, 10) - 2;
-
-      if (addComment) {
-        fillerLineQty = fillerLineQty - 1;
-        fillerLines.push(Comments.getRandomComment());
-      }
-
-      for (let i = 1; i <= fillerLineQty; i++) {
-        fillerLines.push(`\t${Python.getRandomFillerLine()}`);
-      }
-
-      return (
-        imports + firstLine + fillerLines.join(Helpers.addNewLine()) + lastLine
-      );
     case "rust":
       firstLine = `fn ${Rust.getRandomFunctionName()}() -> ${Rust.getRandomType()} {${Helpers.addNewLine()}`;
 
