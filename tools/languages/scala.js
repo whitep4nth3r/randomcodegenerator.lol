@@ -77,6 +77,8 @@ export default class Scala {
     return Helpers.getRandomEntry(options);
   }
   static generateRandomCode(lines) {
+    
+    let importLine = `import ${Scala.getRandomImport()}`;
     const firstLine = `def ${Scala.getRandomFunctionName()} =${Helpers.addNewLine()}`;
     let fillerLineQty = parseInt(lines, 10) - 2;
     let fillerLines = [];
@@ -85,7 +87,8 @@ export default class Scala {
       fillerLines.push(`   ${Scala.getRandomFillerLine()}`);
     }
 
-    const lastLine = `${Helpers.addNewLine()}}`;
-    return firstLine + fillerLines.join(Helpers.addNewLine()) + lastLine;
+    const lastLine = `${Helpers.addNewLine()}`;
+
+    return importLine.join(Helpers.addNewLine()) + firstLine + fillerLines.join(Helpers.addNewLine()) + lastLine;
   }
 }
