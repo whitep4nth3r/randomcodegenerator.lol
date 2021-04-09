@@ -50,6 +50,9 @@ function generateRandomCode(language, lines) {
       );
     case "vba":
       return LANGUAGES.VBA.generateRandomCode(lines, addComment);
+    
+    case "scala":
+        return LANGUAGES.Scala.generateRandomCode(lines,addComment);
     default:
       return "lol";
   }

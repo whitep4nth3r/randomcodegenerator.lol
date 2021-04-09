@@ -1,4 +1,4 @@
-import { getRandomEntry, getRandomNoun, getRandomNounCapitalized, getRandomVerb } from "./helpers";
+import { getRandomEntry, getRandomNoun, getRandomNounCapitalized, getRandomVerb } from "../utils/helpers";
 import { logs } from "../constants";
 
 export default class Scala {
@@ -75,5 +75,17 @@ export default class Scala {
     ];
 
     return getRandomEntry(options);
+  }
+  static generateRandomCode(lines) {
+    const firstLine = `func ${Scala.getRandomFunctionName()} {${Helpers.addNewLine()}`;
+    let fillerLineQty = parseInt(lines, 10) - 2;
+    let fillerLines = [];
+
+    for (let i = 0; i < fillerLineQty; i++) {
+      fillerLines.push(`   ${Scala.getRandomFillerLine()}`);
+    }
+
+    const lastLine = `${Helpers.addNewLine()}}`;
+    return firstLine + fillerLines.join(Helpers.addNewLine()) + lastLine;
   }
 }
