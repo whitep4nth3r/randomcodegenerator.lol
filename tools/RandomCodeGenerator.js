@@ -32,8 +32,8 @@ function generateRandomCode(language, lines) {
   let includeForLoop = parseInt(lines, 10) > 7;
 
   switch (language) {
-    // case "cobol":
-    // return LANGUAGES.COBOL.generateRandomCode(lines);
+    case "cobol":
+      return LANGUAGES.COBOL.generateRandomCode(lines);
     case "cplusplus":
       return LANGUAGES.CPlusPlus.generateRandomCode(lines);
     case "css":
@@ -360,17 +360,6 @@ function generateRandomCode(language, lines) {
       return (
         imports + firstLine + fillerLines.join(Helpers.addNewLine()) + lastLine
       );
-    case "cobol":
-      firstLine = `PROCEDURE DIVISION.${Helpers.addNewLine()}`;
-      fillerLineQty = parseInt(lines, 10) - 2;
-
-      for (let i = 1; i <= fillerLineQty; i++) {
-        fillerLines.push(`\t${COBOL.getRandomFillerLine()}`);
-      }
-
-      lastLine = `${Helpers.addNewLine()}STOP RUN.`;
-
-      return firstLine + fillerLines.join(Helpers.addNewLine()) + lastLine;
     case "rust":
       firstLine = `fn ${Rust.getRandomFunctionName()}() -> ${Rust.getRandomType()} {${Helpers.addNewLine()}`;
 
