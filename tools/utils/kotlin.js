@@ -87,9 +87,7 @@ export default class Kotlin {
   static getRandomLoop(indentLevel) {
     let indent = Kotlin.indent(indentLevel);
     const loopLines = [
-      `${indent}for (${this.getRandomVariableName(
-        1
-      )} in ${this.getRandomFunctionCall(0, 0)}) {`,
+      `${indent}for (${this.getRandomVariableName(1)} in ${this.getRandomFunctionCall(0, 0)}) {`,
     ];
     if (indentLevel === 0) {
       indentLevel += 4;

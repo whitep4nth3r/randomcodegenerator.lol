@@ -1,9 +1,4 @@
-import {
-  addNewLine,
-  getRandomEntry,
-  getRandomNoun,
-  getRandomVerb,
-} from "./helpers";
+import { addNewLine, getRandomEntry, getRandomNoun, getRandomVerb } from "./helpers";
 
 export default class FSharp {
   static getRandomValue() {

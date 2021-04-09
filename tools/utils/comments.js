@@ -58,9 +58,9 @@ export default class Comments {
         break;
       case "vba":
         comment = `    ' ${this.options[index].name}: ${
-           this.options[index].messages[
-           Math.floor(Math.random() * this.options[index].messages.length)
-        ]
+          this.options[index].messages[
+            Math.floor(Math.random() * this.options[index].messages.length)
+          ]
         } `;
         break;
       default:

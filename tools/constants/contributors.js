@@ -13,10 +13,10 @@ const Contributors = {
   python: ["mistatwist", "callticketron"],
   powershell: ["lucecarter"],
   rust: ["sociablesteve"],
-  swift: ['justinhhorner'],
-  cplusplus: ['lucecarter'],
+  swift: ["justinhhorner"],
+  cplusplus: ["lucecarter"],
   sql: ["mattytwoshoes"],
-  vba: ["mark-phillipson"]
+  vba: ["mark-phillipson"],
 };
 
 export default Contributors;

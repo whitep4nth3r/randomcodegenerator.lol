@@ -9,18 +9,7 @@ import {
 
 export default class JavaScript {
   static getRandomInitializationVars() {
-    return [
-      "[]",
-      "this",
-      "self",
-      "0",
-      "1",
-      "true",
-      "false",
-      "{}",
-      "null",
-      "undefined",
-    ];
+    return ["[]", "this", "self", "0", "1", "true", "false", "{}", "null", "undefined"];
   }
 
   static getRandomFunctionName() {
@@ -34,7 +23,7 @@ export default class JavaScript {
       JavaScript.getRandomInitializationVars()
     )};`;
   }
-  
+
   static getRandomFillerLine() {
     const options = [
       `console.${getRandomEntry(JavaScript.getRandomConsoleLevel())}(${getRandomLogLine()});`,
@@ -45,9 +34,7 @@ export default class JavaScript {
   }
 
   static getRandomReturn() {
-    return `    return ${getRandomEntry(
-      JavaScript.getRandomInitializationVars()
-    )};`;
+    return `    return ${getRandomEntry(JavaScript.getRandomInitializationVars())};`;
   }
 
   static getRandomForLoopAsArray() {
@@ -62,12 +49,6 @@ export default class JavaScript {
   }
 
   static getRandomConsoleLevel() {
-    return [
-      'debug',
-      'info',
-      'log',
-      'warning',
-      'error',
-    ]
+    return ["debug", "info", "log", "warning", "error"];
   }
 }
