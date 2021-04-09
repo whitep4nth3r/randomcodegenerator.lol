@@ -3,7 +3,7 @@
 ![A screenshot from the first Twitch stream on this project](thumbnail.png)
 
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-20-orange.svg?style=flat-square)](#contributors-)
+[![All Contributors](https://img.shields.io/badge/all_contributors-21-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
 Need some code for your project? We've got you covered.
@@ -136,6 +136,7 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
     <td align="center"><a href="https://github.com/michaud"><img src="https://avatars.githubusercontent.com/u/338436?v=4?s=100" width="100px;" alt=""/><br /><sub><b>michaud</b></sub></a><br /><a href="https://github.com/whitep4nth3r/randomcodegenerator.lol/commits?author=michaud" title="Code">💻</a></td>
     <td align="center"><a href="http://elsmore.me"><img src="https://avatars.githubusercontent.com/u/804683?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Mike Elsmore</b></sub></a><br /><a href="https://github.com/whitep4nth3r/randomcodegenerator.lol/commits?author=ukmadlz" title="Code">💻</a></td>
     <td align="center"><a href="https://github.com/Refito"><img src="https://avatars.githubusercontent.com/u/67906810?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Refik Refik Tefik</b></sub></a><br /><a href="https://github.com/whitep4nth3r/randomcodegenerator.lol/commits?author=Refito" title="Code">💻</a></td>
+    <td align="center"><a href="https://github.com/Mark-Phillipson"><img src="https://avatars.githubusercontent.com/u/16239024?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Mark Phillipson</b></sub></a><br /><a href="https://github.com/whitep4nth3r/randomcodegenerator.lol/commits?author=Mark-Phillipson" title="Code">💻</a></td>
   </tr>
 </table>
 
