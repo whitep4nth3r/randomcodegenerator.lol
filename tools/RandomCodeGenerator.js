@@ -9,7 +9,6 @@ import {
   Rust,
   SQL,
   Swift,
-  TypeScript,
   VBA,
 } from "./languages";
 import * as LANGUAGES from "./languages";
@@ -46,55 +45,11 @@ function generateRandomCode(language, lines) {
         includeForLoop
       );
     case "ts":
-      const functionProperties = `${Helpers.getRandomSingleCharacter()}: any, ${Helpers.getRandomSingleCharacter()}: any`;
-
-      const firstTsLines = [
-        (randomFunctionName) => {
-          return `function ${randomFunctionName}(${functionProperties}): any {${Helpers.addNewLine()}`;
-        },
-        (randomFunctionName) => {
-          return `const ${randomFunctionName} = function (${functionProperties}): any {${Helpers.addNewLine()}`;
-        },
-      ];
-
-      firstLine = Helpers.getRandomEntry(firstTsLines)(
-        TypeScript.getRandomFunctionName()
+      return LANGUAGES.TypeScript.generateRandomCode(
+        lines,
+        addComment,
+        includeForLoop
       );
-
-      // - 3 because we're now adding a firstLine, returnLine and lastLine
-      fillerLineQty = parseInt(lines, 10) - 3;
-
-      if (addComment) {
-        fillerLineQty = fillerLineQty - 1;
-        fillerLines.push(Comments.getRandomComment());
-      }
-
-      // if line length > 7
-      if (includeForLoop) {
-        // add 2 lines
-        fillerLines.push(`    ${TypeScript.getRandomFillerLine()}`);
-        fillerLines.push(`    ${TypeScript.getRandomFillerLine()}`);
-
-        // add 3 lines
-        const forLoopLines = TypeScript.getRandomForLoopAsArray(); // return array
-
-        fillerLines = [...fillerLines, ...forLoopLines];
-
-        // add the rest
-        for (let i = 6; i <= fillerLineQty; i++) {
-          fillerLines.push(`    ${TypeScript.getRandomFillerLine()}`);
-        }
-      } else {
-        for (let i = 1; i <= fillerLineQty; i++) {
-          fillerLines.push(`    ${TypeScript.getRandomFillerLine()}`);
-        }
-      }
-
-      fillerLines.push(TypeScript.getRandomReturn());
-
-      lastLine = `${Helpers.addNewLine()}}`;
-
-      return firstLine + fillerLines.join(Helpers.addNewLine()) + lastLine;
     case "php":
       firstLine = `<?php ${Helpers.addNewLine(2)}`;
       let namespaceLine = `${PHP.getRandomNamespace()}${Helpers.addNewLine(2)}`;
