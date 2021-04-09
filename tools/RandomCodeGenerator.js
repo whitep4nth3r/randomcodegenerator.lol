@@ -1,4 +1,9 @@
-import { addNewLine, getRandomEntry, getRandomInt, getRandomSingleCharacter } from "./utils/helpers";
+import {
+  addNewLine,
+  getRandomEntry,
+  getRandomInt,
+  getRandomSingleCharacter,
+} from "./utils/helpers";
 
 import COBOL from "./utils/cobol";
 import Comments from "./utils/comments";
@@ -128,8 +133,7 @@ export function generateRandomCode(language, lines) {
       const importsToGet = Math.floor(lines / 5);
       // coin flip for adding a return statement or not
       const addReturnLine = Math.floor(Math.random() * 2);
-      fillerLineQty =
-        parseInt(lines, 10) - 2 - 2 - importsToGet - addReturnLine;
+      fillerLineQty = parseInt(lines, 10) - 2 - 2 - importsToGet - addReturnLine;
       let randomImports = [];
 
       //package name is mandatory, so let's always have this, and exclude it from the line count
@@ -162,13 +166,7 @@ export function generateRandomCode(language, lines) {
 
       lastLine += `${addNewLine()}}`;
 
-      return (
-        pkgLine +
-        importLine +
-        firstLine +
-        fillerLines.join(addNewLine()) +
-        lastLine
-      );
+      return pkgLine + importLine + firstLine + fillerLines.join(addNewLine()) + lastLine;
     case "js":
       const firstLines = [
         (randomFunctionName) => {
@@ -179,9 +177,7 @@ export function generateRandomCode(language, lines) {
         },
       ];
 
-      firstLine = getRandomEntry(firstLines)(
-        JavaScript.getRandomFunctionName()
-      );
+      firstLine = getRandomEntry(firstLines)(JavaScript.getRandomFunctionName());
 
       // - 3 because we're now adding a firstLine, returnLine and lastLine
       fillerLineQty = parseInt(lines, 10) - 3;
@@ -218,7 +214,7 @@ export function generateRandomCode(language, lines) {
 
       return firstLine + fillerLines.join(addNewLine()) + lastLine;
     case "ts":
-      const functionProperties = `${getRandomSingleCharacter()}: any, ${getRandomSingleCharacter()}: any`
+      const functionProperties = `${getRandomSingleCharacter()}: any, ${getRandomSingleCharacter()}: any`;
 
       const firstTsLines = [
         (randomFunctionName) => {
@@ -229,9 +225,7 @@ export function generateRandomCode(language, lines) {
         },
       ];
 
-      firstLine = getRandomEntry(firstTsLines)(
-        TypeScript.getRandomFunctionName()
-      );
+      firstLine = getRandomEntry(firstTsLines)(TypeScript.getRandomFunctionName());
 
       // - 3 because we're now adding a firstLine, returnLine and lastLine
       fillerLineQty = parseInt(lines, 10) - 3;
@@ -306,9 +300,7 @@ export function generateRandomCode(language, lines) {
 
       if (addComment) {
         fillerLineQty = fillerLineQty - 1;
-        firstLine += `${Comments.getRandomComment(
-          "powershell"
-        )}${addNewLine()}`;
+        firstLine += `${Comments.getRandomComment("powershell")}${addNewLine()}`;
       }
 
       for (let i = 1; i <= fillerLineQty; i++) {
@@ -392,19 +384,14 @@ export function generateRandomCode(language, lines) {
       for (let i = 1; i <= fillerLineQty; i++) {
         const lineOptions = [` ,${SQL.getRandomFieldName()}`];
 
-        fillerLines.push(
-          lineOptions[Math.floor(Math.random() * lineOptions.length)]
-        );
+        fillerLines.push(lineOptions[Math.floor(Math.random() * lineOptions.length)]);
       }
       let lineBreak;
       if (fillerLineQty > 1) {
         lineBreak = addNewLine();
       } else lineBreak = "";
       let fromStatement =
-        lineBreak +
-        "FROM" +
-        ` ${SQL.getRandomSchemaName()}` +
-        `.${SQL.getRandomTableName()}`;
+        lineBreak + "FROM" + ` ${SQL.getRandomSchemaName()}` + `.${SQL.getRandomTableName()}`;
 
       let whereCond = "";
       //this part is for the other functions like WHERE, GROUP BY etc.
@@ -416,16 +403,12 @@ export function generateRandomCode(language, lines) {
 
       let groupByCond = "";
       if (getRandomInt(1, 10) <= 5) {
-        groupByCond = `${addNewLine()}GROUP BY ${SQL.getRandomGroupByCondition(
-          fillerLineQty
-        )}`;
+        groupByCond = `${addNewLine()}GROUP BY ${SQL.getRandomGroupByCondition(fillerLineQty)}`;
       } else;
 
       let orderByCond = "";
       if (getRandomInt(1, 10) <= 5) {
-        groupByCond = `${addNewLine()}ORDER BY ${SQL.getRandomOrderByCondition(
-          fillerLineQty
-        )} ASC`;
+        groupByCond = `${addNewLine()}ORDER BY ${SQL.getRandomOrderByCondition(fillerLineQty)} ASC`;
       } else;
 
       lastLine = ";";
@@ -450,8 +433,8 @@ export function generateRandomCode(language, lines) {
       lastLine = `${addNewLine()}}`;
       return firstLine + fillerLines.join(addNewLine()) + lastLine;
 
-    case "vba": 
-      firstLine = `${addNewLine()}${VBA.getRandomAccessModifier()} Function ${VBA.getRandomMethodName()}() As ${VBA.getRandomDataType()}${addNewLine()}`.replace(
+    case "vba":
+      firstLine = `${VBA.getRandomAccessModifier()} Function ${VBA.getRandomMethodName()}() As ${VBA.getRandomDataType()}${addNewLine()}`.replace(
         "  ",
         " "
       );
@@ -460,7 +443,7 @@ export function generateRandomCode(language, lines) {
 
       if (addComment) {
         fillerLineQty = fillerLineQty - 1;
-        fillerLines.push(Comments.getRandomComment('vba'));
+        fillerLines.push(Comments.getRandomComment("vba"));
       }
 
       for (let i = 1; i <= fillerLineQty; i++) {

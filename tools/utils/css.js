@@ -6,7 +6,7 @@ export default class Css {
 
   // font style props
   // font family
-  
+
   static getRandomListStyle() {
     const listStyleValues = [
       "disc",
@@ -155,7 +155,7 @@ export default class Css {
 
     return `${getRandomEntry(options)}__${getRandomEntry(options)}`;
   }
-  
+
   static getRandomJustify() {
     const justifyValues = [
       "flex-start",
@@ -170,7 +170,7 @@ export default class Css {
 
     return `justify-content: ${getRandomEntry(justifyValues)}`;
   }
-  
+
   static getRandomAlign() {
     const alignTypes = ["items", "content", "self"];
     const alignValues = [
@@ -183,11 +183,9 @@ export default class Css {
       "inherit",
     ];
 
-    return `align-${getRandomEntry(alignTypes)}: ${getRandomEntry(
-      alignValues
-    )}`;
+    return `align-${getRandomEntry(alignTypes)}: ${getRandomEntry(alignValues)}`;
   }
-  
+
   static getRandomCursorStyle() {
     const cursorStyleValues = [
       "alias",
@@ -222,7 +220,7 @@ export default class Css {
 
     return `cursor: ${getRandomEntry(cursorStyleValues)}`;
   }
-  
+
   static getRandomFlexDirection() {
     const flexDirectionValues = [
       "row",
@@ -235,7 +233,7 @@ export default class Css {
 
     return `flex-direction: ${getRandomEntry(flexDirectionValues)}`;
   }
-  
+
   static getRandomBackgroundPostition() {
     const backgroundPositionValues = [
       "left top",
@@ -251,13 +249,13 @@ export default class Css {
 
     return `background-position: ${getRandomEntry(backgroundPositionValues)}`;
   }
-  
+
   static getRandomBorderCollapse() {
     const borderCollapseValues = ["seperate", "collapse", "initial", "inherit"];
 
     return `border-collapse: ${getRandomEntry(borderCollapseValues)}`;
   }
-  
+
   static getRandomBackgroundRepeat() {
     const backgroundRepeatValues = [
       "repeat",
@@ -272,19 +270,19 @@ export default class Css {
 
     return `background-repeat: ${getRandomEntry(backgroundRepeatValues)}`;
   }
-  
+
   static getRandomBoxShadow() {
-    let boxShadowValue = `${getRandomInt(
+    let boxShadowValue = `${getRandomInt(1, 10)}${this.getRandomUnit()} ${getRandomInt(
       1,
       10
-    )}${this.getRandomUnit()} ${getRandomInt(1, 10)}${this.getRandomUnit()} `;
+    )}${this.getRandomUnit()} `;
 
     // 50% chance to have spread and blur
     if (getRandomInt(1, 100) <= 50) {
-      boxShadowValue += `${getRandomInt(
+      boxShadowValue += `${getRandomInt(2, 20)}${this.getRandomUnit()} ${getRandomInt(
         2,
         20
-      )}${this.getRandomUnit()} ${getRandomInt(2, 20)}${this.getRandomUnit()} `;
+      )}${this.getRandomUnit()} `;
     }
 
     return `box-shadow: ${boxShadowValue + `${this.getRandomHexCode()}`}`;

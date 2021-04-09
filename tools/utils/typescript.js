@@ -1,10 +1,6 @@
-import JavaScript from './javascript'
+import JavaScript from "./javascript";
 
-import {
-  getRandomEntry,
-  getRandomNoun,
-  getRandomLogLine,
-} from "./helpers";
+import { getRandomEntry, getRandomNoun, getRandomLogLine } from "./helpers";
 
 export default class TypeScript extends JavaScript {
   static getRandomVariableDeclaration() {

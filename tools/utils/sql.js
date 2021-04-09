@@ -90,9 +90,7 @@ export default class SQL {
   static getRandomOperator() {
     const positionValues = ["AND", "OR"];
 
-    return `${addNewLine()} ${
-      positionValues[Math.floor(Math.random() * positionValues.length)]
-    } `;
+    return `${addNewLine()} ${positionValues[Math.floor(Math.random() * positionValues.length)]} `;
   }
 
   static getRandomFieldName() {
