@@ -1,7 +1,6 @@
 import { Comments } from "./utils";
 import { Helpers } from "./utils";
 import {
-  Go,
   Java,
   JavaScript,
   Kotlin,
@@ -40,55 +39,7 @@ function generateRandomCode(language, lines) {
     case "fsharp":
       return LANGUAGES.FSharp.generateRandomCode(lines);
     case "go":
-      // get a random amount of package imports.
-      const importsToGet = Math.floor(lines / 5);
-      // coin flip for adding a return statement or not
-      const addReturnLine = Math.floor(Math.random() * 2);
-      fillerLineQty =
-        parseInt(lines, 10) - 2 - 2 - importsToGet - addReturnLine;
-      let randomImports = [];
-
-      //package name is mandatory, so let's always have this, and exclude it from the line count
-      const pkgLine = `package ${Go.getRandomPackageName()}${Helpers.addNewLine(
-        2
-      )}`;
-
-      //set up random package import[s]
-      let importLine = "";
-      if (importsToGet >= 1) {
-        for (let i = 1; i <= importsToGet; i++) {
-          randomImports.push(
-            `\t"${Go.getRandomImportName()}"${Helpers.addNewLine()}`
-          );
-        }
-        importLine = `import (${Helpers.addNewLine()}\t\"fmt"${Helpers.addNewLine()}${randomImports.join(
-          ""
-        )})${Helpers.addNewLine(2)}`;
-      } else {
-        importLine = `import "fmt"${Helpers.addNewLine(2)}`;
-      }
-
-      //set up a function
-      firstLine = `func ${Go.getRandomFunctionName()} { ${Helpers.addNewLine()}`;
-
-      //add code to function
-      for (let i = 1; i <= fillerLineQty; i++) {
-        fillerLines.push(`${Go.getRandomFillerLine()}`);
-      }
-
-      if (addReturnLine === 1) {
-        lastLine = `${Helpers.addNewLine()}\treturn ${Go.getExistingVariable()}`;
-      }
-
-      lastLine += `${Helpers.addNewLine()}}`;
-
-      return (
-        pkgLine +
-        importLine +
-        firstLine +
-        fillerLines.join(Helpers.addNewLine()) +
-        lastLine
-      );
+      return LANGUAGES.Go.generateRandomCode(lines);
     case "js":
       const firstLines = [
         (randomFunctionName) => {
