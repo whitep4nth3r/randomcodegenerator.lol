@@ -52,17 +52,7 @@ function generateRandomCode(language, lines) {
       );
 
     case "rust":
-      firstLine = `fn ${Rust.getRandomFunctionName()}() -> ${Rust.getRandomType()} {${Helpers.addNewLine()}`;
-
-      fillerLineQty = parseInt(lines, 10) - 2;
-
-      for (let i = 1; i <= fillerLineQty; i++) {
-        fillerLines.push(`    ${Rust.getRandomFillerLine()}`);
-      }
-
-      lastLine = `${Helpers.addNewLine()}}`;
-
-      return firstLine + fillerLines.join(Helpers.addNewLine()) + lastLine;
+      return LANGUAGES.Rust.generateRandomCode(lines);
     case "sql":
       firstLine =
         "SELECT" + ` ${SQL.getRandomFieldName()}${Helpers.addNewLine()}`;
