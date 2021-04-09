@@ -18,6 +18,7 @@ const Languages = {
   sql: "SQL",
   swift: "Swift",
   vba: "VBA",
+  scala:"Scala",
 };
 
 export default Languages;
