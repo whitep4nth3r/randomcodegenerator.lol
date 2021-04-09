@@ -1,16 +1,6 @@
 import { Comments } from "./utils";
 import { Helpers } from "./utils";
-import {
-  Java,
-  Kotlin,
-  PHP,
-  Python,
-  Powershell,
-  Rust,
-  SQL,
-  Swift,
-  VBA,
-} from "./languages";
+import { Java, Kotlin, Python, Rust, SQL, Swift, VBA } from "./languages";
 import * as LANGUAGES from "./languages";
 
 function generateRandomCode(language, lines) {
@@ -53,24 +43,7 @@ function generateRandomCode(language, lines) {
     case "php":
       return LANGUAGES.PHP.generateRandomCode(lines, addComment);
     case "powershell":
-      firstLine = `function ${Powershell.getRandomFunctionName()} { ${Helpers.addNewLine()}`;
-
-      fillerLineQty = parseInt(lines, 10) - 2;
-
-      if (addComment) {
-        fillerLineQty = fillerLineQty - 1;
-        firstLine += `${Comments.getRandomComment(
-          "powershell"
-        )}${Helpers.addNewLine()}`;
-      }
-
-      for (let i = 1; i <= fillerLineQty; i++) {
-        fillerLines.push(`    ${Powershell.getRandomFillerLine()}`);
-      }
-
-      lastLine = `${Helpers.addNewLine()}}`;
-
-      return firstLine + fillerLines.join(Helpers.addNewLine()) + lastLine;
+      return LANGUAGES.Powershell.generateRandomCode(lines, addComment);
     case "java":
       firstLine = `${Java.getRandomMethodSignature()}() {${Helpers.addNewLine()}`;
       fillerLineQty = parseInt(lines, 10) - 2;
