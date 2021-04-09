@@ -16,3 +16,4 @@ export { default as SQL } from "./sql";
 export { default as Swift } from "./swift";
 export { default as TypeScript } from "./typescript";
 export { default as VBA } from "./vba";
+export { default as Scala } from "./scala";
