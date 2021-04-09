@@ -11,23 +11,23 @@ export default class Scala {
   static getRandomEmoji() {
     const emoji = ['"💗"','"☕"','"🙀"', '"🐶"','"🍺"','"😇"','"🏄"'];
 
-     return getRandomEntry(emoji);
+     return Helpers.getRandomEntry(emoji);
   }
 
   static getRandomFunctionName() {
-    return `${getRandomVerb()}${getRandomNounCapitalized()}()`;
+    return `${Helpers.getRandomVerb()}${Helpers.getRandomNounCapitalized()}()`;
   }
 
   static getRandomVariableDeclaration() {
     const keyWords = ["val", "var"];
 
-    return `${getRandomEntry(keyWords)} ${getRandomNoun()} = ${getRandomEntry(
+    return `${Helpers.getRandomEntry(keyWords)} ${Helpers.getRandomNoun()} = ${Helpers.getRandomEntry(
       Scala.getRandomInitializationVars()
     )}`;
   }
 
   static getRandomPrintCall() {
-    return `println(${getRandomEntry(logs)})`;
+    return `println(${Helpers.getRandomEntry(logs)})`;
   }
 
   static getRandomList() {
@@ -37,7 +37,7 @@ export default class Scala {
     for (let i = 0; i < 5; i++)
         list.push(Scala.getRandomEmoji());
 
-    return `val ${getRandomNoun()} = List(${list})`;
+    return `val ${Helpers.getRandomNoun()} = List(${list})`;
   }
 
   static getRandomMap() {
@@ -46,14 +46,14 @@ export default class Scala {
       list.push(Math.floor(Math.random() * 10) + " -> "+Scala.getRandomEmoji());
     }
 
-    return `val ${getRandomNoun()} = Map(${list})`;
+    return `val ${Helpers.getRandomNoun()} = Map(${list})`;
   }
 
   static getRandomImport() {
     
     const list = ["scala.collection._","scala.math._","scala.concurrent","scala.io","scala.sys"];
 
-     return getRandomEntry(list);
+     return Helpers.getRandomEntry(list);
   }
 
   static getRandomForEach() {
@@ -74,7 +74,7 @@ export default class Scala {
       Scala.getRandomMap(),
     ];
 
-    return getRandomEntry(options);
+    return Helpers.getRandomEntry(options);
   }
   static generateRandomCode(lines) {
     const firstLine = `def ${Scala.getRandomFunctionName()} =${Helpers.addNewLine()}`;
