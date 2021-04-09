@@ -1,53 +1,46 @@
-import {
-  addNewLine,
-  getRandomEntry,
-  getRandomNoun,
-  getRandomNounCapitalized,
-  getRandomVerb,
-  getRandomLogLine,
-  getIndentation,
-} from "../utils/helpers";
+import { Helpers } from "../utils";
 
 export default class CPlusPlus {
   static getRandomFunctionName() {
     const keyWords = ["int", "string", "double", "char", "bool"];
 
-    return `${getRandomEntry(
+    return `${Helpers.getRandomEntry(
       keyWords
-    )} ${getRandomVerb()}${getRandomNounCapitalized()}`;
+    )} ${Helpers.getRandomVerb()}${Helpers.getRandomNounCapitalized()}`;
   }
 
   static getRandomVariableDeclaration() {
     const keyWords = ["int", "string", "double", "char", "bool"];
     const options = ["[]", "this"];
 
-    return `${getRandomEntry(keyWords)} ${getRandomNoun()} = ${getRandomEntry(
-      options
-    )};`;
+    return `${Helpers.getRandomEntry(
+      keyWords
+    )} ${Helpers.getRandomNoun()} = ${Helpers.getRandomEntry(options)};`;
   }
 
   static getRandomMethodKeyword() {
     const options = ["abstract", "virtual", "", "override", "static"];
 
-    return getRandomEntry(options);
+    return Helpers.getRandomEntry(options);
   }
 
   static getRandomFillerLine() {
     const options = [
-      `clog << ${getRandomEntry(getRandomLogLine())};`,
+      `clog << ${Helpers.getRandomEntry(Helpers.getRandomLogLine())};`,
       CPlusPlus.getRandomVariableDeclaration(),
       `${CPlusPlus.getRandomFunctionName()}();`,
     ];
-    return getRandomEntry(options);
+    return Helpers.getRandomEntry(options);
   }
 
   static generateRandomCode(lines) {
-    const firstLine = `${CPlusPlus.getRandomFunctionName()}() {${addNewLine()}`;
+    const firstLine = `${CPlusPlus.getRandomFunctionName()}() {${Helpers.addNewLine()}`;
     const fillerLineQty = parseInt(lines, 10) - 2;
-    const fillerLines = Array(fillerLineQty)
-      .fill()
-      .map((l) => `${getIndentation(1)}${CPlusPlus.getRandomFillerLine()}`);
-    const lastLine = `${addNewLine()}}`;
-    return firstLine + fillerLines.join(addNewLine()) + lastLine;
+    const fillerLines = Helpers.populateFillerLines(
+      `${Helpers.getIndentation(1)}${CPlusPlus.getRandomFillerLine()}`,
+      fillerLineQty
+    );
+    const lastLine = `${Helpers.addNewLine()}}`;
+    return firstLine + fillerLines.join(Helpers.addNewLine()) + lastLine;
   }
 }
