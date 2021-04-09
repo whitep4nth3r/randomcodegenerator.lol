@@ -51,37 +51,7 @@ function generateRandomCode(language, lines) {
         includeForLoop
       );
     case "php":
-      firstLine = `<?php ${Helpers.addNewLine(2)}`;
-      let namespaceLine = `${PHP.getRandomNamespace()}${Helpers.addNewLine(2)}`;
-
-      let classLine = `class ${PHP.getRandomClassName()} {${Helpers.addNewLine()}`;
-
-      if (addComment) {
-        fillerLineQty = fillerLineQty - 1;
-        classLine += `${Comments.getRandomComment()}${Helpers.addNewLine()}`;
-      }
-
-      let functionLine = `    ${PHP.getRandomFunctionKeyword()} ${PHP.getRandomFunctionName()}(${PHP.getRandomParamtersRead()}) {${Helpers.addNewLine()}`;
-
-      fillerLineQty = parseInt(lines, 10) - 2;
-      fillerLines = [];
-
-      for (let i = 1; i <= fillerLineQty; i++) {
-        fillerLines.push(`        ${PHP.getRandomFillerLine()}`);
-      }
-
-      let endFunctionLine = `${Helpers.addNewLine()}    }${Helpers.addNewLine()}`;
-      lastLine = `}`;
-
-      return (
-        firstLine +
-        namespaceLine +
-        classLine +
-        functionLine +
-        fillerLines.join(Helpers.addNewLine()) +
-        endFunctionLine +
-        lastLine
-      );
+      return LANGUAGES.PHP.generateRandomCode(lines, addComment);
     case "powershell":
       firstLine = `function ${Powershell.getRandomFunctionName()} { ${Helpers.addNewLine()}`;
 
