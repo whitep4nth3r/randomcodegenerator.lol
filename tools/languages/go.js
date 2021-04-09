@@ -1,33 +1,27 @@
-import { addNewLine, getRandomInt, getRandomEntry } from "./helpers";
-import nouns from "../constants/nouns";
-import verbs from "../constants/verbs";
-import logs from "../constants/logs";
+import { Helpers } from "../utils";
 
 export default class Go {
   static getRandomFunctionName() {
-    const randomNoun = nouns[getRandomInt(0, nouns.length - 1)];
-    const randomVerb = verbs[getRandomInt(0, verbs.length - 1)];
-    return `${randomVerb}${randomNoun.charAt(0).toUpperCase() + randomNoun.slice(1)}`;
+    return `${Helpers.getRandomVerb()}${Helpers.getRandomNounCapitalized()}`;
   }
 
   static getRandomVariableDeclaration() {
     const keyWords = ["const", "var"];
     const types = ["int", "bool", "string"];
-    const values = ["[]", "this", `${getRandomInt(0, 100)}`];
+    const values = ["[]", "this", `${Helpers.getRandomInt(0, 100)}`];
 
-    const keyword = getRandomEntry(keyWords);
-    const type = getRandomEntry(types);
-    let varName = getRandomEntry(nouns);
-    const value = getRandomEntry(values);
+    const keyword = Helpers.getRandomEntry(keyWords);
+    const type = Helpers.getRandomEntry(types);
+    let varName = Helpers.getRandomNoun();
+    const value = Helpers.getRandomEntry(values);
 
     if (keyword === "const") {
-      varName = varName.toUpperCase();
+      varName = Helpers.getRandomNounUpperCase();
     }
-    return `${keyword} ${varName} ${type} = ${value}${addNewLine()}`;
   }
 
   static getRandomfmtPrintln() {
-    let msg = `${getRandomEntry(logs)}`;
+    let msg = Helpers.getRandomLogLine();
     return `fmt.Println(${msg})`;
   }
 
@@ -37,7 +31,9 @@ export default class Go {
       Go.getRandomVariableDeclaration(),
       `${Go.getRandomFunctionName()}()`,
     ];
-    return `\t${getRandomEntry(options)}`;
+    return `${Helpers.getIndentation({ type: "tab" })}${Helpers.getRandomEntry(
+      options
+    )}`;
   }
 
   static getRandomImportName() {
@@ -220,14 +216,72 @@ export default class Go {
       "unicode/utf8",
       "unsafe",
     ];
-    return imports[Math.floor(Math.random() * imports.length)];
+    return Helpers.getRandomEntry(imports);
   }
 
   static getRandomPackageName() {
-    return getRandomEntry(nouns);
+    return Helpers.getRandomNoun();
   }
 
   static getExistingVariable() {
     return `null`;
+  }
+
+  static generateRandomCode(lines, addComment) {
+    // get a random amount of package imports.
+    const importsToGet = Math.floor(lines / 5);
+    // coin flip for adding a return statement or not
+    const addReturnLine = Math.floor(Math.random() * 2);
+    let fillerLineQty =
+      parseInt(lines, 10) - 2 - 2 - importsToGet - addReturnLine;
+    let randomImports = [];
+    let lastLine;
+
+    //package name is mandatory, so let's always have this, and exclude it from the line count
+    const pkgLine = `package ${Go.getRandomPackageName()}${Helpers.addNewLine(
+      2
+    )}`;
+
+    //set up random package import[s]
+    let importLine = "";
+    if (importsToGet >= 1) {
+      for (let i = 1; i <= importsToGet; i++) {
+        randomImports.push(
+          `${Helpers.getIndentation({
+            type: "tab",
+          })}"${Go.getRandomImportName()}"${Helpers.addNewLine()}`
+        );
+      }
+      importLine = `import (${Helpers.addNewLine()}${Helpers.getIndentation({
+        type: "tab",
+      })}\"fmt"${Helpers.addNewLine()}${randomImports.join(
+        ""
+      )})${Helpers.addNewLine(2)}`;
+    } else {
+      importLine = `import "fmt"${Helpers.addNewLine(2)}`;
+    }
+
+    //set up a function
+    const firstLine = `func ${Go.getRandomFunctionName()} { ${Helpers.addNewLine()}`;
+    //add code to function
+    const fillerLines = Array(fillerLineQty < 1 ? 1 : fillerLineQty)
+      .fill()
+      .map((l) => Go.getRandomFillerLine());
+
+    if (addReturnLine === 1) {
+      lastLine = `${Helpers.addNewLine()}${Helpers.getIndentation({
+        type: "tab",
+      })}return ${Go.getExistingVariable()}`;
+    }
+
+    lastLine += `${Helpers.addNewLine()}}`;
+
+    return (
+      pkgLine +
+      importLine +
+      firstLine +
+      fillerLines.join(Helpers.addNewLine()) +
+      lastLine
+    );
   }
 }

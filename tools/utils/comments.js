@@ -1,3 +1,5 @@
+import { getRandomEntry } from "./helpers";
+
 export default class Comments {
   static options = [
     {
@@ -46,15 +48,13 @@ export default class Comments {
 
   static getRandomComment(languageOverride = "default") {
     const index = Math.floor(Math.random() * this.options.length);
+    const commentName = this.options[index].name;
+    const commentMessage = getRandomEntry(this.options[index].messages);
     let comment = "";
 
     switch (languageOverride) {
       case "powershell":
-        comment = `    <# ${this.options[index].name}: ${
-          this.options[index].messages[
-            Math.floor(Math.random() * this.options[index].messages.length)
-          ]
-        } #>`;
+        comment = `    <# ${commentName}: ${commentMessage} #>`;
         break;
       case "vba":
         comment = `    ' ${this.options[index].name}: ${
@@ -64,11 +64,7 @@ export default class Comments {
         } `;
         break;
       default:
-        comment = `    /* ${this.options[index].name}: ${
-          this.options[index].messages[
-            Math.floor(Math.random() * this.options[index].messages.length)
-          ]
-        } */`;
+        comment = `    /* ${commentName}: ${commentMessage} */`;
         break;
     }
 

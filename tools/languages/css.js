@@ -1,4 +1,4 @@
-import { getRandomEntry, getRandomInt } from "./helpers";
+import { Comments, Helpers } from "../utils";
 
 export default class Css {
   // box-shadow props
@@ -26,7 +26,7 @@ export default class Css {
       "none",
     ];
 
-    return `list-style: ${getRandomEntry(listStyleValues)}`;
+    return `list-style: ${Helpers.getRandomEntry(listStyleValues)}`;
   }
 
   static getRandomBorderStyle() {
@@ -45,19 +45,26 @@ export default class Css {
       "inherit",
     ];
 
-    return `border-style: ${getRandomEntry(borderStyleValues)}`;
+    return `border-style: ${Helpers.getRandomEntry(borderStyleValues)}`;
   }
 
   static getRandomTextAlign() {
-    const alignValues = ["left", "right", "center", "justify", "initial", "inherit"];
+    const alignValues = [
+      "left",
+      "right",
+      "center",
+      "justify",
+      "initial",
+      "inherit",
+    ];
 
-    return `text-align: ${getRandomEntry(alignValues)}`;
+    return `text-align: ${Helpers.getRandomEntry(alignValues)}`;
   }
 
   static getRandomPositionRule() {
     const positionValues = ["relative", "absolute", "fixed", "sticky"];
 
-    return `position: ${getRandomEntry(positionValues)}`;
+    return `position: ${Helpers.getRandomEntry(positionValues)}`;
   }
 
   static getRandomDisplayRule() {
@@ -72,11 +79,11 @@ export default class Css {
       "flow-root",
     ];
 
-    return `display: ${getRandomEntry(displayValues)}`;
+    return `display: ${Helpers.getRandomEntry(displayValues)}`;
   }
 
   static getRandomZIndexRule() {
-    return `z-index: ${getRandomInt(-1, 999999)}`;
+    return `z-index: ${Helpers.getRandomInt(-1, 999999)}`;
   }
 
   static getRandomColorProp() {
@@ -89,11 +96,11 @@ export default class Css {
       "border-left-color",
       "border-right-color",
     ];
-    return getRandomEntry(colorProps);
+    return Helpers.getRandomEntry(colorProps);
   }
 
   static getRandomHexCode() {
-    return `#${getRandomInt(0, 16777215).toString(16)}`;
+    return `#${Helpers.getRandomInt(0, 16777215).toString(16)}`;
   }
 
   static getRandomUnitProp() {
@@ -120,16 +127,19 @@ export default class Css {
       "border-left-width",
       "border-right-width",
     ];
-    return getRandomEntry(unitProps);
+    return Helpers.getRandomEntry(unitProps);
   }
 
   static getRandomUnit() {
     const cssUnits = ["px", "rem", "em", "ch", "vw", "vh"];
-    return getRandomEntry(cssUnits);
+    return Helpers.getRandomEntry(cssUnits);
   }
 
   static getRandomUnitRule() {
-    return `${Css.getRandomUnitProp()}: ${getRandomInt(0, 500)}${Css.getRandomUnit()}`;
+    return `${Css.getRandomUnitProp()}: ${Helpers.getRandomInt(
+      0,
+      500
+    )}${Css.getRandomUnit()}`;
   }
 
   static getRandomColorRule() {
@@ -153,7 +163,9 @@ export default class Css {
       "random",
     ];
 
-    return `${getRandomEntry(options)}__${getRandomEntry(options)}`;
+    return `${Helpers.getRandomEntry(options)}__${Helpers.getRandomEntry(
+      options
+    )}`;
   }
 
   static getRandomJustify() {
@@ -168,7 +180,7 @@ export default class Css {
       "inherit",
     ];
 
-    return `justify-content: ${getRandomEntry(justifyValues)}`;
+    return `justify-content: ${Helpers.getRandomEntry(justifyValues)}`;
   }
 
   static getRandomAlign() {
@@ -183,7 +195,9 @@ export default class Css {
       "inherit",
     ];
 
-    return `align-${getRandomEntry(alignTypes)}: ${getRandomEntry(alignValues)}`;
+    return `align-${Helpers.getRandomEntry(
+      alignTypes
+    )}: ${Helpers.getRandomEntry(alignValues)}`;
   }
 
   static getRandomCursorStyle() {
@@ -218,7 +232,7 @@ export default class Css {
       "initial",
     ];
 
-    return `cursor: ${getRandomEntry(cursorStyleValues)}`;
+    return `cursor: ${Helpers.getRandomEntry(cursorStyleValues)}`;
   }
 
   static getRandomFlexDirection() {
@@ -231,7 +245,7 @@ export default class Css {
       "inherit",
     ];
 
-    return `flex-direction: ${getRandomEntry(flexDirectionValues)}`;
+    return `flex-direction: ${Helpers.getRandomEntry(flexDirectionValues)}`;
   }
 
   static getRandomBackgroundPostition() {
@@ -247,13 +261,15 @@ export default class Css {
       "center bottom",
     ];
 
-    return `background-position: ${getRandomEntry(backgroundPositionValues)}`;
+    return `background-position: ${Helpers.getRandomEntry(
+      backgroundPositionValues
+    )}`;
   }
 
   static getRandomBorderCollapse() {
     const borderCollapseValues = ["seperate", "collapse", "initial", "inherit"];
 
-    return `border-collapse: ${getRandomEntry(borderCollapseValues)}`;
+    return `border-collapse: ${Helpers.getRandomEntry(borderCollapseValues)}`;
   }
 
   static getRandomBackgroundRepeat() {
@@ -268,23 +284,75 @@ export default class Css {
       "inherit",
     ];
 
-    return `background-repeat: ${getRandomEntry(backgroundRepeatValues)}`;
+    return `background-repeat: ${Helpers.getRandomEntry(
+      backgroundRepeatValues
+    )}`;
   }
 
   static getRandomBoxShadow() {
-    let boxShadowValue = `${getRandomInt(1, 10)}${this.getRandomUnit()} ${getRandomInt(
+    let boxShadowValue = `${Helpers.getRandomInt(
+      1,
+      10
+    )}${this.getRandomUnit()} ${Helpers.getRandomInt(
       1,
       10
     )}${this.getRandomUnit()} `;
 
     // 50% chance to have spread and blur
-    if (getRandomInt(1, 100) <= 50) {
-      boxShadowValue += `${getRandomInt(2, 20)}${this.getRandomUnit()} ${getRandomInt(
+    if (Helpers.getRandomInt(1, 100) <= 50) {
+      boxShadowValue += `${Helpers.getRandomInt(
+        2,
+        20
+      )}${this.getRandomUnit()} ${Helpers.getRandomInt(
         2,
         20
       )}${this.getRandomUnit()} `;
     }
 
     return `box-shadow: ${boxShadowValue + `${this.getRandomHexCode()}`}`;
+  }
+
+  static generateRandomCode(lines, addComment) {
+    const firstLine = `.${Css.getRandomClassName()} {${Helpers.addNewLine()}`;
+    let fillerLineQty = parseInt(lines, 10) - 2;
+    let fillerLines = [];
+
+    if (addComment) {
+      fillerLineQty = fillerLineQty - 1;
+      fillerLines.push(Comments.getRandomComment());
+    }
+
+    const lineOptions = [
+      Css.getRandomUnitRule(),
+      Css.getRandomColorRule(),
+      Css.getRandomDisplayRule(),
+      Css.getRandomZIndexRule(),
+      Css.getRandomPositionRule(),
+      Css.getRandomBorderStyle(),
+      Css.getRandomTextAlign(),
+      Css.getRandomListStyle(),
+      Css.getRandomJustify(),
+      Css.getRandomAlign(),
+      Css.getRandomCursorStyle(),
+      Css.getRandomFlexDirection(),
+      Css.getRandomBackgroundPostition(),
+      Css.getRandomBorderCollapse(),
+      Css.getRandomBackgroundRepeat(),
+      Css.getRandomBoxShadow(),
+    ];
+
+    fillerLines = fillerLines.concat(
+      Array(fillerLineQty)
+        .fill()
+        .map(
+          (l) =>
+            `${Helpers.getIndentation(2)}${Helpers.getRandomEntry(
+              lineOptions
+            )};`
+        )
+    );
+
+    const lastLine = `${Helpers.addNewLine()}}`;
+    return firstLine + fillerLines.join(Helpers.addNewLine()) + lastLine;
   }
 }
