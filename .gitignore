@@ -32,3 +32,6 @@ yarn-error.log*
 
 # vercel
 .vercel
+
+# use npm locks only please
+yarn.lock
