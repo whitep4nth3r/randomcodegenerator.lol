@@ -16,7 +16,8 @@ const Languages = {
   swift: 'Swift',
   cplusplus: 'C++',
   sql: "SQL",
-  swift: 'Swift'
+  swift: 'Swift',
+  vba: "VBA"
 };
 
 export default Languages;
