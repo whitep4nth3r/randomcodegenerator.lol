@@ -12,8 +12,19 @@ export function addNewLine(numberOfLines = 1) {
   return "\n".repeat(numberOfLines);
 }
 
+export function capitalizeFirstChar(string) {
+  return string.charAt(0).toUpperCase() + string.slice(1);
+}
+
 export function getContributors(lang) {
   return Contributors[lang];
+}
+
+export function getIndentation({ type = "spaces", level = 1 }) {
+  if (type === "tabs") {
+    return "\t".repeat(level);
+  }
+  return "  ".repeat(level);
 }
 
 export function getRandomInt(min, max) {
@@ -27,10 +38,6 @@ export function getRandomEntry(array) {
 export function getRandomLang() {
   const languages = Object.keys(Languages);
   return getRandomEntry(languages);
-}
-
-export function capitalizeFirstChar(string) {
-  return string.charAt(0).toUpperCase() + string.slice(1);
 }
 
 export function getRandomNoun() {

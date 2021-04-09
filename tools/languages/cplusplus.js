@@ -1,10 +1,11 @@
 import {
+  addNewLine,
   getRandomEntry,
-  getRandomInt,
   getRandomNoun,
   getRandomNounCapitalized,
   getRandomVerb,
   getRandomLogLine,
+  getIndentation,
 } from "../utils/helpers";
 
 export default class CPlusPlus {
@@ -37,7 +38,16 @@ export default class CPlusPlus {
       CPlusPlus.getRandomVariableDeclaration(),
       `${CPlusPlus.getRandomFunctionName()}();`,
     ];
-    console.log(getRandomEntry(options));
     return getRandomEntry(options);
+  }
+
+  static generateRandomCode(lines) {
+    const firstLine = `${CPlusPlus.getRandomFunctionName()}() {${addNewLine()}`;
+    const fillerLineQty = parseInt(lines, 10) - 2;
+    const fillerLines = Array(fillerLineQty).fill(
+      `${getIndentation(1)}${CPlusPlus.getRandomFillerLine()}`
+    );
+    const lastLine = `${addNewLine()}}`;
+    return firstLine + fillerLines.join(addNewLine()) + lastLine;
   }
 }

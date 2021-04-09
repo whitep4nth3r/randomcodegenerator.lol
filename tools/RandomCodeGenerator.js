@@ -19,29 +19,19 @@ import {
   Swift,
 } from "./languages";
 
-export function generateRandomCode(language, lines) {
+function generateRandomCode(language, lines) {
   let firstLine = "";
   let fillerLineQty = "";
   let fillerLines = [];
   let lastLine = "";
   const addComment = (Math.random() + 0.5) >> 0;
   let imports = "";
-  let returnLine = "";
   // 3 lines will be dedicated to a for loop if lines > 7
   let includeForLoop = parseInt(lines, 10) > 7;
 
   switch (language) {
     case "cplusplus":
-      firstLine = `${CPlusPlus.getRandomFunctionName()}() {${addNewLine()}`;
-      fillerLineQty = parseInt(lines, 10) - 2;
-
-      for (let i = 1; i <= fillerLineQty; i++) {
-        fillerLines.push(`    ${CPlusPlus.getRandomFillerLine()}`);
-      }
-
-      lastLine = `${addNewLine()}}`;
-
-      return firstLine + fillerLines.join(addNewLine()) + lastLine;
+      return CPlusPlus.generateRandomCode(lines);
     case "css":
       firstLine = `.${Css.getRandomClassName()} {${addNewLine()}`;
       fillerLineQty = parseInt(lines, 10) - 2;
@@ -472,3 +462,5 @@ export function generateRandomCode(language, lines) {
       return "lol";
   }
 }
+
+export default generateRandomCode;
