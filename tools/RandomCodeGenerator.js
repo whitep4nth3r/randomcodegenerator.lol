@@ -1,15 +1,7 @@
-import { Comments } from "./utils";
-import { Helpers } from "./utils";
-import { VBA } from "./languages";
 import * as LANGUAGES from "./languages";
 
 function generateRandomCode(language, lines) {
-  let firstLine = "";
-  let fillerLineQty = "";
-  let fillerLines = [];
-  let lastLine = "";
   const addComment = (Math.random() + 0.5) >> 0;
-  let imports = "";
   // 3 lines will be dedicated to a for loop if lines > 7
   let includeForLoop = parseInt(lines, 10) > 7;
 
@@ -58,25 +50,7 @@ function generateRandomCode(language, lines) {
         includeForLoop
       );
     case "vba":
-      firstLine = `${VBA.getRandomAccessModifier()} Function ${VBA.getRandomMethodName()}() As ${VBA.getRandomDataType()}${Helpers.addNewLine()}`.replace(
-        "  ",
-        " "
-      );
-      if (firstLine[0] === " ") firstLine = firstLine.slice(1);
-      fillerLineQty = parseInt(lines, 10) - 3;
-
-      if (addComment) {
-        fillerLineQty = fillerLineQty - 1;
-        fillerLines.push(Comments.getRandomComment("vba"));
-      }
-
-      for (let i = 1; i <= fillerLineQty; i++) {
-        fillerLines.push(`    ${VBA.getRandomFillerLine()}`);
-      }
-
-      lastLine = `${Helpers.addNewLine()}End Function`;
-
-      return firstLine + fillerLines.join(`${Helpers.addNewLine()}`) + lastLine;
+      return LANGUAGES.VBA.generateRandomCode(lines, addComment);
     default:
       return "lol";
   }

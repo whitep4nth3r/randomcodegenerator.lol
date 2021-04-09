@@ -1,20 +1,11 @@
-import {
-  addNewLine,
-  getRandomEntry,
-  getRandomInt,
-  getRandomSingleCharacter,
-  getRandomNounCapitalized,
-  getRandomVerbCapitalized,
-  getRandomLogLine,
-  getRandomNoun,
-} from "../utils/helpers";
+import { Comments, Helpers } from "../utils";
 
 export default class VBA {
   static getRandomMethodName() {
-    return `${getRandomVerbCapitalized()}${getRandomNounCapitalized()}`;
+    return `${Helpers.getRandomVerbCapitalized()}${Helpers.getRandomNounCapitalized()}`;
   }
   static getRandomFunctionName() {
-    return `${getRandomVerbCapitalized()}${getRandomNounCapitalized()}`;
+    return `${Helpers.getRandomVerbCapitalized()}${Helpers.getRandomNounCapitalized()}`;
   }
 
   static getRandomDataType() {
@@ -35,14 +26,14 @@ export default class VBA {
       "Variant",
     ];
 
-    var keyWord = getRandomEntry(keyWords);
+    var keyWord = Helpers.getRandomEntry(keyWords);
     return `${keyWord}`;
   }
 
   static getRandomVariableDeclaration() {
     var keyWord = `${VBA.getRandomDataType()}`;
-    const variableName = getRandomNoun();
-    return `Dim ${variableName} As ${keyWord} ${addNewLine()}    ${variableName} = ${getRandomInt(
+    const variableName = Helpers.getRandomNoun();
+    return `Dim ${variableName} As ${keyWord} ${Helpers.addNewLine()}    ${variableName} = ${Helpers.getRandomInt(
       0,
       99999
     )}`;
@@ -50,7 +41,7 @@ export default class VBA {
 
   static getRandomFillerLine() {
     const options = [
-      `Print ${getRandomLogLine()}`,
+      `Print ${Helpers.getRandomLogLine()}`,
       VBA.getRandomVariableDeclaration(),
       VBA.getRandomNewVariableDeclaration(),
       VBA.getRandomMethodCall(),
@@ -58,40 +49,63 @@ export default class VBA {
       VBA.getRandomIfBlock(),
       `On Error Resume Next 'DON'T ever do this! `,
     ];
-    return getRandomEntry(options);
+    return Helpers.getRandomEntry(options);
   }
 
   static getRandomIfBlock() {
-    return `If ${getRandomNounCapitalized()} > ${getRandomInt(
+    return `If ${Helpers.getRandomNounCapitalized()} > ${Helpers.getRandomInt(
       1,
       8765
-    )} Then${addNewLine()}        ${VBA.getRandomFunctionName()}(${getRandomInt(
+    )} Then${Helpers.addNewLine()}        ${VBA.getRandomFunctionName()}(${Helpers.getRandomInt(
       5,
       99
-    )})${addNewLine()}    End If`;
+    )})${Helpers.addNewLine()}    End If`;
   }
   static getRandomNewVariableDeclaration() {
     const keyWords = ["Dim", "Static"];
 
-    var keyWord = getRandomEntry(keyWords);
-    return `${keyWord} ${getRandomNoun()} As ${VBA.getRandomDataType()}`;
+    var keyWord = Helpers.getRandomEntry(keyWords);
+    return `${keyWord} ${Helpers.getRandomNoun()} As ${VBA.getRandomDataType()}`;
   }
 
   static getRandomMethodCall() {
-    return `${this.getRandomMethodName()}( ${getRandomNoun()} )`;
+    return `${this.getRandomMethodName()}( ${Helpers.getRandomNoun()} )`;
   }
 
   static getRandomAccessModifier() {
     const options = ["Public", "Private", ""];
 
-    return getRandomEntry(options);
+    return Helpers.getRandomEntry(options);
   }
   static getRandomForLoopAsArray() {
-    const randomChar = getRandomSingleCharacter();
+    const randomChar = Helpers.getRandomSingleCharacter();
 
-    return `For ${randomChar} = 0 to ${getRandomInt(
+    return `For ${randomChar} = 0 to ${Helpers.getRandomInt(
       1,
       4000
-    )}${addNewLine()}        ${VBA.getRandomFunctionName()}(${randomChar})${addNewLine()}    Next`;
+    )}${Helpers.addNewLine()}        ${VBA.getRandomFunctionName()}(${randomChar})${Helpers.addNewLine()}    Next`;
+  }
+
+  static generateRandomCode(lines, addComment) {
+    let firstLine = `${VBA.getRandomAccessModifier()} Function ${VBA.getRandomMethodName()}() As ${VBA.getRandomDataType()}${Helpers.addNewLine()}`.replace(
+      "  ",
+      " "
+    );
+    if (firstLine[0] === " ") firstLine = firstLine.slice(1);
+    let fillerLineQty = parseInt(lines, 10) - 3;
+    let fillerLines = [];
+
+    if (addComment) {
+      fillerLineQty = fillerLineQty - 1;
+      fillerLines.push(Comments.getRandomComment("vba"));
+    }
+
+    for (let i = 1; i <= fillerLineQty; i++) {
+      fillerLines.push(`    ${VBA.getRandomFillerLine()}`);
+    }
+
+    const lastLine = `${Helpers.addNewLine()}End Function`;
+
+    return firstLine + fillerLines.join(`${Helpers.addNewLine()}`) + lastLine;
   }
 }
