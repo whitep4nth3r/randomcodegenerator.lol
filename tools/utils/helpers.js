@@ -68,7 +68,7 @@ export function getRandomSingleCharacter(except = "") {
   let singleCharacter;
 
   do {
-    singleCharacter = getRandomEntry(singleCharacters);
+    singleCharacter = getRandomEntry(CONSTANTS.singleCharacters);
   } while (singleCharacter === except);
 
   return singleCharacter;

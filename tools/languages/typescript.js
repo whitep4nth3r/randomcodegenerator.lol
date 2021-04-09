@@ -33,7 +33,7 @@ export default class TypeScript extends JavaScript {
 
   static generateRandomCode(lines, addComment, includeForLoop) {
     let fillerLines = [];
-    const functionProperties = `${Helpers.getRandomSingleCharacter()}: any, ${Helpers.getRandomSingleCharacter()}: any`;
+    const functionProperties = `${TypeScript.getRandomProperties().join(": any, ")}: any`;
 
     const firstTsLines = [
       (randomFunctionName) => {
@@ -44,9 +44,7 @@ export default class TypeScript extends JavaScript {
       },
     ];
 
-    const firstLine = Helpers.getRandomEntry(firstTsLines)(
-      TypeScript.getRandomFunctionName()
-    );
+    const firstLine = Helpers.getRandomEntry(firstTsLines)(TypeScript.getRandomFunctionName());
 
     // - 3 because we're now adding a firstLine, returnLine and lastLine
     let fillerLineQty = parseInt(lines, 10) - 3;
