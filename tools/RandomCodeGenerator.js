@@ -1,4 +1,4 @@
-import { addNewLine, getRandomEntry, getRandomInt } from "./utils/helpers";
+import { addNewLine, getRandomEntry, getRandomInt, getRandomSingleCharacter } from "./utils/helpers";
 
 import COBOL from "./utils/cobol";
 import Comments from "./utils/comments";
@@ -10,6 +10,7 @@ import FSharp from "./utils/fsharp";
 import Go from "./utils/go";
 import Java from "./utils/java";
 import JavaScript from "./utils/javascript";
+import TypeScript from "./utils/typescript";
 import Kotlin from "./utils/kotlin";
 import PHP from "./utils/php";
 import Python from "./utils/python";
@@ -17,23 +18,6 @@ import Powershell from "./utils/powershell";
 import Rust from "./utils/rust";
 import SQL from "./utils/sql";
 import Swift from "./utils/swift";
-
-export const Languages = {
-  cplusplus: "C++",
-  css: "CSS",
-  cobol: "COBOL",
-  csharp: "C#",
-  fsharp: "F#",
-  docker: "Docker",
-  php: "PHP",
-  java: "Java",
-  js: "JavaScript",
-  kotlin: "Kotlin",
-  python: "Python",
-  powershell: "Powershell",
-  rust: "Rust",
-  swift: "Swift",
-};
 
 export function generateRandomCode(language, lines) {
   let firstLine = "";
@@ -228,6 +212,56 @@ export function generateRandomCode(language, lines) {
       }
 
       fillerLines.push(JavaScript.getRandomReturn());
+
+      lastLine = `${addNewLine()}}`;
+
+      return firstLine + fillerLines.join(addNewLine()) + lastLine;
+    case "ts":
+      const functionProperties = `${getRandomSingleCharacter()}: any, ${getRandomSingleCharacter()}: any`
+
+      const firstTsLines = [
+        (randomFunctionName) => {
+          return `function ${randomFunctionName}(${functionProperties}): any {${addNewLine()}`;
+        },
+        (randomFunctionName) => {
+          return `const ${randomFunctionName} = function (${functionProperties}): any {${addNewLine()}`;
+        },
+      ];
+
+      firstLine = getRandomEntry(firstTsLines)(
+        TypeScript.getRandomFunctionName()
+      );
+
+      // - 3 because we're now adding a firstLine, returnLine and lastLine
+      fillerLineQty = parseInt(lines, 10) - 3;
+
+      if (addComment) {
+        fillerLineQty = fillerLineQty - 1;
+        fillerLines.push(Comments.getRandomComment());
+      }
+
+      // if line length > 7
+      if (includeForLoop) {
+        // add 2 lines
+        fillerLines.push(`    ${TypeScript.getRandomFillerLine()}`);
+        fillerLines.push(`    ${TypeScript.getRandomFillerLine()}`);
+
+        // add 3 lines
+        const forLoopLines = TypeScript.getRandomForLoopAsArray(); // return array
+
+        fillerLines = [...fillerLines, ...forLoopLines];
+
+        // add the rest
+        for (let i = 6; i <= fillerLineQty; i++) {
+          fillerLines.push(`    ${TypeScript.getRandomFillerLine()}`);
+        }
+      } else {
+        for (let i = 1; i <= fillerLineQty; i++) {
+          fillerLines.push(`    ${TypeScript.getRandomFillerLine()}`);
+        }
+      }
+
+      fillerLines.push(TypeScript.getRandomReturn());
 
       lastLine = `${addNewLine()}}`;
 
