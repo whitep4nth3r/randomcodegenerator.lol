@@ -1,5 +1,5 @@
 const Contributors = {
-  css: ["whitep4nth3r"],
+  css: ["whitep4nth3r", "Refito"],
   cobol: ["canhorn"],
   csharp: ["lucecarter", "rickvdbosch"],
   fsharp: ["mrange"],
@@ -8,6 +8,7 @@ const Contributors = {
   php: ["dr-dinomight"],
   java: ["jwalter"],
   js: ["whitep4nth3r", "lukeocodes", "negue", "isabellabrookes"],
+  ts: ["lukeocodes"],
   kotlin: ["jwalter"],
   python: ["mistatwist", "callticketron"],
   powershell: ["lucecarter"],
