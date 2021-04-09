@@ -7,7 +7,7 @@ export { default as FSharp } from "./fsharp";
 export { default as Go } from "./go";
 export { default as Java } from "./java";
 export { default as JavaScript } from "./javascript";
-export { default as Kotlin } from "./Kotlin";
+export { default as Kotlin } from "./kotlin";
 export { default as PHP } from "./php";
 export { default as Powershell } from "./powershell";
 export { default as Python } from "./python";

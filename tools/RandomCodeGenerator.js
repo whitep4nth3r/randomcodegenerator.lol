@@ -36,7 +36,6 @@ function generateRandomCode(language, lines) {
       return LANGUAGES.Powershell.generateRandomCode(lines, addComment);
     case "python":
       return LANGUAGES.Python.generateRandomCode(lines, addComment);
-
     case "rust":
       return LANGUAGES.Rust.generateRandomCode(lines);
     case "sql":
