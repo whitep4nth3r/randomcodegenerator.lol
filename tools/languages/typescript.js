@@ -1,7 +1,15 @@
 import { Comments, Helpers } from "../utils";
+import { singleCharacters } from "../constants";
 import JavaScript from "./javascript";
 
 export default class TypeScript extends JavaScript {
+  static getRandomProperties() {
+    const start = Helpers.getRandomInt(0, singleCharacters.length - 1);
+    const end = Helpers.getRandomInt(start + 1, singleCharacters.length);
+
+    return singleCharacters.slice(start, end);
+  }
+
   static getRandomVariableDeclaration() {
     const keyWords = ["let", "const", "var"];
 
