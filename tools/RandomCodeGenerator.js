@@ -1,9 +1,6 @@
 import { Comments } from "./utils";
 import { Helpers } from "./utils";
 import {
-  COBOL,
-  CSharp,
-  Css,
   Docker,
   FSharp,
   Go,
@@ -39,39 +36,7 @@ function generateRandomCode(language, lines) {
     case "csharp":
       return LANGUAGES.CSharp.generateRandomCode(lines, addComment);
     case "css":
-      firstLine = `.${LANGUAGES.Css.getRandomClassName()} {${Helpers.addNewLine()}`;
-      fillerLineQty = parseInt(lines, 10) - 2;
-
-      if (addComment) {
-        fillerLineQty = fillerLineQty - 1;
-        fillerLines.push(Comments.getRandomComment());
-      }
-
-      for (let i = 1; i <= fillerLineQty; i++) {
-        const lineOptions = [
-          `    ${Css.getRandomUnitRule()};`,
-          `    ${Css.getRandomColorRule()};`,
-          `    ${Css.getRandomDisplayRule()};`,
-          `    ${Css.getRandomZIndexRule()};`,
-          `    ${Css.getRandomPositionRule()};`,
-          `    ${Css.getRandomBorderStyle()};`,
-          `    ${Css.getRandomTextAlign()};`,
-          `    ${Css.getRandomListStyle()};`,
-          `    ${Css.getRandomJustify()};`,
-          `    ${Css.getRandomAlign()};`,
-          `    ${Css.getRandomCursorStyle()};`,
-          `    ${Css.getRandomFlexDirection()};`,
-          `    ${Css.getRandomBackgroundPostition()};`,
-          `    ${Css.getRandomBorderCollapse()};`,
-          `    ${Css.getRandomBackgroundRepeat()};`,
-          `    ${Css.getRandomBoxShadow()};`,
-        ];
-
-        fillerLines.push(Helpers.getRandomEntry(lineOptions));
-      }
-
-      lastLine = `${Helpers.addNewLine()}}`;
-      return firstLine + fillerLines.join(Helpers.addNewLine()) + lastLine;
+      return LANGUAGES.Css.generateRandomCode(lines, addComment);
     case "docker":
       firstLine = Docker.randomPreamble();
       fillerLineQty = parseInt(lines, 10) - 2;
