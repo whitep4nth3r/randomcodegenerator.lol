@@ -28,7 +28,7 @@ export default function Home({ languages, languageKey, code, lines, contributors
     setContributorsResult(newCode.contributors);
   }
 
-  function handleButtonClick(newLang) {
+  function chooseLang(newLang) {
     generateAndUpdate(newLang);
   }
 
@@ -99,7 +99,7 @@ export default function Home({ languages, languageKey, code, lines, contributors
                   className={`selector__button${selectedClass}`}
                   type="button"
                   key={key}
-                  onClick={() => handleButtonClick(key)}
+                  onClick={() => chooseLang(key)}
                 >
                   {value}
                 </button>
