@@ -41,7 +41,7 @@ export default function Home({ languages, languageKey, code, lines, contributors
   }
 
   function copyCode() {
-    navigator.clipboard.writeText(result);
+    navigator.clipboard.writeText(codeResult);
   }
 
   return (
