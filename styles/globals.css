@@ -179,15 +179,19 @@ a {
   align-items: center;
   margin-right: -1rem;
   margin-bottom: 3rem;
+  overflow: hidden;
 }
 
 .copyButton {
   border-width: 0;
   padding: 0.5rem 1rem;
+  position: relative;
+  top: -1px;
+  right: -1px;
   cursor: pointer;
   background-color: var(--yellow);
   color: var(--black);
-  border-radius: 0 0 0 0.5rem;
+  border-radius: 0 0.5rem 0 0.5rem;
   font-size: 1.2rem;
   line-height: 1;
   text-transform: uppercase;
