@@ -1,6 +1,7 @@
 {
   "name": "randomcodegenerator.lol",
-  "version": "0.1.0",
+  "description": "Need some code for your project? We've got you covered. Choose your language. Choose how much code. BÄM! You got code.",
+  "version": "1.0.0",
   "private": true,
   "scripts": {
     "dev": "next dev",
@@ -8,10 +9,12 @@
     "start": "next start"
   },
   "dependencies": {
+    "@whitep4nth3r/random-code": "^1.0.10",
     "highlight.js": "^10.7.2",
     "next": "^10.1.2",
     "react": "17.0.2",
     "react-dom": "17.0.2"
   },
+  "author": "whitep4nth3r",
   "license": "MIT"
 }

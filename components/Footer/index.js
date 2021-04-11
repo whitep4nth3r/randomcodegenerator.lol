@@ -23,6 +23,17 @@ export default function Footer() {
           live on Twitch
         </a>
       </p>
+      <p className="footer__disclaimer">
+        This website uses the{" "}
+        <a
+          className="footer__link"
+          href="https://www.npmjs.com/package/@whitep4nth3r/random-code"
+          target="_blank"
+        >
+          @whitep4nth3r/random-code npm package
+        </a>{" "}
+        to generate random code.
+      </p>
       <p className="footer__copyright">&copy; {year} whitep4nth3r</p>
     </footer>
   );
