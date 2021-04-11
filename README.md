@@ -16,8 +16,8 @@ BÄM! You got code.
 
 ## This website uses the @whitep4nth3r/random-code npm package to generate random code
 
-👉🏼 [npm package](https://www.npmjs.com/package/@whitep4nth3r/random-code)
-👉🏼 [Git repository](https://github.com/whitep4nth3r/random-code)
+- 👉🏼 [npm package](https://www.npmjs.com/package/@whitep4nth3r/random-code)
+- 👉🏼 [Git repository](https://github.com/whitep4nth3r/random-code)
 
 ## Contributors ✨
 
