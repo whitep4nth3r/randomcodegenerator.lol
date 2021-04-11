@@ -1,60 +1,44 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import hljs from "highlight.js";
 import "highlight.js/styles/a11y-dark.css";
 import dynamic from "next/dynamic";
 
-import generateRandomCode from "../tools/RandomCodeGenerator";
-import {
-  getRandomLang,
-  getRandomInt,
-  getContributors,
-} from "../tools/utils/helpers";
-import { Languages } from "../tools/constants";
+import { generateRandomCode, getLanguages } from "@whitep4nth3r/random-code";
 
 import PageMeta from "../components/PageMeta";
 import Footer from "../components/Footer";
 
 const DynamicVideoEmbed = dynamic(() => import("../components/VideoEmbed"));
 
-export default function Home({ randomNumberOfLines, randomLang, randomCode }) {
-  const [selectedLang, setSelectedLang] = useState(randomLang);
-  const [numberOfLines, setNumberOfLines] = useState(randomNumberOfLines);
-  const [result, setResult] = useState(randomCode);
-  const [contributors, setContributors] = useState([]);
+function getRandomInt(min, max) {
+  return Math.round(Math.random() * (max - min) + min);
+}
 
-  useEffect(() => {
-    generateNewCode(selectedLang, numberOfLines);
-    updateContributors(selectedLang);
-  }, []);
+export default function Home({ languages, languageKey, code, lines, contributors }) {
+  const [selectedLangResult, setSelectedLangResult] = useState(languageKey);
+  const [codeResult, setCodeResult] = useState(code);
+  const [contributorsResult, setContributorsResult] = useState(contributors);
+  const [linesResult, setLinesResult] = useState(lines);
 
-  function updateContributors(newLang) {
-    const contributors = getContributors(newLang);
-    setContributors(contributors);
+  function generateAndUpdate(newLang = "", randomInt = "") {
+    const newCode = generateRandomCode(newLang, randomInt);
+    setSelectedLangResult(newCode.languageKey);
+    setCodeResult(newCode.code);
+    setLinesResult(newCode.lines);
+    setContributorsResult(newCode.contributors);
   }
 
   function handleButtonClick(newLang) {
-    setSelectedLang(newLang);
-    generateNewCode(newLang, numberOfLines);
-    updateContributors(newLang);
-  }
-
-  function chooseAmount(randomInt) {
-    setNumberOfLines(randomInt);
-    generateNewCode(selectedLang, randomInt);
+    generateAndUpdate(newLang);
   }
 
   function luckyDip() {
-    const newLang = getRandomLang();
-    const randomInt = getRandomInt(3, 20);
-    setNumberOfLines(randomInt);
-    setSelectedLang(newLang);
-    generateNewCode(newLang, randomInt);
-    updateContributors(newLang);
+    generateAndUpdate();
   }
 
-  function generateNewCode(newLang, newLines) {
-    const newCode = generateRandomCode(newLang, newLines);
-    setResult(newCode);
+  function chooseAmount(randomInt) {
+    console.log(randomInt);
+    generateAndUpdate(selectedLangResult, randomInt);
   }
 
   function copyCode() {
@@ -109,8 +93,8 @@ export default function Home({ randomNumberOfLines, randomLang, randomCode }) {
             </button>
           </div>
           <div className="selector__buttonGroup">
-            {Object.entries(Languages).map(([key, value]) => {
-              const selectedClass = selectedLang === key ? " selector__button--selected" : "";
+            {Object.entries(languages).map(([key, value]) => {
+              const selectedClass = selectedLangResult === key ? " selector__button--selected" : "";
               return (
                 <button
                   className={`selector__button${selectedClass}`}
@@ -125,21 +109,26 @@ export default function Home({ randomNumberOfLines, randomLang, randomCode }) {
           </div>
         </div>
 
-        {result.length > 0 && (
+        {codeResult.length > 0 && (
           <>
+            <p className="youGot">
+              You got {linesResult} lines of {languages[selectedLangResult]}!
+            </p>
             <div className="result">
               <pre className="result__pre hljs">
                 <button type="button" className="copyButton" onClick={copyCode}>
                   Copy
                 </button>
-                <code dangerouslySetInnerHTML={{ __html: hljs.highlightAuto(result).value }}></code>
+                <code
+                  dangerouslySetInnerHTML={{ __html: hljs.highlightAuto(codeResult).value }}
+                ></code>
               </pre>
             </div>
-            {contributors.length > 0 && (
+            {contributorsResult.length > 0 && (
               <div className="contributors">
                 <h2 className="contributors__title">Randomly lolled by</h2>
                 <ul className="contributors__list">
-                  {contributors.map((contributor) => (
+                  {contributorsResult.map((contributor) => (
                     <li className="contributors__listItem" key={contributor}>
                       <a
                         className="contributors__link"
@@ -173,14 +162,16 @@ export default function Home({ randomNumberOfLines, randomLang, randomCode }) {
 }
 
 export async function getStaticProps() {
-  const randomNumberOfLines = getRandomInt(3, 9);
-  const randomLang = getRandomLang();
-  const randomCode = generateRandomCode(randomLang, randomNumberOfLines);
+  const languages = getLanguages();
+  const randomCode = generateRandomCode();
+
   return {
     props: {
-      randomLang,
-      randomNumberOfLines,
-      randomCode,
+      languages,
+      languageKey: randomCode.languageKey,
+      code: randomCode.code,
+      lines: randomCode.lines,
+      contributors: randomCode.contributors,
     },
   };
 }

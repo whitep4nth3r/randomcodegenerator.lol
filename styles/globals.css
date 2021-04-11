@@ -67,6 +67,14 @@ a {
   text-align: center;
 }
 
+.youGot {
+  font-size: 1.2rem;
+  line-height: 1.4;
+  text-align: center;
+  margin-bottom: 1rem;
+  font-family: var(--font-family-heading);
+}
+
 .selector {
   display: flex;
   flex-direction: column;
@@ -142,26 +150,6 @@ a {
   font-size: 1.4rem;
   line-height: 1.6;
   font-family: var(--font-family-heading);
-}
-
-.input {
-  width: 100%;
-  padding: 1rem;
-  font-size: 1.4rem;
-  max-width: 10rem;
-  margin-left: auto;
-  margin-right: auto;
-  display: block;
-  text-align: center;
-  border: 0.25rem solid var(--black);
-  border-radius: 0;
-  font-family: var(--font-family-heading);
-}
-
-.input:focus {
-  outline-width: 0;
-  box-shadow: var(--green) 0 0 0 0.25rem;
-  transition: box-shadow 0.2s ease 0s;
 }
 
 .result {
