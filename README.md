@@ -14,6 +14,10 @@ Choose your language. Choose how many lines.
 
 BÄM! You got code.
 
+[Try it out](https://randomcodegenerator.lol)
+
+![A screenshot of randomcodegenerator.lol](screenshot1.png)
+
 ## This website uses the @whitep4nth3r/random-code npm package to generate random code
 
 - 👉🏼 [npm package](https://www.npmjs.com/package/@whitep4nth3r/random-code)
