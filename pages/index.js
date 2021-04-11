@@ -127,7 +127,7 @@ export default function Home({ languages, languageKey, code, lines, contributors
                   </button>
                 </div>
                 <code
-                className="result__code"
+                  className="result__code"
                   dangerouslySetInnerHTML={{ __html: hljs.highlightAuto(codeResult).value }}
                 ></code>
               </pre>
@@ -155,7 +155,7 @@ export default function Home({ languages, languageKey, code, lines, contributors
         )}
         <a
           className="submitPr__button"
-          href="https://github.com/whitep4nth3r/randomcodegenerator.lol"
+          href="https://github.com/whitep4nth3r/random-code"
           target="_blank"
           rel="noopener noreferrer"
         >
