@@ -3,7 +3,7 @@ import VideoEmbedStyles from "./VideoEmbed.module.css";
 export default function VideoEmbed() {
   return (
     <>
-      <h4 className={VideoEmbedStyles.videoEmbed__title}>Watch how this project started</h4>
+      <h3 className={VideoEmbedStyles.videoEmbed__title}>Watch how this project started</h3>
       <div className={VideoEmbedStyles.videoEmbed}>
         <iframe
           className={VideoEmbedStyles.videoEmbed__iframe}

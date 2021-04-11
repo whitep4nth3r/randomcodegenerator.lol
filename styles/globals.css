@@ -217,7 +217,7 @@ a {
   color: var(--white);
   padding: 2rem 2rem 4rem;
   margin-top: 2rem;
-  border-top: 0.5rem solid var(--yellow);
+  border-top: 0.25rem solid var(--yellow);
   display: flex;
   flex-direction: column;
 }
