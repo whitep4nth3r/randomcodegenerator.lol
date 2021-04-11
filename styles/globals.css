@@ -71,7 +71,7 @@ a {
   font-size: 1.2rem;
   line-height: 1.4;
   text-align: center;
-  margin-bottom: 1rem;
+  margin-bottom: 2rem;
   font-family: var(--font-family-heading);
 }
 
@@ -133,8 +133,10 @@ a {
 }
 
 .selector__button--luckyDip {
-  background-color: var(--green);
-  color: var(--black);
+  background-color: var(--red);
+  color: var(--white);
+  font-size: 1.8rem;
+  padding: 0.5rem 1rem;
   margin-left: auto;
   margin-right: auto;
   display: block;
@@ -154,11 +156,12 @@ a {
 
 .result {
   margin-bottom: 2rem;
+  box-shadow: rgba(0, 0, 0, 0.5) 0px 8px 32px;
+  border-radius: 0.5rem;
 }
 
 .result__pre {
-  position: relative;
-  padding: 1rem !important;
+  border-radius: 0.5rem;
   font-size: 1.4rem;
   line-height: 1.5;
   white-space: pre-wrap;
@@ -166,13 +169,20 @@ a {
   overflow-x: auto;
   word-break: break-all;
   tab-size: 4;
+  padding: 0 1rem 2rem 1rem !important;
+}
+
+.result__topBar {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  margin-right: -1rem;
+  margin-bottom: 3rem;
 }
 
 .copyButton {
   border-width: 0;
-  position: absolute;
-  right: 0;
-  margin-top: -1rem;
   padding: 0.5rem 1rem;
   cursor: pointer;
   background-color: var(--yellow);
@@ -182,6 +192,14 @@ a {
   line-height: 1;
   text-transform: uppercase;
   transition: all 0.2s ease-in-out;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-family-heading);
+}
+
+.copyButton__iconContainer {
+  margin-right: 0.25rem;
 }
 
 .copyButton:hover {

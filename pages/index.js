@@ -5,6 +5,8 @@ import dynamic from "next/dynamic";
 
 import { generateRandomCode, getLanguages } from "@whitep4nth3r/random-code";
 
+import CopyIcon from "../components/CopyIcon";
+import WindowIcons from "../components/WindowIcons";
 import PageMeta from "../components/PageMeta";
 import Footer from "../components/Footer";
 
@@ -115,10 +117,17 @@ export default function Home({ languages, languageKey, code, lines, contributors
             </p>
             <div className="result">
               <pre className="result__pre hljs">
-                <button type="button" className="copyButton" onClick={copyCode}>
-                  Copy
-                </button>
+                <div className="result__topBar">
+                  <WindowIcons />
+                  <button type="button" className="copyButton" onClick={copyCode}>
+                    <span class="copyButton__iconContainer">
+                      <CopyIcon />
+                    </span>
+                    Copy
+                  </button>
+                </div>
                 <code
+                className="result__code"
                   dangerouslySetInnerHTML={{ __html: hljs.highlightAuto(codeResult).value }}
                 ></code>
               </pre>
