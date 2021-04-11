@@ -37,7 +37,6 @@ export default function Home({ languages, languageKey, code, lines, contributors
   }
 
   function chooseAmount(randomInt) {
-    console.log(randomInt);
     generateAndUpdate(selectedLangResult, randomInt);
   }
 
