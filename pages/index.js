@@ -120,7 +120,7 @@ export default function Home({ languages, languageKey, code, lines, contributors
                 <div className="result__topBar">
                   <WindowIcons />
                   <button type="button" className="copyButton" onClick={copyCode}>
-                    <span class="copyButton__iconContainer">
+                    <span className="copyButton__iconContainer">
                       <CopyIcon />
                     </span>
                     Copy
