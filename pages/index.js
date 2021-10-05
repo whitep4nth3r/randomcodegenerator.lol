@@ -62,8 +62,7 @@ export default function Home({ languages, languageKey, code, lines, contributors
         <button
           type="button"
           className="selector__button selector__button--luckyDip"
-          onClick={luckyDip}
-        >
+          onClick={luckyDip}>
           I'm feeling lucky
         </button>
 
@@ -74,22 +73,19 @@ export default function Home({ languages, languageKey, code, lines, contributors
             <button
               type="button"
               className={`selector__button selector__button--lines`}
-              onClick={() => chooseAmount(getRandomInt(3, 8))}
-            >
+              onClick={() => chooseAmount(getRandomInt(3, 8))}>
               A little
             </button>
             <button
               type="button"
               className={`selector__button selector__button--lines`}
-              onClick={() => chooseAmount(getRandomInt(9, 13))}
-            >
+              onClick={() => chooseAmount(getRandomInt(9, 13))}>
               Some
             </button>
             <button
               type="button"
               className={`selector__button selector__button--lines`}
-              onClick={() => chooseAmount(getRandomInt(14, 20))}
-            >
+              onClick={() => chooseAmount(getRandomInt(14, 20))}>
               A lot
             </button>
           </div>
@@ -101,8 +97,7 @@ export default function Home({ languages, languageKey, code, lines, contributors
                   className={`selector__button${selectedClass}`}
                   type="button"
                   key={key}
-                  onClick={() => chooseLang(key)}
-                >
+                  onClick={() => chooseLang(key)}>
                   {value}
                 </button>
               );
@@ -128,8 +123,7 @@ export default function Home({ languages, languageKey, code, lines, contributors
                 </div>
                 <code
                   className="result__code"
-                  dangerouslySetInnerHTML={{ __html: hljs.highlightAuto(codeResult).value }}
-                ></code>
+                  dangerouslySetInnerHTML={{ __html: hljs.highlightAuto(codeResult).value }}></code>
               </pre>
             </div>
             {contributorsResult.length > 0 && (
@@ -142,8 +136,7 @@ export default function Home({ languages, languageKey, code, lines, contributors
                         className="contributors__link"
                         href={`https://github.com/${contributor}`}
                         rel="noopener noreferrer"
-                        target="_blank"
-                      >
+                        target="_blank">
                         {contributor}
                       </a>
                     </li>
@@ -157,8 +150,7 @@ export default function Home({ languages, languageKey, code, lines, contributors
           className="submitPr__button"
           href="https://github.com/whitep4nth3r/random-code"
           target="_blank"
-          rel="noopener noreferrer"
-        >
+          rel="noopener noreferrer">
           Submit a PR
         </a>
 
